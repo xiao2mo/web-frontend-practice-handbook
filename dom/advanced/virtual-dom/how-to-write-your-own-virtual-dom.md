@@ -1,7 +1,6 @@
-
 > [原文地址](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060#.fxxdorvid)
 
-> [Github 系列文章地址]()
+> [Github 系列文章地址](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/dom/advanced/virtual-dom/how-to-write-your-own-virtual-dom.md)
 
 
 
@@ -200,7 +199,7 @@ function createElement(node) {
 
 ```
 
-﻿function createElement(node) {
+function createElement(node) {
   if (typeof node === ‘string’) {
     return document.createTextNode(node);
   }
@@ -462,6 +461,787 @@ function updateElement($parent, newNode, oldNode, index = 0) {
 
 ![](http://7xkt0f.com1.z0.glb.clouddn.com/1-e1s_Zc_fVxL3i0un2ZNEtg.gif)
 
+```
+
+/** @jsx h */
+
+
+
+function h(type, props, ...children) {
+
+  return { type, props, children };
+
+}
+
+
+
+function createElement(node) {
+
+  if (typeof node === 'string') {
+
+    return document.createTextNode(node);
+
+  }
+
+  const $el = document.createElement(node.type);
+
+  node.children
+
+    .map(createElement)
+
+    .forEach($el.appendChild.bind($el));
+
+  return $el;
+
+}
+
+
+
+function changed(node1, node2) {
+
+  return typeof node1 !== typeof node2 ||
+
+         typeof node1 === 'string' && node1 !== node2 ||
+
+         node1.type !== node2.type
+
+}
+
+
+
+function updateElement($parent, newNode, oldNode, index = 0) {
+
+  if (!oldNode) {
+
+    $parent.appendChild(
+
+      createElement(newNode)
+
+    );
+
+  } else if (!newNode) {
+
+    $parent.removeChild(
+
+      $parent.childNodes[index]
+
+    );
+
+  } else if (changed(newNode, oldNode)) {
+
+    $parent.replaceChild(
+
+      createElement(newNode),
+
+      $parent.childNodes[index]
+
+    );
+
+  } else if (newNode.type) {
+
+    const newLength = newNode.children.length;
+
+    const oldLength = oldNode.children.length;
+
+    for (let i = 0; i < newLength || i < oldLength; i++) {
+
+      updateElement(
+
+        $parent.childNodes[index],
+
+        newNode.children[i],
+
+        oldNode.children[i],
+
+        i
+
+      );
+
+    }
+
+  }
+
+}
+
+
+
+// ---------------------------------------------------------------------
+
+
+
+const a = (
+
+  <ul>
+
+    <li>item 1</li>
+
+    <li>item 2</li>
+
+  </ul>
+
+);
+
+
+
+const b = (
+
+  <ul>
+
+    <li>item 1</li>
+
+    <li>hello!</li>
+
+  </ul>
+
+);
+
+
+
+const $root = document.getElementById('root');
+
+const $reload = document.getElementById('reload');
+
+
+
+updateElement($root, a);
+
+$reload.addEventListener('click', () => {
+
+  updateElement($root, b, a);
+
+});
+
+
+
+```
+
+
+
+
+
+> [第二部分原文：write-your-virtual-dom-2-props-events](https://medium.com/@deathmood/write-your-virtual-dom-2-props-events-a957608f5c76#.ihf8gz430)
+
+> [完整的示例代码地址](https://github.com/wxyyxc1992/web-frontend-practice-handbook/tree/master/dom/advanced/virtual-dom/demo/simple-virtual-dom)
+
+
+
+# Props
+
+首先我们要回顾下前文讲的一个有些偏差的小点，假设我们在JSX中只写一个最简单的Div:
+
+```
+
+<div></div>
+
+```
+
+Babel会自动将该JSX转化为如下的DOM表达式：
+
+```
+
+{ type: ‘’, props: null, children: [] }
+
+```
+
+注意，这里的props默认是null，我们在之前的文章中并没有关注到这个属性，而本部分则是要讲解Virtual DOM中Props的用法。一般来说，无论在哪种编程环境下都要尽量避免Null的出现，因此我们首先来改造下`h`函数，使得其能够默认返回一个空的Object，而不是Null:
+
+```
+
+function h(type, props, …children) {
+ return { type, props: props || {}, children };
+}
+
+```
+
+## Setting Props:设置Props
+
+接触过React的同学对于Props肯定不会陌生，而设置Props也就跟使用普通的HTML标签属性很类似：
+
+```
+
+<ul className=”list” style=”list-style: none;”></ul>
+
+```
+
+而最终会转化为如下的表达式：
+
+```
+
+{ 
+ type: ‘ul’, 
+ props: { className: ‘list’, style: ’list-style: none;’ } 
+ children: []
+}
+
+```
+
+props对象中的每个键即为属性名，而值为属性值，一般来说我们只需要简单的调用一个`setAttribute`方法来讲这个Props中的键值对设置到DOM元素上即可：
+
+```
+
+function setProp($target, name, value) {
+ $target.setAttribute(name, value);
+}
+
+```
+
+这个函数用于将单个的Prop值设置到DOM元素上，而对于props对象，我们要做的就是依次遍历：
+
+```
+
+function setProps($target, props) {
+ Object.keys(props).forEach(name => {
+   setProp($target, name, props[name]);
+ });
+}
+
+```
+
+你应该还记得那个用于创建元素的`createElement`方法吧，我们需要将`setProps`方法放置到元素成功创建之后：
+
+```
+
+function createElement(node) {
+ if (typeof node === ‘string’) {
+   return document.createTextNode(node);
+ }
+ const $el = document.createElement(node.type);
+ setProps($el, node.props);
+ node.children
+   .map(createElement)
+   .forEach($el.appendChild.bind($el));
+ return $el;
+}
+
+```
+
+不要急，这还远远不够。React的初学教程中一直强调className与class的区别，在我们的setProps中也需要对于这些JS的保留字做一个替换，譬如：
+
+```
+
+<nav className=”navbar light”>
+
+ <ul></ul>
+</nav>
+
+```
+
+另外，还有比较常见的就是对于DOM的布尔属性，譬如checked、disabled等等的处理：
+
+```
+
+<input type=”checkbox” checked={false} />
+
+```
+
+在真实的DOM节点上，如果是出现了false的情况，我们并不希望checked属性会出现，那么我们的Props函数就要能智能地进行判断：
+
+```
+
+function setBooleanProp($target, name, value) {
+ if (value) {
+   $target.setAttribute(name, value);
+   $target[name] = true;
+ } else {
+   $target[name] = false;
+ }
+}
+
+```
+
+最后呢，要做的就是对于自定义的，即非标准的HTML属性进行一个过滤，这些属性只应该出现在JS对象上，而不应该出现在真实的DOM对象上：
+
+```
+
+function isCustomProp(name) {
+ return false;
+}
+
+```
+
+```
+
+function setProp($target, name, value) {
+ if (isCustomProp(name)) {
+   return;
+ } else if (name === ‘className’) {
+   $target.setAttribute(‘class’, value);
+ } else if (typeof value === ‘boolean’) {
+   setBooleanProp($target, name, value);
+ } else {
+   $target.setAttribute(name, value);
+ }
+}
+
+```
+
+总结一下，本部分完整的JSX代码为：
+
+```
+
+/** @jsx h */
+
+function h(type, props, ...children) {
+  return { type, props: props || {}, children };
+}
+
+function setBooleanProp($target, name, value) {
+  if (value) {
+    $target.setAttribute(name, value);
+    $target[name] = true;
+  } else {
+    $target[name] = false;
+  }
+}
+
+function isCustomProp(name) {
+  return false;
+}
+
+function setProp($target, name, value) {
+  if (isCustomProp(name)) {
+    return;
+  } else if (name === 'className') {
+    $target.setAttribute('class', value);
+  } else if (typeof value === 'boolean') {
+    setBooleanProp($target, name, value);
+  } else {
+    $target.setAttribute(name, value);
+  }
+}
+
+function setProps($target, props) {
+  Object.keys(props).forEach(name => {
+    setProp($target, name, props[name]);
+  });
+}
+
+function createElement(node) {
+  if (typeof node === 'string') {
+    return document.createTextNode(node);
+  }
+  const $el = document.createElement(node.type);
+  setProps($el, node.props);
+  node.children
+    .map(createElement)
+    .forEach($el.appendChild.bind($el));
+  return $el;
+}
+
+//--------------------------------------------------
+
+const f = (
+  <ul style="list-style: none;">
+    <li className="item">item 1</li>
+    <li className="item">
+      <input type="checkbox" checked={true} />
+      <input type="text" disabled={false} />
+    </li>
+  </ul>
+);
+
+const $root = document.getElementById('root');
+$root.appendChild(createElement(f));
+```
+
+
+
+## Diffing Props:Props变化比较
+
+现在我们已经创建了带有Props属性的元素，下一个需要考虑的就是应该如何应用到我们上文提到的Diff算法中。首先我们要来看下如何从真实的DOM中移除某些Props:
+
+```
+
+function removeBooleanProp($target, name) {
+ $target.removeAttribute(name);
+ $target[name] = false;
+}function removeProp($target, name, value) {
+ if (isCustomProp(name)) {
+   return;
+ } else if (name === ‘className’) {
+   $target.removeAttribute(‘class’);
+ } else if (typeof value === ‘boolean’) {
+   removeBooleanProp($target, name);
+ } else {
+   $target.removeAttribute(name);
+ }
+}
+
+```
+
+然后我们需要写一个updateProp函数，来根据新旧节点的Props的变化进行恰当的真实DOM节点的修改，共有以下几种情况：
+
+- 新节点移除了某个旧节点的Prop
+
+![](http://7xiegq.com1.z0.glb.clouddn.com/1-N18Z791AZ-0c59IW1JNl3Q.png)
+
+- 新节点添加了某个旧节点没有的Prop
+
+![](http://7xiegq.com1.z0.glb.clouddn.com/1-TWNB5FSzfjqGa0g_D8OXtg.png)
+
+- 新旧节点的某个Prop的值发生了变化
+
+![](http://7xiegq.com1.z0.glb.clouddn.com/1-W0jGFee-2ptAP1Lm05nzDg.png)
+
+
+
+根据以上规则，我们可知更新Prop的函数为：
+
+```
+
+function updateProp($target, name, newVal, oldVal) {
+ if (!newVal) {
+   removeProp($target, name, oldVal);
+ } else if (!oldVal || newVal !== oldVal) {
+   setProp($target, name, newVal);
+ }
+}
+
+```
+
+可以看出，更新单个Prop的函数还是非常简单的，就是将移除与设置结合起来使用，那么我们扩展到Props，就得到如下的函数：
+
+```
+
+function updateProps($target, newProps, oldProps = {}) {
+
+  const props = Object.assign({}, newProps, oldProps);
+
+  Object.keys(props).forEach(name => {
+
+    updateProp($target, name, newProps[name], oldProps[name]);
+
+  });
+
+}
+
+```
+
+同样地，我们需要将该更新函数添加到`updateElement`函数中：
+
+```
+
+function updateElement($parent, newNode, oldNode, index = 0) {
+
+  ...
+
+  } else if (newNode.type) {
+
+    updateProps(
+
+      $parent.childNodes[index],
+
+      newNode.props,
+
+      oldNode.props
+
+    );
+
+ 
+
+    ...
+
+  }
+
+}
+
+```
+
+
+
+# Events
+
+用户交互是任何一个应用不可或缺的部分，而在这里我们讨论下如何为Virtual DOM添加事件处理的能力，React大概会这么做：
+
+```
+
+<button onClick={() => alert(‘hi!’)}></button>
+
+```
+
+可以看出，设置一个事件处理器就是添加一个Prop，只不过名称会以`on`开始，那么我们可以用如下函数来判断某个Prop是否与事件相关：
+
+```
+
+function isEventProp(name) {
+ return /^on/.test(name);
+}
+
+```
+
+判断是事件类型之后，我们可以提取出事件名：
+
+```
+
+function extractEventName(name) {
+ return name.slice(2).toLowerCase();
+}
+
+```
+
+看到这里，估计你会考虑直接将事件处理也放到setProps与updateProps函数中，不过这边就会存在一个问题，在diffProps的时候，你很难去比较两个function：
+
+![](http://7xiegq.com1.z0.glb.clouddn.com/1-kHULR4jucUYsJmRoS5aSBA.png)
+
+因此我们将所有的事件类型的Props认为是自定义的Props，这样我们上面提到的isCustomProp就起作用了：
+
+```
+
+function isCustomProp(name) {
+ return isEventProp(name);
+}
+
+```
+
+而把事件响应函数绑定到真实的DOM节点也很简单：
+
+```
+
+function addEventListeners($target, props) {
+ Object.keys(props).forEach(name => {
+   if (isEventProp(name)) {
+     $target.addEventListener(
+       extractEventName(name),
+       props[name]
+     );
+   }
+ });
+}
+
+```
+
+同样的需要将该函数添加到createElement中：
+
+```
+
+function createElement(node) {
+ if (typeof node === ‘string’) {
+   return document.createTextNode(node);
+ }
+ const $el = document.createElement(node.type);
+ setProps($el, node.props);
+ addEventListeners($el, node.props);
+ node.children
+   .map(createElement)
+   .forEach($el.appendChild.bind($el));
+ return $el;
+}
+
+```
+
+## Re-Adding Events:重新设置了事件响应
+
+在这里我们暂时不考虑地很复杂，即不深入地比较那些事件类型的Prop发生变化的情况，作为替代的，我们引入一个forceUpdate属性，即强制整个DOM进行更新：
+
+```
+
+function changed(node1, node2) {
+ return typeof node1 !== typeof node2 ||
+        typeof node1 === ‘string’ && node1 !== node2 ||
+        node1.type !== node2.type ||
+        node.props.forceUpdate;
+}
+
+```
+
+```
+
+function isCustomProp(name) {
+ return isEventProp(name) || name === ‘forceUpdate’;
+}
+
+```
+
+
+
+最后，本文完整的JSX为：
+
+```
+
+/** @jsx h */
+
+function h(type, props, ...children) {
+  return { type, props: props || {}, children };
+}
+
+function setBooleanProp($target, name, value) {
+  if (value) {
+    $target.setAttribute(name, value);
+    $target[name] = true;
+  } else {
+    $target[name] = false;
+  }
+}
+
+function removeBooleanProp($target, name) {
+  $target.removeAttribute(name);
+  $target[name] = false;
+}
+
+function isEventProp(name) {
+  return /^on/.test(name);
+}
+
+function extractEventName(name) {
+  return name.slice(2).toLowerCase();
+}
+
+function isCustomProp(name) {
+  return isEventProp(name) || name === 'forceUpdate';
+}
+
+function setProp($target, name, value) {
+  if (isCustomProp(name)) {
+    return;
+  } else if (name === 'className') {
+    $target.setAttribute('class', value);
+  } else if (typeof value === 'boolean') {
+    setBooleanProp($target, name, value);
+  } else {
+    $target.setAttribute(name, value);
+  }
+}
+
+function removeProp($target, name, value) {
+  if (isCustomProp(name)) {
+    return;
+  } else if (name === 'className') {
+    $target.removeAttribute('class');
+  } else if (typeof value === 'boolean') {
+    removeBooleanProp($target, name);
+  } else {
+    $target.removeAttribute(name);
+  }
+}
+
+function setProps($target, props) {
+  Object.keys(props).forEach(name => {
+    setProp($target, name, props[name]);
+  });
+}
+
+function updateProp($target, name, newVal, oldVal) {
+  if (!newVal) {
+    removeProp($target, name, oldVal);
+  } else if (!oldVal || newVal !== oldVal) {
+    setProp($target, name, newVal);
+  }
+}
+
+function updateProps($target, newProps, oldProps = {}) {
+  const props = Object.assign({}, newProps, oldProps);
+  Object.keys(props).forEach(name => {
+    updateProp($target, name, newProps[name], oldProps[name]);
+  });
+}
+
+function addEventListeners($target, props) {
+  Object.keys(props).forEach(name => {
+    if (isEventProp(name)) {
+      $target.addEventListener(
+        extractEventName(name),
+        props[name]
+      );
+    }
+  });
+}
+
+function createElement(node) {
+  if (typeof node === 'string') {
+    return document.createTextNode(node);
+  }
+  const $el = document.createElement(node.type);
+  setProps($el, node.props);
+  addEventListeners($el, node.props);
+  node.children
+    .map(createElement)
+    .forEach($el.appendChild.bind($el));
+  return $el;
+}
+
+function changed(node1, node2) {
+  return typeof node1 !== typeof node2 ||
+         typeof node1 === 'string' && node1 !== node2 ||
+         node1.type !== node2.type ||
+         node1.props && node1.props.forceUpdate;
+}
+
+function updateElement($parent, newNode, oldNode, index = 0) {
+  if (!oldNode) {
+    $parent.appendChild(
+      createElement(newNode)
+    );
+  } else if (!newNode) {
+    $parent.removeChild(
+      $parent.childNodes[index]
+    );
+  } else if (changed(newNode, oldNode)) {
+    $parent.replaceChild(
+      createElement(newNode),
+      $parent.childNodes[index]
+    );
+  } else if (newNode.type) {
+    updateProps(
+      $parent.childNodes[index],
+      newNode.props,
+      oldNode.props
+    );
+    const newLength = newNode.children.length;
+    const oldLength = oldNode.children.length;
+    for (let i = 0; i < newLength || i < oldLength; i++) {
+      updateElement(
+        $parent.childNodes[index],
+        newNode.children[i],
+        oldNode.children[i],
+        i
+      );
+    }
+  }
+}
+
+//---------------------------------------------------------
+
+function log(e) {
+  console.log(e.target.value);
+}
+
+const f = (
+  <ul style="list-style: none;">
+    <li className="item" onClick={() => alert('hi!')}>item 1</li>
+    <li className="item">
+      <input type="checkbox" checked={true} />
+      <input type="text" onInput={log} />
+    </li>
+    {/* this node will always be updated */}
+    <li forceUpdate={true}>text</li>
+  </ul>
+);
+
+const g = (
+  <ul style="list-style: none;">
+    <li className="item item2" onClick={() => alert('hi!')}>item 1</li>
+    <li style="background: red;">
+      <input type="checkbox" checked={false} />
+      <input type="text" onInput={log} />
+    </li>
+    {/* this node will always be updated */}
+    <li forceUpdate={true}>text</li>
+  </ul>
+);
+
+const $root = document.getElementById('root');
+const $reload = document.getElementById('reload');
+
+updateElement($root, f);
+$reload.addEventListener('click', () => {
+  updateElement($root, g, f);
+});
+
+
+```
+
+
+
 
 
 到这里我们就完成了一个最简单的Virtual DOM算法，不过其与真正能够投入实战的Virtual DOM算法还是有很大距离，进一步阅读推荐：
@@ -477,4 +1257,5 @@ function updateElement($parent, newNode, oldNode, index = 0) {
 - [how-to-write-your-own-virtual-dom](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060#.59fqwanqa)
 
 - [Virtual DOM Benchmark](http://vdom-benchmark.github.io/vdom-benchmark/)
+
 
