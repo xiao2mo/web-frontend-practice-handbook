@@ -1,0 +1,280 @@
+> [原文地址](https://medium.com/front-end-developers/domain-state-vs-ui-state-768c1271a41d#.25dg0jyqg)
+
+> [笔者的前端系列文章索引](https://github.com/wxyyxc1992/web-frontend-practice-handbook)
+
+
+
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/7/1/1-WGDVzQRyXxoEG5r1PSEiAw.png)
+
+
+
+记得上次面试的时候，有人问我怎么看待全栈开发这个概念，笔者一直觉得，对于小团队与较简单的业务逻辑，全栈可以极大地提高产品开发效率。但是所谓磨刀不误砍柴工，随着对性能、清晰可维护的代码架构的需求日渐提升，类似于Meteor这样所谓的Isomorphic全栈架构反而成了一种阻碍，大大增加整个产品架构的复杂度。其中一个核心的Issue就是在于当你将前后端的状态无差别的处理，而不进行任何分割的时候，你来自于Domain/DataBase/Server/UI的状态迅猛增长，最终将你的代码变成一团乱麻。而作为全栈开发者，应该如何应对这种复杂性的陡升呢？还是需要在所谓的客户端与服务端之间划分一个明确的状态界限，并且以API Provider与Consumer的方式将客户端与服务端进行解耦，这也符合SOLID原则，每个系统内部应该尽量少的了解外部系统的细节。
+
+
+
+# What is State?:何谓状态
+
+一言以蔽之，状态就是你应用中流动的数据。在工程师们提出了`State`这个概念之后，每个人都对它有自己独特的理解，特别是随着JavaScript富客户端应用的爆炸式增长该词也被赋予了各式各样的含义，让人们无所适从。State是对于你应用当前的属性、配置或者一些定量特征的总结。具体而言，譬如用户的提示语言，游戏中的计时器或者某个组件的可见性。另一方面，状态也代表着服务端的缓存、或者不同用户存放于数据库中的数据，这也是一种状态。
+
+实际上，任何应用中都不会只存在某种单一的状态，状态以不同的形式出现在应用的不同层级，我们首先要做的就是搞清楚应该如何区分这些状态，并且应该如何因地制宜地处理这些状态。
+
+
+
+# Domain State:服务端状态
+
+Domain State即是你应用服务端的状态，也就是你应用面向的某个特定领域的状态。譬如我们正在为Grocery Store开发的Web应用，可以预见的，我们会在应用中发现如下通用状态：认证、校验、错误处理等等，统一的我们也会发现很多与超级市场这一产业相关的状态。这就是所谓的领域特定业务逻辑(Domain Specific Business Logic)，这些状态会应用于行业相关的业务逻辑代码。Domain State来自于服务端，并且需要根据用户的Session进行持久化存储，以便于更好地与客户端进行交互。这里以GraphQL为例展示一个简单的Domain State查询(如果你还不了解GraphQL，可以参考[GraphQL初探:从REST到GraphQL，更完善的数据查询定义](https://segmentfault.com/a/1190000005766732))：
+
+```
+
+// Lets say we want to know the state of our friends list at any given time
+
+// Lets make a  GraphQL query to represent this:
+
+
+
+user(id: "1") {
+
+  name
+
+  friends {
+
+    name
+
+  }
+
+}
+
+```
+
+在GraphQL中我们编写所谓的`queries`来获取Domain State，如上面的请求中我们会返回编号为1的用户的姓名与朋友信息，返回结果如下所示：
+
+```
+
+
+
+{
+
+  "data": {
+
+    "user": {
+
+      "name": "Abhi Aiyer",
+
+      "friends": [
+
+        {
+
+          "name": "Ben Strahan"
+
+        },
+
+        {
+
+          "name": "Sashko Stubailo"
+
+        }]
+
+      }
+
+    }
+
+  }
+
+```
+
+如果我们需要获取更多的领域信息：
+
+```
+
+jobs(id: "32hkrv32ZKjd3jlwzhk") {
+
+  description,
+
+  position,
+
+  wage {
+
+    max
+
+  },
+
+  managers {
+
+    name,
+
+    email
+
+  },
+
+  status,
+
+  published
+
+}
+
+```
+
+这里我们从job表中希望获取更多关联信息，返回结果大概如下：
+
+```
+
+{
+
+  "data": {
+
+    "jobs": {
+
+      "description": "Write cool blog posts",
+
+      "position": "Programmer",
+
+      "wage": {
+
+        "max": 24
+
+      },
+
+      "managers": [
+
+        {
+
+          "name": "Larry",
+
+          "email": "larry@stooges.com"
+
+        },
+
+        {
+
+          "name": "Moe",
+
+          "email": "moe@stooges.com"
+
+        }
+
+      ],
+
+      "status": "PUBLISHED",
+
+      "publishedAt": 1460294879
+
+    }
+
+  }
+
+}
+
+```
+
+# UI State
+
+Domain State大概包含了你需要管理的核心状态中的差不多一半部分，Browser代表着另一半，并且有它自己的职责与能力。尽管现在UI开发中无状态组件的概念很流行，Browser主要负责存放用户刚刚输入的或者配置的状态信息。除此之外，Browsers还会缓存页面、设置Cookie、在LocalStorage中设置Token、载入CSS等等。除了Web Browsers之外，我们的客户端应用还有专门的状态管理工具。如果你是使用React进行界面开发并且选用了单向数据流架构，你大概会选用Flux库或者某个变种。Flux系列框架能够帮助前端开发人员管理客户端的状态，譬如某个组件的可见性控制、用户输入的获取或者响应，或者根据不同的用户尺寸展示不同的尺寸等等。这里以Redux的reducers为例：
+
+```
+
+function visibilityOfButton(state = false, action = {}) {
+
+  switch (action.type) {
+
+    case "TOGGLE_VISIBILITY":
+
+      // return opposite of the current state
+
+      return !state;
+
+    default:
+
+      return state;
+
+  }
+
+}
+
+
+
+function inputFromUser(state = {}, action) {
+
+  switch (action.type) {
+
+    case "UPDATE_DATA":
+
+      // return a new object that has data from the action
+
+      return { ...state, ...action.data }
+
+    default:
+
+      return state;
+
+  }
+
+}
+
+```
+
+在Redux中，reducers阐述了UI状态的变化之路，你可以看到当前的状态以及根据不同的Action会进行怎样的状态变化。譬如根据上面的reducers，我们的状态树大概是这个样子的：
+
+```
+
+{
+
+  visibilityOfButton: false,
+
+  inputFromUser: {}
+
+}
+
+```
+
+当用户点击按钮之后，产生的Action以及对应的State变更如下所示：
+
+```
+
+// Redux utilizes a command like pattern. 
+
+// Our Store represents the receiver here
+
+// the dispatch represents the executor
+
+// the object passed to the dispathcer is the command
+
+Store.dispatch({
+
+  type: "TOGGLE_VISIBILITY"
+
+});
+
+
+
+'REVIOUS STATE: { visibilityOfButton: false, inputFromUser: {} }'
+
+'ACTION -> type: "TOGGLE_VISIBILITY"'
+
+'NEXT STATE: { visibilityOfButton: true, inputFromUser: {} }'
+
+```
+
+
+
+# Separation By API
+
+在JavaScript中，纯粹的同构的前后端是个非常酷的概念，不过就如笔者在文首所讲，在CS架构中还是保持客户端与服务端的某个边界还是很有意义的。而在实践中，这个边界往往就是所谓的Public API。从前端开发者的角度而言，对于服务端我只需要了解API相关的内容，自然也希望API能够稳定的保证一种向后兼容性，不向后兼容的API会强制前端开发者及时地做出响应。一般来说，客户端需要维护两种状态，用户的交互以及需要持久化存储到某个域中的结果。因此，我们希望能够以一种清晰可预测的方式来管理我们的状态。以API的方式分隔客户端状态与服务端状态即是为了保证所写代码的职责分离，你肯定不希望模块对于外部系统有太多的依赖。
+
+在具体的实现API的时候，我们的目标兼括了稳定性与性能本身，即使你自己作为全栈开发者同时负责了前后端的代码，我也是不建议在开发服务端业务逻辑的代码时过多的考虑到UI State。我使用Redux来管理应用前端的UI状态，它提倡的模式与文档支持都非常好，社区本身也非常地活跃。GraphQL也是值得推荐的用于分割状态的工具，在GraphQL中，客户端能够以查询地方式从服务端请求状态，GraphQL可以将多个Endpoint的状态合并返回给前端，从而使前端不需要去关心后端到底是如何实现的。
+
+综上所述，随着应用的日渐增长，状态管理的复杂度也与日俱增。而能够掌控这种复杂的情形，也是软件工程师的必备能力之一。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
