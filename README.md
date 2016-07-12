@@ -48,6 +48,13 @@
 
 - [前端框架系列文章总纲](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/framework)
 
+## Utils
+
+### jQuery
+
+- [你应该知道的jQuery的小技巧](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/framework/utils/jquery/jquery-tips-everyone-should-know.md)
+
+
 # Web
 
 - [其他Web技术应用点系列总纲](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/web)
