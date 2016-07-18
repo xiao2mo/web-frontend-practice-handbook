@@ -9,9 +9,16 @@ html, body {
   height: 100%;
 }
 
-//基准的HTML大小为10px
+//基准的HTML大小为16px
 html {
-  font-size: 62.5%;
+  font-size: 12px;
+}
+
+//对于屏幕大于375的,设置为15px
+@include min-screen(375px) {
+  html {
+    font-size: 15px;
+  }
 }
 
 //iPhone4与5同宽度
@@ -24,21 +31,21 @@ html {
 //以iPhone 5 为基准尺寸
 @include iphone5(portrait) {
   html {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
 //大概1.17倍
 @include iphone6(portrait) {
   html {
-    font-size: 12px;
+    font-size: 15px;
   }
 }
 
 //大概1.29 倍
 @include iphone6-plus(portrait) {
   html {
-    font-size: 13px;
+    font-size: 18px;
   }
 }
 
@@ -73,4 +80,17 @@ table {
   width: auto;
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+//添加禁止聚焦高亮效果
+//http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting?rq=1
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                         not supported by any browser */
 }
