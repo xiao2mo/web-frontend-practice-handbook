@@ -1,0 +1,37 @@
+@import "./_media-query.scss";
+
+div {
+  display: none;
+}
+
+@include iphone4(portrait) {
+
+  .iphone4 {
+    display: block;
+  }
+
+}
+
+@include iphone5(portrait) {
+
+  .iphone5 {
+    display: block;
+  }
+
+}
+
+@include iphone6(portrait) {
+
+  .iphone6 {
+    display: block;
+  }
+
+}
+
+@include iphone6-plus(portrait) {
+
+  .iphone6-plus {
+    display: block;
+  }
+
+}
