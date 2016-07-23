@@ -18,7 +18,7 @@ module.exports = {
 
     //开发服务器配置
     devServer: {
-        appEntrySrc: "./widgets/components/scalable/demo/swiper.js", //当前待调试的APP的编号
+        appEntrySrc: "./demo.js", //当前待调试的APP的编号
         port: 3000 //监听的Server端口
     },
 
