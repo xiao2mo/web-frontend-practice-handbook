@@ -9,7 +9,7 @@ html, body {
   height: 100%;
 }
 
-//基准的HTML大小为16px
+//基准的HTML大小为12px
 html {
   font-size: 12px;
 }
@@ -38,14 +38,14 @@ html {
 //大概1.17倍
 @include iphone6(portrait) {
   html {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
 //大概1.29 倍
 @include iphone6-plus(portrait) {
   html {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
