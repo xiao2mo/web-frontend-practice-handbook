@@ -19,6 +19,7 @@
   - [propTypes](#proptypes)
 - [jQuery Integration](#jquery-integration)
 - [Utils](#utils)
+  - [React Devtools](#react-devtools)
   - [React-StoryBook:开发中独立于APP查看React组件](#react-storybook%E5%BC%80%E5%8F%91%E4%B8%AD%E7%8B%AC%E7%AB%8B%E4%BA%8Eapp%E6%9F%A5%E7%9C%8Breact%E7%BB%84%E4%BB%B6)
     - [Quick Start](#quick-start)
       - [Installation](#installation)
@@ -28,12 +29,10 @@
     - [Stories](#stories)
       - [Redux](#redux)
   - [HTML2JSX:智能地将HTML文件转化为JSX格式](#html2jsx%E6%99%BA%E8%83%BD%E5%9C%B0%E5%B0%86html%E6%96%87%E4%BB%B6%E8%BD%AC%E5%8C%96%E4%B8%BAjsx%E6%A0%BC%E5%BC%8F)
+  - [react-monocle:可视化地展示React组件的层次结构](#react-monocle%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%B1%95%E7%A4%BAreact%E7%BB%84%E4%BB%B6%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84)
+  - [why-did-you-update:提醒你不必要的重渲染](#why-did-you-update%E6%8F%90%E9%86%92%E4%BD%A0%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E9%87%8D%E6%B8%B2%E6%9F%93)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-[toc]
-
-
 
 React，或者说React+Redux+Webpack形成的一套完整的开发体系与项目结构是笔者目前的选择，但是正如很多人吐槽的，整个React社区对初学者实在太不友好了。就好像之前对于Java的吐槽，Python中HelloWord就一行，但是Java里你要专门去建个类。有时候太多的选择反而只会带来痛苦。所以在这里笔者想先说一句，使用你能够学会的，做到你能力范围内最好的即可，不然只会带来无尽的半成品。
 
@@ -538,6 +537,16 @@ class JPlayer extends React.Component {
 
 # Utils
 
+
+
+## [React Devtools](https://github.com/facebook/react-devtools)
+
+React Devtools是React官方提供的类似于浏览器调试台的插件，可以允许以查看组件的层次、各个组件的Props、States等等信息。使用方式也很简单，直接在Firefox或者Chrome的加载项仓库中搜索下载即可。
+
+![](https://github.com/facebook/react-devtools/raw/master/images/devtools-full.gif)
+
+
+
 ## [React-StoryBook](https://github.com/kadirahq/react-storybook):开发中独立于APP查看React组件
 
 
@@ -924,4 +933,54 @@ function getItem(todo) {
 $ npm i -g html-to-react-components
 $ html2react ./src/*.html -c stateless -m es6 -d _ -o components -e jsx
 ```
+
+
+
+## [react-monocle](https://github.com/team-gryff/react-monocle):可视化地展示React组件的层次结构
+
+React Monocle是一个帮助开发人员可视化浏览React组件的层次结构的工具，其大概的功能如下所示:
+
+![](https://github.com/team-gryff/react-monocle/raw/master/demo.gif)
+
+React Monocle会遍历你的React源文件来构建一颗基于React组件的可视化树，而且随着你的应用程序状态的变化，譬如存储在Redux中的状态的变化也会动态地来修正层次结构。该工具的安装方式也十分简单:
+
+```
+
+npm install -g react-monocle
+
+monocle -c <html> -b <bundle>
+
+```
+
+
+
+
+
+## [why-did-you-update](https://github.com/garbles/why-did-you-update):提醒你不必要的重渲染
+
+![](https://camo.githubusercontent.com/0f34a575ad3f81c9826f54c03a17da848e1ee038/687474703a2f2f692e696d6775722e636f6d2f556938595542652e706e67)
+
+该函数会在出现不必要的重渲染的时候提醒你。使用方法也很简单:
+
+```
+
+import React from 'react'
+
+if (process.env.NODE_ENV !== 'production') {
+  const {whyDidYouUpdate} = require('why-did-you-update')
+  whyDidYouUpdate(React)
+}
+```
+
+
+
+![](http://153.3.251.190:11900/react-quickstart)
+
+
+
+
+
+
+
+
 
