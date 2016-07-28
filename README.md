@@ -50,6 +50,7 @@
 
 - [前端攻略——从路人甲到英雄无敌](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/introduction/frontend-from-zero-to-hero.md)
 - [解决你的前端面试](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/introduction/interview/cracking-the-front-end-interview.md)
+- [四分钟了解基本的网页设计规范](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/introduction/web-design-in-4-minutes.md)
 
 # Advanced
 
