@@ -133,6 +133,7 @@
 #### BestPractices:最佳实践
 
 - [一次基于React+Redux的实践](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/framework/view/react/advanced/bestpractices/one-practice-and-think-for-react-redux.md)
+- [React设计模式:深入理解React/Redux原理套路](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/framework/view/react/advanced/bestpractices/react-in-patterns.md)
 
 ##### StyleGuide
 - [React 代码风格约定](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/framework/view/react/advanced/bestpractices/styleguide/react-codingstyle.md)
