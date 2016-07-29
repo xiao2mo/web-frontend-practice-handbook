@@ -222,3 +222,5 @@ header a:hover {
 [And voilà](http://wxyyxc1992.github.io/web-design-in-4-minutes.html#header)!
 
 我们已经在短短几分钟之内设计了个得体的页面,这些都是遵循基本的网站设计原则,那么,还有 [最后一件事](http://wxyyxc1992.github.io/web-design-in-4-minutes.html#share) 等着我们去做~
+
+![](http://153.3.251.190:11900/web-design-in-4-minutes)
