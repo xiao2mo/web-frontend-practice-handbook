@@ -30,9 +30,12 @@
     - [Handling JSON:处理JSON响应](#handling-json%E5%A4%84%E7%90%86json%E5%93%8D%E5%BA%94)
     - [Handling Basic Text/HTML Response:处理文本响应](#handling-basic-texthtml-response%E5%A4%84%E7%90%86%E6%96%87%E6%9C%AC%E5%93%8D%E5%BA%94)
     - [Blob Responses](#blob-responses)
+  - [Transparent HTTP Proxy:透明HTTP代理](#transparent-http-proxy%E9%80%8F%E6%98%8Ehttp%E4%BB%A3%E7%90%86)
   - [Best Practice](#best-practice)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+> 本文从属于笔者的[Web前端中DOM系列文章](https://github.com/wxyyxc1992/web-frontend-practice-handbook#advanced-2).
 
 # Introduction
 
@@ -750,6 +753,12 @@ fetch('https://example.com:1234/users', {
 })
 ```
 
+另外需要注意的是，根据[附带凭证信息的请求](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E9%99%84%E5%B8%A6%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E7%9A%84%E8%AF%B7%E6%B1%82)这里描述的，当你为了配置在CORS请求中附带Cookie等信息时，来自于服务器的响应中的Access-Control-Allow-Origin不可以再被设置为 * ，必须设置为某个具体的域名,则响应会失败。
+
+
+
+
+
 ## Response:响应处理
 
 在`fetch`的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在Mock的时候自定义Response对象，譬如在你需要使用Service Workers的情况下，在`Response`中，你可以作如下配置:
@@ -918,437 +927,592 @@ fetch('flowers.jpg')
 
 
 
+## Transparent HTTP Proxy:透明HTTP代理
+
+在上面的介绍中会发现，fetch并没有在客户端实现Cancelable Request的功能，或者超时自动放弃功能，因此这一步骤往往是需要在代理层完成。笔者在自己的工作中还遇到另一个请求，就是需要在客户端抓取其他没有设置CORS响应或者JSONP响应的站点，而必须要进行中间代理层抓取。笔者为了尽可能小地影响逻辑层代码，因此在自己的封装中封装了如下方法:
+
+```
+
+/**
+ * @function 通过透明路由,利用get方法与封装好的QueryParams形式发起请求
+ * @param BASE_URL 请求根URL地址,注意,需要添加http://以及末尾的/,譬如`http://api.com/`
+ * @param path 请求路径,譬如"path1/path2"
+ * @param queryParams 请求的查询参数
+ * @param contentType 请求返回的数据格式
+ * @param proxyUrl 请求的路由地址
+ */
+getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json", proxyUrl="http://api.proxy.com"}) {
+
+    //初始化查询字符串,将BASE_URL以及path进行编码
+    let queryString = `BASE_URL=${encodeURIComponent(BASE_URL)}&path=${encodeURIComponent(path)}&`;
+
+    //根据queryParams构造查询字符串
+    for (let key in queryParams) {
+
+        //拼接查询字符串
+        queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
+
+    }
+
+    //将查询字符串进行编码
+    let encodedQueryString = (queryString);
+
+    //封装最终待请求的字符串
+    const packagedRequestURL = `${proxyUrl}?${encodedQueryString}action=GET`;
+
+    //以CORS方式发起请求
+    return this._fetchWithCORS(packagedRequestURL, contentType);
+
+}
+```
+
+另外自带缓存的透明代理层的配置为，代码存放于[Github仓库](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/server.js):
+
+```
+
+/**
+ * Created by apple on 16/7/26.
+ */
+var express = require('express');
+var cors = require('cors');
+
+import Model from "../model/model";
+import ServerCache from "./server_cache";
+
+//创建服务端缓存实例
+const serverCache = new ServerCache();
+
+/**
+ * @region 全局配置
+ * @type {string}
+ */
+const hashKey = "ggzy"; //缓存的Hash值
+const timeOut = 5; //设置超时时间,5秒
+/**
+ * @endregion 全局配置
+ */
+
+//添加跨域支持
+var app = express(cors());
+
+//默认的GET类型的透明路由
+app.get('/get_proxy', cors(), (req, res)=> {
+
+    //所有查询参数是以GET方式传入
+    //获取原地址
+    let BASE_URL = decodeURIComponent(req.query.BASE_URL);
+
+    //获取原路径
+    let path = decodeURIComponent(req.query.path);
+
+    //反序列化请求参数集合
+    let params = {};
+
+    //构造生成的全部的字符串
+    let url = "";
+
+    //遍历所有传入的参数集合
+    for (let key in req.query) {
+
+        if (key == "BASE_URL" || key == "path") {
+            //对于传入的根URL与路径直接忽略,
+            //封装其他参数
+            continue;
+        } else {
+            params[key] = decodeURIComponent(req.query[key]);
+        }
+
+        url += `${key}${req.query[key]}`;
+
+    }
+
+    //判断缓存中是否存在值
+    serverCache.get(hashKey, url).then((data)=> {
+
+        //如果存在数据
+        res.set('Access-Control-Allow-Origin', '*');
+        res.send(data);
+        res.end();
+
+    }).catch((error)=> {
+
+        //如果不存在数据,执行数据抓取
+        //发起GET形式的请求
+        const model = new Model();
+
+        //判断是否已经返回
+        let isSent = false;
+
+        //使用模型类发起请求,并且不进行解码直接返回
+        model.getWithQueryParams({
+            BASE_URL,
+            path,
+            params,
+            contentType: "text" //不进行解码,直接返回
+        }).then((data)=> {
+
+            if (isSent) {
+                //如果已经设置了超时返回,则直接返回
+                return;
+            }
+            //返回抓取到的数据
+            res.set('Access-Control-Allow-Origin', '*');
+            res.send(data);
+            res.end();
+
+            isSent = true;
+
+        }, (error)=> {
+
+            if (isSent) {
+                //如果已经设置了超时返回,则直接返回
+                return;
+            }
+
+            //如果直接抓取失败,则返回无效信息
+            res.send(JSON.stringify({
+                "message": "Invalid Request"
+            }));
+
+            isSent = true;
+
+            throw error;
+
+        });
+
+        //设置秒超时返回N
+        setTimeout(
+            ()=> {
+
+                if (isSent) {
+                    //如果已经设置了超时返回,则直接返回
+                    return;
+                }
+
+                //设置返回超时
+                res.status(504);
+                
+                //终止本次返回
+                res.end();
+
+                isSent = true;
+
+            },
+            1000 * timeOut
+        );
+
+    });
+
+
+});
+
+//设置POST类型的默认路由
+
+//默认的返回值
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+    res.end();
+
+});
+
+//启动服务器
+var server = app.listen(399, '0.0.0.0', function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('Example app listening at http://%s:%s', host, port);
+});
+```
+
+笔者在这里是使用Redis作为缓存:
+
+```
+
+/**
+ * Created by apple on 16/8/4.
+ */
+var redis = require("redis");
+
+export default class ServerCache {
+
+    /**
+     * @function 默认构造函数
+     */
+    constructor() {
+
+        //构造出Redis客户端
+        this.client = redis.createClient();
+
+        //监听Redis客户端创建错误
+        this.client.on("error", (err) => {
+            this.client = null;
+            // console.log("Redis Client Error " + err);
+        });
+    }
+
+    /**
+     * @function 从缓存中获取数据
+     * @param hashKey
+     * @param url
+     * @returns {Promise}
+     */
+    get(hashKey = "hashKey", url = "url") {
+
+        return new Promise((resolve, reject)=> {
+
+            if (!!this.client) {
+                //从Redis中获取数据
+                this.client.hget(hashKey, url, function (err, replies) {
+
+                    //如果存在数据
+                    if (!!replies) {
+                        resolve(replies);
+                    } else {
+                        reject(err);
+                    }
+
+                });
+            } else {
+                reject(new Error("Invalid Client"));
+            }
+
+
+        });
+
+    }
+
+
+    /**
+     * @function 默认将数据放置到缓存中
+     * @param hashKey 存入的键
+     * @param url 存入的域URL
+     * @param data 存入的数据
+     * @param expire 第一次存入时候的过期时间
+     * @result 如果设置失败,则返回null
+     */
+    put(hashKey = "hashKey", url = "url", data = "data", expire = 60 * 60 * 6 * 1000) {
+
+        //判断客户端是否有效
+        if (!this.client) {
+            //如果客户端无效,直接返回null
+            return null;
+        }
+
+        //第一次设置的时候判断ggzy是否存在,如果不存在则设置初始值
+        this.client.hlen(hashKey, function (err, replies) {
+
+            //获取键值长度,第一次获取时候长度为0
+            if (replies == 0) {
+
+                //12小时之后删除数据
+                client.expire(hashKey, expire);
+            }
+
+        });
+
+        //设置数据
+        client.hset(hashKey, url, data);
+
+    }
+
+}
+```
+
+注意，笔者在这里使用的是isomorphic-fetch，因此在服务端与客户端的底层请求上可以复用同一份代码，测试代码如下，直接使用`babel-node model.test.js`即可:
+
+```
+
+/**
+ * Created by apple on 16/7/21.
+ */
+
+import Model from "./model";
+
+const model = new Model();
+
+//正常的发起请求
+model
+    .getWithQueryParams({
+        BASE_URL: "http://ggzy.njzwfw.gov.cn/njggzy/jsgc/",
+        path: "001001/001001001/001001001001/",
+        queryParams: {
+            Paging: 100
+        },
+        contentType: "text"
+
+    })
+    .then(
+        (data)=> {
+            console.log(data);
+        }
+    )
+    .catch((error)=> {
+        console.log(error);
+    });
+
+//使用透明路由发起请求
+model
+    .getWithQueryParamsByProxy({
+        BASE_URL: "http://ggzy.njzwfw.gov.cn/njggzy/jsgc/",
+        path: "001001/001001001/001001001001/",
+        queryParams: {
+            Paging: 100
+        },
+        contentType: "text",
+        proxyUrl: "http://153.3.251.190:11399/"
+
+    })
+    .then(
+        (data)=> {
+            console.log(data);
+        }
+    )
+    .catch((error)=> {
+        console.log(error);
+    });
+```
+
+
+
+
+
 ## Best Practice
 
 笔者在自己的项目中封装了一个基于ES6 Class的基本的模型请求类，[代码地址](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
 
 ```
 
-
 /**
-
  * Created by apple on 16/5/3.
-
  */
-
 //自动进行全局的ES6 Promise的Polyfill
-
 require('es6-promise').polyfill();
-
 require('isomorphic-fetch');
-
-
-
+// import "whatwg-fetch";
 
 
 /**
-
  * @function 基础的模型类,包含了基本的URL定义
-
  */
-
 export default class Model {
 
 
-
-
-
     //默认的基本URL路径
-
     static BASE_URL = "/";
 
-
-
     //默认的请求头
-
-    static headers = {};
-
-
+    static headers = {
+        "Origin": "*", //默认允许加载所有域的信息,
+    };
 
     /**
-
      * @function 默认构造函数
-
      */
-
     constructor() {
-
-
 
         this._checkStatus = this._checkStatus.bind(this);
 
-
-
         this._parseJSON = this._parseJSON.bind(this);
 
-
-
         this._parseText = this._parseText.bind(this);
-
-
 
         this._fetchWithCORS = this._fetchWithCORS.bind(this);
 
 
-
-
-
     }
 
-
-
     /**
-
      * @function 检测返回值的状态
-
      * @param response
-
      * @returns {*}
-
      */
-
     _checkStatus(response) {
 
-
-
         if (response.status >= 200 && response.status < 300) {
-
             return response
-
         } else {
-
             var error = new Error(response.statusText);
-
             error.response = response;
-
             throw error
-
         }
-
     }
 
-
-
     /**
-
      * @function 解析返回值中的Response为JSON形式
-
      * @param response
-
      * @returns {*}
-
      */
-
     _parseJSON(response) {
-
-
 
         if (!!response) {
 
-
-
             return response.json();
-
         }
-
         else {
-
             return undefined;
-
         }
-
-
 
     }
 
-
-
     /**
-
      * @function 解析TEXT性质的返回
-
      * @param response
-
      * @returns {*}
-
      */
-
     _parseText(response) {
 
 
-
         if (!!response) {
 
-
-
             return response.text();
-
         }
-
         else {
-
             return undefined;
-
         }
-
-
 
     }
 
-
-
     /**
-
      * @function 封装好的跨域请求的方法
-
      * @param packagedRequestURL
-
      * @returns {*|Promise.<TResult>}
-
      * @private
-
      */
-
     _fetchWithCORS(packagedRequestURL, contentType) {
 
+        //HTTP请求头
+        let httpHeaders = new Headers();
 
+        //遍历所有的当前请求头
+        for (let key in Model.headers) {
+            httpHeaders.append(key, Model.headers[key]);
+        }
 
         return fetch(packagedRequestURL, {
-
-            mode: "cors", headers: Model.headers
-
+            mode: "cors", headers: httpHeaders
         })
-
             .then(this.checkStatus, (error)=> {
-
-                return error;
-
+                throw error;
             })
-
             .then(contentType === "json" ? this._parseJSON : this._parseText, (error)=> {
-
-                return error;
-
+                throw error;
             });
 
+
     }
 
-
-
     /**
-
      * @function 利用get方法发起请求
-
      * @param path 请求的路径(包括路径参数)
-
      * @param requestData 请求的参数
-
-     * @param action 请求的类型
-
      * @param contentType 返回的类型
-
      * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-
      */
-
-    get({BASE_URL=Model.BASE_URL, path="/", action="GET", contentType="json"}) {
-
-
+    get({BASE_URL=Model.BASE_URL, path="/", contentType="json"}) {
 
         //封装最终待请求的字符串
-
-        const packagedRequestURL = `${BASE_URL}${(path)}?action=${action}`;
-
-
+        const packagedRequestURL = `${BASE_URL}${(path)}?action=GET`;
 
         //以CORS方式发起请求
-
         return this._fetchWithCORS(packagedRequestURL, contentType);
-
-
 
     }
 
-
-
     /**
-
      * @function 利用get方法与封装好的QueryParams形式发起请求
-
      * @param path 请求的路径(包括路径参数)
-
      * @param requestData 请求的参数
-
-     * @param action 请求的类型
-
      * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-
      */
-
-    getWithQueryParams({BASE_URL=Model.BASE_URL, path="/", queryParams={}, action="GET", contentType="json"}) {
-
-
-
+    getWithQueryParams({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json"}) {
 
 
         //初始化查询字符串
-
         let queryString = "";
 
-
-
         //根据queryParams构造查询字符串
-
         for (let key in queryParams) {
 
-
-
-            //注意,请求参数必须进行URI格式编码,如果是JSON等特殊格式需要在服务端进行解码
-
+            //拼接查询字符串
             queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
-
-
 
         }
 
-
-
         //将查询字符串进行编码
-
         let encodedQueryString = (queryString);
 
-
-
         //封装最终待请求的字符串
+        const packagedRequestURL = `${BASE_URL}${path}?${encodedQueryString}action=GET`;
 
-        const packagedRequestURL = `${BASE_URL}${path}?${encodedQueryString}action=${action}`;
-
-
+        console.log(packagedRequestURL);
 
         //以CORS方式发起请求
-
         return this._fetchWithCORS(packagedRequestURL, contentType);
-
-
 
     }
 
-
-
     /**
-
-     * @function 利用get方法与封装好的RequestData形式发起请求
-
-     * @param path 请求的路径(包括路径参数)
-
-     * @param requestData 请求的参数
-
-     * @param action 请求的类型
-
-     * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-
+     * @function 通过透明路由,利用get方法与封装好的QueryParams形式发起请求
+     * @param BASE_URL 请求根URL地址,注意,需要添加http://以及末尾的/,譬如`http://api.com/`
+     * @param path 请求路径,譬如"path1/path2"
+     * @param queryParams 请求的查询参数
+     * @param contentType 请求返回的数据格式
+     * @param proxyUrl 请求的路由地址
      */
+    getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json", proxyUrl="http://api.proxy.com"}) {
 
-    getWithRequestData({path="/", requestData={}, action="GET", contentType="json"}) {
+        //初始化查询字符串,将BASE_URL以及path进行编码
+        let queryString = `BASE_URL=${encodeURIComponent(BASE_URL)}&path=${encodeURIComponent(path)}&`;
 
+        //根据queryParams构造查询字符串
+        for (let key in queryParams) {
 
+            //拼接查询字符串
+            queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
 
-        //将requestData序列化为JSON
+        }
 
-        //注意要对序列化后的数据进行URI编码
+        //将查询字符串进行编码
+        let encodedQueryString = (queryString);
 
-        var requestDataString = encodeURIComponent(JSON.stringify(requestData));
+        //封装最终待请求的字符串
+        const packagedRequestURL = `${proxyUrl}?${encodedQueryString}action=GET`;
 
-
-
-        //将字符串链接
-
-        const packagedRequestURL = `${Model.BASE_URL}${path}?requestData=${requestDataString}&action=${action}`;
-
-
-
+        //以CORS方式发起请求
         return this._fetchWithCORS(packagedRequestURL, contentType);
-
-
 
     }
 
-
-
     /**
-
-     * @function 考虑到未来post会有不同的请求方式,因此做区分处理
-
+     * @function 以url-form-encoded方式发起请求
      * @param path
-
-     * @param requestData
-
-     * @param action
-
-     * @returns {Promise.<TResult>|*}
-
+     * @param queryParams
+     * @param contentType
      */
-
-    postWithRequestData({path="/", requestData={}, action="POST", contentType="json"}) {
-
-
-
-        //将requestData序列化为JSON
-
-        //注意要对序列化后的数据进行URI编码
-
-        var requestDataString = encodeURIComponent(JSON.stringify(requestData));
-
-
-
-        //将字符串链接
-
-        const packagedRequestURL = `${Model.BASE_URL}${path}?requestData=${requestDataString}&action=${action}`;
-
-
-
-        return this._fetchWithCORS(packagedRequestURL, contentType);
+    post({path="/", queryParams={}, contentType="json"}) {
 
     }
 
-
-
-    put({path="/", requestData={}, action="put", contentType="json"}) {
-
-
+    postWithJSONBody({path="/", queryParams={}, contentType="json"}) {
 
     }
-
-
-
-
-
-    delete({path="/", requestData={}, action="DELETE", contentType="json"}) {
-
-
-
-    }
-
-
 
 }
 
 
-
-
-
 Model.testData = {};
 
-
-
 Model.testData.error = {};
-
-
 
 
 ```
 
 
 
+
+
+
 ![](http://153.3.251.190:11900/dom-network-httpclient)
+
+
+
 
