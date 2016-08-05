@@ -1,48 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Introduction](#introduction)
-- [App](#app)
-- [App](#app-1)
-- [App](#app-2)
-  - [Why React-Router](#why-react-router)
-    - [Without React-Router](#without-react-router)
-    - [About](#about)
-  - [Inbox](#inbox)
-    - [With React-Router](#with-react-router)
-  - [Reference](#reference)
-    - [Tutorials & Docs](#tutorials-&-docs)
-- [Route Configuration:路由配置](#route-configuration%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE)
-    - [Message {this.props.params.id}](#message-thispropsparamsid)
-    - [添加默认路由](#%E6%B7%BB%E5%8A%A0%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1)
-    - [将UI与URL解耦](#%E5%B0%86ui%E4%B8%8Eurl%E8%A7%A3%E8%80%A6)
-    - [重定向路由](#%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%AF%E7%94%B1)
-    - [非JSX方式配置](#%E9%9D%9Ejsx%E6%96%B9%E5%BC%8F%E9%85%8D%E7%BD%AE)
-- [Route Matching:路由匹配](#route-matching%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D)
-    - [Nesting](#nesting)
-    - [Path Syntax:路径表达式](#path-syntax%E8%B7%AF%E5%BE%84%E8%A1%A8%E8%BE%BE%E5%BC%8F)
-    - [Precedence:优先级](#precedence%E4%BC%98%E5%85%88%E7%BA%A7)
-- [History](#history)
-  - [`createHashHistory`:用于客户端跳转](#createhashhistory%E7%94%A8%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B7%B3%E8%BD%AC)
-      - [我应该使用 `createHashHistory`吗？](#%E6%88%91%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8-createhashhistory%E5%90%97%EF%BC%9F)
-      - [像这样 `?_k=ckuvup` 没用的在 URL 中是什么？](#%E5%83%8F%E8%BF%99%E6%A0%B7-_kckuvup-%E6%B2%A1%E7%94%A8%E7%9A%84%E5%9C%A8-url-%E4%B8%AD%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F)
-    - [`createBrowserHistory`:用于服务端跳转](#createbrowserhistory%E7%94%A8%E4%BA%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B7%B3%E8%BD%AC)
-      - [服务器配置](#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE)
-      - [IE8, IE9 支持情况](#ie8-ie9-%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5)
-    - [`createMemoryHistory`:非地址栏呈现](#creatememoryhistory%E9%9D%9E%E5%9C%B0%E5%9D%80%E6%A0%8F%E5%91%88%E7%8E%B0)
-  - [实现示例](#%E5%AE%9E%E7%8E%B0%E7%A4%BA%E4%BE%8B)
-- [Router Control:路由控制](#router-control%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6)
-  - [Manual Navigation:手动导航](#manual-navigation%E6%89%8B%E5%8A%A8%E5%AF%BC%E8%88%AA)
-  - [Confirming Navigation:跳转前确认](#confirming-navigation%E8%B7%B3%E8%BD%AC%E5%89%8D%E7%A1%AE%E8%AE%A4)
-    - [Enter and Leave Hooks](#enter-and-leave-hooks)
-  - [Navigating Outside Of Components:组件外路由](#navigating-outside-of-components%E7%BB%84%E4%BB%B6%E5%A4%96%E8%B7%AF%E7%94%B1)
-- [Async:异步路由加载](#async%E5%BC%82%E6%AD%A5%E8%B7%AF%E7%94%B1%E5%8A%A0%E8%BD%BD)
-  - [Dynamic Routing Configuration:动态的路由配置](#dynamic-routing-configuration%E5%8A%A8%E6%80%81%E7%9A%84%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE)
-  - [Lazy Bundle Loading:块/组件的懒加载](#lazy-bundle-loading%E5%9D%97%E7%BB%84%E4%BB%B6%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Introduction
 
 [React Router](https://github.com/reactjs/react-router)是基于React的同时支持服务端路由与客户端路由的强大易用的路由框架，可以允许开发者方便地添加新页面到应用中，保证页面内容与页面路由的一致性以及在页面之间进行方便地参数传递。之前React Router作者没有积极地开发与审核Pull Request，结果有个[rrtr](https://github.com/taion/rrtr)一怒之下要建个独立的分支，不过后来好像又回归到了React Router上。 目前React-Router的官方版本已经达到了2.6.0，其API也一直在发生变化，笔者在本文中所述内容也是基于2.6.0的官方文档以及自己的实践整理而来。同时，随着React Router项目的更新本文文档也会随之更新，有需要的建议关注本项目。如果你是初学者希望快速搭建React的基本开发环境，那么笔者建议参考[Webpack-React-Redux-Boilerplate](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/tree/boilerplate)来迅速构建可应用于生产环境的自动化开发配置。首先，基本的React的路由配置如下所示:
@@ -481,6 +436,38 @@ const routes = {
 render(<Router routes={routes} />, document.body)
 ```
 
+### NamedComponent:命名组件
+在正常的Route项配置中`<Route path="messages/:id" component={Message} />`，在component这个Prop中我们传入的是某个组件名，而如果我们需要在路由配置时动态构造一些组件，譬如我们希望传入标题为`HelloWorld`的`Message`组件时，我们会需要以下配置:
+```
+const TitledMessage = ()=>{<Message  title="HelloWorld" /> }
+```
+这里是传入了一个函数式声明的组件，关于函数式声明的组件可以参考[React中函数式声明组件。](https://segmentfault.com/a/1190000006180667)。而React Router官方也提供了我们另一种动态构造组件的方式，即是所谓的NamedComponent，即允许在子路由声明时将Props值作为路由配置参数传入父路由，譬如我们创建了需要传入两个Props参数的组件:
+```
+const NamedComponents = (props) => (
+  <div>
+    {props.title}<br />
+    {props.subTitle}
+  </div>
+)
+``` 
+而NamedComponent需要的两个输入参数其实也是两个可组合的组件:
+```
+const Title = () => (
+  <h1>Hello from Title Component</h1>
+)
+const SubTitle = () => (
+  <h1>Hello from SubTitle Component</h1>
+)
+```
+然后我们可以为NamedComponent组件创建一个单独的路由，而其默认子路由可以是两个组件:
+```
+<Route path='/namedComponent' component={NamedComponents}>
+  <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
+</Route>
+```
+最后的效果如下所示:
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/7/4/1-PkEi-B9wXXssxP81vw2GkQ.jpeg)
+
 # Route Matching:路由匹配
 
 路由主要依靠三个属性来判断其是否与某个URL相匹配:
@@ -513,6 +500,91 @@ React Router提供了嵌套式的路由声明方案来表述组件之间的从�
 ```js
 <Route path="/comments" ... />
 <Redirect from="/comments" ... />
+```
+### Params:参数
+####  Route Parameters
+很多应用的不可或缺的一个点就是从URL中读取路由参数，React Router自然也为我们提供了路由参数设置与读取的功能，譬如在定义路由时，我们可以直接将参数定义入路由中:
+```
+<Route path='/about/:name' component={About} />
+```
+而在需要读取该参数的组件中:
+```
+const About = (props) => (
+  <div>
+    <h3>Welcome to the About Page</h3>
+    <h2>{props.params.name}</h2>
+  </div>
+)
+```
+有时候，我们也需要设置可选参数，譬如如果按照上面的配置方案我们直接访问`/#/about`是无法访问到About组件的，有点类似于正则表达式的写法:
+```
+<Route path='/about(/:name)' component={About} />
+```
+另有一个小Trick，有时候我们在组件内部展示元素的时候是需要根据是否有参数传入然后再判断是否需要显示:
+```
+{ props.params.name && <h2>Hello, {props.params.name}</h2>}
+```
+
+#### Query String Parameters:查询参数
+上文介绍的是按照路由参数的方式进行参数传递，就像HTTP URL标准一样，有时候我们也需要按照查询参数的方式来进行参数传递，譬如我们定义了如下基于查询参数的组件:
+```
+const Query = (props) => (
+  <h2>{props.location.query.message}</h2>
+)
+```
+然后我们需要在刚才构建好的路由地址中添加上该组件:
+```
+...
+<Route path='/address' component={Address}>
+  <IndexRoute component={TwitterFeed} />
+  <Route path='instagram' component={Instagram} />
+  <Route path='query' component={Query} />
+</Route>
+...
+```
+而对应的带参数传递的跳转到该组件的Link为:
+```
+<IndexLink 
+  activeClassName='active' 
+  to={{ 
+    pathname: '/address/query', 
+    query: { message: 'Hello from Route Query' } 
+  }}>Route Query</IndexLink>
+```
+
+
+最后，我们在官方的总的例子中来看下两种参数的使用：
+```
+import React from 'react'    
+import { render } from 'react-dom'    
+import { browserHistory, Router, Route, Link } from 'react-router'    
+import withExampleBasename from '../withExampleBasename'    
+const User = ({ params: { userID }, location: { query } }) => {    
+  let age = query && query.showAge ? '33' : ''    
+  return (    
+    <div className="User">    
+      <h1>User id: {userID}</h1>    
+      {age}    
+    </div>    
+  )    
+}    
+const App = ({ children }) => (    
+  <div>    
+    <ul>    
+      <li><Link to="/user/bob" activeClassName="active">Bob</Link></li>    
+      <li><Link to={{ pathname: '/user/bob', query: { showAge: true } }} activeClassName="active">Bob With Query Params</Link></li>    
+      <li><Link to="/user/sally" activeClassName="active">Sally</Link></li>    
+    </ul>    
+    {children}    
+  </div>    
+)    
+render((    
+  <Router history={withExampleBasename(browserHistory, __dirname)}>    
+    <Route path="/" component={App}>    
+      <Route path="user/:userID" component={User} />    
+    </Route>    
+  </Router>    
+), document.getElementById('example'))    
 ```
 
 # History
