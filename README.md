@@ -84,6 +84,12 @@
 
 ## Optimization:前端性能优化
 
+- [性能评测与监控](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-Benchmark.md)
+- [资源与请求优化](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-Resource-Request.md)
+- [加载策略](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-Load.md)
+- [首页与关键路径](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-HomePage-CriticalPath.md)
+- [渲染优化](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-Render.md)
+
 # Builder:模块编译
 
 ## Webpack
