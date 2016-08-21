@@ -125,8 +125,8 @@
 - [ES6中集合类型]()
 
 ### Function
-- [JavaScript 函数基础]():声明、参数与调用
-- [JavaScript 词法作用域与闭包]()
+- [JavaScript 函数基础](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/javascript/Basic/Function/JavaScript-Function.md):声明、参数与调用
+- [JavaScript 词法作用域与闭包](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/javascript/Basic/Function/JavaScript-LexicalScope-Closure.md)
 
 ### ControlFlow:控制流
 - [JavaScript 中流程控制基础]()
