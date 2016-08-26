@@ -90,6 +90,8 @@
 - [首页与关键路径](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-HomePage-CriticalPath.md)
 - [渲染优化](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/FrontendOptimization-Render.md)
 
+- [从案例学习如何优化前端性能](https://github.com/wxyyxc1992/web-frontend-practice-handbook/blob/master/advanced/Optimization/Refer/A-Case-Study-on-Boosting-Front-End-Performance.md)
+
 # Builder:模块编译
 
 ## Webpack
