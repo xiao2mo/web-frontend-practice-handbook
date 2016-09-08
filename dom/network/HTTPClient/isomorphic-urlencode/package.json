@@ -11,11 +11,13 @@
     "isomorphic",
     "urlencode",
     "gbk",
-    "utf-8"
+    "utf-8",
+    "promise"
   ],
   "author": "wxyyxc1992",
   "license": "ISC",
   "dependencies": {
+    "es6-promise": "^3.2.1",
     "urlencode": "^1.1.0"
   }
 }
