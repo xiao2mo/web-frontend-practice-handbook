@@ -1,6 +1,6 @@
 {
   "name": "isomorphic-urlencode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Isomorphic Urlencode Supports GBK Encode",
   "main": "node-urlencode.js",
   "browser": "dom-urlencode.js",

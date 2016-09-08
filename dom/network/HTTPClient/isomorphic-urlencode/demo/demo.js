@@ -4,4 +4,10 @@
 
 var urlencode = require("../dom-urlencode");
 
-console.log(urlencode("啦啦"));
+urlencode("王下邀月熊").then(function (data) {
+  console.log(data);
+});
+
+urlencode("王下邀月熊", "gbk").then(function (data) {
+  console.log(data);
+});

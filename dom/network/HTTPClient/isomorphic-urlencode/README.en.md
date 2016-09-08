@@ -6,7 +6,9 @@ Main motivation for building this Repo is that:
 
 # Usage
 
-The Node implementation is based on [node-urlencode](https://www.npmjs.com/package/urlencode)，so api style is as same as node-urlencode. use npm to install:
+The Node implementation is based on [node-urlencode](https://www.npmjs.com/package/urlencode)，so api style is as same as node-urlencode. But the encode in browser is async,so i use Promise as return;
+
+use npm to install:
 ```
 npm install --save isomorphic-urlencode
 ```

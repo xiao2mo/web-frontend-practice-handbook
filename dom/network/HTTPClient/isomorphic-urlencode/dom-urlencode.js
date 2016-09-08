@@ -6,13 +6,98 @@
  */
 
 'use strict';
+var Promise = require('es6-promise').Promise;
 
 function urlencode(url, encode) {
 
-  if (!encode) {
-    encode = "gbk";
-  }
+  //默认值为utf8
+  encode = encode || "utf8";
 
-  return url;
+
+  return new Promise(function (resolve, reject) {
+
+    if (!window) {
+      //如果不是浏览器环境
+      throw new Error("Not In Browser");
+    }
+
+
+    if (encode === "utf8") {
+
+      resolve(encodeURIComponent(url));
+
+      return;
+
+    }
+
+    if (encode === "gbk") {
+
+      //调用GBK进行处理
+      gbkEncode(url, function (data) {
+        resolve(data)
+      });
+
+      return;
+    }
+
+  });
 
 }
+
+/**
+ * @function 对于输入字符串进行GBK编码
+ * @param url
+ */
+function gbkEncode(url, callback) {
+
+  //创建form通过accept-charset做encode
+  var form = document.createElement('form');
+  form.method = 'get';
+  form.style.display = 'none';
+  form.acceptCharset = "gbk";
+
+  //创建伪造的输入
+  var input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'str';
+  input.value = url;
+
+  //将输入框添加到表单中
+  form.appendChild(input);
+  form.target = '_urlEncode_iframe_';
+
+  document.body.appendChild(form);
+
+  //隐藏iframe截获提交的字符串
+  if (!window['_urlEncode_iframe_']) {
+    var iframe = document.createElement('iframe');
+    //iframe.name = '_urlEncode_iframe_';
+    iframe.setAttribute('name', '_urlEncode_iframe_');
+    iframe.style.display = 'none';
+    iframe.width = "0";
+    iframe.height = "0";
+    iframe.scrolling = "no";
+    iframe.allowtransparency = "true";
+    iframe.frameborder = "0";
+    iframe.src = 'about:blank';
+    document.body.appendChild(iframe);
+  }
+
+  //
+  window._urlEncode_iframe_callback = callback;
+
+  //设置回调编码页面的地址，这里需要用户修改
+  form.action = window.location.href;
+
+  //提交表单
+  form.submit();
+
+  //定时删除两个子Element
+  setTimeout(function () {
+    form.parentNode.removeChild(form);
+    iframe.parentNode.removeChild(iframe);
+  }, 100)
+
+}
+
+module.exports = urlencode;
