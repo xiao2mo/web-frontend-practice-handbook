@@ -1,0 +1,22 @@
+{
+  "name": "fluent-fetcher",
+  "version": "0.0.1",
+  "description": "Fluent API And Advanced Feature Support For isomorphic-fetch",
+  "main": "fluent_fetcher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://baidu.com"
+  },
+  "keywords": [
+    "fetch",
+    "fluent",
+    "super-agent",
+    "cache",
+    "timeout"
+  ],
+  "author": "wxyyxc1992",
+  "license": "ISC"
+}
