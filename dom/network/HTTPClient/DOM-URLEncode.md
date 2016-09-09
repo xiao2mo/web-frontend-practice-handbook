@@ -1,6 +1,6 @@
 
 
-> 本文从属于笔者的[前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)中的[DOM 网络处理]()系列文章，包括[基于fetch的DOM网络请求]()、[URL编码详解与DOM中GBK编码实践]()、[浏览器中跨域机制详解与实战]()、[浏览器中长连接的几种风味]()、[文件传输]()这几个部分。
+> 本文从属于笔者的[前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)中的[DOM 网络处理](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/README.md#dom-%E7%BD%91%E7%BB%9C%E5%A4%84%E7%90%86)系列文章，包括[基于fetch的DOM网络请求](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/DOM-HTTPClient.md)、[URL编码详解与DOM中GBK编码实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/DOM-URLEncode.md)、[浏览器中跨域机制详解与实战](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/DOM-CrossDomain.md)、[浏览器中长连接的几种风味](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/DOM-LongLivedConnection.md)、[文件传输](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/DOM-FileTransfer.md)这几个部分。
 
 # URLEncode
 
