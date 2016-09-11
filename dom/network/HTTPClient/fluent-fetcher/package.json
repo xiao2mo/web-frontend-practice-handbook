@@ -1,14 +1,19 @@
 {
   "name": "fluent-fetcher",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Fluent API And Advanced Feature Support For isomorphic-fetch",
-  "main": "fluent_fetcher.js",
+  "main": "fluent_fetcher.dist.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "node_modules/babel-cli/bin/babel.js fluent_fetcher.js --out-file fluent_fetcher.dist.js"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "http://baidu.com"
+    "url": "https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/fluent-fetcher/README.md"
   },
   "keywords": [
     "fetch",
@@ -18,5 +23,14 @@
     "timeout"
   ],
   "author": "wxyyxc1992",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "es6-promise": "^3.2.1",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0"
+  }
 }

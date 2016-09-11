@@ -48,6 +48,9 @@ export default class FluentFetcher {
     //用于存放所有的请求参数
     this.params = {};
 
+    //设置请求内容类型
+    this.contentType = "form-urlencoded";
+
     //用于存放封装好的查询参数 即 ? 之后的内容
     this.packagedQueryString = "";
 
@@ -85,8 +88,8 @@ export default class FluentFetcher {
   parameter(params) {
 
     //判断是否已经封装过了请求方法
-    if (!!this.option && !!this.option.method) {
-      throw new Error("不可以在请求方式设置之后添加参数");
+    if (!params) {
+      throw new Error("请设置有效请求参数");
     }
 
     this.params = params;
@@ -104,15 +107,7 @@ export default class FluentFetcher {
     this.option.method = "get";
 
     //设置请求路径
-    this.path = `${this.path}${path}`;
-
-    //将请求参数封装到查询参数中
-    for (let key in this.params) {
-      this.packagedQueryString += `${key}=${this._encode(this.params[key])}&`
-    }
-
-    //删除最后一个无效的`&`,以避免被误认为SQL Injection
-    this.packagedQueryString = this.packagedQueryString.substr(0, this.packagedQueryString.length - 1);
+    this.path = `${path}`;
 
     return this;
   }
@@ -128,8 +123,10 @@ export default class FluentFetcher {
     //设置请求方式
     this.option.method = "post";
 
-    //封装Body内容
-    this._body(contentType);
+    this.contentType = contentType;
+
+    //设置请求路径
+    this.path = `${path}`;
 
     return this;
   }
@@ -139,8 +136,10 @@ export default class FluentFetcher {
     //设置请求方式
     this.option.method = "put";
 
-    //封装Body内容
-    this._body(contentType);
+    this.contentType = contentType;
+
+    //设置请求路径
+    this.path = `${path}`;
 
     return this;
 
@@ -248,10 +247,14 @@ export default class FluentFetcher {
    */
   proxy({proxyUrl = ""}) {
 
-    //将输入进来的scheme、host、path封装到targetUrl中,并且将targetUrl添加到请求参数中
-    this.packagedQueryString += '&' + 'targetUrl=' + this._encode(`${this.scheme}://${this.host}${this.path}`);
+    //如果设置为空,则跳过设置
+    if (!proxyUrl) {
+      this.proxyUrl = "";
+      return this;
+    }
 
-    this.proxyUrl = `${proxyUrl}?${this.packagedQueryString}`;
+    //调用proxy方法时,this.packagedQueryString本来为空字符串
+    this.proxyUrl = `${proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&';
 
     return this;
 
@@ -267,16 +270,19 @@ export default class FluentFetcher {
     //构造请求路径
     let packagedPath = `${this.scheme}://${this.host}${this.path}`;
 
-    //构造查询字符串
-    let packagedQueryString = this.option.method === "get" ? `?${this.packagedQueryString}` : "";
+    //封装请求参数
+    this._setParams();
 
-    //检查是否已经存在了相对的请求地址
-    const url = this.proxyUrl ||
+    //构造查询字符串
+    let packagedQueryString = this.option.method === "get" ? `${this.packagedQueryString}` : "";
+
+    //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
+    let url = this.proxyUrl ||
       //判断是否为get请求,如果是get请求则将查询字符串添加到URL中
-      `${packagedPath}${packagedQueryString}`;
+      `${packagedPath}?`;
 
     //构建fetch请求
-    return fetch(url, this.option)
+    return fetch(`${url}${packagedQueryString}`, this.option)
       .then(this._checkStatus, (error)=> {
         throw error;
       })
@@ -289,30 +295,46 @@ export default class FluentFetcher {
 
   /**
    * @region 私有方法定义区域
+   * @param method 请求方法
+   * @param contentType 请求类型
    */
 
-  _body(contentType) {
+  _setParams() {
 
-    //根据不同的编码格式设置不同的body内容
-    if (contentType === "form-urlencoded") {
+    //重置封装好的packagedQueryString
+    this.packagedQueryString = "";
 
-      //将请求参数封装到查询参数中
-      for (let key in this.params) {
-        this.packagedQueryString += `${key}=${this._encode(this.params[key])}&`
-      }
+    //判断当前是否已经设置了请求方法
+    if (!this.option.method) {
+      throw new Error("请设置请求方法");
+    }
 
-      //删除最后一个无效的`&`,以避免被误认为SQL Injection
-      this.packagedQueryString = this.packagedQueryString.substr(0, this.packagedQueryString.length - 1);
+    //将请求参数封装到查询参数中
+    for (let key in this.params) {
+      this.packagedQueryString += `${key}=${this._encode(this.params[key])}&`
+    }
 
+    //删除最后一个无效的`&`,以避免被误认为SQL Injection
+    this.packagedQueryString = this.packagedQueryString.substr(0, this.packagedQueryString.length - 1);
+
+
+    //判断是否为GET
+    if (this.option.method === "get") {
+
+      //如果是GET,则将请求数据添加到URL中
+
+    } else if (this.contentType === "form-urlencoded") {
+
+      //根据不同的编码格式设置不同的body内容
       //将构造好的查询字符串添加到body中
       this.option.body = this.packagedQueryString;
 
-
-    } else if (contentType === "json") {
+    } else {
 
       this.option.body = JSON.stringify(this.params);
 
     }
+
   }
 
   /**

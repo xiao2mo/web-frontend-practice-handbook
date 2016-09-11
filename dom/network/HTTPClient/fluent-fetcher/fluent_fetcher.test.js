@@ -1,53 +1,110 @@
-/**
- * Created by apple on 16/9/9.
- */
+// /**
+//  * Created by apple on 16/9/9.
+//  */
 import FluentFetcher from './fluent_fetcher';
 
-let fluentFetcher = new FluentFetcher({host: "ggzy.njzwfw.gov.cn", responseContentType: "text"});
+const host = "jsonplaceholder.typicode.com";
 
-//测试直接发起请求
+const proxyUrl = "http://localhost:499/proxy";
+
+let fluentFetcher = new FluentFetcher({scheme: "http", host, responseContentType: "json"});
+
+//测试GET类型请求
+//https://jsonplaceholder.typicode.com/posts?userId=1
 fluentFetcher
-  .parameter({infoid: "5521bfec-e4aa-465d-be77-e503227dec58", "categoryNum": "005"})
-  .get({path: "/njggzy/infodetail/"})
+  .parameter({"userId": "1"})
+  .get({path: "/posts"})
   .build()
   .then((data)=> {
-    // console.log(data);
+    console.log("GET:" + data.length);
   }).catch((error)=> {
   console.log(error);
 });
-
-fluentFetcher = new FluentFetcher({host: "ggzy.njzwfw.gov.cn", responseContentType: "text"});
-
 
 //测试以代理模式发起请求
 fluentFetcher
-  .parameter({infoid: "5521bfec-e4aa-465d-be77-e503227dec58", "categoryNum": "005"})
-  .get({path: "/njggzy/infodetail/"})
-  .proxy({proxyUrl: "http://app.truelore.cn:11499/proxy"})
+  .proxy({proxyUrl})
   .build()
   .then((data)=> {
-    // console.log(data);
+    console.log("GET By Proxy:" + data.length);
   }).catch((error)=> {
   console.log(error);
 });
 
-//测试需要以GBK编码方式发起的请求
-var urlencode = require("isomorphic-urlencode");
+fluentFetcher
+  .parameter({"userId": "1"})
+  .get({path: "/posts"})
+  .build()
+  .then((data)=> {
+    console.log("GET:" + data.length);
+  }).catch((error)=> {
+  console.log(error);
+});
 
-urlencode("左盼", "gbk").then((data)=> {
-  fluentFetcher = new FluentFetcher({host: "ggzy.njzwfw.gov.cn", responseContentType: "text"});
+//测试CORS
+fluentFetcher
+  .proxy({proxyUrl})
+  .cors()
+  .build()
+  .then((data)=> {
+    console.log("GET By CORS:" + data.length);
+  }).catch((error)=> {
+  console.log(error);
+});
 
-  //http://ggzy.njzwfw.gov.cn/njggzy/consultant/showresault.aspx?ShowLsh=0&Mlsh=123456&Name=%D7%F3%C5%CE
-  //测试以代理模式发起请求
-  fluentFetcher
-    .parameter({ShowLsh: "0", Mlsh: "123456", Name: data})
-    .get({path: "/njggzy/consultant/showresault.aspx"})
-    .proxy({proxyUrl: "http://app.truelore.cn:11499/proxy"})
-    .build()
-    .then((data)=> {
-      console.log(data);
-    }).catch((error)=> {
-    console.log(error);
-  });
 
+//测试POST类型请求
+fluentFetcher
+  .parameter({
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+  .post({path: "/posts"})
+  .build()
+  .then((data)=> {
+    console.log("POST:");
+    console.log(data)
+  }).catch((error)=> {
+  console.log(error);
+});
+
+fluentFetcher
+  .proxy({proxyUrl})
+  .build()
+  .then((data)=> {
+    console.log("POST By Proxy:");
+    console.log(data)
+
+  }).catch((error)=> {
+  console.log(error);
+});
+
+
+//测试PUT类型请求
+fluentFetcher
+  .parameter({
+    id: 1,
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+  .post({path: "/posts"})
+  .build()
+  .then((data)=> {
+    console.log("PUT:");
+    console.log(data)
+  }).catch((error)=> {
+  console.log(error);
+});
+
+fluentFetcher
+  .proxy({proxyUrl})
+  .build()
+  .then((data)=> {
+    console.log("PUT By Proxy:");
+    console.log(data)
+
+  }).catch((error)=> {
+  console.log(error);
 });

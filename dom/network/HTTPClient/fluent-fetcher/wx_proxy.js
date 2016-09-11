@@ -5,13 +5,14 @@ var express = require('express');
 var httpProxy = require('http-proxy');
 var cors = require('cors');
 var url = require('url');
+
 //添加跨域支持
 var app = express(cors());
 
 //
 // 构建一个包含自定义逻辑的代理服务器
 //
-var proxy = httpProxy.createProxyServer({ws: false});
+var proxy = httpProxy.createProxyServer({ws: false, changeOrigin: true,});
 
 // 添加某个错误处理机制以避免:https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
@@ -52,15 +53,16 @@ app.all('/proxy', function (req, res) {
   if (!!req.query && !!req.query.targetUrl) {
 
     //这里需要从原始请求参数中去除targetUrl参数
-    var proxiedUrl = req.baseUrl + "?";
+    var proxiedUrl = `http://${req.headers.host}` + "?";
 
     var target = decodeURIComponent(req.query.targetUrl);
 
     delete req.query.targetUrl;
 
+    //解析URL部分
     var url_parts = url.parse(req.url, true);
 
-    //修改search部分
+    //修改search部分,删除自带的targetUrl
     if (url_parts.search !== null) {
       for (var key in url_parts.query) {
         if (key === "targetUrl") {
@@ -70,7 +72,9 @@ app.all('/proxy', function (req, res) {
       }
 
       //删除最后一个&
-      proxiedUrl = proxiedUrl.substr(0, proxiedUrl.length - 1);
+      if (proxiedUrl[proxiedUrl.length - 1] === "&") {
+        proxiedUrl = proxiedUrl.substr(0, proxiedUrl.length - 1);
+      }
     }
 
     req.url = proxiedUrl;
