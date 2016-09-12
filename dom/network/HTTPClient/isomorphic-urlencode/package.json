@@ -1,6 +1,6 @@
 {
   "name": "isomorphic-urlencode",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "Isomorphic Urlencode Supports GBK Encode",
   "main": "node-urlencode.js",
   "browser": "dom-urlencode.js",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/isomorphic-urlencode/README.md"
+    "url": "http://suo.im/adkjd"
   },
   "homepage": "https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/isomorphic-urlencode/README.md"
 }

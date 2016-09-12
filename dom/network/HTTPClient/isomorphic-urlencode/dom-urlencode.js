@@ -30,7 +30,8 @@ function urlencode(url, encode) {
 
     }
 
-    if (encode === "gbk") {
+    if (encode === "gbk" || encode === "gb2312") {
+
 
       //调用GBK进行处理
       gbkEncode(url, function (data) {
@@ -124,7 +125,7 @@ function urldecode(encodedUrl, encode) {
 
     }
 
-    if (encode === "gbk") {
+    if (encode === "gbk" || encode === "gb2312") {
 
       //调用GBK进行处理
       gbkDecode(encodedUrl, function (data) {
@@ -155,3 +156,4 @@ function gbkDecode(str, callback) {
 module.exports = urlencode;
 
 module.exports.decode = urldecode;
+
