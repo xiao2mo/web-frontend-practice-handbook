@@ -29,11 +29,21 @@ if (parent._urlEncode_iframe_callback) {
 var urlencode = require("isomorphic-urlencode");
 urlencode("王下邀月熊").then(function (data) {
   console.log(data);
-});
-urlencode("王下邀月熊", "gbk").then(function (data) {
-  console.log(data);
+
+  //测试解码
+  urlencode.decode(data).then(function (data) {
+    console.log(data);
+  })
 });
 
+urlencode("王下邀月熊", "gbk").then(function (data) {
+  console.log(data);
+
+  //测试解码
+  urlencode.decode(data, "gbk").then(function (data) {
+    console.log(data);
+  })
+});
 ```
 
 The Browser Version is built on iframe and form, you can refer to this [blog](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/dom/network/HTTPClient/DOM-URLEncode.md) for more details;

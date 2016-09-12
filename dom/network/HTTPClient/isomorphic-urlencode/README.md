@@ -28,11 +28,23 @@ if (parent._urlEncode_iframe_callback) {
 注意,上面一段代码是将自身作为iframe的加载地址,因此务必放在HTML文件首部。然后在JS代码中使用:
 ```
 var urlencode = require("isomorphic-urlencode");
+
 urlencode("王下邀月熊").then(function (data) {
   console.log(data);
+
+  //测试解码
+  urlencode.decode(data).then(function (data) {
+    console.log(data);
+  })
 });
+
 urlencode("王下邀月熊", "gbk").then(function (data) {
   console.log(data);
+
+  //测试解码
+  urlencode.decode(data, "gbk").then(function (data) {
+    console.log(data);
+  })
 });
 
 ```

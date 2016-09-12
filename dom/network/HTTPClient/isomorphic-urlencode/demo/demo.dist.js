@@ -56,6 +56,11 @@
 
 	urlencode("王下邀月熊", "gbk").then(function (data) {
 	  console.log(data);
+
+	  //测试解码
+	  urlencode.decode(data, "gbk").then(function (data) {
+	    console.log(data);
+	  })
 	});
 
 /***/ },
@@ -100,8 +105,6 @@
 	      gbkEncode(url, function (data) {
 	        resolve(data)
 	      });
-
-	      return;
 	    }
 
 	  });
@@ -156,6 +159,7 @@
 	  //提交表单
 	  form.submit();
 
+	  //定时删除两个子Element
 	  setTimeout(function () {
 	    form.parentNode.removeChild(form);
 	    iframe.parentNode.removeChild(iframe);
@@ -163,7 +167,63 @@
 
 	}
 
+	/**
+	 * @function 进行解码操作
+	 * @param encodedUrl
+	 * @param encode
+	 */
+	function urldecode(encodedUrl, encode) {
+	  //默认值为utf8
+	  encode = encode || "utf8";
+
+
+	  return new Promise(function (resolve, reject) {
+
+	    if (!window) {
+	      //如果不是浏览器环境
+	      throw new Error("Not In Browser");
+	    }
+
+
+	    if (encode === "utf8") {
+
+	      resolve(decodeURIComponent(encodedUrl));
+
+	      return;
+
+	    }
+
+	    if (encode === "gbk") {
+
+	      //调用GBK进行处理
+	      gbkDecode(encodedUrl, function (data) {
+	        resolve(data)
+	      });
+	    }
+
+	  });
+	}
+
+
+	/**
+	 * @function 对于输入的GBK格式的字符串进行解码
+	 * @param str
+	 * @param charset
+	 * @param callback
+	 */
+	function gbkDecode(str, callback) {
+	  window._urlDecodeFn_ = callback;
+	  var script = document.createElement('script');
+	  script.id = '_urlDecodeFn_';
+	  var src = 'data:text/javascript;charset=' + "gbk" + ',_urlDecodeFn_("' + str + '");'
+	  src += 'document.getElementById("_urlDecodeFn_").parentNode.removeChild(document.getElementById("_urlDecodeFn_"));';
+	  script.src = src;
+	  document.body.appendChild(script);
+	}
+
 	module.exports = urlencode;
+
+	module.exports.decode = urldecode;
 
 /***/ },
 /* 2 */
