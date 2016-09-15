@@ -1,0 +1,25 @@
+{
+  "name": "prefetcher",
+  "version": "0.0.1",
+  "description": "Light Prefecther For Web Page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices.git"
+  },
+  "keywords": [
+    "accelerator",
+    "front-end",
+    "prefetch",
+    "performace"
+  ],
+  "author": "wxyyxc1992",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/issues"
+  },
+  "homepage": "https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices#readme"
+}
