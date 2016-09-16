@@ -1,4 +1,9 @@
+[TOC]
+
+
+
 # Mobile Style Preset
+
 > 项目的很多设想受[Mobi.css](https://github.com/xcatliu/mobi.css)启发,这是一个非常优秀的面向移动端样式的CSS轻量级库,如果想要寻找合适的Production-Ready的库请直接转向Mobi.css
 
 笔者最近一直在基于APICloud做Mobile Web与Hybrid APP开发,。笔者在构想Mobile Style Preset之处,觉得它应该具有如下特性:
@@ -34,7 +39,7 @@ npm i mobile-style-preset --save
 
 
 ## Media Query
-对于移动端开发中遇到的首要问题即使响应式开发问题,可以参考笔者的[]()。总结而言,常见的响应式开发可以有使用Viewport Size、使用媒介查询、使用类似于[]()这样的按比例缩放的库等等。而目前因为还需要适配大量的低版本的浏览器与性能的考量，笔者还是选择使用了Media Query来设置HTML的FontSize基准值，然后使用`em`作为主要的尺寸单位。首先看下我们常见的移动端尺寸（以iPhone为主）：
+对于移动端开发中遇到的首要问题即使响应式开发问题,可以参考笔者的[前端响应式实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/Frontend/Advanced/Render/Responsive/Frontend-ResponsiveSize.md)。总结而言,常见的响应式开发可以有使用Viewport Size、使用媒介查询、使用类似于[ScalableComponent](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/scalable-component/README.md)这样的按比例缩放的库等等。而目前因为还需要适配大量的低版本的浏览器与性能的考量，笔者还是选择使用了Media Query来设置HTML的FontSize基准值，然后使用`em`作为主要的尺寸单位。首先看下我们常见的移动端尺寸（以iPhone为主）：
 
 | Device                    | resolution (px) | device-width/ device-height (px)         |
 | ------------------------- | --------------- | ---------------------------------------- |
@@ -88,9 +93,42 @@ npm i mobile-style-preset --save
 }
 ```
 
-而对于便捷的子元素选择器，
+而对于便捷的子元素选择器，可以使用@include引入相应的mixins:
+
+```
+ul li {
+  background: blue;
+
+  @include first(3) {
+    background: blue;
+  }
+}
+```
+
+其编译之后的输出为:
+
+```
+ul li {
+  background: blue;
+}
+ul li:nth-child(-n + 3) {
+  background: blue;
+}
+```
+
+
 
 # Mobile Reset
+
+完整的Mobile Reset部分样式代码参考[这里]()，本章节将部分笔者觉得有意思的知识点列举讲解下。
+
+## border-box
+
+## Responsive Basic Size
+
+## Table
+
+
 
 # Layout
 
