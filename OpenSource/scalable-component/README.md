@@ -5,6 +5,11 @@
 
 # Usage
 
+使用`npm`命令下载安装该依赖:
+```
+npm i scalable-component --save
+```
+
 ## 设置视口
 ```
 <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
