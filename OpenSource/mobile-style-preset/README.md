@@ -120,18 +120,185 @@ ul li:nth-child(-n + 3) {
 
 # Mobile Reset
 
-完整的Mobile Reset部分样式代码参考[这里]()，本章节将部分笔者觉得有意思的知识点列举讲解下。
+完整的Mobile Reset部分样式代码参考[这里](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/mobile-style-preset/_mobile-reset.scss)，本章节将部分笔者觉得有意思的知识点列举讲解下。
 
 ## border-box
 
+对于所有元素的样式重置中，其包含如下样式:
+
+```
+* {
+  //将边距重置为0
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  //将盒模型的模式设置为boder-box,即将border包含在内
+  box-sizing: border-box;
+}
+```
+
+其中设置box-sizing值为border-box，即将盒模型的模式设置为boder-box,即将border包含在内。其默认值为content-box，即在默认情况下当你设置某个元素的高为500px时，该高度不会包含边距。这一点会导致譬如笔者进行Flex布局之后，如果设置了元素的边距导致整体宽度超过了父容器，结果导致溢出或者换行的情况。
+
+
+
 ## Responsive Basic Size
 
+```
+
+//基准的HTML大小为12px
+html {
+  font-size: 12px;
+}
+
+//对于屏幕大于375的,设置为15px
+@include min-screen(375px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+//iPhone4与5同宽度
+@include iphone4(portrait) {
+  html {
+    font-size: 9px;
+  }
+}
+
+//以iPhone 5 为基准尺寸
+@include iphone5(portrait) {
+  html {
+    font-size: 12px;
+  }
+}
+
+//大概1.17倍
+@include iphone6(portrait) {
+  html {
+    font-size: 14px;
+  }
+}
+
+//大概1.29 倍
+@include iphone6-plus(portrait) {
+  html {
+    font-size: 16px;
+  }
+}
+```
+
+
+
 ## Table
+
+```
+table {
+  width: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+```
+
+HTML中使用Tables进行布局一直是个很头疼的问题，它们使用起来很简单，但是无法进行响应式操作，并且也不方便进行全局样式设置。譬如，如果你打算为Table的边与单元的边添加样式，可能得到的结果如下:
+
+  ```
+  table {
+      width: 600px;
+      border: 1px solid #505050;
+      margin-bottom: 15px;
+      color:#505050;
+  }
+
+  td{
+      border: 1px solid #505050;
+      padding: 10px;
+  }
+  ```
+
+
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/9/1/6BBCF480-65A4-4DA2-A956-0BEE74B471AF.png)
+
+这里存在的问题是出现了很多的重复的边，会导致视觉上不协调的情况，那么我们可以通过设置`border-collapse:collapse`来进行处理:
+
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/9/1/721C04EE-5635-4090-A61A-8E156A85BF10.png)
 
 
 
 # Layout
 
+## FlexBox
+
+```
+/*设置常见布局*/
+
+//水平方向上布局
+@mixin msp-flex-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.msp-flex-vertical-container {
+
+  @include msp-flex-container;
+
+}
+
+//垂直方向上布局
+@mixin msp-flex-vertical-container {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.msp-flex-vertical-container {
+
+  @include msp-flex-vertical-container;
+
+}
+
+//设置Flex上元素
+@mixin msp-flex-item($width) {
+
+  flex: 1 0 $width;
+
+}
+
+.msp-flex-item-1-2 {
+  @include msp-flex-item(50%);
+
+}
+
+.msp-flex-item-1-3 {
+  @include msp-flex-item(33.33%);
+}
+
+.msp-flex-item-2-3 {
+  @include msp-flex-item(66.67%);
+}
+
+.msp-flex-item-1-4 {
+  @include msp-flex-item(25%);
+}
+
+.msp-flex-item-3-4 {
+  @include msp-flex-item(75%);
+}
+```
+
+
+
 # Utilities
 
+## Scroll
+
+## Visibility On Mobile
 
