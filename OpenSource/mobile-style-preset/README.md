@@ -1,8 +1,23 @@
-[TOC]
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [Mobile Style Preset](#mobile-style-preset)
+  - [Media Query](#media-query)
+  - [CSS Children Selector](#css-children-selector)
+- [Mobile Reset](#mobile-reset)
+  - [border-box](#border-box)
+  - [Responsive Basic Size](#responsive-basic-size)
+  - [Table](#table)
+- [Layout](#layout)
+  - [Flex box](#flex-box)
+- [Utilities](#utilities)
+  - [Scroll](#scroll)
+  - [Visibility On Mobile](#visibility-on-mobile)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Mobile Style Preset
+# [Mobile Style Preset](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/mobile-style-preset/README.md)
 
 > 项目的很多设想受[Mobi.css](https://github.com/xcatliu/mobi.css)启发,这是一个非常优秀的面向移动端样式的CSS轻量级库,如果想要寻找合适的Production-Ready的库请直接转向Mobi.css
 
@@ -13,7 +28,7 @@
 - Mobile First & SCSS First，因为笔者主要是在React中以SCSS进行样式设置，因此所有的属性设置都会以Mixin形式提供使用，而在Dist版本中以提供可以直接使用的样式类。
 
 
-Mobile Style Preset主要是笔者在日常工作中一些常用的移动端样式的总结,目前推荐是在SCSS中使用MSP，首先需要用`npm`命令安装:
+[Mobile Style Preset](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/mobile-style-preset/README.md)主要是笔者在日常工作中一些常用的移动端样式的总结,目前推荐是在SCSS中使用MSP，首先需要用`npm`命令安装:
 
 ```
 npm i mobile-style-preset --save
@@ -226,7 +241,9 @@ HTML中使用Tables进行布局一直是个很头疼的问题，它们使用起�
 
 # Layout
 
-## FlexBox
+## Flex box
+
+笔者目前主要使用Flexbox作为布局基础，关于Flexbox的用法可以参考笔者的[CSS Flexbox 入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/Frontend/CSS/Layout/CSS-Flexbox.md)文章。
 
 ```
 /*设置常见布局*/
@@ -300,5 +317,75 @@ HTML中使用Tables进行布局一直是个很头疼的问题，它们使用起�
 
 ## Scroll
 
+在iOS中可能存在滚动平滑问题，其问题的复现可以在iOS中打开[[Overflow Scrolling on iOS](http://codepen.io/wxyyxc1992/pen/BLzapp)](http://codepen.io/wxyyxc1992/pen/BLzapp)查看效果，笔者同样提供了简单的Mixin与CSS样式类进行使用，源码如下:
+
+```
+//设置平滑滚动
+@mixin smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+//可以直接使用的平滑滚动的类
+.vertical-scroll {
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  //这里随意设置了一个最大高度,提醒要设置最大高度
+  max-height: 50rem;
+  @include smooth-scroll;
+
+}
+
+//设置水平滚动
+.horizaontal-scroll {
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+  //这里设置最大宽度为100%
+  width: 100%;
+  @include smooth-scroll;
+
+}
+```
+
+
+
 ## Visibility On Mobile
+
+这里以480px与769px分别为移动端与PC端的尺寸分割:
+
+```
+//设置是否需要显示在移动设备上
+@mixin show-on-mobile {
+
+  @include min-screen(480px) {
+    @content;
+  }
+
+}
+
+.show-on-mobile {
+
+  @include show-on-mobile {
+    display: none;
+  }
+
+}
+
+@mixin hide-on-mobile {
+
+  @include min-screen(769px) {
+    @content;
+  }
+
+}
+
+.hide-on-mobile {
+
+  @include hide-on-mobile {
+    display: none;
+  }
+
+}
+```
 
