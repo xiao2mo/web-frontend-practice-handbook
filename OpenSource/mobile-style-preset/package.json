@@ -1,6 +1,6 @@
 {
   "name": "mobile-style-preset",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lightwight & Flexible CSS Preset For Mobile Web",
   "main": "msp.scss",
   "scripts": {

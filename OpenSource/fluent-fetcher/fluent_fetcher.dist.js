@@ -17,6 +17,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //自动进行全局的ES6 Promise的Polyfill
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+var urlencode = require('isomorphic-urlencode');
 
 /**
  *    HttpUrl url = HttpUrl.parse("http://who-let-the-dogs.out").newBuilder()
@@ -41,7 +42,11 @@ require('isomorphic-fetch');
 var FluentFetcher = function () {
 
   /**
-   * @默认构造函数
+   * @function 默认构造函数
+   * @param scheme http 或者 https
+   * @param host 请求的域名
+   * @param encode 编码方式,常用的为 utf8 或者 gbk
+   * @param responseContentType 返回的数据类型 常用的为 text 或者 json
    */
   function FluentFetcher(_ref) {
     var _ref$scheme = _ref.scheme;
@@ -165,7 +170,12 @@ var FluentFetcher = function () {
     }
   }, {
     key: 'put',
-    value: function put() {
+    value: function put(_ref4) {
+      var _ref4$path = _ref4.path;
+      var path = _ref4$path === undefined ? "/" : _ref4$path;
+      var _ref4$contentType = _ref4.contentType;
+      var contentType = _ref4$contentType === undefined ? "form-urlencoded" : _ref4$contentType;
+
 
       //设置请求方式
       this.option.method = "put";
@@ -191,11 +201,11 @@ var FluentFetcher = function () {
 
   }, {
     key: 'header',
-    value: function header(_ref4) {
-      var _ref4$key = _ref4.key;
-      var key = _ref4$key === undefined ? "Accept" : _ref4$key;
-      var _ref4$value = _ref4.value;
-      var value = _ref4$value === undefined ? "application/json" : _ref4$value;
+    value: function header(_ref5) {
+      var _ref5$key = _ref5.key;
+      var key = _ref5$key === undefined ? "Accept" : _ref5$key;
+      var _ref5$value = _ref5.value;
+      var value = _ref5$value === undefined ? "application/json" : _ref5$value;
 
       if (!this.option.headers) {
         this.option.headers = {};
@@ -227,9 +237,9 @@ var FluentFetcher = function () {
 
   }, {
     key: 'pathSegment',
-    value: function pathSegment(_ref5) {
-      var _ref5$segment = _ref5.segment;
-      var segment = _ref5$segment === undefined ? "" : _ref5$segment;
+    value: function pathSegment(_ref6) {
+      var _ref6$segment = _ref6.segment;
+      var segment = _ref6$segment === undefined ? "" : _ref6$segment;
 
 
       if (!!segment) {
@@ -249,8 +259,8 @@ var FluentFetcher = function () {
 
   }, {
     key: 'fragment',
-    value: function fragment(_ref6) {
-      _objectDestructuringEmpty(_ref6);
+    value: function fragment(_ref7) {
+      _objectDestructuringEmpty(_ref7);
 
       return this;
     }
@@ -267,9 +277,9 @@ var FluentFetcher = function () {
     }
   }, {
     key: 'timeout',
-    value: function timeout(_ref7) {
-      var _ref7$time = _ref7.time;
-      var time = _ref7$time === undefined ? 0 : _ref7$time;
+    value: function timeout(_ref8) {
+      var _ref8$time = _ref8.time;
+      var time = _ref8$time === undefined ? 0 : _ref8$time;
     }
 
     /**
@@ -279,11 +289,11 @@ var FluentFetcher = function () {
 
   }, {
     key: 'cache',
-    value: function cache(_ref8) {
-      var _ref8$cacheControl = _ref8.cacheControl;
-      var cacheControl = _ref8$cacheControl === undefined ? "no-cache" : _ref8$cacheControl;
-      var _ref8$maxAge = _ref8.maxAge;
-      var maxAge = _ref8$maxAge === undefined ? "0" : _ref8$maxAge;
+    value: function cache(_ref9) {
+      var _ref9$cacheControl = _ref9.cacheControl;
+      var cacheControl = _ref9$cacheControl === undefined ? "no-cache" : _ref9$cacheControl;
+      var _ref9$maxAge = _ref9.maxAge;
+      var maxAge = _ref9$maxAge === undefined ? "0" : _ref9$maxAge;
 
 
       return this;
@@ -309,19 +319,16 @@ var FluentFetcher = function () {
 
   }, {
     key: 'proxy',
-    value: function proxy(_ref9) {
-      var _ref9$proxyUrl = _ref9.proxyUrl;
-      var proxyUrl = _ref9$proxyUrl === undefined ? "" : _ref9$proxyUrl;
+    value: function proxy(_ref10) {
+      var _ref10$proxyUrl = _ref10.proxyUrl;
+      var proxyUrl = _ref10$proxyUrl === undefined ? "" : _ref10$proxyUrl;
 
 
       //如果设置为空,则跳过设置
-      if (!proxyUrl) {
-        this.proxyUrl = "";
-        return this;
-      }
+
+      this.proxyUrl = proxyUrl;
 
       //调用proxy方法时,this.packagedQueryString本来为空字符串
-      this.proxyUrl = proxyUrl + '?targetUrl=' + this._encode(this.scheme + '://' + this.host + this.path) + '&';
 
       return this;
     }
@@ -341,13 +348,11 @@ var FluentFetcher = function () {
       //封装请求参数
       this._setParams();
 
-      //构造查询字符串
-      var packagedQueryString = this.option.method === "get" ? '' + this.packagedQueryString : "";
+      //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
+      var packagedQueryString = this.option.method === "get" ? '?' + this.packagedQueryString : "";
 
       //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
-      var url = this.proxyUrl ||
-      //判断是否为get请求,如果是get请求则将查询字符串添加到URL中
-      packagedPath + '?';
+      var url = this.proxyUrl ? this.proxyUrl + '?targetUrl=' + this._encode(this.scheme + '://' + this.host + this.path) + '&' : '' + packagedPath;
 
       //构建fetch请求
       return fetch('' + url + packagedQueryString, this.option).then(this._checkStatus, function (error) {
@@ -386,7 +391,7 @@ var FluentFetcher = function () {
       //判断是否为GET
       if (this.option.method === "get") {
 
-        //如果是GET,则将请求数据添加到URL中
+        //如果是GET,则将请求数据添加到URL中,这一步在build函数中进行了
 
       } else if (this.contentType === "form-urlencoded") {
 
@@ -478,7 +483,7 @@ var FluentFetcher = function () {
       if (this.encode === "utf8") {
         return encodeURIComponent(str);
       } else {
-        return str;
+        return urlencode(str, this.encode);
       }
     }
   }]);

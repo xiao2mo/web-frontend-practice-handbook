@@ -6,6 +6,7 @@
 //自动进行全局的ES6 Promise的Polyfill
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+const urlencode = require('isomorphic-urlencode');
 
 
 /**
@@ -31,7 +32,11 @@ export default class FluentFetcher {
 
 
   /**
-   * @默认构造函数
+   * @function 默认构造函数
+   * @param scheme http 或者 https
+   * @param host 请求的域名
+   * @param encode 编码方式,常用的为 utf8 或者 gbk
+   * @param responseContentType 返回的数据类型 常用的为 text 或者 json
    */
   constructor({scheme = "http", host = "api.com", encode = "utf8", responseContentType = "json"}) {
 
@@ -131,7 +136,7 @@ export default class FluentFetcher {
     return this;
   }
 
-  put() {
+  put({path = "/", contentType = "form-urlencoded"}) {
 
     //设置请求方式
     this.option.method = "put";
@@ -248,13 +253,10 @@ export default class FluentFetcher {
   proxy({proxyUrl = ""}) {
 
     //如果设置为空,则跳过设置
-    if (!proxyUrl) {
-      this.proxyUrl = "";
-      return this;
-    }
+
+    this.proxyUrl = proxyUrl;
 
     //调用proxy方法时,this.packagedQueryString本来为空字符串
-    this.proxyUrl = `${proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&';
 
     return this;
 
@@ -273,13 +275,12 @@ export default class FluentFetcher {
     //封装请求参数
     this._setParams();
 
-    //构造查询字符串
-    let packagedQueryString = this.option.method === "get" ? `${this.packagedQueryString}` : "";
+    //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
+    let packagedQueryString = this.option.method === "get" ? `?${this.packagedQueryString}` : "";
 
     //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
-    let url = this.proxyUrl ||
-      //判断是否为get请求,如果是get请求则将查询字符串添加到URL中
-      `${packagedPath}?`;
+    let url = this.proxyUrl ?
+    `${this.proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&' : `${packagedPath}`;
 
     //构建fetch请求
     return fetch(`${url}${packagedQueryString}`, this.option)
@@ -321,7 +322,7 @@ export default class FluentFetcher {
     //判断是否为GET
     if (this.option.method === "get") {
 
-      //如果是GET,则将请求数据添加到URL中
+      //如果是GET,则将请求数据添加到URL中,这一步在build函数中进行了
 
     } else if (this.contentType === "form-urlencoded") {
 
@@ -409,7 +410,7 @@ export default class FluentFetcher {
     if (this.encode === "utf8") {
       return encodeURIComponent(str);
     } else {
-      return str;
+      return urlencode(str, this.encode);
     }
 
   }

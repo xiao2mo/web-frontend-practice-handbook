@@ -7,17 +7,17 @@
  */
 export class Validator {
 
-    /**
-     * @function 校验是否为有效的手机号码
-     * @param phoneNumber
-     * @returns {boolean}
-     */
-    static isPhoneNumber(phoneNumber) {
-        var pattern = /^1[34578]\d{9}$/;
-        if (pattern.test(phoneNumber)) {
-            return true;
-        }
-        return false;
+  /**
+   * @function 校验是否为有效的手机号码
+   * @param phoneNumber
+   * @returns {boolean}
+   */
+  static isPhoneNumber(phoneNumber) {
+    var pattern = /^1[34578]\d{9}$/;
+    if (pattern.test(phoneNumber)) {
+      return true;
     }
+    return false;
+  }
 
 }

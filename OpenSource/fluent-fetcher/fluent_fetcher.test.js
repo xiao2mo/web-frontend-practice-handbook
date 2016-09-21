@@ -61,6 +61,7 @@ fluentFetcher
     userId: 1
   })
   .post({path: "/posts"})
+  .proxy({}) //设置不走代理
   .build()
   .then((data)=> {
     console.log("POST:");
@@ -89,7 +90,8 @@ fluentFetcher
     body: 'bar',
     userId: 1
   })
-  .post({path: "/posts"})
+  .put({path: "/posts/1"})
+  .proxy({}) //设置不走代理
   .build()
   .then((data)=> {
     console.log("PUT:");
