@@ -267,7 +267,7 @@ export default class FluentFetcher {
    * @function 进行最后的构建工作,一旦调用该函数即不可以再修改之前的配置
    * @return {Promise}
    */
-  build() {
+  async build() {
 
     //构造请求路径
     let packagedPath = `${this.scheme}://${this.host}${this.path}`;
@@ -283,7 +283,7 @@ export default class FluentFetcher {
     `${this.proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&' : `${packagedPath}`;
 
     //构建fetch请求
-    return fetch(`${url}${packagedQueryString}`, this.option)
+    await fetch(`${url}${packagedQueryString}`, this.option)
       .then(this._checkStatus, (error)=> {
         throw error;
       })
