@@ -5,5 +5,7 @@
     "stage-3"
   ],
   "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties"
   ]
 }
