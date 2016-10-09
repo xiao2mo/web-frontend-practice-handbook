@@ -7,6 +7,8 @@
     "start": "node_modules/.bin/npm-run-all --parallel watch:server watch:build",
     "watch:build": "node_modules/.bin/webpack --config ./dev-config/webpack.config.js --watch",
     "watch:server": "node_modules/.bin/nodemon \"./dist/app.bundle.js\" --watch \"./dist\"",
+    "build": "node_modules/.bin/webpack --config ./dev-config/webpack.config.js -p",
+    "deploy": "npm run build  && pm2 start dist/app.bundle.js -i 4",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -56,6 +58,7 @@
   "dependencies": {
     "koa": "^1.2.4",
     "koa-router": "^5.4.0",
-    "koa-router-static": "^1.2.0"
+    "koa-router-static": "^1.2.0",
+    "winston": "^2.2.0"
   }
 }

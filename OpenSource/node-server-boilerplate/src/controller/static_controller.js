@@ -20,14 +20,10 @@ module.exports = function (root, opts) {
 
     var file = this.params['0'] || '/' + opts.index;
 
-    console.log(file[file.length - 1]);
-
     //判断是否存在后缀
     if (file[file.length - 1] === '/') {
       file += "index.html";
     }
-
-    console.log(file);
 
     var requested = path.normalize(file);
 
