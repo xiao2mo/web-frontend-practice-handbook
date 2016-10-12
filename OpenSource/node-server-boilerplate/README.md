@@ -4,6 +4,9 @@
 
 ## Install
 
+> PS:因为笔者不想开太多的Github Repository,所以把一些小的开源项目以NPM包的方式进行发布,请大家谅解。
+
+
 ```
 npm i node-server-boilerplate
 mv node_modules/node-server-boilerplate node-server-boilerplate
@@ -55,7 +58,7 @@ http://localhost:8080/static/docs/
 
 ## Build & Deploy
 
-这里建议使用[pm2](https://github.com/Unitech/pm2)作为集群部署工具,可以使用`npm run deploy`直接编译并且启动具有四个实例的集群。关于pm2详细的命令为:
+使用`npm run build`构建打包之后的文件,使用`npm run deploy`同时打包与部署项目。这里建议使用[pm2](https://github.com/Unitech/pm2)作为集群部署工具,可以使用`npm run deploy`直接编译并且启动具有四个实例的集群。关于pm2详细的命令为:
 ```
 # General
 $ npm install pm2 -g            # Install PM2
