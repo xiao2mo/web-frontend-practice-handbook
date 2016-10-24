@@ -1,9 +1,13 @@
-import { get_user } from './controller/user_controller';
 /**
  * Created by apple on 16/10/9.
  */
-var router = require('koa-router')();
-var serve = require('./controller/static_controller');
+
+import { get_user } from './controller/user_controller';
+const router = require('koa-router')();
+const serve = require('./controller/static_controller');
+
+//将所有API路径统一放置到api后缀中,方便代理服务器统一替换
+const apiPrefix = (path)=>(`/api${path}`);
 
 //定义默认的根路由
 router.get('/', function *(next) {
@@ -11,7 +15,7 @@ router.get('/', function *(next) {
 });
 
 //定义用户处理路由
-router.get('/user/:id', get_user);
+router.get(apiPrefix('/user/:id'), get_user);
 
 //定义全局静态文件支持路由
 router.get('/static/*', serve('./static'));

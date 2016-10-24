@@ -160,11 +160,15 @@ export default class FluentFetcher {
    * @value 请求值名
    */
   header({key = "Accept", value = "application/json"}) {
+
     if (!this.option.headers) {
       this.option.headers = {};
     }
 
     this.option.headers[key] = value;
+
+    //为了方便链式调用
+    return this;
   }
 
   /**
@@ -267,7 +271,7 @@ export default class FluentFetcher {
    * @function 进行最后的构建工作,一旦调用该函数即不可以再修改之前的配置
    * @return {Promise}
    */
-  async build() {
+  build() {
 
     //构造请求路径
     let packagedPath = `${this.scheme}://${this.host}${this.path}`;
@@ -276,14 +280,16 @@ export default class FluentFetcher {
     this._setParams();
 
     //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
-    let packagedQueryString = this.option.method === "get" ? `?${this.packagedQueryString}` : "";
+    let packagedQueryString = this.option.method === "get" && !!this.packagedQueryString ? '?' + this.packagedQueryString : "";
 
     //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
-    let url = this.proxyUrl ?
-    `${this.proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&' : `${packagedPath}`;
+    let url =
+      this.proxyUrl ?
+      `${this.proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&' :
+        `${packagedPath}`;
 
     //构建fetch请求
-    await fetch(`${url}${packagedQueryString}`, this.option)
+    return fetch(`${url}${packagedQueryString}`, this.option)
       .then(this._checkStatus, (error)=> {
         throw error;
       })

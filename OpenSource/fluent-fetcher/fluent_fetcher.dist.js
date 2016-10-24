@@ -207,11 +207,15 @@ var FluentFetcher = function () {
       var _ref5$value = _ref5.value;
       var value = _ref5$value === undefined ? "application/json" : _ref5$value;
 
+
       if (!this.option.headers) {
         this.option.headers = {};
       }
 
       this.option.headers[key] = value;
+
+      //为了方便链式调用
+      return this;
     }
 
     /**
@@ -341,35 +345,25 @@ var FluentFetcher = function () {
   }, {
     key: 'build',
     value: function build() {
-      var packagedPath,
-          packagedQueryString,
-          url,
-          _this = this;
 
-      return Promise.resolve().then(function () {
+      //构造请求路径
+      var packagedPath = this.scheme + '://' + this.host + this.path;
 
-        //构造请求路径
-        packagedPath = _this.scheme + '://' + _this.host + _this.path;
+      //封装请求参数
+      this._setParams();
 
-        //封装请求参数
+      //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
+      var packagedQueryString = this.option.method === "get" ? '?' + this.packagedQueryString : "";
 
-        _this._setParams();
+      //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
+      var url = this.proxyUrl ? this.proxyUrl + '?targetUrl=' + this._encode(this.scheme + '://' + this.host + this.path) + '&' : '' + packagedPath;
 
-        //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
-        packagedQueryString = _this.option.method === "get" ? '?' + _this.packagedQueryString : "";
-
-        //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
-
-        url = _this.proxyUrl ? _this.proxyUrl + '?targetUrl=' + _this._encode(_this.scheme + '://' + _this.host + _this.path) + '&' : '' + packagedPath;
-
-        //构建fetch请求
-
-        return fetch('' + url + packagedQueryString, _this.option).then(_this._checkStatus, function (error) {
-          throw error;
-        }).then(_this.responseContentType === "json" ? _this._parseJSON : _this._parseText, function (error) {
-          throw error;
-        });
-      }).then(function () {});
+      //构建fetch请求
+      return fetch('' + url + packagedQueryString, this.option).then(this._checkStatus, function (error) {
+        throw error;
+      }).then(this.responseContentType === "json" ? this._parseJSON : this._parseText, function (error) {
+        throw error;
+      });
     }
 
     /**
