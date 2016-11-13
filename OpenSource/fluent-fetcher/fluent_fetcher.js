@@ -1,27 +1,6 @@
-/**
- * Created by apple on 16/9/8.
- */
-
-
 //自动进行全局的ES6 Promise的Polyfill
 require('es6-promise').polyfill();
-require('isomorphic-fetch');
 const urlencode = require('isomorphic-urlencode');
-
-
-/**
- *    HttpUrl url = HttpUrl.parse("http://who-let-the-dogs.out").newBuilder()
- .addPathSegment("_Who?_")
- .query("_Who?_")
- .fragment("_Who?_")
- .build();
- System.out.println(url);
-
- This prints:
-
-
- http://who-let-the-dogs.out/_Who%3F_?_Who?_#_Who?_
- */
 
 /**
  * @author 王下邀月熊
@@ -35,10 +14,10 @@ export default class FluentFetcher {
    * @function 默认构造函数
    * @param scheme http 或者 https
    * @param host 请求的域名
-   * @param encode 编码方式,常用的为 utf8 或者 gbk
-   * @param responseContentType 返回的数据类型 常用的为 text 或者 json
+   * @param encoding 编码方式,常用的为 utf8 或者 gbk
+   * @param accept 返回的数据类型 常用的为 text 或者 json
    */
-  constructor({scheme = "http", host = "api.com", encode = "utf8", responseContentType = "json"}) {
+  constructor({scheme = "http", host = "api.com", encoding = "utf8", acceptType = "json"} = {}) {
 
     /**
      * @region 请求相关控制
@@ -47,33 +26,33 @@ export default class FluentFetcher {
 
     this.host = host;
 
-    //用于存放请求路径
-    this.path = "";
+    //注意,对于非utf8编码,请输入编码之后的字符串
+    this.encoding = encoding;
 
-    //用于存放所有的请求参数
+    //预期接收的数据类型
+    this.acceptType = acceptType;
+
+
+    /**
+     * @region 其他初始化值
+     */
+    //请求路径
+    this.path = '';
+
+    //请求参数
     this.params = {};
 
-    //设置请求内容类型
-    this.contentType = "form-urlencoded";
-
-    //用于存放封装好的查询参数 即 ? 之后的内容
-    this.packagedQueryString = "";
+    //设置请求内容类型 json / x-www-form-urlencoded
+    this.contentType = "json";
 
     //请求的选项设置
     this.option = {};
 
-
     /**
-     * @function 编码与响应属性控制
+     * @region 辅助参数
      */
+    this.mockData = {};
 
-    //注意,对于非utf8编码,请输入编码之后的字符串
-    this.encode = encode;
-
-    this.responseContentType = responseContentType;
-
-    //设置当前的请求状态,默认为初始化,还有 wait、finish
-    this.state = "initialize";
 
   }
 
@@ -105,14 +84,10 @@ export default class FluentFetcher {
 
 
   //这里输入的path是不会进行编码的,因此不要输入一些动态参数
-  get({path = "/"}) {
+  get(path = "/") {
 
-
-    //设置请求方式
-    this.option.method = "get";
-
-    //设置请求路径
-    this.path = `${path}`;
+    //封装请求类型
+    this._method('get', path);
 
     return this;
   }
@@ -123,34 +98,37 @@ export default class FluentFetcher {
    * @param contentType
    * @return {FluentModel}
    */
-  post({path = "/", contentType = "form-urlencoded"}) {
+  post(path = "/", contentType = "json") {
 
-    //设置请求方式
-    this.option.method = "post";
-
-    this.contentType = contentType;
-
-    //设置请求路径
-    this.path = `${path}`;
+    this._method('post', path, contentType);
 
     return this;
   }
 
-  put({path = "/", contentType = "form-urlencoded"}) {
+  /**
+   * @function 以put形式发起请求
+   * @param path
+   * @param contentType
+   * @return {FluentFetcher}
+   */
+  put(path = "/", contentType = "json") {
 
-    //设置请求方式
-    this.option.method = "put";
-
-    this.contentType = contentType;
-
-    //设置请求路径
-    this.path = `${path}`;
+    this._method('put', path, contentType);
 
     return this;
 
   }
 
-  del() {
+  /**
+   * @function 以delete方法发起请求
+   * @param path
+   * @param contentType
+   * @return {FluentFetcher}
+   */
+  delete(path = "/", contentType = "json") {
+
+    this._method('delete', path, contentType);
+
     return this;
   }
 
@@ -159,7 +137,7 @@ export default class FluentFetcher {
    * @key 请求键名
    * @value 请求值名
    */
-  header({key = "Accept", value = "application/json"}) {
+  header(key = "Accept", value = "application/json") {
 
     if (!this.option.headers) {
       this.option.headers = {};
@@ -172,19 +150,7 @@ export default class FluentFetcher {
   }
 
   /**
-   * @function 设置本次请求为CORS
-   */
-  cors() {
-
-    this.option.mode = "cors";
-
-    this.header({key: "Origin", value: "*"});
-
-    return this;
-  }
-
-  /**
-   * @function 请求路径封装
+   * @function 请求路径封装，自动进行编码操作
    * @param segment
    * @return {FluentModel}
    */
@@ -203,10 +169,21 @@ export default class FluentFetcher {
   }
 
   /**
-   * @function #之后的地址封装
-   * @return {FluentModel}
+   * @function 设置本次请求为CORS
    */
-  fragment({}) {
+  cors() {
+
+    this.option.mode = "cors";
+
+    this.header({key: "Origin", value: "*"});
+
+    return this;
+  }
+
+  mock(data = {}): FluentFetcher {
+
+
+    this.mockData = data;
 
     return this;
 
@@ -250,24 +227,6 @@ export default class FluentFetcher {
   }
 
   /**
-   * @function 将本次请求设置为需要通过Proxy进行请求
-   * @param proxyUrl 完整的代理服务器的请求路径
-   * @return {FluentModel}
-   */
-  proxy({proxyUrl = ""}) {
-
-    //如果设置为空,则跳过设置
-
-    this.proxyUrl = proxyUrl;
-
-    //调用proxy方法时,this.packagedQueryString本来为空字符串
-
-    return this;
-
-  }
-
-
-  /**
    * @function 进行最后的构建工作,一旦调用该函数即不可以再修改之前的配置
    * @return {Promise}
    */
@@ -276,29 +235,136 @@ export default class FluentFetcher {
     //构造请求路径
     let packagedPath = `${this.scheme}://${this.host}${this.path}`;
 
-    //封装请求参数
-    this._setParams();
+    //封装请求参数字符串，
+    let queryString = this._setParams();
 
-    //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
-    let packagedQueryString = this.option.method === "get" && !!this.packagedQueryString ? '?' + this.packagedQueryString : "";
+    //封装好的请求地址
+    let url;
 
-    //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
-    let url =
-      this.proxyUrl ?
-      `${this.proxyUrl}?targetUrl=` + this._encode(`${this.scheme}://${this.host}${this.path}`) + '&' :
-        `${packagedPath}`;
+    //在查询字符串有意义的情况下，将其封装到path尾部
+    if (!!queryString) {
+      url = `${packagedPath}?${queryString}`
+    } else {
+      url = packagedPath;
+    }
+
+    //判断是否存在有Mock数据
+    if (this._isMock()) {
+      return this._buildMock();
+    }
+
+    //判断是否为微信环境
+    if (this._isWeapp()) {
+      return this._buildWeapp(url);
+    }
+
+    require('isomorphic-fetch');
 
     //构建fetch请求
-    return fetch(`${url}${packagedQueryString}`, this.option)
-      .then(this._checkStatus, (error)=> {
+    return fetch(url, this.option)
+      .then(this._checkStatus, (error) => {
         throw error;
       })
-      .then(this.responseContentType === "json" ? this._parseJSON : this._parseText, (error)=> {
+      .then(this.acceptType === "json" ? this._parseJSON : this._parseText, (error) => {
         throw error;
       });
 
   }
 
+
+  /**
+   * @function 判断是否为Weapp
+   * @private
+   */
+  _isWeapp(): bool {
+
+    if (typeof wx !== 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  /**
+   * @function 如果是Weapp环境下则构建Weapp内建的请求
+   * @param url
+   * @return {Promise}
+   * @private
+   */
+  _buildWeapp(url): Promise {
+
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url,
+        method: this.option.method,
+        data: this.params,
+        header: this.option.headers,
+        success: function (res) {
+          resolve(res.data)
+        },
+        fail: function (err) {
+          reject(err)
+        }
+      })
+    });
+
+  }
+
+  /**
+   * @function 根据当前路径判断是否需要Mock
+   * @param path
+   * @private
+   */
+  _isMock(): bool {
+
+    if (!!this.mockData[this.path]) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  /**
+   * @function 如果是Mock数据则直接返回数据
+   * @private
+   */
+  _buildMock(): Promise {
+
+    //构造Promise对象
+    return new Promise((resolve, reject) => {
+
+      resolve(this.mockData[this.path]);
+
+    });
+
+  }
+
+
+  /**
+   * @function 封装请求类型
+   * @param method
+   * @param path
+   * @param contentType
+   * @private
+   */
+  _method(method = 'get', path = '/', contentType = 'json') {
+
+
+    //设置请求方式
+    this.option.method = method;
+
+    //设置请求数据类型
+    this.contentType = contentType;
+
+    //根据不同的ContentType构建不同的请求头
+    this.header('Content-Type', `application/${contentType}`);
+
+    //设置请求路径
+    this.path = `${path}`;
+
+  }
 
   /**
    * @region 私有方法定义区域
@@ -308,8 +374,8 @@ export default class FluentFetcher {
 
   _setParams() {
 
-    //重置封装好的packagedQueryString
-    this.packagedQueryString = "";
+    //查询字符串
+    let queryString = '';
 
     //判断当前是否已经设置了请求方法
     if (!this.option.method) {
@@ -318,29 +384,33 @@ export default class FluentFetcher {
 
     //将请求参数封装到查询参数中
     for (let key in this.params) {
-      this.packagedQueryString += `${key}=${this._encode(this.params[key])}&`
+      queryString += `${key}=${this._encode(this.params[key])}&`
     }
 
     //删除最后一个无效的`&`,以避免被误认为SQL Injection
-    this.packagedQueryString = this.packagedQueryString.substr(0, this.packagedQueryString.length - 1);
+    queryString = queryString.substr(0, queryString.length - 1);
 
 
     //判断是否为GET
     if (this.option.method === "get") {
 
       //如果是GET,则将请求数据添加到URL中,这一步在build函数中进行了
+      return queryString;
 
-    } else if (this.contentType === "form-urlencoded") {
+    } else if (this.contentType === "x-www-form-urlencoded") {
 
       //根据不同的编码格式设置不同的body内容
       //将构造好的查询字符串添加到body中
-      this.option.body = this.packagedQueryString;
+      this.option.body = queryString;
 
     } else {
 
+      //如果是以JSON形式发起请求，则直接构造JSON字符串
       this.option.body = JSON.stringify(this.params);
 
     }
+
+    return null;
 
   }
 
@@ -413,10 +483,10 @@ export default class FluentFetcher {
    */
   _encode(str) {
 
-    if (this.encode === "utf8") {
+    if (this.encoding === "utf8") {
       return encodeURIComponent(str);
     } else {
-      return urlencode(str, this.encode);
+      return urlencode(str, this.encoding);
     }
 
   }

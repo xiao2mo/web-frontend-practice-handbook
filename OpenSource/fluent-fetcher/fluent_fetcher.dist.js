@@ -6,32 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by apple on 16/9/8.
- */
 
 //自动进行全局的ES6 Promise的Polyfill
 require('es6-promise').polyfill();
-require('isomorphic-fetch');
 var urlencode = require('isomorphic-urlencode');
-
-/**
- *    HttpUrl url = HttpUrl.parse("http://who-let-the-dogs.out").newBuilder()
- .addPathSegment("_Who?_")
- .query("_Who?_")
- .fragment("_Who?_")
- .build();
- System.out.println(url);
-
- This prints:
-
-
- http://who-let-the-dogs.out/_Who%3F_?_Who?_#_Who?_
- */
 
 /**
  * @author 王下邀月熊
@@ -45,18 +24,18 @@ var FluentFetcher = function () {
    * @function 默认构造函数
    * @param scheme http 或者 https
    * @param host 请求的域名
-   * @param encode 编码方式,常用的为 utf8 或者 gbk
-   * @param responseContentType 返回的数据类型 常用的为 text 或者 json
+   * @param encoding 编码方式,常用的为 utf8 或者 gbk
+   * @param accept 返回的数据类型 常用的为 text 或者 json
    */
   function FluentFetcher(_ref) {
     var _ref$scheme = _ref.scheme;
     var scheme = _ref$scheme === undefined ? "http" : _ref$scheme;
     var _ref$host = _ref.host;
     var host = _ref$host === undefined ? "api.com" : _ref$host;
-    var _ref$encode = _ref.encode;
-    var encode = _ref$encode === undefined ? "utf8" : _ref$encode;
-    var _ref$responseContentT = _ref.responseContentType;
-    var responseContentType = _ref$responseContentT === undefined ? "json" : _ref$responseContentT;
+    var _ref$encoding = _ref.encoding;
+    var encoding = _ref$encoding === undefined ? "utf8" : _ref$encoding;
+    var _ref$acceptType = _ref.acceptType;
+    var acceptType = _ref$acceptType === undefined ? "json" : _ref$acceptType;
 
     _classCallCheck(this, FluentFetcher);
 
@@ -67,32 +46,31 @@ var FluentFetcher = function () {
 
     this.host = host;
 
-    //用于存放请求路径
-    this.path = "";
+    //注意,对于非utf8编码,请输入编码之后的字符串
+    this.encoding = encoding;
 
-    //用于存放所有的请求参数
+    //预期接收的数据类型
+    this.acceptType = acceptType;
+
+    /**
+     * @region 其他初始化值
+     */
+    //请求路径
+    this.path = '';
+
+    //请求参数
     this.params = {};
 
-    //设置请求内容类型
-    this.contentType = "form-urlencoded";
-
-    //用于存放封装好的查询参数 即 ? 之后的内容
-    this.packagedQueryString = "";
+    //设置请求内容类型 json / x-www-form-urlencoded
+    this.contentType = "json";
 
     //请求的选项设置
     this.option = {};
 
     /**
-     * @function 编码与响应属性控制
+     * @region 辅助参数
      */
-
-    //注意,对于非utf8编码,请输入编码之后的字符串
-    this.encode = encode;
-
-    this.responseContentType = responseContentType;
-
-    //设置当前的请求状态,默认为初始化,还有 wait、finish
-    this.state = "initialize";
+    this.mockData = {};
   }
 
   /**
@@ -128,16 +106,12 @@ var FluentFetcher = function () {
 
   }, {
     key: 'get',
-    value: function get(_ref2) {
-      var _ref2$path = _ref2.path;
-      var path = _ref2$path === undefined ? "/" : _ref2$path;
+    value: function get() {
+      var path = arguments.length <= 0 || arguments[0] === undefined ? "/" : arguments[0];
 
 
-      //设置请求方式
-      this.option.method = "get";
-
-      //设置请求路径
-      this.path = '' + path;
+      //封装请求类型
+      this._method('get', path);
 
       return this;
     }
@@ -151,45 +125,51 @@ var FluentFetcher = function () {
 
   }, {
     key: 'post',
-    value: function post(_ref3) {
-      var _ref3$path = _ref3.path;
-      var path = _ref3$path === undefined ? "/" : _ref3$path;
-      var _ref3$contentType = _ref3.contentType;
-      var contentType = _ref3$contentType === undefined ? "form-urlencoded" : _ref3$contentType;
+    value: function post() {
+      var path = arguments.length <= 0 || arguments[0] === undefined ? "/" : arguments[0];
+      var contentType = arguments.length <= 1 || arguments[1] === undefined ? "json" : arguments[1];
 
 
-      //设置请求方式
-      this.option.method = "post";
-
-      this.contentType = contentType;
-
-      //设置请求路径
-      this.path = '' + path;
+      this._method('post', path, contentType);
 
       return this;
     }
+
+    /**
+     * @function 以put形式发起请求
+     * @param path
+     * @param contentType
+     * @return {FluentFetcher}
+     */
+
   }, {
     key: 'put',
-    value: function put(_ref4) {
-      var _ref4$path = _ref4.path;
-      var path = _ref4$path === undefined ? "/" : _ref4$path;
-      var _ref4$contentType = _ref4.contentType;
-      var contentType = _ref4$contentType === undefined ? "form-urlencoded" : _ref4$contentType;
+    value: function put() {
+      var path = arguments.length <= 0 || arguments[0] === undefined ? "/" : arguments[0];
+      var contentType = arguments.length <= 1 || arguments[1] === undefined ? "json" : arguments[1];
 
 
-      //设置请求方式
-      this.option.method = "put";
-
-      this.contentType = contentType;
-
-      //设置请求路径
-      this.path = '' + path;
+      this._method('put', path, contentType);
 
       return this;
     }
+
+    /**
+     * @function 以delete方法发起请求
+     * @param path
+     * @param contentType
+     * @return {FluentFetcher}
+     */
+
   }, {
-    key: 'del',
-    value: function del() {
+    key: 'delete',
+    value: function _delete() {
+      var path = arguments.length <= 0 || arguments[0] === undefined ? "/" : arguments[0];
+      var contentType = arguments.length <= 1 || arguments[1] === undefined ? "json" : arguments[1];
+
+
+      this._method('delete', path, contentType);
+
       return this;
     }
 
@@ -201,11 +181,9 @@ var FluentFetcher = function () {
 
   }, {
     key: 'header',
-    value: function header(_ref5) {
-      var _ref5$key = _ref5.key;
-      var key = _ref5$key === undefined ? "Accept" : _ref5$key;
-      var _ref5$value = _ref5.value;
-      var value = _ref5$value === undefined ? "application/json" : _ref5$value;
+    value: function header() {
+      var key = arguments.length <= 0 || arguments[0] === undefined ? "Accept" : arguments[0];
+      var value = arguments.length <= 1 || arguments[1] === undefined ? "application/json" : arguments[1];
 
 
       if (!this.option.headers) {
@@ -215,6 +193,29 @@ var FluentFetcher = function () {
       this.option.headers[key] = value;
 
       //为了方便链式调用
+      return this;
+    }
+
+    /**
+     * @function 请求路径封装，自动进行编码操作
+     * @param segment
+     * @return {FluentModel}
+     */
+
+  }, {
+    key: 'pathSegment',
+    value: function pathSegment(_ref2) {
+      var _ref2$segment = _ref2.segment;
+      var segment = _ref2$segment === undefined ? "" : _ref2$segment;
+
+
+      if (!!segment) {
+
+        //当segment有意义值时
+        this.path = this.path + '/' + this._encode(segment);
+      }
+
+      //返回当前对象
       return this;
     }
 
@@ -232,39 +233,13 @@ var FluentFetcher = function () {
 
       return this;
     }
-
-    /**
-     * @function 请求路径封装
-     * @param segment
-     * @return {FluentModel}
-     */
-
   }, {
-    key: 'pathSegment',
-    value: function pathSegment(_ref6) {
-      var _ref6$segment = _ref6.segment;
-      var segment = _ref6$segment === undefined ? "" : _ref6$segment;
+    key: 'mock',
+    value: function mock() {
+      var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
 
-      if (!!segment) {
-
-        //当segment有意义值时
-        this.path = this.path + '/' + this._encode(segment);
-      }
-
-      //返回当前对象
-      return this;
-    }
-
-    /**
-     * @function #之后的地址封装
-     * @return {FluentModel}
-     */
-
-  }, {
-    key: 'fragment',
-    value: function fragment(_ref7) {
-      _objectDestructuringEmpty(_ref7);
+      this.mockData = data;
 
       return this;
     }
@@ -281,9 +256,9 @@ var FluentFetcher = function () {
     }
   }, {
     key: 'timeout',
-    value: function timeout(_ref8) {
-      var _ref8$time = _ref8.time;
-      var time = _ref8$time === undefined ? 0 : _ref8$time;
+    value: function timeout(_ref3) {
+      var _ref3$time = _ref3.time;
+      var time = _ref3$time === undefined ? 0 : _ref3$time;
     }
 
     /**
@@ -293,11 +268,11 @@ var FluentFetcher = function () {
 
   }, {
     key: 'cache',
-    value: function cache(_ref9) {
-      var _ref9$cacheControl = _ref9.cacheControl;
-      var cacheControl = _ref9$cacheControl === undefined ? "no-cache" : _ref9$cacheControl;
-      var _ref9$maxAge = _ref9.maxAge;
-      var maxAge = _ref9$maxAge === undefined ? "0" : _ref9$maxAge;
+    value: function cache(_ref4) {
+      var _ref4$cacheControl = _ref4.cacheControl;
+      var cacheControl = _ref4$cacheControl === undefined ? "no-cache" : _ref4$cacheControl;
+      var _ref4$maxAge = _ref4.maxAge;
+      var maxAge = _ref4$maxAge === undefined ? "0" : _ref4$maxAge;
 
 
       return this;
@@ -316,28 +291,6 @@ var FluentFetcher = function () {
     }
 
     /**
-     * @function 将本次请求设置为需要通过Proxy进行请求
-     * @param proxyUrl 完整的代理服务器的请求路径
-     * @return {FluentModel}
-     */
-
-  }, {
-    key: 'proxy',
-    value: function proxy(_ref10) {
-      var _ref10$proxyUrl = _ref10.proxyUrl;
-      var proxyUrl = _ref10$proxyUrl === undefined ? "" : _ref10$proxyUrl;
-
-
-      //如果设置为空,则跳过设置
-
-      this.proxyUrl = proxyUrl;
-
-      //调用proxy方法时,this.packagedQueryString本来为空字符串
-
-      return this;
-    }
-
-    /**
      * @function 进行最后的构建工作,一旦调用该函数即不可以再修改之前的配置
      * @return {Promise}
      */
@@ -349,21 +302,144 @@ var FluentFetcher = function () {
       //构造请求路径
       var packagedPath = this.scheme + '://' + this.host + this.path;
 
-      //封装请求参数
-      this._setParams();
+      //封装请求参数字符串，
+      var queryString = this._setParams();
 
-      //构造查询字符串,判断是否为GET请求,如果为GET请求则将查询字符串添加到URL中
-      var packagedQueryString = this.option.method === "get" ? '?' + this.packagedQueryString : "";
+      //封装好的请求地址
+      var url = void 0;
 
-      //检查是否已经存在了代理地址,如果存在有代理地址则使用代理地址
-      var url = this.proxyUrl ? this.proxyUrl + '?targetUrl=' + this._encode(this.scheme + '://' + this.host + this.path) + '&' : '' + packagedPath;
+      //在查询字符串有意义的情况下，将其封装到path尾部
+      if (!!queryString) {
+        url = packagedPath + '?' + queryString;
+      } else {
+        url = packagedPath;
+      }
+
+      //判断是否存在有Mock数据
+      if (this._isMock()) {
+        return this._buildMock();
+      }
+
+      //判断是否为微信环境
+      if (this._isWeapp()) {
+        return this._buildWeapp(url);
+      }
+
+      require('isomorphic-fetch');
 
       //构建fetch请求
-      return fetch('' + url + packagedQueryString, this.option).then(this._checkStatus, function (error) {
+      return fetch(url, this.option).then(this._checkStatus, function (error) {
         throw error;
-      }).then(this.responseContentType === "json" ? this._parseJSON : this._parseText, function (error) {
+      }).then(this.acceptType === "json" ? this._parseJSON : this._parseText, function (error) {
         throw error;
       });
+    }
+
+    /**
+     * @function 判断是否为Weapp
+     * @private
+     */
+
+  }, {
+    key: '_isWeapp',
+    value: function _isWeapp() {
+
+      if (typeof wx !== 'undefined') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    /**
+     * @function 如果是Weapp环境下则构建Weapp内建的请求
+     * @param url
+     * @return {Promise}
+     * @private
+     */
+
+  }, {
+    key: '_buildWeapp',
+    value: function _buildWeapp(url) {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        wx.request({
+          url: url,
+          method: _this.option.method,
+          data: _this.params,
+          header: _this.option.headers,
+          success: function success(res) {
+            resolve(res.data);
+          },
+          fail: function fail(err) {
+            reject(err);
+          }
+        });
+      });
+    }
+
+    /**
+     * @function 根据当前路径判断是否需要Mock
+     * @param path
+     * @private
+     */
+
+  }, {
+    key: '_isMock',
+    value: function _isMock() {
+
+      if (!!this.mockData[this.path]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    /**
+     * @function 如果是Mock数据则直接返回数据
+     * @private
+     */
+
+  }, {
+    key: '_buildMock',
+    value: function _buildMock() {
+      var _this2 = this;
+
+      //构造Promise对象
+      return new Promise(function (resolve, reject) {
+
+        resolve(_this2.mockData[_this2.path]);
+      });
+    }
+
+    /**
+     * @function 封装请求类型
+     * @param method
+     * @param path
+     * @param contentType
+     * @private
+     */
+
+  }, {
+    key: '_method',
+    value: function _method() {
+      var method = arguments.length <= 0 || arguments[0] === undefined ? 'get' : arguments[0];
+      var path = arguments.length <= 1 || arguments[1] === undefined ? '/' : arguments[1];
+      var contentType = arguments.length <= 2 || arguments[2] === undefined ? 'json' : arguments[2];
+
+
+      //设置请求方式
+      this.option.method = method;
+
+      //设置请求数据类型
+      this.contentType = contentType;
+
+      //根据不同的ContentType构建不同的请求头
+      this.header('Content-Type', 'application/' + contentType);
+
+      //设置请求路径
+      this.path = '' + path;
     }
 
     /**
@@ -376,8 +452,8 @@ var FluentFetcher = function () {
     key: '_setParams',
     value: function _setParams() {
 
-      //重置封装好的packagedQueryString
-      this.packagedQueryString = "";
+      //查询字符串
+      var queryString = '';
 
       //判断当前是否已经设置了请求方法
       if (!this.option.method) {
@@ -386,26 +462,29 @@ var FluentFetcher = function () {
 
       //将请求参数封装到查询参数中
       for (var key in this.params) {
-        this.packagedQueryString += key + '=' + this._encode(this.params[key]) + '&';
+        queryString += key + '=' + this._encode(this.params[key]) + '&';
       }
 
       //删除最后一个无效的`&`,以避免被误认为SQL Injection
-      this.packagedQueryString = this.packagedQueryString.substr(0, this.packagedQueryString.length - 1);
+      queryString = queryString.substr(0, queryString.length - 1);
 
       //判断是否为GET
       if (this.option.method === "get") {
 
         //如果是GET,则将请求数据添加到URL中,这一步在build函数中进行了
-
-      } else if (this.contentType === "form-urlencoded") {
+        return queryString;
+      } else if (this.contentType === "x-www-form-urlencoded") {
 
         //根据不同的编码格式设置不同的body内容
         //将构造好的查询字符串添加到body中
-        this.option.body = this.packagedQueryString;
+        this.option.body = queryString;
       } else {
 
+        //如果是以JSON形式发起请求，则直接构造JSON字符串
         this.option.body = JSON.stringify(this.params);
       }
+
+      return null;
     }
 
     /**
@@ -484,10 +563,10 @@ var FluentFetcher = function () {
     key: '_encode',
     value: function _encode(str) {
 
-      if (this.encode === "utf8") {
+      if (this.encoding === "utf8") {
         return encodeURIComponent(str);
       } else {
-        return urlencode(str, this.encode);
+        return urlencode(str, this.encoding);
       }
     }
   }]);
