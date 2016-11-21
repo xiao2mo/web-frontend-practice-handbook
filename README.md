@@ -2,7 +2,12 @@
 
 > Awesome and Complete Practice Handbook For Web Frontend
 
+![](https://camo.githubusercontent.com/42266e71aa395fc757534be4b1b4d64bbf556e46/68747470733a2f2f636f64696e672e6e65742f752f686f7465616d2f702f43616368652f6769742f7261772f6d61737465722f323031362f31302f322f312d7261574f3364684d346a4d6a663956592d6b5a7a4e672e706e67)
+
 这里是笔者归纳总结日常学习中对于Web前端相关的知识的地方，欢迎大家Star。另外本部分文章很多是草稿，笔者可能未放出公开链接或者建议未经允许不要私下发布，请大家见谅。
+本项目的知识体系从属于笔者的[我的编程知识体系](https://github.com/wxyyxc1992/Coder-Knowledge-Graph)中的前端部分:
+
+![](https://camo.githubusercontent.com/46425700213cf657a0dd6f36c6db6a6b0a4fd578/68747470733a2f2f636f64696e672e6e65742f752f686f7465616d2f702f43616368652f6769742f7261772f6d61737465722f323031362f31312f332f436f6465722e706e67)
 
 
 ## [OpenSource](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource):开源项目列表
