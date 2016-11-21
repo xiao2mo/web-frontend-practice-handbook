@@ -46,6 +46,7 @@
 ## StyleGuide
 
 - [React 代码风格约定](https://github.com/wxyyxc1992/Web-Develop-Introduction-And-Best-Practices/blob/master/Framework/View/React/BestPractices/StyleGuide/React-CodingStyle.md)
+- [如何写出漂亮的React组件](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/Framework/View/React/BestPractices/StyleGuide/Make-Your-React-Components-Pretty.md)
 
 ## Optimization
 
