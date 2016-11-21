@@ -22,6 +22,12 @@
 ```
 //@flow
 import FluentFetcher from 'fluent-fetcher';
+
+//如果要使用Fetch，需要手动引入:
+require('isomorphic-fetch');
+require('es6-promise').polyfill();
+
+//也可以选择其他Fetch的兼容库
 ```
 
 我们可以直接以实例化方式创建请求实例:

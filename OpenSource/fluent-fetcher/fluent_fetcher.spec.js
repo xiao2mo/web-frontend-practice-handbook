@@ -2,6 +2,7 @@
 //  * Created by apple on 16/9/9.
 //  */
 import FluentFetcher from './fluent_fetcher';
+require('isomorphic-fetch');
 
 var expect = require('chai').expect;
 

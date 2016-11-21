@@ -12,6 +12,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 require('es6-promise').polyfill();
 var urlencode = require('isomorphic-urlencode');
 
+//如果是在浏览器环境下则直接载入fetch对象
+
 /**
  * @author 王下邀月熊
  * @function Fluent, Super Agent Style Wrapper For Fetch
@@ -27,7 +29,9 @@ var FluentFetcher = function () {
    * @param encoding 编码方式,常用的为 utf8 或者 gbk
    * @param accept 返回的数据类型 常用的为 text 或者 json
    */
-  function FluentFetcher(_ref) {
+  function FluentFetcher() {
+    var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
     var _ref$scheme = _ref.scheme;
     var scheme = _ref$scheme === undefined ? "http" : _ref$scheme;
     var _ref$host = _ref.host;
@@ -65,7 +69,9 @@ var FluentFetcher = function () {
     this.contentType = "json";
 
     //请求的选项设置
-    this.option = {};
+    this.option = {
+      //默认设置为非CORS请求
+    };
 
     /**
      * @region 辅助参数
@@ -112,6 +118,9 @@ var FluentFetcher = function () {
 
       //封装请求类型
       this._method('get', path);
+
+      //重置body，避免之前使用过post
+      this.option.body = null;
 
       return this;
     }
@@ -229,7 +238,7 @@ var FluentFetcher = function () {
 
       this.option.mode = "cors";
 
-      this.header({ key: "Origin", value: "*" });
+      this.header('Origin', '*');
 
       return this;
     }
@@ -303,7 +312,7 @@ var FluentFetcher = function () {
       var packagedPath = this.scheme + '://' + this.host + this.path;
 
       //封装请求参数字符串，
-      var queryString = this._setParams();
+      var queryString = this._parseParamsToQueryStringOrSetBody();
 
       //封装好的请求地址
       var url = void 0;
@@ -444,13 +453,14 @@ var FluentFetcher = function () {
 
     /**
      * @region 私有方法定义区域
+     * @function 将传入的参数解析为请求字符串
      * @param method 请求方法
      * @param contentType 请求类型
      */
 
   }, {
-    key: '_setParams',
-    value: function _setParams() {
+    key: '_parseParamsToQueryStringOrSetBody',
+    value: function _parseParamsToQueryStringOrSetBody() {
 
       //查询字符串
       var queryString = '';
@@ -497,7 +507,7 @@ var FluentFetcher = function () {
     key: '_checkStatus',
     value: function _checkStatus(response) {
 
-      if (response.status >= 200 && response.status < 300) {
+      if (response.status >= 200 && response.status < 300 || response.status == 0) {
         return response;
       } else {
         var error = new Error(response.statusText);

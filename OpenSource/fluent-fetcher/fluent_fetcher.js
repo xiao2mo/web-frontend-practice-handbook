@@ -2,6 +2,8 @@
 require('es6-promise').polyfill();
 const urlencode = require('isomorphic-urlencode');
 
+//如果是在浏览器环境下则直接载入fetch对象
+
 /**
  * @author 王下邀月熊
  * @function Fluent, Super Agent Style Wrapper For Fetch
@@ -46,7 +48,9 @@ export default class FluentFetcher {
     this.contentType = "json";
 
     //请求的选项设置
-    this.option = {};
+    this.option = {
+      //默认设置为非CORS请求
+    };
 
     /**
      * @region 辅助参数
@@ -88,6 +92,9 @@ export default class FluentFetcher {
 
     //封装请求类型
     this._method('get', path);
+
+    //重置body，避免之前使用过post
+    this.option.body = null;
 
     return this;
   }
@@ -175,7 +182,7 @@ export default class FluentFetcher {
 
     this.option.mode = "cors";
 
-    this.header({key: "Origin", value: "*"});
+    this.header('Origin', '*');
 
     return this;
   }
@@ -236,7 +243,7 @@ export default class FluentFetcher {
     let packagedPath = `${this.scheme}://${this.host}${this.path}`;
 
     //封装请求参数字符串，
-    let queryString = this._setParams();
+    let queryString = this._parseParamsToQueryStringOrSetBody();
 
     //封装好的请求地址
     let url;
@@ -368,11 +375,12 @@ export default class FluentFetcher {
 
   /**
    * @region 私有方法定义区域
+   * @function 将传入的参数解析为请求字符串
    * @param method 请求方法
    * @param contentType 请求类型
    */
 
-  _setParams() {
+  _parseParamsToQueryStringOrSetBody() {
 
     //查询字符串
     let queryString = '';
@@ -421,7 +429,7 @@ export default class FluentFetcher {
    */
   _checkStatus(response) {
 
-    if (response.status >= 200 && response.status < 300) {
+    if ((response.status >= 200 && response.status < 300) || (response.status == 0)) {
       return response
     } else {
       var error = new Error(response.statusText);
