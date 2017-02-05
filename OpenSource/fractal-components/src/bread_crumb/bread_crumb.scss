@@ -1,0 +1,21 @@
+.bread_crumb__container {
+
+  display: flex;
+
+  .crumb {
+
+    .name {
+      cursor: pointer;
+    }
+
+    .divider {
+      margin: 0 0.5em;
+    }
+
+    .current {
+      color: #1ab7cd;
+    }
+
+  }
+
+}
