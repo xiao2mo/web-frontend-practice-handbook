@@ -5,14 +5,14 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import ParentFolderCard from '../../src/folder/grid/cards/folder/parent_folder_card';
-import NewFolderCard from '../../src/folder/grid/cards/folder/new_folder_card';
-import FolderCard from '../../src/folder/grid/cards/folder/folder_card';
-import FolderViewEntity from '../../src/folder/entity/folder_view_entity';
-import FileCard from '../../src/folder/grid/cards/file/file_card';
-import FolderGrid from '../../src/folder/grid/folder_grid';
-import FileViewEntity from '../../src/folder/entity/file_view_entity';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import ParentFolderCard from '../src/folder/grid/cards/folder/parent_folder_card';
+import NewFolderCard from '../src/folder/grid/cards/folder/new_folder_card';
+import FolderCard from '../src/folder/grid/cards/folder/folder_card';
+import FolderViewEntity from '../src/folder/entity/folder_view_entity';
+import FileCard from '../src/folder/grid/cards/file/file_card';
+import FolderGrid from '../src/folder/grid/folder_grid';
+import FileViewEntity from '../src/folder/entity/file_view_entity';
 //加载SVG ICONs
 storiesOf('Folder', module)
   .addDecorator(story => (

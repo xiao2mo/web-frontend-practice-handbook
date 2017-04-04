@@ -5,10 +5,10 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import ImageTitleCard from '../../src/card/image_title/image_title_card';
-import ImageFloatingTitleCard from '../../src/card/image_floating_title/image_floating_title_card';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import ImageTitleOperationCard from '../../src/card/image_title_operation/image_title_operation_card';
+import ImageTitleCard from '../src/card/image_title/image_title_card';
+import ImageFloatingTitleCard from '../src/card/image_floating_title/image_floating_title_card';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import ImageTitleOperationCard from '../src/card/image_title_operation/image_title_operation_card';
 
 //加载Divider
 storiesOf('Card', module)

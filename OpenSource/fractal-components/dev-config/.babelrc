@@ -1,10 +1,18 @@
 {
   "presets": [
     "react",
-    "latest",
-    "stage-1"
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": "> 1%"
+        }
+      }
+    ]
   ],
   "plugins": [
+    "react-hot-loader/babel",
     "transform-decorators-legacy",
     "transform-class-properties",
     "transform-runtime",
@@ -18,6 +26,11 @@
       ],
       "plugins": [
         "react-hot-loader/babel"
+      ]
+    },
+    "local": {
+      "presets": [
+        "es2015"
       ]
     }
   }

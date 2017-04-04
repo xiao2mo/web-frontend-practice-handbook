@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import ArrowTree from '../../src/tree/arrow/arrow_tree';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import ArrowTree from '../src/tree/arrow/arrow_tree';
 
 
 //默认的测试数据

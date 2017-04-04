@@ -3,51 +3,8 @@
   "version": "1.0.2",
   "description": "Page-Driven Webpack Boilerplate For React-Redux Work Flow",
   "scripts": {
-    "start": "webpack-dashboard -- node --harmony ./dev-config/server/devServer.js --host 0.0.0.0",
-    "build": "npm run clean && better-npm-run build",
-    "build:ssr": "npm run clean && better-npm-run build:ssr && better-npm-run build:server",
-    "build:library": "npm run clean && better-npm-run build:library",
-    "clean": "rimraf dist",
-    "lint": "eslint src",
-    "mocha": "./node_modules/mocha/bin/mocha -t 10000 --compilers js:babel-core/register",
-    "mocha-all": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --recursive src/**/*.test.js",
-    "update": "npm-check -u",
-    "weapp": "better-npm-run weapp",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "betterScripts": {
-    "build": {
-      "command": "./node_modules/.bin/webpack --config ./dev-config/webpack.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:ssr": {
-      "command": "./node_modules/.bin/webpack --config ./dev-config/webpack.config.js",
-      "env": {
-        "NODE_ENV": "production",
-        "TARGET": "ssr"
-      }
-    },
-    "build:server": {
-      "command": "./node_modules/.bin/webpack --config ./dev-config/webpack.server.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:library": {
-      "command": "./node_modules/.bin/webpack --config ./dev-config/webpack.config.js",
-      "env": {
-        "NODE_ENV": "library"
-      }
-    },
-    "weapp": {
-      "command": "./node_modules/.bin/webpack --config ./dev-config/webpack.weapp.config.js --watch",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    }
   },
   "repository": {
     "type": "git",
@@ -77,6 +34,7 @@
     "extends": "./dev-config/.babelrc"
   },
   "devDependencies": {
+    "@kadira/react-storybook-addon-info": "^3.3.0",
     "@kadira/storybook": "^2.21.0",
     "autoprefixer": "^6.4.1",
     "babel-core": "^6.14.0",
@@ -133,12 +91,12 @@
     "webpack-validator": "^2.2.3"
   },
   "dependencies": {
-    "@kadira/react-storybook-addon-info": "^3.3.0",
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "faker": "^4.1.0",
     "fluent-fetcher": "^0.1.2",
     "font-awesome": "^4.7.0",
+    "hammerjs": "^2.0.8",
     "install": "^0.8.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.0",
@@ -146,7 +104,7 @@
     "lodash": "^4.17.4",
     "material-ui": "^0.16.7",
     "normalize.css": "^5.0.0",
-    "npm": "^4.1.1",
+    "offline-plugin": "^4.6.2",
     "react": "^15.4.2",
     "react-addons-update": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -157,6 +115,7 @@
     "react-router": "^3.0.1",
     "react-router-redux": "^4.0.7",
     "react-tap-event-plugin": "^2.0.1",
+    "react-virtualized": "^9.5.0",
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",
     "redux-promise": "^0.5.3",
@@ -164,6 +123,7 @@
     "scroll-behavior": "^0.9.2",
     "spark-md5": "^3.0.0",
     "validator": "^6.2.1",
+    "webpack-bundle-analyzer": "^2.3.1",
     "whatwg-fetch": "^2.0.1"
   }
 }

@@ -3,11 +3,11 @@
  */
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import Money from '../../src/svg_icons/action/money';
+import Money from '../src/svg_icons/action/money';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import TwoWayHalfArrow from '../../src/svg_icons/navigation/two_way_half_arrow';
-import Bulb from '../../src/svg_icons/tooltip/bulb';
+import TwoWayHalfArrow from '../src/svg_icons/navigation/two_way_half_arrow';
+import Bulb from '../src/svg_icons/tooltip/bulb';
 
 //加载SVG ICONs
 storiesOf('SVG 图标', module)

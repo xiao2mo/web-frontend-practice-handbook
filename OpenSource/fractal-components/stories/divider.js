@@ -5,19 +5,24 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AlertDialog from '../../src/dialog/alert/alert_dialog';
-
+import TitleDividerAction from '../src/divider/title_divider_action/title_divider_action';
+import Divider from '../src/divider/divider';
 
 //加载Divider
-storiesOf('Dialog:对话框', module)
+storiesOf('Divider:分割线', module)
   .addDecorator(story => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
       {story()}
     </MuiThemeProvider>
   ))
-  .add('提醒/告警对话框', () => (
+  .add('垂直分割线', () => (
+    <div style={{height:'10em',margin:'5em'}}>
+      <Divider/>
+    </div>
+  ))
+  .add('标题-分割线-动作', () => (
     <div>
-      <AlertDialog open={true}/>
+      <TitleDividerAction/>
     </div>
   ));
 

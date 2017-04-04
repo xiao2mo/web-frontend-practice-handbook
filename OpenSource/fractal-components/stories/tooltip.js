@@ -5,9 +5,9 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import HoverablePaper from '../../src/paper/hoverable_paper';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import Tooltip from '../../src/tooltip/tooltip.js';
+import HoverablePaper from '../src/paper/hoverable_paper';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import Tooltip from '../src/tooltip/tooltip.js';
 
 //加载Divider
 storiesOf('Tooltip', module)

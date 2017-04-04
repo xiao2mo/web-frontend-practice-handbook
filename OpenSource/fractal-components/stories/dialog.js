@@ -1,20 +1,23 @@
+/**
+ * Created by apple on 16/10/19.
+ */
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Login } from '../../src/form/login/login';
+import AlertDialog from '../src/dialog/alert/alert_dialog';
 
 
 //加载Divider
-storiesOf('Form:常用表单类', module)
+storiesOf('Dialog:对话框', module)
   .addDecorator(story => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
       {story()}
     </MuiThemeProvider>
   ))
-  .add('登录表单', ()=>(
+  .add('提醒/告警对话框', () => (
     <div>
-      <Login/>
+      <AlertDialog open={true}/>
     </div>
   ));
 

@@ -5,9 +5,9 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Pagination from '../../src/pagination/pagination';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import Pager from '../../src/pagination/pager';
+import Pagination from '../src/pagination/pagination';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import Pager from '../src/pagination/pager';
 
 //加载Divider
 storiesOf('Pagination', module)

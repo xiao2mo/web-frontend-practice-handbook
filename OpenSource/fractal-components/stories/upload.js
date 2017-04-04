@@ -5,8 +5,8 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import UploadChooser from '../../src/upload/chooser/chooser';
-import { StoryPanel, StoryTitle, Example } from '../stories';
+import UploadChooser from '../src/upload/chooser/chooser';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
 import Avatar from 'material-ui/Avatar';
 
 var Highlight = require('react-highlight');

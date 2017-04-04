@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import BreadCrumb from '../../src/bread_crumb/bread_crumb';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import BreadCrumb from '../src/bread_crumb/bread_crumb';
 
 //加载Divider
 storiesOf('BreadCrumb', module)

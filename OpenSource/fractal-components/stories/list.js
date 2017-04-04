@@ -5,10 +5,11 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import IconMenuList from '../../src/list/icon_menu/icon_menu_list';
-import { StoryPanel, StoryTitle, Example, Props } from '../stories';
-import DynamicList from '../../src/list/dynamic/dynamic_list';
+import IconMenuList from '../src/list/icon_menu/icon_menu_list';
+import { StoryPanel, StoryTitle, Example, Props } from '../.storybook/stories.js';
+import DynamicList from '../src/list/dynamic/dynamic_list';
 import TextField from 'material-ui/TextField';
+import MassiveListDemo from '../src/list/massive_list/demo/MassiveListDemo';
 
 const testData_items = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
 
@@ -62,10 +63,9 @@ storiesOf('List', module)
         </Example>
       </StoryPanel>
     ))
-  .addWithInfo('DynamicList',
-
+  .addWithInfo(
+    'DynamicList',
     `可动态增删内容的列表`,
-
     () => (
       <StoryPanel>
         <StoryTitle label='DynamicList' description='可动态增删内容的列表'/>
@@ -152,5 +152,20 @@ storiesOf('List', module)
         />
 
       </StoryPanel>
-    ));
+    ))
+  .addWithInfo(
+    'MassiveList',
+    '海量列表、上拉加载、下拉刷新',
+    () => (
+      <StoryPanel>
+        <StoryTitle label='MassiveList' description='海量列表、上拉加载、下拉刷新'/>
+        <section className="examples">
+          <Example label='用户列表'>
+            <MassiveListDemo/>
+          </Example>
+        </section>
+      </StoryPanel>
+    )
+  )
+;
 

@@ -2,10 +2,10 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import DigitalLabel from '../../src/label/digital/digital_label';
-import DecoratorLabel from '../../src/label/decorator/decorator_label';
-import EllipticalLabel from '../../src/label/elliptical/elliptical_label';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import DigitalLabel from '../src/label/digital/digital_label';
+import DecoratorLabel from '../src/label/decorator/decorator_label';
+import EllipticalLabel from '../src/label/elliptical/elliptical_label';
 storiesOf('Label', module)
   .addDecorator(story => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>

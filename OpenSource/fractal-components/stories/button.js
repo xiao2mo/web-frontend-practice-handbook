@@ -5,12 +5,12 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import BlueWhiteRaisedButton from '../../src/button/raised/blue_white_raised_button';
-import BlueBorderRaisedButton from '../../src/button/raised/blue_border_raised_button';
-import { StoryPanel, StoryTitle, Example } from '../stories';
-import BlueLinkButton from '../../src/button/link/link_button';
-import { DownloadIconLinkButton } from '../../src/button/link/download_icon_link_button';
-import TipButton from "../../src/button/tip/tip_button";
+import BlueWhiteRaisedButton from '../src/button/raised/blue_white_raised_button';
+import BlueBorderRaisedButton from '../src/button/raised/blue_border_raised_button';
+import { StoryPanel, StoryTitle, Example } from '../.storybook/stories.js';
+import BlueLinkButton from '../src/button/link/link_button';
+import { DownloadIconLinkButton } from '../src/button/link/download_icon_link_button';
+import TipButton from "../src/button/tip/tip_button";
 
 
 storiesOf('Button', module)

@@ -5,7 +5,7 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import SimpleMediaCarousel from '../../src/carousel/simple_media/simple_media_carousel';
+import SimpleMediaCarousel from '../src/carousel/simple_media/simple_media_carousel';
 
 const medium = [
   {
