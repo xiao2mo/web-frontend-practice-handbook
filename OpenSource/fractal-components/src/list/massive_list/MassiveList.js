@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import List from 'react-virtualized/dist/commonjs/List';
-import PullToRefresh from '../pull_to_refresh/PullToRefresh';
+import PullToRefresh from '../../scroll_view/pull_to_refresh/PullToRefresh';
 /**
  * 组件 MassiveList
  */

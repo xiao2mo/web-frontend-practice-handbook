@@ -7,7 +7,7 @@ import { NavigationCancel } from 'material-ui/svg-icons';
 import IconButton from 'material-ui/IconButton';
 import BlueLinkButton from '../../button/link/link_button';
 import update from 'react-addons-update';
-import validator from '../../declarative-validator/validator'; // ES6
+import validator from '../../declarative_validator/validator'; // ES6
 require('./dynamic_list.scss');
 
 const style = {
