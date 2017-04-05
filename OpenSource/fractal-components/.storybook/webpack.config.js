@@ -6,15 +6,38 @@
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
 
-const plugins = require('../dev-config/webpack/plugins');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const sassLoaderSuffix = '?outputStyle=expanded&sourceMap=true&sourceMapContents=true&includePaths[]=./node_modules';
 
 module.exports = {
-  plugins: plugins.devPlugins,
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: '/',
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'ie >= 9',
+              'ie_mob >= 10',
+              'ff >= 30',
+              'chrome >= 34',
+              'safari >= 7',
+              'opera >= 23',
+              'ios >= 7',
+              'android >= 4.4',
+              'bb >= 10'
+            ]
+          }),
+          require('postcss-flexibility')
+        ]
+      }
+    }),],
   module: {
     loaders: [
       {
         test: /\.(scss|sass|css)$/,
-        loader: 'style-loader!css-loader!postcss-loader!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true&includePaths[]=./node_modules'
+        loader: `style-loader!css-loader!postcss-loader!sass${sassLoaderSuffix}`
       }
     ],
   },
