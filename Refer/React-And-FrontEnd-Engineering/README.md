@@ -36,11 +36,26 @@
 - 基本算法与意义。
 - 介绍 React 和 Virtual DOM 的关系。
 
+## 组件化
+
+### 组件化的意义
+
+- 对比介绍一下没有 React 组件的时候是如何进行界面组件化的。 2页
+- 无状态组件和渲染方程 `View = f(State, Template)`。 1页
+
+### 组件化要点
+
+- 组件化关心的几个方面
+- 优秀组件评价标准。 1页
+
+### Web Components
+
+
 ## JSX
 
 ### JSX 的前世今生
 
-- What is JSX? 
+- What is JSX?
 - JSX转换工具。
 
 ### JSX 与 HTML 比较
@@ -60,13 +75,10 @@
 - 支持的 HTML 属性列表。 1页
 - 支持的 SVG 属性列表。 1页
 
-## 搭建 React 脚手架
 
-### create-react-app
+# 搭建开发脚手架
 
-- 介绍 React 预编译脚本使用。 0.5页
-- 介绍 create-react-app 基本安装。 0.5页
-- 介绍 helloworld 实例。 1页
+## create-react-app
 
 ### NPM 与 Yarn
 
@@ -74,31 +86,16 @@
 - NPM 不足。 0.5页
 - Yarn 介绍。 1页
 
-### 打造基于 VSCode 的开发环境
+### 创建简单项目
 
-- babel node。 1页
-- 介绍常见 IDE。 0.5页
-- 语法高亮、插件使用。 0.5页
-- live templating。 1页
+- 介绍 create-react-app 基本安装。 0.5页
+- 介绍 helloworld 实例。 1页
 
-### 常用开发工具
+## 基于 Webpack 2 自定义开发环境
 
-- Chrome Tools。1页 
-
-- React devtools。1页
-
-- 介绍 React Storybook 的基本安装。 2页
-
-- 介绍 React Storybook meta 等插件工具
-
-## Webpack
-
-### JavaScript 模块系统
+### JavaScript 模块系统与打包工具
 
 - AMD，CMD，RequireJs、ES6。 1.5页
-
-### 模块打包工具
-
 - task runner，bundles。 0.5页
 - 背景介绍。 0.5页
 - 常见工具对比。 2页
@@ -113,22 +110,30 @@
 
 - webpack-dev-server。 1页
 - React 热加载配置；React hot loader。 1页
+- 介绍 React 预编译脚本使用。 0.5页
 
-# React 组件
+## 辅助开发工具
 
-## 组件化
+### DevTools
 
-### 组件化的意义
+- Chrome Tools。1页
 
-- 对比介绍一下没有 React 组件的时候是如何进行界面组件化的。 2页
-- 无状态组件和渲染方程 `View = f(State, Template)`。 1页
+- React devtools。1页
 
-### 组件化要点
+### React Storybook
 
-- 组件化关心的几个方面
-- 优秀组件评价标准。 1页
+- 介绍 React Storybook 的基本安装。 2页
 
-### Web Components
+- 介绍 React Storybook meta 等插件工具
+
+### VSCode
+
+- babel node。 1页
+- 介绍常见 IDE。 0.5页
+- 语法高亮、插件使用。 0.5页
+- live templating。 1页
+
+# React 组件基础
 
 ## 组件声明
 
@@ -147,33 +152,6 @@
 
 ### this绑定
 
-## 列表组件
-
-### 渲染与键
-
-- JavaScript map、filter、reduce 的使用
-- 基于 map 的列表渲染
-- 使用 Key 的原因与优势
-- 不使用 Key 的报错界面显示
-- 如何设置最合适的 Key 值
-
-### Keyed Fragment
-
-### React Virtualized
-
-### React Canvas
-
-## 表单组件
-
-### 受控组件与非受控组件
-
-### 常用组件
-
-- Text
-- Select
-
-### 表单验证
-
 ## React 与 DOM
 
 ### 组件渲染到 DOM
@@ -187,6 +165,33 @@
 
 - 以 echarts 为例介绍如何整合非 React 类库。 2页
 - 侵入式插件处理。 2页
+
+## 列表组件
+
+### 渲染与键
+
+- JavaScript map、filter、reduce 的使用
+- 基于 map 的列表渲染
+- 使用 Key 的原因与优势
+- 不使用 Key 的报错界面显示
+- 如何设置最合适的 Key 值
+
+### Keyed Fragment
+
+### 仅渲染必要组件
+
+### 下拉刷新与上滑加载
+
+## 表单组件
+
+### 受控组件与非受控组件
+
+### 常用元素
+
+- Text
+- Select
+
+### 表单验证
 
 # React 组件样式
 
@@ -256,7 +261,7 @@
 
 ## State
 
-### 组件状态
+### 组件内部状态
 
 - 基本使用介绍。 1页
 
@@ -284,37 +289,33 @@
 
 ### 无嵌套关系组件通信
 
-## 构建列表详情页
+# 组件的生命周期
 
-### 纯组件
+## 生命周期回调
 
-### 数据接口类
+### 实例化
 
-### 状态组件
+### 存在期
 
-## 组件的生命周期
-
-### 实例化  2页
-
-### 存在期  2页
-
-### 销毁期  2页
+### 销毁期
 
 - 反模式（组件销毁后赋值）—— 实例说明
 
-### 函数式组件生命周期  2页
+### 函数式组件生命周期
 
-# React 事件系统  24页
+## 异步数据抓取
 
-## 原生事件处理 【S】  6页
+# React 事件系统 24页
 
-### DOM 事件绑定与处理  3页
+## 原生事件处理 【S】 6页
+
+### DOM 事件绑定与处理 3页
 
 - DOM 事件绑定与解绑。 1页
 - 参数传递。 1页
 - Event 对象。 1页
 
-### 事件分发与委托  3页
+### 事件分发与委托 3页
 
 - 事件冒泡与事件捕获。 2页
 - 事件委托。 1页
@@ -323,13 +324,13 @@
 
 ### 事件绑定与响应
 
-### 合成事件详解  3页
+### 合成事件详解 3页
 
 - 合成事件的实现机制。 1页
 - 合成事件中引用原生事件。 1页
 - 合成事件与原生事件的混用。 1页
 
-### Event pooling  2页
+### Event pooling 2页
 
 - Event pooling 原理。 1页
 - 实例介绍 Debounce 的实现。 1页
@@ -382,7 +383,7 @@
 
 - react-motion。2页
 
-### 图片轮播组件
+## React 微交互动画
 
 # React 路由
 
@@ -475,7 +476,7 @@
 
 ## NodeJS 初窥
 
-### 认识 NodeJS 
+### 认识 NodeJS
 
 ### 回调与事件
 
@@ -511,7 +512,7 @@
 ### MVC:巨石型控制器
 
 - MVC 基础。 1页
-- Observer Pattern。 1页 
+- Observer Pattern。 1页
 
 ### MVP:视图与模型的解耦
 
@@ -562,7 +563,7 @@
 
 ### Store
 
-### Reducer 
+### Reducer
 
 ### 连接 React 组件与 Redux Store
 
