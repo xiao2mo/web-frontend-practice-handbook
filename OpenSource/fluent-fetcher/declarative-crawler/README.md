@@ -1,1 +1,0 @@
-[node-scrapy](https://github.com/eeshi/node-scrapy)
