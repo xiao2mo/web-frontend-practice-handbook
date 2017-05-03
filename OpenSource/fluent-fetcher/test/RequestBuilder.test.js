@@ -16,10 +16,12 @@ test("构建 GET 请求", () => {
 });
 
 test("构建带查询参数的 GET 请求", () => {
-  let { url, option }: RequestType = new RequestBuilder({scheme:"https"}).get("/user").build({
-    queryParam: 1,
-    b: "c"
-  });
+  let { url, option }: RequestType = new RequestBuilder({ scheme: "https" })
+    .get("/user")
+    .build({
+      queryParam: 1,
+      b: "c"
+    });
 
   expect(url).to.equal("https://api.com/user?queryParam=1&b=c");
 });
@@ -52,4 +54,26 @@ test("构建表单格式 POST 请求", () => {
   expect(url).to.equal("http://api.com/user?queryParam=1&b=c");
 
   expect(option.body).to.equal("a=1");
+});
+
+test("连续构建并且自动重置", () => {
+  let requestBuilder = new RequestBuilder({
+    scheme: "https",
+    host: "test.com",
+    encoding: "utf-8"
+  });
+
+  let { getUrl, getOption } = requestBuilder
+    .get("/get")
+    .header("a", "b")
+    .build({
+      getParam: 1
+    });
+
+  let { postUrl, postOption } = requestBuilder
+    .post("/post", { c: "d" })
+    .pathSegment("/a")
+    .build();
+
+  console.log(getOption);
 });

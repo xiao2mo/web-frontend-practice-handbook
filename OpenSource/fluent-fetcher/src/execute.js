@@ -11,8 +11,9 @@ require("es6-promise").polyfill();
 export default function execute(
   url: string,
   option: any = {},
-  acceptType: string = "json"
-):Promise<any> {
+  acceptType: string = "json",
+  strategy: Object
+): Promise<any> {
   if (!url) {
     throw new Error("地址未定义");
   }
@@ -44,18 +45,19 @@ async function _checkStatus(response, acceptType) {
   ) {
     return response;
   } else {
-
     // 获取响应体
     let body = acceptType === "json"
       ? await response.json()
       : await response.text();
 
     // 封装错误对象
-    var error = new Error(JSON.stringify({
-      status: response.status,
-      statusText: response.statusText,
-      body: body
-    }));
+    var error = new Error(
+      JSON.stringify({
+        status: response.status,
+        statusText: response.statusText,
+        body: body
+      })
+    );
 
     throw error;
   }

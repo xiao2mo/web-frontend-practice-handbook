@@ -41,13 +41,7 @@ export default class RequestBuilder {
    * @param host 请求的域名
    * @param encoding 编码方式,常用的为 utf8 或者 gbk
    */
-  constructor(
-    {
-      scheme,
-      host,
-      encoding
-    }: any = {}
-  ) {
+  constructor({ scheme, host, encoding }: any = {}) {
     this.scheme = scheme || this.scheme;
 
     this.host = host || this.host;
@@ -203,10 +197,19 @@ export default class RequestBuilder {
       ? `?${this._paramsToQueryString(queryParams)}`
       : "";
 
-    return {
+    const request = {
       url: packagedPath + queryString,
       option: this._option
     };
+
+    // 每次 build 之后会重置对象
+    this.path = "/";
+
+    this.cookieParams = {};
+
+    this._option = {};
+
+    return request;
   }
 
   /**
