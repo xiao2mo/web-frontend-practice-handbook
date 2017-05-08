@@ -6,8 +6,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "node_modules/babel-cli/bin/babel.js src --out-dir dist",
-    "mocha": "./node_modules/mocha/bin/mocha -t 50000 --compilers js:babel-core/register",
-    "test": "npm run mocha ./fluent_fetcher.spec.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
