@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "es6-promise": "^3.2.1",
+    "fetch-jsonp": "^1.0.6",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-urlencode": "0.0.9"
   },

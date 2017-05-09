@@ -24,3 +24,60 @@ OkHttp、super-agent、request，
 - 过多的潜在抽象漏洞：将 Error 对象封装了起来
 - 模块独立性的缺乏：很多的项目都希望能提供尽可能多的功能，但是这本身也会带来一定的风险。
 
+# 基本使用
+
+## 创建请求
+
+## 请求执行
+
+## 可复用的接口类
+
+# 扩展策略
+
+## Jsonp
+
+## 中断与超时
+
+## 进度反馈
+
+```javascript
+function consume(reader) {
+  var total = 0
+  return new Promise((resolve, reject) => {
+    function pump() {
+      reader.read().then(({done, value}) => {
+        if (done) {
+          resolve()
+          return
+        }
+        total += value.byteLength
+        log(`received ${value.byteLength} bytes (${total} bytes in total)`)
+        pump()
+      }).catch(reject)
+    }
+    pump()
+  })
+}
+
+fetch("/music/pk/altes-kamuffel.flac")
+  .then(res => consume(res.body.getReader()))
+  .then(() => log("consumed the entire body without keeping the whole thing in memory!"))
+  .catch(e => log("something went wrong: " + e))
+
+```
+
+# Contribution
+
+在当前模块目录下：
+
+```
+$ cd package-name
+$ npm link
+```
+
+在使用该模块的目录下：
+
+```
+$ cd project
+$ npm link package-name
+```
