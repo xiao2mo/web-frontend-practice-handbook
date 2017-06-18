@@ -1,9 +1,15 @@
 {
-    "presets": [
-        "es2015",
-        "flow"
+  "presets": [
+    [
+      "es2015",
+      {
+        "module": false
+      }
     ],
-    "plugins": [
-        "transform-class-properties"
-    ]
+    "flow",
+    "react"
+  ],
+  "plugins": [
+    "transform-class-properties"
+  ]
 }

@@ -82,8 +82,9 @@ export default class RequestBuilder {
   }
 
   /**
-   * @function 以POST形式发起请求
+   * @function 以 POST 形式发起请求
    * @param path
+   * @param params
    * @param contentType json / x-www-form-urlencoded
    * @return {RequestBuilder}
    */
@@ -105,6 +106,7 @@ export default class RequestBuilder {
   /**
    * @function 以PUT形式发起请求
    * @param path
+   * @param params
    * @param contentType
    * @return {RequestBuilder}
    */
@@ -119,6 +121,28 @@ export default class RequestBuilder {
     }
 
     this._method("put", path, params, contentType);
+
+    return this;
+  }
+
+  /**
+   * @function 以 DELETE 形式发起请求
+   * @param path
+   * @param params
+   * @param contentType
+   * @return {RequestBuilder}
+   */
+  delete(
+    path: string = "/",
+    params: Object = {},
+    contentType: string = "json"
+  ): RequestBuilder {
+    //判断是否已经封装过了请求方法
+    if (!params) {
+      throw new Error("请设置有效请求参数");
+    }
+
+    this._method("delete", path, params, contentType);
 
     return this;
   }
@@ -177,6 +201,12 @@ export default class RequestBuilder {
    * @return {FluentModel}
    */
   cache(cacheControl: string = "no-cache", maxAge: number = 0): RequestBuilder {
+    if (this._option.method !== "get") {
+      throw new Error("仅允许对 GET 请求进行缓存");
+    }
+
+    this._option.cache = cacheControl;
+
     return this;
   }
 
@@ -216,6 +246,7 @@ export default class RequestBuilder {
    * @function 封装请求类型
    * @param method
    * @param path
+   * @param params
    * @param contentType 设置请求内容类型 json / x-www-form-urlencoded
    * @private
    */
@@ -269,7 +300,7 @@ export default class RequestBuilder {
 
     // 构造查询字符串
     if (!!params && Object.keys(params).length > 0) {
-      for (let key in params) {
+      for (let key of Object.keys(params)) {
         queryString += `${key}=${this._encode(params[key])}&`;
       }
 

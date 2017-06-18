@@ -41,6 +41,19 @@ describe("测试请求", () => {
 
     expectChai(posts).to.have.property("body", "bodybody");
   });
+
+  test("测试基本 POST 请求", async () => {
+    const params = {
+      body: "bodybody",
+      userId: 123456
+    };
+
+    const { url, option } = requestBuilder.post("/posts", params).build();
+
+    let posts = await execute(url, option);
+
+    expectChai(posts).to.have.property("body", "bodybody");
+  });
 });
 
 describe("异常处理", () => {

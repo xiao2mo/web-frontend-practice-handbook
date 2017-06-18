@@ -30,6 +30,15 @@ OkHttp、super-agent、request，
 
 ## 请求执行
 
+```javascript
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+```
+
+```javascript
+(node:33875) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): FetchError: request to https://test.api.truelore.cn/users?token=144d3e0a-7abb-4b21-9dcb-57d477a710bd failed, reason: unable to verify the first certificate
+(node:33875) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+```
+
 ## 可复用的接口类
 
 # 扩展策略
@@ -68,14 +77,14 @@ fetch("/music/pk/altes-kamuffel.flac")
 
 # Contribution
 
-在当前模块目录下：
+如果我们需要进行本地调试，则可以使用 `npm link` ，首先在当前模块目录下：
 
 ```
 $ cd package-name
 $ npm link
 ```
 
-在使用该模块的目录下：
+然后在使用该模块的目录下：
 
 ```
 $ cd project

@@ -1,8 +1,5 @@
-/**
- * Created by apple on 16/10/9.
- */
-"use strict";
-const path = require("path");
+// @flow
+
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 //判断当前是否处于开发状态下
@@ -38,8 +35,7 @@ exports.tslint = {
 };
 
 //根据不同的环境开发设置不同的样式加载的Loader
-const sassLoaderSuffix =
-  "?outputStyle=expanded&sourceMap=true&sourceMapContents=true&includePaths[]=./node_modules";
+const sassLoaderSuffix = "?outputStyle=expanded&includePaths[]=./node_modules";
 
 if (__DEV__) {
   //如果当前为开发环境,则封装内联的CSS

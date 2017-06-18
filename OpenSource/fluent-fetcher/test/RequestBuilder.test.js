@@ -26,6 +26,24 @@ describe("无请求体请求", () => {
 
     chaiExpect(url).to.equal("https://api.com/user?queryParam=1&b=c");
   });
+
+  test("构建完整跨域缓存请求", () => {
+    let { url, option }: RequestType = new RequestBuilder({ scheme: "https" })
+      .get("/user")
+      .cors()
+      .cookie("*")
+      .cache("no-cache")
+      .build({
+        queryParam: 1,
+        b: "c"
+      });
+
+    chaiExpect(url).to.equal("https://api.com/user?queryParam=1&b=c");
+
+    expect(option).toHaveProperty("cache", "no-cache");
+
+    expect(option).toHaveProperty("credentials", "include");
+  });
 });
 
 describe("包含请求体的请求", () => {

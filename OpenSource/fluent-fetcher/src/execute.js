@@ -39,6 +39,12 @@ export default function execute(
     // 这里再选择自动注入的代码
     require("isomorphic-fetch");
 
+    // 这里判断是否为 Node 环境，是 Node 环境则设置环境变量
+    if (typeof process !== "undefined") {
+      // 避免 HTTPS 错误
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    }
+
     //构建fetch请求
     promise = fetch(url, option);
   }
