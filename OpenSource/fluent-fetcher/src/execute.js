@@ -1,9 +1,10 @@
 // @flow
 
+// 判断是否为 Node 环境
 const isNode: boolean = typeof process !== "undefined";
 
 type strategyType = {
-  // 是否需要添加进度监听回调
+  // 是否需要添加进度监听回调，常用于下载
   onProgress: (progress: number) => {},
 
   // 是否属于 Jsonp 请求
@@ -157,15 +158,6 @@ function _parseBlob(response: Response): Promise<string> | null {
 }
 
 /**
- * @function 判断是否为Weapp
- * @private
- * @return boolean
- */
-function _isWeapp(): boolean {
-  return typeof window.wx !== "undefined";
-}
-
-/**
  * @function 将原始的 Promise 进行封装
  * @private
  * @param initialpromise
@@ -197,13 +189,15 @@ function _decorate(initialpromise: Promise<any>): Promise<any> {
           document.querySelector(idOrWriteStream).src = URL.createObjectURL(
             resOrBlobData
           );
+        } else {
+          const fs = require("fs");
+
+          // 如果为 Node 环境，则写入到磁盘中
+          let dest = fs.createWriteStream(idOrWriteStream);
+
+          // 将数据利用 pipe 写入到文件中
+          resOrBlobData.body.pipe(dest);
         }
-
-        const fs = require("fs");
-
-        // 如果为 Node 环境，则写入到磁盘中
-        let dest = fs.createWriteStream(idOrWriteStream);
-        resOrBlobData.body.pipe(dest);
       },
       error => {
         throw error;

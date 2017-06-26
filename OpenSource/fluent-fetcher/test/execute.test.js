@@ -123,11 +123,11 @@ describe("策略测试", () => {
 });
 
 describe("Pipe 测试", () => {
-  let promise = execute(
-    "https://assets-cdn.github.com/images/modules/logos_page/Octocat.png",
-    {},
-    "blob"
-  );
-
-  promise.pipe("/tmp/Octocat.png").then();
+  test("测试图片下载", async () => {
+    let promise = execute(
+      "https://assets-cdn.github.com/images/modules/logos_page/Octocat.png",
+      {},
+      "blob"
+    ).pipe("/tmp/Octocat.png");
+  });
 });

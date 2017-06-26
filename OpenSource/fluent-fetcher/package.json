@@ -1,11 +1,11 @@
 {
   "name": "fluent-fetcher",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Fluent API And Advanced Feature Support For isomorphic-fetch",
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "node_modules/babel-cli/bin/babel.js src --out-dir dist",
+    "build": "rm -rf dist && node_modules/babel-cli/bin/babel.js src --out-dir dist",
     "test": "jest"
   },
   "repository": {
