@@ -16,7 +16,7 @@
 
 # 拟整理书籍列表
 
-- [现代 JavaScript 开发：语法基础与实践技巧【想象中】]()：ES5/ES6/ES7 关键语法、JavaScript 性能优化、JavaScript 样式指南。
+- [现代 JavaScript 开发：语法基础与实践技巧【写作中】]()：ES5/ES6/ES7 关键语法、JavaScript 性能优化、JavaScript 样式指南。
 - [现代 JavaScript 开发：算法与设计模式【想象中】]()：基于 JavaScript 实现的常见数据结构与算法、设计模式。
 - [现代 JavaScript 开发：深入浅出 Node.js 全栈架构【想象中】]()：
 - [现代 Web 开发基础【想象中】]()：
