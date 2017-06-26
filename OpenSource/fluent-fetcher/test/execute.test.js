@@ -1,13 +1,13 @@
 const expectChai = require("chai").expect;
 import execute from "../src/execute.js";
-import RequestBuilder from "../src/RequestBuilder.js";
+import { RequestBuilder } from "../src/index.js";
 
 const requestBuilder = new RequestBuilder({
   scheme: "https",
   host: "jsonplaceholder.typicode.com"
 });
 
-describe("测试请求", () => {
+describe("基本功能请求", () => {
   test("测试基本 GET 请求", async () => {
     const { url: getUrl, option: getOption } = requestBuilder
       .get("/posts")
@@ -108,4 +108,26 @@ describe("策略测试", () => {
       done();
     }, 500);
   });
+
+  test("使用 await 下测试超时", async done => {
+    try {
+      await execute("https://jsonplaceholder.typicode.com", {}, "json", {
+        timeout: 10
+      });
+    } catch (e) {
+      expectChai(e.message).to.equal("Abort or Timeout");
+    } finally {
+      done();
+    }
+  });
+});
+
+describe("Pipe 测试", () => {
+  let promise = execute(
+    "https://assets-cdn.github.com/images/modules/logos_page/Octocat.png",
+    {},
+    "blob"
+  );
+
+  promise.pipe("/tmp/Octocat.png").then();
 });

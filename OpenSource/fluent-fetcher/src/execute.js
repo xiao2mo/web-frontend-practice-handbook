@@ -1,26 +1,31 @@
 // @flow
 
-//自动进行全局的ES6 Promise的Polyfill
-require("es6-promise").polyfill();
+const isNode: boolean = typeof process !== "undefined";
 
 type strategyType = {
   // 是否需要添加进度监听回调
   onProgress: (progress: number) => {},
+
   // 是否属于 Jsonp 请求
-  Jsonp: boolean
+  Jsonp: boolean,
+
+  // 用于 await 情况下的 timeout 参数
+  timeout: number
 };
+
+let strategyInstance;
 
 /**
  * @function 根据传入的请求配置发起请求并进行预处理
  * @param url
  * @param option
- * @param {*} acceptType
+ * @param {*} acceptType json | text | blob
  * @param strategy
  */
 export default function execute(
   url: string,
   option: any = {},
-  acceptType: string = "json",
+  acceptType: "json" | "text" | "blob" = "json",
   strategy: strategyType = {}
 ): Promise<any> {
   if (!url) {
@@ -28,6 +33,8 @@ export default function execute(
   }
 
   let promise: Promise<any>;
+
+  strategyInstance = strategy;
 
   if (strategy.Jsonp) {
     // 加载 Jsonp
@@ -57,9 +64,21 @@ export default function execute(
         throw error;
       }
     )
-    .then(acceptType === "json" ? _parseJSON : _parseText, error => {
-      throw error;
-    });
+    .then(
+      response => {
+        // 根据不同的数据类型启用不同的解析方式
+        if (acceptType === "json") {
+          return _parseJSON(response);
+        } else if (acceptType === "blob") {
+          return _parseBlob(response);
+        } else {
+          return _parseText(response);
+        }
+      },
+      error => {
+        throw error;
+      }
+    );
 
   // 以高阶函数的方式封装 Promise 对象
 
@@ -121,6 +140,23 @@ function _parseText(response: Response): Promise<string> | string {
 }
 
 /**
+ * @function 解析二进制流性质的返回
+ * @param response
+ * @returns {*}
+ */
+function _parseBlob(response: Response): Promise<string> | null {
+  if (!!response) {
+    if (isNode) {
+      return response;
+    } else {
+      return response.blob();
+    }
+  } else {
+    return null;
+  }
+}
+
+/**
  * @function 判断是否为Weapp
  * @private
  * @return boolean
@@ -143,13 +179,37 @@ function _decorate(initialpromise: Promise<any>): Promise<any> {
   let abortablePromise = new Promise((resolve, reject) => {
     // 闭包方式传递对象
     abortFunction = () => {
-      reject("Abort or Timeout");
+      reject(new Error("Abort or Timeout"));
     };
   });
 
   let promise = Promise.race([initialpromise, abortablePromise]);
 
+  // 挂载放弃函数
   promise.abort = abortFunction;
+
+  // 挂载 pipe 函数
+  promise.pipe = (idOrWriteStream: any) => {
+    return promise.then(
+      resOrBlobData => {
+        // 判断是否为 Node 环境
+        if (!isNode) {
+          document.querySelector(idOrWriteStream).src = URL.createObjectURL(
+            resOrBlobData
+          );
+        }
+
+        const fs = require("fs");
+
+        // 如果为 Node 环境，则写入到磁盘中
+        let dest = fs.createWriteStream(idOrWriteStream);
+        resOrBlobData.body.pipe(dest);
+      },
+      error => {
+        throw error;
+      }
+    );
+  };
 
   // 定义 timeout 对象
   Object.defineProperty(promise, "timeout", {
@@ -163,6 +223,10 @@ function _decorate(initialpromise: Promise<any>): Promise<any> {
       return timeout;
     }
   });
+
+  if (strategyInstance.hasOwnProperty("timeout")) {
+    promise.timeout = strategyInstance.timeout;
+  }
 
   return promise;
 }

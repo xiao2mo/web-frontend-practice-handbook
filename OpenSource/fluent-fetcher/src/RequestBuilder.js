@@ -147,6 +147,10 @@ export default class RequestBuilder {
     return this;
   }
 
+  del(...args): RequestBuilder {
+    return this.delete(...args);
+  }
+
   /**
    * @function 请求路径封装，自动进行编码操作
    * @param segment
@@ -198,7 +202,7 @@ export default class RequestBuilder {
 
   /**
    * @function 仅允许对于GET动作进行缓存
-   * @return {FluentModel}
+   * @return {RequestBuilder}
    */
   cache(cacheControl: string = "no-cache", maxAge: number = 0): RequestBuilder {
     if (this._option.method !== "get") {
