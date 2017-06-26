@@ -16,7 +16,7 @@
 > 为了方便检索目录，原书的章-节-小节三级结构以一级目录-列表键-列表项目方式呈现。
 
 - [React 初窥](React 初窥/index.md)
-  - [React 思维模式](React 初窥/https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Refer/React-And-FrontEnd-Engineering/React%20%E5%88%9D%E7%AA%A5/React%20%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%BC%8F.md)
+  - [React 思维模式](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Refer/React-And-FrontEnd-Engineering/React%20%E5%88%9D%E7%AA%A5/React%20%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%BC%8F.md)
   - [JSX](React 初窥/JSX.md)
   - [搭建 React 脚手架](React 初窥/搭建 React 脚手架.md)
   - [Webpack](React 初窥/Webpack.md)
