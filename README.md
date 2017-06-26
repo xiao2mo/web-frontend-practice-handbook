@@ -10,6 +10,9 @@
 - 期望能够适用于各个层次的 Web 开发者的 [Web 学习与进阶指南](https://parg.co/b4x) 以及从属于 [AwesomeReference: 程序员成长道路上的阅读学习资料工具集锦](https://parg.co/b4z) 的每个阶段或者知识点关联的[ Web 学习资料索引](https://parg.co/b4T)。
 - 博客与进阶指南以及学习资料索引还是偏向于碎片化阅读，笔者根据自己的阅读、写作与实践归纳出的成体系的书籍。需要强调的是，这些书籍并不严谨，只是笔者希望每年能够至少整理出一本电子书，对于自己的成长也是见证。
 - 示例代码与开源项目，包括笔者博客与书籍中的示例代码以及日常工作中总结而出的开源项目。
+  - [fluent-fetcher](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/fluent-fetcher/README.md):基于流式接口的Fetch封装，支持微信小程序
+  - [isomorphic-urlencode](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/isomorphic-urlencode/README.md):通用的JavaScript URL编解码工具
+  - [mobile-style-preset](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource/mobile-style-preset):面向移动端的轻量级非侵入式样式库
 
 # 拟整理书籍列表
 
@@ -26,20 +29,5 @@
 
 # Web 学习与进阶指南
 
-# 开源项目列表
 
-- [external-loader](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/external-loader/README.md):面向React的组件式脚本加载工具
 
-- [fluent-fetcher](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/fluent-fetcher/README.md):基于流式接口的Fetch封装，支持微信小程序
-
-- [isomorphic-urlencode](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/blob/master/OpenSource/isomorphic-urlencode/README.md):通用的JavaScript URL编解码工具
-
-- [material-ui-extension](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource/material-ui-extension):对于Material UI的组件类扩展
-
-- [mobile-style-preset](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource/mobile-style-preset):面向移动端的轻量级非侵入式样式库
-
-- [mobx-react-webpack-boilerplate](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource/mobx-react-webpack-boilerplate):基于Webpack+MobX+React的模板项目
-
-- [react-swiper](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource/react-swiper):基于React封装的Swiper
-
-- [scalable-component](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/OpenSource/scalable-component):基于React封装的自动按比例缩放的自适应组件容器
