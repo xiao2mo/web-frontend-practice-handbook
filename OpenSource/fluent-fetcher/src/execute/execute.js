@@ -7,9 +7,6 @@ type strategyType = {
   // 是否需要添加进度监听回调，常用于下载
   onProgress: (progress: number) => {},
 
-  // 是否属于 Jsonp 请求
-  Jsonp: boolean,
-
   // 用于 await 情况下的 timeout 参数
   timeout: number
 };
@@ -17,7 +14,7 @@ type strategyType = {
 let strategyInstance;
 
 /**
- * @function 根据传入的请求配置发起请求并进行预处理
+ * Description 根据传入的请求配置发起请求并进行预处理
  * @param url
  * @param option
  * @param {*} acceptType json | text | blob
@@ -38,15 +35,9 @@ export default function execute(
   strategyInstance = strategy;
 
   if (strategy.Jsonp) {
-    // 加载 Jsonp
-    require("fetch-jsonp");
-
     // Jsonp 只能是 Get 请求，并且不能带函数
     promise = fetch(url);
   } else {
-    // 这里再选择自动注入的代码
-    require("isomorphic-fetch");
-
     // 这里判断是否为 Node 环境，是 Node 环境则设置环境变量
     if (typeof process !== "undefined") {
       // 避免 HTTPS 错误
@@ -181,7 +172,12 @@ function _decorate(initialpromise: Promise<any>): Promise<any> {
   promise.abort = abortFunction;
 
   // 挂载 pipe 函数
-  promise.pipe = (idOrWriteStream: any) => {
+  /**
+   * @param idOrWriteStream
+   * @param fs 如果是 Node 环境，需要额外传入 fs 对象
+   * @returns {Promise.<TResult>}
+   */
+  promise.pipe = (idOrWriteStream: any, fs) => {
     return promise.then(
       resOrBlobData => {
         // 判断是否为 Node 环境
@@ -190,7 +186,10 @@ function _decorate(initialpromise: Promise<any>): Promise<any> {
             resOrBlobData
           );
         } else {
-          const fs = require("fs");
+          if (!fs) {
+            console.error("fs is null!");
+            return;
+          }
 
           // 如果为 Node 环境，则写入到磁盘中
           let dest = fs.createWriteStream(idOrWriteStream);

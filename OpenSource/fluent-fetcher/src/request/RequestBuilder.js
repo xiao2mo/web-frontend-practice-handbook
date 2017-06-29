@@ -227,6 +227,7 @@ export default class RequestBuilder {
       this.header("Cookie", this._paramsToQueryString(this.cookieParams));
     }
 
+    // 构建查询字符串
     let queryString = !!this._paramsToQueryString(queryParams)
       ? `?${this._paramsToQueryString(queryParams)}`
       : "";

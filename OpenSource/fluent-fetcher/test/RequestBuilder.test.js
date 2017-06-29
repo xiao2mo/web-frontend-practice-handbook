@@ -1,5 +1,5 @@
 const chaiExpect = require("chai").expect;
-import type { RequestType } from "../src/RequestBuilder.js";
+import type { RequestType } from "../src/request/RequestBuilder.js";
 import { RequestBuilder } from "../src/index.js";
 
 describe("无请求体请求", () => {

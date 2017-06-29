@@ -28,6 +28,33 @@ OkHttp、super-agent、request，
 
 ## 创建请求
 
+```javascript
+{
+	// These properties are part of the Fetch Standard
+	method: 'GET',
+	headers: {},        // request headers. format is the identical to that accepted by the Headers constructor (see below)
+	body: null,         // request body. can be null, a string, a Buffer, a Blob, or a Node.js Readable stream
+	redirect: 'follow', // set to `manual` to extract redirect headers, `error` to reject redirect
+
+	// The following properties are node-fetch extensions
+	follow: 20,         // maximum redirect count. 0 to not follow redirect
+	timeout: 0,         // req/res timeout in ms, it resets on redirect. 0 to disable (OS limit applies)
+	compress: true,     // support gzip/deflate content encoding. false to disable
+	size: 0,            // maximum response body size in bytes. 0 to disable
+	agent: null         // http(s).Agent instance, allows custom proxy, certificate etc.
+}
+```
+
+| Header            | Value                                    |
+| ----------------- | ---------------------------------------- |
+| `Accept-Encoding` | `gzip,deflate` *(when options.compress === true)* |
+| `Accept`          | `*/*`                                    |
+| `Connection`      | `close` *(when no options.agent is present)* |
+| `Content-Length`  | *(automatically calculated, if possible)* |
+| `User-Agent`      | `node-fetch/1.0 (+https://github.com/bitinn/node-fetch)` |
+
+
+
 ## 请求执行
 
 ```javascript
@@ -37,6 +64,25 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 ```javascript
 (node:33875) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): FetchError: request to https://test.api.truelore.cn/users?token=144d3e0a-7abb-4b21-9dcb-57d477a710bd failed, reason: unable to verify the first certificate
 (node:33875) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+```
+
+```javascript
+
+const HttpsProxyAgent = require("https-proxy-agent");
+
+const requestBuilder = new RequestBuilder({
+scheme: "http",
+host: "jsonplaceholder.typicode.com"
+});
+
+const { url: getUrl, option: getOption } = requestBuilder
+.get("/posts")
+.pathSegment("1")
+.build();
+
+getOption.agent = new HttpsProxyAgent("http://114.232.81.95:35293");
+
+let post = await execute(getUrl, getOption,"text");
 ```
 
 ## 可复用的接口类
@@ -51,16 +97,16 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 ```javascript
 function consume(reader) {
-  var total = 0
+  let total = 0;
   return new Promise((resolve, reject) => {
     function pump() {
       reader.read().then(({done, value}) => {
         if (done) {
-          resolve()
+          resolve();
           return
         }
-        total += value.byteLength
-        log(`received ${value.byteLength} bytes (${total} bytes in total)`)
+        total += value.byteLength;
+        log(`received ${value.byteLength} bytes (${total} bytes in total)`);
         pump()
       }).catch(reject)
     }
@@ -68,6 +114,7 @@ function consume(reader) {
   })
 }
 
+// 执行数据抓取操作
 fetch("/music/pk/altes-kamuffel.flac")
   .then(res => consume(res.body.getReader()))
   .then(() => log("consumed the entire body without keeping the whole thing in memory!"))
@@ -75,16 +122,16 @@ fetch("/music/pk/altes-kamuffel.flac")
 
 ```
 
-# Contribution
+# Contribution & RoadMap
 
-如果我们需要进行本地调试，则可以使用 `npm link` ，首先在当前模块目录下：
+如果我们需要进行本地调试，则可以在当前模块目录下使用 `npm link` 来创建本地链接：
 
 ```
 $ cd package-name
 $ npm link
 ```
 
-然后在使用该模块的目录下：
+然后在使用该模块的目录下同样使用 `npm link` 来关联目标项目：
 
 ```
 $ cd project

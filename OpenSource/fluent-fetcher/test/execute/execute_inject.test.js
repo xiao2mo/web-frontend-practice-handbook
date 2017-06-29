@@ -1,6 +1,6 @@
 // flow
 
-import { executeAndInject } from "../src/index";
+import { executeAndInject } from "../../src/index";
 const expectChai = require("chai").expect;
 
 describe("Node 环境下插入测试", () => {
