@@ -1,6 +1,5 @@
 const expectChai = require("chai").expect;
-import { execute } from "../../src/index.js";
-import { RequestBuilder } from "../../src/index.js";
+import {execute, RequestBuilder} from "../../src/index.js";
 
 const requestBuilder = new RequestBuilder({
   scheme: "https",

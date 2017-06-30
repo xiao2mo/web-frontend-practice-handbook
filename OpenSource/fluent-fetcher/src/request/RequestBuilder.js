@@ -178,7 +178,7 @@ export default class RequestBuilder {
   }
 
   /**
-   * function 
+   * function
    * @param {*} keyOrMap * 表示自动带上所有的 cookie
    * @param {*} value 当第一个参数为字符串时，使用第二个参数的键值
    */
@@ -213,12 +213,11 @@ export default class RequestBuilder {
 
     return this;
   }
-
   /**
    * @function 进行最后的构建工作,一旦调用该函数即不可以再修改之前的配置
    * @return {Promise}
    */
-  build(queryParams?: Object) {
+  build(queryParams?: Object, reset = true) {
     // 构造请求路径
     let packagedPath = `${this.scheme}://${this.host}${this.path}`;
 
@@ -234,15 +233,20 @@ export default class RequestBuilder {
 
     const request = {
       url: packagedPath + queryString,
-      option: this._option
+      option: Object.assign({}, this._option)
     };
 
     // 每次 build 之后会重置对象
     this.path = "/";
 
-    this.cookieParams = {};
-
-    this._option = {};
+    // 如果选择了重置则完全重置
+    if (reset) {
+      this.cookieParams = {};
+      this._option = {};
+    } else {
+      // 重置请求体
+      this._option.body = null;
+    }
 
     return request;
   }
@@ -298,7 +302,7 @@ export default class RequestBuilder {
 
   /**
    * @function 将对象解析为字符串
-   * @param {*} params 
+   * @param {*} params
    */
   _paramsToQueryString(params: Object | void): string {
     let queryString: string = "";
