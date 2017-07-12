@@ -1,6 +1,6 @@
 {
   "name": "fluent-fetcher",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Fluent API And Advanced Feature Support For isomorphic-fetch",
   "main": "dist/index.js",
   "scripts": {

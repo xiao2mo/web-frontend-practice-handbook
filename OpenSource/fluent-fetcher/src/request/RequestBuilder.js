@@ -265,25 +265,25 @@ export default class RequestBuilder {
     params: Object = {},
     contentType: string = "json"
   ) {
-    //设置请求方式
+    // 设置请求方式
     this._option.method = method;
-
-    //根据不同的ContentType构建不同的请求头
-    this.header("Content-Type", `application/${contentType}`);
 
     // 设置不同的请求体格式
     if (method !== "get") {
+      // Fix，对于 GET 请求不再强制设置格式
+      this.header("Content-Type", `application/${contentType}`);
+
       if (contentType === "x-www-form-urlencoded") {
-        //根据不同的编码格式设置不同的body内容
-        //将构造好的查询字符串添加到body中
+        // 根据不同的编码格式设置不同的body内容
+        // 将构造好的查询字符串添加到body中
         this._option.body = this._paramsToQueryString(params);
       } else {
-        //如果是以JSON形式发起请求，则直接构造JSON字符串
+        // 如果是以JSON形式发起请求，则直接构造JSON字符串
         this._option.body = JSON.stringify(params);
       }
     }
 
-    //设置请求路径
+    // 设置请求路径
     this.path = `${path}`;
   }
 
