@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="inline-jsx">
+    <div class="header">
+        <button class="link" onClick={method.handleClick}>
+            Custom DOM JSX
+        </button>
+        <svg>
+            <circle cx="64" cy="64" r="64" style="fill: #00ccff;"/>
+        </svg>
+        <span id="count" style="color:red">
+            {
+                state.count
+            }
+        </span>
+        <span id="items">
+            {
+                state.items.map(function(item){
+                    return <p>{item}</p>;
+                })
+            }
+        </span>
+    </div>
+</div>
+</body>
+<script src="./babel.min.js"></script>
+<script src="../../dist/ueact.umd.min.js"></script>
+<script>
+
+  var ele = document.querySelector("#inline-jsx");
+
+  Ueact.observeDOM(
+    ele,
+    {
+      state: {
+        count: 0,
+        items:[1,2,3]
+      },
+      method: {
+        handleClick: function () {
+          this.state.count++;
+          this.state.items.push(this.state.count);
+          console.log(this.state);
+        }
+      }
+    }
+  );
+
+</script>
+</html>
