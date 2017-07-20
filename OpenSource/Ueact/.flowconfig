@@ -1,7 +1,0 @@
-[libs]
-./node_modules
-./flow
-
-[ignore]
-./node_modules
-.*/dist/.*
