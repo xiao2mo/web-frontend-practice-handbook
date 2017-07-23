@@ -1,3 +1,4 @@
+> [返回目录](https://parg.co/b1c)
 
 # 现代 JavaScript 开发
 
@@ -121,7 +122,7 @@ Hello, es8 // after 2 seconds
 - and / or /xor - 进行位操作
 - load - 获取值
 
-> [JavaScript 语法树与代码转化实践](https://zhuanlan.zhihu.com/p/27844393) 归纳于笔者的[现代 JavaScript 开发：语法基础与实践技巧](https://parg.co/b1c)系列文章中。本文引用的参考资料声明于[ JavaScript 学习与实践资料索引](https://parg.co/bMI)中，特别需要声明是部分代码片引用自[ Babel Handbook ](https://github.com/thejameskyle/babel-handbook)开源手册；也欢迎关注[前端每周清单系列](https://parg.co/bh1)获得一手资讯。
+> [JavaScript 语法树与代码转化实践](https://zhuanlan.zhihu.com/p/28054817) 归纳于笔者的[现代 JavaScript 开发：语法基础与实践技巧](https://parg.co/b1c)系列文章中。本文引用的参考资料声明于[ JavaScript 学习与实践资料索引](https://parg.co/bMI)中，特别需要声明是部分代码片引用自[ Babel Handbook ](https://github.com/thejameskyle/babel-handbook)开源手册；也欢迎关注[前端每周清单系列](https://parg.co/bh1)获得一手资讯。
 
 # JavaScript 语法树与代码转化
 
@@ -228,7 +229,7 @@ Babel 能够将输入的 JavaScript 代码根据不同的配置将代码进行�
     }
 }
 ```
-这里可以使用[ AST Explorer ](http://astexplorer.net/)这个工具进行在线预览与编辑；在上述的 AST 表示中，顾名思义，ArrowFunctionExpression 就表示该表达式为箭头函数表达式。该函数拥有 foo 与 bar 这两个参数，参数所属的 Identifiers 类型是没有任何子节点的变量名类型；接下来我们发现加号运算符被表示为了 BinaryExpression 类型，并且其 `operator` 属性设置为 `+`，而左右两个参数分别挂载于 `left` 与 `right` 属性下。在接下来的转化步骤中，我们即是需要对这样的抽象语法树进行转换，该步骤主要由 Babel Preset 与 Plugin 控制；Babel 内部提供了 `babel-traverse` 这个库来辅助进行 AST 遍历，该库还提供了一系列内置的替换与操作接口。而经过转化之后的 AST 表示如下，在实际开发中我们也常常首先对比转化前后代码的 AST 表示的不同，以了解应该进行怎样的转化操作：
+我们可以使用[ AST Explorer ](http://astexplorer.net/)这个工具进行在线预览与编辑；在上述的 AST 表示中，顾名思义，ArrowFunctionExpression 就表示该表达式为箭头函数表达式。该函数拥有 foo 与 bar 这两个参数，参数所属的 Identifiers 类型是没有任何子节点的变量名类型；接下来我们发现加号运算符被表示为了 BinaryExpression 类型，并且其 `operator` 属性设置为 `+`，而左右两个参数分别挂载于 `left` 与 `right` 属性下。在接下来的转化步骤中，我们即是需要对这样的抽象语法树进行转换，该步骤主要由 Babel Preset 与 Plugin 控制；Babel 内部提供了 `babel-traverse` 这个库来辅助进行 AST 遍历，该库还提供了一系列内置的替换与操作接口。而经过转化之后的 AST 表示如下，在实际开发中我们也常常首先对比转化前后代码的 AST 表示的不同，以了解应该进行怎样的转化操作：
 ```
 // AST shortened for clarity
 {
@@ -336,3 +337,266 @@ var out = babel.transform(src, {
 });
 ```
 ## 常用转化操作
+
+### 遍历
+- 获取子节点路径
+我们可以通过 `path.node.{property}` 的方式来访问 AST 中节点属性：
+```
+// the BinaryExpression AST node has properties: `left`, `right`, `operator`
+BinaryExpression(path) {
+  path.node.left;
+  path.node.right;
+  path.node.operator;
+}
+```
+我们也可以使用某个路径对象的 `get` 方法，通过传入子路径的字符串表示来访问某个属性：
+```
+BinaryExpression(path) {
+  path.get('left');
+}
+Program(path) {
+  path.get('body.0');
+}
+```
+- 判断某个节点是否为指定类型
+babel 内置的 type 对象提供了许多可以直接用来判断节点类型的工具函数：
+```
+BinaryExpression(path) {
+  if (t.isIdentifier(path.node.left)) {
+    // ...
+  }
+}
+```
+或者同时以浅比较来查看节点属性：
+```
+BinaryExpression(path) {
+  if (t.isIdentifier(path.node.left, { name: "n" })) {
+    // ...
+  }
+}
+
+// 等价于
+BinaryExpression(path) {
+  if (
+    path.node.left != null &&
+    path.node.left.type === "Identifier" &&
+    path.node.left.name === "n"
+  ) {
+    // ...
+  }
+}
+```
+- 判断某个路径对应的节点是否为指定类型
+```
+BinaryExpression(path) {
+  if (path.get('left').isIdentifier({ name: "n" })) {
+    // ...
+  }
+}
+```
+
+- 获取指定路径的父节点
+有时候我们需要从某个指定节点开始向上遍历获取某个父节点，此时我们可以通过传入检测的回调来判断：
+```
+path.findParent((path) => path.isObjectExpression());
+
+// 获取最近的函数声明节点
+path.getFunctionParent();
+```
+- 获取兄弟路径
+如果某个路径存在于 Function 或者 Program 中的类似列表的结构中，那么其可能会包含兄弟路径：
+```
+// 源代码
+var a = 1; // pathA, path.key = 0
+var b = 2; // pathB, path.key = 1
+var c = 3; // pathC, path.key = 2
+
+// 插件定义
+export default function({ types: t }) {
+  return {
+    visitor: {
+      VariableDeclaration(path) {
+        // if the current path is pathA
+        path.inList // true
+        path.listKey // "body"
+        path.key // 0
+        path.getSibling(0) // pathA
+        path.getSibling(path.key + 1) // pathB
+        path.container // [pathA, pathB, pathC]
+      }
+    }
+  };
+}
+```
+- 停止遍历
+部分情况下插件需要停止遍历，我们此时只需要在插件中添加 return 表达式：
+```
+BinaryExpression(path) {
+  if (path.node.operator !== '**') return;
+}
+```
+我们也可以指定忽略遍历某个子路径：
+```
+outerPath.traverse({
+  Function(innerPath) {
+    innerPath.skip(); // if checking the children is irrelevant
+  },
+  ReferencedIdentifier(innerPath, state) {
+    state.iife = true;
+    innerPath.stop(); // if you want to save some state and then stop traversal, or deopt
+  }
+});
+```
+
+### 操作
+-  替换节点
+```
+// 插件定义
+BinaryExpression(path) {
+  path.replaceWith(
+    t.binaryExpression("**", path.node.left, t.numberLiteral(2))
+  );
+}
+
+// 代码结果
+  function square(n) {
+-   return n * n;
++   return n ** 2;
+  }
+```
+
+- 将某个节点替换为多个节点
+```
+// 插件定义
+ReturnStatement(path) {
+  path.replaceWithMultiple([
+    t.expressionStatement(t.stringLiteral("Is this the real life?")),
+    t.expressionStatement(t.stringLiteral("Is this just fantasy?")),
+    t.expressionStatement(t.stringLiteral("(Enjoy singing the rest of the song in your head)")),
+  ]);
+}
+
+// 代码结果
+  function square(n) {
+-   return n * n;
++   "Is this the real life?";
++   "Is this just fantasy?";
++   "(Enjoy singing the rest of the song in your head)";
+  }
+```
+
+- 将某个节点替换为源代码字符串
+```
+// 插件定义
+FunctionDeclaration(path) {
+  path.replaceWithSourceString(`function add(a, b) {
+    return a + b;
+  }`);
+}
+
+// 代码结果
+- function square(n) {
+-   return n * n;
++ function add(a, b) {
++   return a + b;
+  }
+```
+
+- 插入兄弟节点
+```
+// 插件定义
+FunctionDeclaration(path) {
+  path.insertBefore(t.expressionStatement(t.stringLiteral("Because I'm easy come, easy go.")));
+  path.insertAfter(t.expressionStatement(t.stringLiteral("A little high, little low.")));
+}
+
+// 代码结果
++ "Because I'm easy come, easy go.";
+  function square(n) {
+    return n * n;
+  }
++ "A little high, little low.";
+```
+
+- 移除某个节点
+```
+// 插件定义
+FunctionDeclaration(path) {
+  path.remove();
+}
+
+// 代码结果
+- function square(n) {
+-   return n * n;
+- }
+```
+
+- 替换节点
+```
+// 插件定义
+BinaryExpression(path) {
+  path.parentPath.replaceWith(
+    t.expressionStatement(t.stringLiteral("Anyway the wind blows, doesn't really matter to me, to me."))
+  );
+}
+
+// 代码结果
+  function square(n) {
+-   return n * n;
++   "Anyway the wind blows, doesn't really matter to me, to me.";
+  }
+```
+
+- 移除某个父节点
+```
+// 插件定义
+BinaryExpression(path) {
+  path.parentPath.remove();
+}
+
+// 代码结果
+  function square(n) {
+-   return n * n;
+  }
+```
+### 作用域
+- 判断某个局部变量是否被绑定：
+```
+FunctionDeclaration(path) {
+  if (path.scope.hasBinding("n")) {
+    // ...
+  }
+}
+
+FunctionDeclaration(path) {
+  if (path.scope.hasOwnBinding("n")) {
+    // ...
+  }
+}
+```
+- 创建 UID
+```
+FunctionDeclaration(path) {
+  path.scope.generateUidIdentifier("uid");
+  // Node { type: "Identifier", name: "_uid" }
+  path.scope.generateUidIdentifier("uid");
+  // Node { type: "Identifier", name: "_uid2" }
+}
+```
+
+- 将某个变量声明提取到副作用中
+```
+// 插件定义
+FunctionDeclaration(path) {
+  const id = path.scope.generateUidIdentifierBasedOnNode(path.node.id);
+  path.remove();
+  path.scope.parent.push({ id, init: path.node });
+}
+
+// 代码结果
+- function square(n) {
++ var _square = function square(n) {
+    return n * n;
+- }
++ };
+```
