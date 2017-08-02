@@ -9,13 +9,13 @@ Copyright © 2017 王下邀月熊
 
 本仓库存放笔者 Web 开发基础与工程实践的相关博客、示例代码与开源项目、整理成的系列书籍等内容；目前为了更好地体系化阅读，笔者将所有的内容规整到了不同的系列文章/书籍中：
 
-- [现代 JavaScript 开发：语法基础与实践技巧【写作中】]()：ES5/ES6/ES7 关键语法、JavaScript 性能优化、JavaScript 样式指南。
+- [现代 JavaScript 开发：语法基础与实践技巧【写作中】](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/Modern-JavaScript)：ES5/ES6/ES7 关键语法、JavaScript 性能优化、JavaScript 样式指南。
 - [现代 JavaScript 开发：算法与设计模式【想象中】]()：基于 JavaScript 实现的常见数据结构与算法、设计模式。
 - [现代 JavaScript 开发：深入浅出 Node.js 全栈架构【想象中】]()：
-- [现代 Web 开发基础【写作中】]()：现代 Web 开发基础是笔者对于 HTML、CSS、DOM 等 Web 开发中涉及的基础知识与理念的总结介绍。
+- [现代 Web 开发基础【写作中】](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/Modern-Web-Development-Foundation)：现代 Web 开发基础是笔者对于 HTML、CSS、DOM 等 Web 开发中涉及的基础知识与理念的总结介绍。
 - [现代 Web 开发进阶实践【写作中】]()：
-- [React 开发与前端工程化实战【写作中】](https://parg.co/b4D)：近年来前端领域百花齐放，各种技术方案争妍斗艳，各领风骚。本书立足于其中的佼佼者 React，深入浅出的介绍 React、Webpack、ES6、Redux、MobX 等常见前端开发工具与开发库的用法，帮助初学者能够迅速成为一名合格前端工程师。而本书也不仅局限于工具使用的层面，探寻各种技术方案背后蕴含的设计思想与架构模式，从前端工程化的角度讨论前端开发者在进阶过程中需要掌握的工程实践、模块化与组件化、质量保障、性能优化等知识要点。最终帮助开发者在前端开发中能够因地制宜的指定合理方案，以尽可能快的速度实现可信赖的产品。
-- [Vue 开发与前端工程化实战【筹备中】]()：本部分目前尚未启动，笔者的初衷是希望能够保证本书章节与[ React 与前端工程化实践](https://parg.co/bau)尽可能一致，从而更方便地去介绍不同技术栈下相通的设计理念；目前本书的目录只是拷贝自[ React 与前端工程化实践](https://parg.co/bIn)，未来笔者会逐步完善。
+- [React 开发与前端工程化实战【写作中】](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/React-And-FrontEnd-Engineering)：近年来前端领域百花齐放，各种技术方案争妍斗艳，各领风骚。本书立足于其中的佼佼者 React，深入浅出的介绍 React、Webpack、ES6、Redux、MobX 等常见前端开发工具与开发库的用法，帮助初学者能够迅速成为一名合格前端工程师。而本书也不仅局限于工具使用的层面，探寻各种技术方案背后蕴含的设计思想与架构模式，从前端工程化的角度讨论前端开发者在进阶过程中需要掌握的工程实践、模块化与组件化、质量保障、性能优化等知识要点。最终帮助开发者在前端开发中能够因地制宜的指定合理方案，以尽可能快的速度实现可信赖的产品。
+- [Vue 开发与前端工程化实战【筹备中】](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/Vue-And-Frontend-Engineering)：本部分目前尚未启动，笔者的初衷是希望能够保证本书章节与[ React 与前端工程化实践](https://parg.co/bau)尽可能一致，从而更方便地去介绍不同技术栈下相通的设计理念；目前本书的目录只是拷贝自[ React 与前端工程化实践](https://parg.co/bIn)，未来笔者会逐步完善。
 
 除此之外，本仓库还包含以下部分：
 - 遵循[泛前端知识图谱](https://github.com/wxyyxc1992/FrontendTechnology-Handbook)的[博客列表]()，总结了笔者平日里原创或者翻译的 Web 开发相关的文章或分享。
