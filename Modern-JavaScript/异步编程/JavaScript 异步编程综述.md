@@ -1,3 +1,4 @@
+[toc]
 # JavaScript 异步编程
 
 异步函数语法在其他语言中存在已久，就像 C# 中的 async/await、Kotlin 中的 coroutines、Go 中的 goroutines；而随着 Node.js 8 的发布，async/await 语法也得到了原生支持而不再需要依赖于 Babel 等转化工具。
@@ -98,6 +99,8 @@ functionA(2)
 ```
 
 # async/await
+
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/6/1/async.png)
 
 ```
 function asyncTask () {  
@@ -235,6 +238,4 @@ async function reduceArray() {
 filterArray().then((v)=>{console.log(v)})
 // [ 1, 2, 3, 4 ]
 ```
-
-
 
