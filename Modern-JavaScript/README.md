@@ -26,9 +26,11 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
     - [JavaScript 模块演化简史]()
     - [ES Modules]()
     - [构建工具对比与解析]()
+    - [开发环境与辅助工具]()
 
 - [表达式与控制流]()
-    - [变量声明与提升]()
+    - [变量声明与赋值]()
+    - [变量作用域与提升]()
 
 - [内置数据结构]()
     - [字符串]()
@@ -40,6 +42,7 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 - [函数]()
     - [函数声明与闭包]()
     - [函数调用与 this 绑定]()
+    - [原型链与构造函数]()
     - [迭代器与生成器]()
     - [装饰器]()    
 
@@ -54,11 +57,12 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 
 - [面向对象编程]()
     - [类的声明与实例化]()
-    - [原型链与类继承]()
+    - [类的封装与继承]()
     - [基于 decorator-x 的实体类增强]()
     
 - [元编程]()
-    - [深入浅出 ES6 Proxy 与 Reflect]()
+    - [ES6 Proxy 原理与实践]()
+    - [深入浅出 ES6 Reflect]()
     - [属性监听与数据绑定]()
 
 - [类型系统]()
@@ -81,4 +85,6 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 - [面试]()
 
 
+# 参考
 
+- [Collection of helpful tips and tricks for VS Code.](https://github.com/Microsoft/vscode-tips-and-tricks)
