@@ -89,8 +89,8 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 
 如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮~
 
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WX20170820-201436.png)
-![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WechatIMG20.jpeg)
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WechatIMG1525.jpeg)
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WechatIMG1526.jpeg)
 
 
 # 参考
