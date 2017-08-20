@@ -91,6 +91,7 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WechatIMG1525.jpeg)
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WechatIMG1526.jpeg)
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/8/3/WX20170820-201436.png)
 
 
 # 参考
