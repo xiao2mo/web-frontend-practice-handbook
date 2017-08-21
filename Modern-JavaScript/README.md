@@ -89,10 +89,7 @@ JavaScript 的设计与语法一直为人所诟病，不过正如 Zeit 的 CEO G
 
 如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮~
 
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/WechatIMG1525.jpeg?raw=true)
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/WechatIMG1526.jpeg?raw=true)
-![](https://github.com/wxyyxc1992/OSS/blob/master/WechatIMG1528.jpeg?raw=true)
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/WX20170820-201436.png?raw=true)
+![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
 
 
 # 参考
