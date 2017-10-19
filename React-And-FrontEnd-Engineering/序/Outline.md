@@ -1,3 +1,5 @@
+﻿
+
 
 # 前言
 
@@ -28,6 +30,8 @@
 - 基本算法与意义。
 - 介绍 React 和 Virtual DOM 的关系。
 
+
+
 ## 组件化
 
 ### 组件化的意义
@@ -43,11 +47,12 @@
 ### Web Components
 
 
+
 ## JSX
 
 ### JSX 的前世今生
 
-- What is JSX?
+- What is JSX? 
 - JSX转换工具。
 
 ### JSX 与 HTML 比较
@@ -68,9 +73,12 @@
 - 支持的 SVG 属性列表。 1页
 
 
+
 # 搭建开发脚手架
 
 ## create-react-app
+
+
 
 ### NPM 与 Yarn
 
@@ -78,12 +86,20 @@
 - NPM 不足。 0.5页
 - Yarn 介绍。 1页
 
+
+
+
 ### 创建简单项目
+
+
 
 - 介绍 create-react-app 基本安装。 0.5页
 - 介绍 helloworld 实例。 1页
 
+
 ## 基于 Webpack 2 自定义开发环境
+
+
 
 ### JavaScript 模块系统与打包工具
 
@@ -104,13 +120,18 @@
 - React 热加载配置；React hot loader。 1页
 - 介绍 React 预编译脚本使用。 0.5页
 
+
 ## 辅助开发工具
 
+
 ### DevTools
+
+
 
 - Chrome Tools。1页
 
 - React devtools。1页
+
 
 ### React Storybook
 
@@ -118,14 +139,20 @@
 
 - 介绍 React Storybook meta 等插件工具
 
+
 ### VSCode
+
+
+
 
 - babel node。 1页
 - 介绍常见 IDE。 0.5页
 - 语法高亮、插件使用。 0.5页
 - live templating。 1页
 
+
 # React 组件基础
+
 
 ## 组件声明
 
@@ -144,6 +171,8 @@
 
 ### this绑定
 
+
+
 ## React 与 DOM
 
 ### 组件渲染到 DOM
@@ -158,6 +187,8 @@
 - 以 echarts 为例介绍如何整合非 React 类库。 2页
 - 侵入式插件处理。 2页
 
+
+
 ## 列表组件
 
 ### 渲染与键
@@ -171,6 +202,7 @@
 ### Keyed Fragment
 
 ### 仅渲染必要组件
+
 
 ### 下拉刷新与上滑加载
 
@@ -281,9 +313,12 @@
 
 ### 无嵌套关系组件通信
 
+
 # 组件的生命周期
 
+
 ## 生命周期回调
+
 
 ### 实例化
 
@@ -295,19 +330,20 @@
 
 ### 函数式组件生命周期
 
+
 ## 异步数据抓取
 
-# React 事件系统 24页
+# React 事件系统  24页
 
-## 原生事件处理 【S】 6页
+## 原生事件处理 【S】  6页
 
-### DOM 事件绑定与处理 3页
+### DOM 事件绑定与处理  3页
 
 - DOM 事件绑定与解绑。 1页
 - 参数传递。 1页
 - Event 对象。 1页
 
-### 事件分发与委托 3页
+### 事件分发与委托  3页
 
 - 事件冒泡与事件捕获。 2页
 - 事件委托。 1页
@@ -316,13 +352,13 @@
 
 ### 事件绑定与响应
 
-### 合成事件详解 3页
+### 合成事件详解  3页
 
 - 合成事件的实现机制。 1页
 - 合成事件中引用原生事件。 1页
 - 合成事件与原生事件的混用。 1页
 
-### Event pooling 2页
+### Event pooling  2页
 
 - Event pooling 原理。 1页
 - 实例介绍 Debounce 的实现。 1页
@@ -468,7 +504,7 @@
 
 ## NodeJS 初窥
 
-### 认识 NodeJS
+### 认识 NodeJS 
 
 ### 回调与事件
 
@@ -504,7 +540,7 @@
 ### MVC:巨石型控制器
 
 - MVC 基础。 1页
-- Observer Pattern。 1页
+- Observer Pattern。 1页 
 
 ### MVP:视图与模型的解耦
 
@@ -555,7 +591,7 @@
 
 ### Store
 
-### Reducer
+### Reducer 
 
 ### 连接 React 组件与 Redux Store
 

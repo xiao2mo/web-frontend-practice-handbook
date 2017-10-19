@@ -1,72 +1,95 @@
-[![](https://parg.co/UbM)](https://parg.co/bWg)
 
+
+
+
+[![返回目录](https://parg.co/UY3)](https://parg.co/bWg)
 
 
 # React Props
 
+
 # Component Properties
+
 
 Function as Prop
 ```
 const Foo = ({ hello }) => {
-  return hello('foo');
+  return hello('foo');
 };
+
+
 
 const hello = (name) => {
-  return <div>`hello from ${name}`</div>;
+  return <div>`hello from ${name}`</div>;
 };
 
+
 <Foo hello={hello} />
+
 ```
 Component Injection
 ```
 class WindowWidth extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { width: 0 };
-  }
+  constructor(props) {
+    super(props);
+    this.state = { width: 0 };
+  }
 
- ...
 
-  render() {
-      const { width } = this.state;
-      const { Width } = this.props;
-      return <Width width={width} />; 
-   }
+ ...
+
+
+  render() {
+
+
+      const { width } = this.state;
+      const { Width } = this.props;
+      return <Width width={width} />; 
+   }
 }
+
 
 <WindowWidth Width={DisplayWindowWidthText} />
 
+
+
 const DisplayDevice = ({ width }) => {
-  let device = null;
-  if (width <= 480) {
-    device = 'mobile';
-  } else if (width <= 768) {
-    device = 'tablet';
-  } else {
-    device = 'desktop';
-  }
-  return <div>you are using a {device}</div>;
+  let device = null;
+  if (width <= 480) {
+    device = 'mobile';
+  } else if (width <= 768) {
+    device = 'tablet';
+  } else {
+    device = 'desktop';
+  }
+  return <div>you are using a {device}</div>;
 };
 ```
 # Prop Validation
 
 
+
+
 # children
+
 
 ## 渲染回调
 渲染回调（Render Callback）即指那些子元素为某个函数的组件，也就是所谓的 Function-as-Child；我们可以利用这种模式复用有状态组件从而共享部分业务逻辑。如果需要定义渲染回调，则需要在 render 函数中返回对于传入的子元素的调用结果：
 ```
 import { Component } from 'react'
 
+
 class SharedThing extends Component {
 
-  ...
 
-  render() {
-    return this.props.children(thing1, thing2)
-  }
+  ...
+
+
+  render() {
+    return this.props.children(thing1, thing2)
+  }
 }
+
 
 export default SharedThing
 ```
@@ -74,13 +97,15 @@ export default SharedThing
 ```
 import React from 'react'
 
+
 const AnotherComponent = () => (
-  <SharedThing>
-    {(thing1, thing2) => (
-      // use thing1 and thing2
-    )}
-  </SharedThing>
+  <SharedThing>
+    {(thing1, thing2) => (
+      // use thing1 and thing2
+    )}
+  </SharedThing>
 )
+
 
 export default AnotherComponent
 ```
@@ -88,25 +113,30 @@ export default AnotherComponent
 ```
 import { Component } from 'react'
 
+
 class Toggle extends Component {
 
-  state = {
-    isOpen: false,
-  }
 
-  handleToggleClick = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    })
-  }
+  state = {
+    isOpen: false,
+  }
 
-  render() {
-    return this.props.children(
-      this.state.isOpen, 
-      this.handleToggleClick
-    )
-  }
+
+  handleToggleClick = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    })
+  }
+
+
+  render() {
+    return this.props.children(
+      this.state.isOpen, 
+      this.handleToggleClick
+    )
+  }
 }
+
 
 export default Toggle
 ```
@@ -115,18 +145,20 @@ export default Toggle
 import React from 'react'
 import Toggle from './Toggle'
 
+
 const Accordion = ({teaser, details}) => (
-  <Toggle>
-    {(isOpen, handleToggleClick) => (
-      <section>
-        <a onClick={handleToggleClick}>
-          {`${isOpen ? '-' : '+'} ${teaser}`}
-        </a>
-        {isOpen && details}
-      </section>
-    )}
-  </Toggle>
+  <Toggle>
+    {(isOpen, handleToggleClick) => (
+      <section>
+        <a onClick={handleToggleClick}>
+          {`${isOpen ? '-' : '+'} ${teaser}`}
+        </a>
+        {isOpen && details}
+      </section>
+    )}
+  </Toggle>
 )
+
 
 export default Accordion
 ```
@@ -134,25 +166,28 @@ export default Accordion
 import React from 'react'
 import Toggle from './Toggle'
 
+
 const Thumbnail = ({src, teaser}) => (
-  <Toggle>
-    {(isOpen, handleToggleClick) => (
-      <div>
-        <div>{teaser}</div>
-        <img
-          src={src}
-          alt={teaser}
-          onClick={handleToggleClick}
-          style={{
-            maxWidth: isOpen ? '100%' : 150
-          }}
-        />
-      </div>
-    )}
-  </Toggle>
+  <Toggle>
+    {(isOpen, handleToggleClick) => (
+      <div>
+        <div>{teaser}</div>
+        <img
+          src={src}
+          alt={teaser}
+          onClick={handleToggleClick}
+          style={{
+            maxWidth: isOpen ? '100%' : 150
+          }}
+        />
+      </div>
+    )}
+  </Toggle>
 )
+
 
 export default Thumbnail
 ```
+
 
 ## cloneElement

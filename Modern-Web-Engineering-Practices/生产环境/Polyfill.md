@@ -1,0 +1,180 @@
+﻿
+
+> 每次撰写与此相关的东西，我都忍不住看下这则新闻: [还在用IE7，那么请付给我们辛苦费](http://jandan.net/2012/06/17/tax_for_ie7_user.html)。
+
+
+> 
+- [Using Feature Queries in CSS](https://hacks.mozilla.org/2016/08/using-feature-queries-in-css/?utm_source=tuicool&utm_medium=referral)
+
+
+
+
+在浏览器的快速迭代更新的过程中，很多新的库或者框架需要兼容老版本的浏览器，这里进行一个列举，常见的Polyfill:
+[html5shiv](https://github.com/aFarkas/html5shiv):HTML5 sectioning elements in legacy Internet Explorer.
+[Respond](https://github.com/scottjehl/Respond):polyfill for min/max-width CSS3 Media Queries
+
+
+```
+
+<head>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+```
+
+
+ 
+
+
+本文记录了所有面向于老版本浏览器的Polyfill的解决方案，这里仅作一个概述，具体的关联知识点可以查看各个对应的部分。
+
+
+
+> 
+- [polyfill](https://github.com/inexorabletash/polyfill)
+
+
+
+# 优雅降级与渐进增强
+优雅降级和渐进增强印象中是随着css3流出来的一个概念。由于低级浏览器不支持css3，但css3的效果又太优秀不忍放弃，所以在高级浏览中使用
+css3而低级浏览器只保证最基本的功能。咋一看两个概念差不多，都是在关注不同浏览器下的不同体验，关键的区别是他们所侧重的内容，以及这种不同造成的
+工作流程的差异。
+
+渐进增强 progressive enhancement：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
+　　优雅降级 graceful degradation：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。
+
+　　区别：优雅降级是从复杂的现状开始，并试图减少用户体验的供给，而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。
+“优雅降级”观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。
+
+在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨 (poor, but passable)” 的浏览体验。你可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。
+“渐进增强”观点则认为应关注于内容本身。
+
+内容是我们建立网站的诱因。有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。
+这使得“渐进增强”成为一种更为合理的设计范例。这也是它立即被 Yahoo! 所采纳并用以构建其“分级式浏览器支持 (Graded Browser
+ Support)”策略的原因所在。
+
+
+# Browser
+
+## IE版本限定
+> 
+- [一行代码解决各种IE兼容问题,IE6,IE7,IE8,IE9,IE10](http://www.w3cfuns.com/notes/22891/7072479a25d101a1adba04bf7ddf305d.html?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+
+
+IE，特别是IE8，简直是阻止前端框架推广与发展的一大限制。
+x-ua-compatible 用来指定IE浏览器解析编译页面的model。x-ua-compatible 头标签大小写不敏感，必须用在 head 中，必须在除 title 外的其他 meta 之前使用。
+1、使用一行代码来指定浏览器使用特定的文档模式。
+```
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+<meta http-equiv="x-ua-compatible" content="IE=8" >
+<meta http-equiv="x-ua-compatible" content="IE=7" >
+```
+
+2、在一些情况下，我们需要限定浏览器对文档的解析到某一特定版本，或者将浏览器限定到一些旧版本的表现中。可以用如下的方式：
+```
+<meta http-equiv="x-ua-compatible" content="IE=EmulateIE9" >
+<meta http-equiv="x-ua-compatible" content="IE=EmulateIE8" >
+<meta http-equiv="x-ua-compatible" content="IE=EmulateIE7" >
+```
+
+使用这种写法，浏览器或者使用标准模式进行解析，或者使用 IE5 Quirks 模式进行解析。
+
+3、为了测试，我们也可以使用下面的语句指定浏览器按照最高的标准模式解析页面。
+```
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+```
+
+4、多个模式的指定。我们可以用逗号分割多个版本，这种情况下，浏览器会从这个列表中选择一个他所支持的最高版本来使用标准模式进行渲染。如下面的例子，在IE8进行浏览时，将会使用IE7的标准模式进行渲染，因为他本身不支持IE9和IE10。
+```
+<meta http-equiv="x-ua-compatible" content="IE=7,9,10" >
+```
+
+
+
+
+ 
+
+
+# ECMAScript / JavaScript Polyfills
+
+
+# DOM
+```if (!document.querySelectorAll) {
+  document.querySelectorAll = function (selectors) {
+    var style = document.createElement('style'), elements = [], element;
+    document.documentElement.firstChild.appendChild(style);
+    document._qsa = [];
+
+    style.styleSheet.cssText = selectors + '{x-qsa:expression(document._qsa && document._qsa.push(this))}';
+    window.scrollBy(0, 0);
+    style.parentNode.removeChild(style);
+
+    while (document._qsa.length) {
+      element = document._qsa.shift();
+      element.style.removeAttribute('x-qsa');
+      elements.push(element);
+    }
+    document._qsa = null;
+    return elements;
+  };
+}
+
+if (!document.querySelector) {
+  document.querySelector = function (selectors) {
+    var elements = document.querySelectorAll(selectors);
+    return (elements.length) ? elements[0] : null;
+  };
+}
+```
+# HTML
+## [HTML5 Shiv](https://github.com/aFarkas/html5shiv)
+
+
+
+
+# CSS
+# Mobile
+# CSS Polyfill
+## Flexbox
+## CSS Selector
+笔者在某次APICloud开发时，发现一个很奇怪的现象，部分`border`属性不起作用。后经调试发现是因为CSS3的`child`选择器不起作用，官方解释是Safari不支持`nth-child`这个系列的用法，但是很奇怪的也是在Android 4.1的WebView也是不起作用，因此注意在使用CSS `nth`选择器的时候需要以下Polyfill:
+```
+
+
+```
+# Event
+## Touch & Tap & Click
+
+
+
+### 300ms的延迟
+有时候在iOS下莫名发现部分元素无法点击了，经过调试发现是因为iOS为了鉴别Tap与Click之间不同的事件触发，关于此详情可参考笔者的[DOM-DeviceEvent]()这篇文章。如果是在React体系内，笔者习惯使用[react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin)这个插件：
+```
+var React = require("react");
+var ReactDOM = require("react-dom");
+injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
+var Main = React.createClass({
+  render: function() {
+    return (
+      <a
+        href="#"
+        onTouchTap={this.handleTouchTap}
+        onClick={this.handleClick}>
+        Tap Me
+      </a>
+    );
+  },
+  handleClick: function(e) {
+    console.log("click", e);
+  },
+  handleTouchTap: function(e) {
+    console.log("touchTap", e);
+  }
+});
+ReactDOM.render(<Main />, document.getElementById("container"));
+```
+

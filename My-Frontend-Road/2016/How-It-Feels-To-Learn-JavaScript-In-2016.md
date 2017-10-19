@@ -1,6 +1,7 @@
-
-> 本文翻译自[how-it-feels-to-learn-javascript-in-2016](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.5zzf9ydlm)，从属于笔者的[Web Frontend Introduction And Best Practices:前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)系列文章。
+﻿
+> [2016年里做前端是怎样一种体验](https://segmentfault.com/a/1190000007083024)翻译自[how-it-feels-to-learn-javascript-in-2016](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.5zzf9ydlm)，从属于笔者的[Web Frontend Introduction And Best Practices:前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)系列文章。
 > 最近我女朋友也打算开始学习前端的一些知识，不过她目前的认知水平还停留在DOM+jQuery盛行的阶段，正好借翻译这篇文章之机，跟她讲讲2016年的前端是个什么状态。
+
 
 问：最近我接手了一个新的Web项目，不过老实说我已经好久没碰过这方面的代码了。听说前端的技术栈已经发生了极大的变革，不知道你现在是不是仍然处于最前沿的开发者阵列？
 答：准确来说，过去俗称的写网页的，现在应该叫做Front End Engineer，我确实属于这所谓的前端工程师。并且我才从JSConf与ReactConf面基回来，因此我觉得我觉得我还是了解目前Web前端领域最新的面貌的。
@@ -172,6 +173,45 @@
 答：额，目前来看是的，不过估计过几年我们就需要用Elm或者WebAssembly咯~
 问：我觉得，我还是乖乖去写后端的代码吧。
 答：Python大法好！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
