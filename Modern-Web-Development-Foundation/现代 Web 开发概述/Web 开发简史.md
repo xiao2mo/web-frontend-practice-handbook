@@ -8,20 +8,12 @@
 
 任何一个编程生态都会经历三个阶段，首先是原始时期，由于需要在语言与基础的 API 上进行扩充，这个阶段会催生大量的辅助工具。第二个阶段，随着做的东西的复杂化，需要更多的组织，会引入大量的设计模式啊，架构模式的概念，这个阶段会催生大量的框架。第三个阶段，随着需求的进一步复杂与团队的扩充，就进入了工程化的阶段，各类分层 MVC，MVP，MVVM 之类，可视化开发，自动化测试，团队协同系统；这个阶段会出现大量的小而美的库。我们可以简要地将 JavaScript 出现以来至今的发展历史划分为以下时代：
 
-
-
-
-| Era/时代    | Timeline/时间线  | Problems/问题        | Innovations/创新          | **Dominant Browsers**/主流浏览器              |
-
-| --------- | -------------- | ------------------- | ------------------------ | ---------------------------------------- |
-
-| 蛮荒时代      | 大概 1996 – 2004 | 基础 DOM 操作，用户交互      | JavaScript 本身，XHR 与 AJAX | Netscape Navigator, Microsoft Internet Explorer |
-
-| jQuery 时代 | 大概 2004 – 2010 | 增长的网页复杂度，大量的浏览器兼容需求 | 健壮的 DOM 操作，早期的 SPA 单页应用  | Microsoft IE，Mozilla Firefox            |
-
-| SPA 时代    | 大概 2010-2014  | DHTML 过载，大规模数据操作，性能 | MVC 框架，双向数据流，DOM 自动化    | Google Chrome，Microsoft IE，Mozilla Firefox，Apple Safari |
-
-| 现代        | 大概 2014-现在    | 性能，复杂应用的状态管理，可用性    | Virtual DOM，单向数据流，类型系统，测试  | Google Chrome，Apple Safari              |
+| Era/时代    | Timeline/时间线  | Problems/问题                          | Innovations/创新                        | Dominant Browsers/主流浏览器                               |
+| ----------- | ---------------- | -------------------------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| 蛮荒时代    | 大概 1996 – 2004 | 基础 DOM 操作，用户交互                | JavaScript 本身，XHR 与 AJAX            | Netscape Navigator, Microsoft Internet Explorer            |
+| jQuery 时代 | 大概 2004 – 2010 | 增长的网页复杂度，大量的浏览器兼容需求 | 健壮的 DOM 操作，早期的 SPA 单页应用    | Microsoft IE，Mozilla Firefox                              |
+| SPA 时代    | 大概 2010-2014   | DHTML 过载，大规模数据操作，性能       | MVC 框架，双向数据流，DOM 自动化        | Google Chrome，Microsoft IE，Mozilla Firefox，Apple Safari |
+| 现代        | 大概 2014-现在   | 性能，复杂应用的状态管理，可用性       | Virtual DOM，单向数据流，类型系统，测试 | Google Chrome，Apple Safari                                |
 
 
 Web 前端开发可以追溯于 1991 年蒂姆·伯纳斯-李公开提及 HTML 描述，而后 1999 年 W3C 发布 HTML4 标准，这个阶段主要是 B/S 架构，没有所谓的前端开发概念，网页只不过是后端工程师的顺手之作，服务端渲染是主要的数据传递方式。接下来的几年间随着互联网的发展与 REST 等架构标准的提出，前后端分离与富客户端的概念日渐为人认同，我们需要在语言与基础的 API 上进行扩充，这个阶段出现了以 jQuery 为代表的一系列前端辅助工具。2009 年以来，智能手机开发普及，移动端大浪潮势不可挡，SPA 单页应用的设计理念也大行其道，相关联的前端模块化、组件化、响应式开发、混合式开发等等技术需求甚为迫切。这个阶段催生了 Angular 1、Ionic 等一系列优秀的框架以及 AMD、CMD、UMD 与RequireJS、SeaJS 等模块标准与加载工具，前端工程师也成为了专门的开发领域，拥有独立于后端的技术体系与架构模式。
