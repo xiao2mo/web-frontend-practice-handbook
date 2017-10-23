@@ -1,12 +1,11 @@
-﻿.wiz-todo, .wiz-todo-img {width: 16px; height: 16px; cursor: default; padding: 0 10px 0 2px; vertical-align: -10%;-webkit-user-select: none;} .wiz-todo-label { display: inline-block; padding-top: 7px; padding-bottom: 6px; line-height: 1.5;} .wiz-todo-label-checked { /*text-decoration: line-through;*/ color: #666;} .wiz-todo-label-unchecked {text-decoration: initial;} .wiz-todo-completed-info {padding-left: 44px; display: inline-block; } .wiz-todo-avatar { width:20px; height: 20px; vertical-align: -20%; margin-right:10px; border-radius: 2px;} .wiz-todo-account, .wiz-todo-dt { color: #666; }
+﻿
 
-本文翻译自FreeCodeCamp的[from-zero-to-front-end-hero-part](https://medium.freecodecamp.com/from-zero-to-front-end-hero-part-1-7d4f7f0bff02#.ailsv41bd)。
-
-
+> 本文翻译自FreeCodeCamp的[from-zero-to-front-end-hero-part](https://medium.freecodecamp.com/from-zero-to-front-end-hero-part-1-7d4f7f0bff02#.ailsv41bd)。
 > 译者的废话，不感兴趣的直接忽略
 > 前两天才翻译了一篇文章：[解决你的前端面试](https://segmentfault.com/a/1190000005127264)，这类型的文章都是关于前端的一些基础知识的，不过文章里的链接都是外文资料，更多的会学习的是思想吧和知识点列表。对于前端，或者更广泛的说的客户端开发的知识点图谱还是推荐下[这个](https://segmentfault.com/a/1190000004612590)。笔者打算先写完[React+Redux+Webpack的系列笔记和实战](https://github.com/wxyyxc1992/web-frontend-practice-handbook)然后就把这些学习链接看看整理找一些中文的或者自己整理一些放出来，不过估计应该也有大神写了现成的，欢迎分享给我。
 
 
+# 从路人甲到英雄无敌的前端开发指南
 
 记得那年，我初学前端，遇见了很多的文章，在浩瀚的知识海洋里我手足无措，不知从何开始。己所不欲，勿施于人。这篇文章就会帮你去遨游前端学习的海洋，主要包含了在我之前的学习过程中整理的一些资源和一些感悟。我打算将整篇文章切分为两部分，第一部分重温HTML与CSS的基本知识，第二部分概括JavaScript、前端框架与设计模式。
 

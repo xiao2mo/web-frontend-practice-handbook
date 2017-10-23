@@ -4,6 +4,7 @@
 
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/1/1/istock-504857308.jpg__640x360_q85_crop_subsampling-2.jpg)
 
+# 2017 值得一瞥的 JavaScript 相关技术趋势
 
 跨年前两天，[Dan Abramov](https://medium.com/u/a3a8af6addc1)在Twitter上提了一个问题：
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/1/1/QQ20170101.png) 
@@ -177,29 +178,29 @@ test();
 
 ReasonML与React师出同门，是基于OCamel设计的语法友好、编辑器支持程度高，并且有强大的编译工具支持的语言。建议阅读[Sean Grove](https://youtu.be/QWfHrbSqnB0?t=29m34s)对ReasonML的介绍。本文简单介绍几个JavaScript与Reason的语法对比：
 - 元类型
-| JavaScript                  | Reason                        |
+| JavaScript                  | Reason                        |
 | --------------------------- | ----------------------------- |
-| `3`                         | `3`                           |
-| `3.1415 `                   | ` 3.1415 `                    |
-| `"Hello world!" `           | `"Hello world!" `             |
-| `'Hello world!' `           | Strings must use “            |
-| Characters are strings      | `'a'  `                       |
-| `true`                      | `true `                       |
-| `[1,2,3] `                  | `[1,2,3] `                    |
-| `null`                      | `()`                          |
-| `const x = y;`              | `let x = y;`                  |
-| `let x = y;`                | `reference cells`             |
-| `var x = y;`                | No equivalent (thankfully)    |
+| `3`                         | `3`                           |
+| `3.1415 `                   | ` 3.1415 `                    |
+| `"Hello world!" `           | `"Hello world!" `             |
+| `'Hello world!' `           | Strings must use “           |
+| Characters are strings      | `'a'  `                       |
+| `true`                      | `true `                       |
+| `[1,2,3] `                  | `[1,2,3] `                    |
+| `null`                      | `()`                          |
+| `const x = y;`              | `let x = y;`                  |
+| `let x = y;`                | `reference cells`             |
+| `var x = y;`                | No equivalent (thankfully)    |
 | `[x, ...lst] (linear time)` | `[x, ...lst] (constant time)` |
-| `[...lst, x] (linear time)` | `Not supported`               |
-| `{...obj, x: y}`            | `{...obj, x: y}`              |
+| `[...lst, x] (linear time)` | `Not supported`               |
+| `{...obj, x: y}`            | `{...obj, x: y}`              |
 
 
 - 表达式
-| JavaScript                               | Reason                                   |
-| ---------------------------------------- | ---------------------------------------- |
-| `login ? "hi" : "bye" `                  | `login ? "hi" : "bye" `                  |
-| `let res = undefined;switch (thing) {  case first:     res = "first";     break;  case second:     res = "second";     break;};      ` | `let res = switch thing {  | first => "first"  | second => "second"};      ` |
+| JavaScript                                                                                                                             | Reason                    |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| `login ? "hi" : "bye" `                                                                                                                | `login ? "hi" : "bye" `   |
+| `let res = undefined;switch (thing) {  case first:     res = "first";     break;  case second:     res = "second";     break;};      ` | `let res = switch thing { | first => "first" | second => "second"};      ` |
 
 
 # Purescript

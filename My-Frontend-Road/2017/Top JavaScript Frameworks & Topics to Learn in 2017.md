@@ -2,9 +2,7 @@
 > [2017年值得关注的JavaScript框架与主题](https://zhuanlan.zhihu.com/p/24373050)翻译自[Top JavaScript Frameworks & Topics to Learn in 2017](https://medium.com/javascript-scene/top-javascript-frameworks-topics-to-learn-in-2017-700a397b711#.7cp7q9q0y)，从属于笔者的[Web 前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)。其他有关于2016年前端开发的总结包括[2016 年前端工具使用度调研报告](https://segmentfault.com/a/1190000007666924)、[2016年里做前端是怎样一种体验](https://segmentfault.com/a/1190000007083024)、[2016前端学习路线图](https://segmentfault.com/a/1190000007730440)。另外推荐[The State of UX in 2017](https://uxdesign.cc/ux-trends-2017-46a63399e3d2#.dtqo7m96b)，作为开发者了解下设计的想法也是必需的。
 
 
-
-
-
+# 2017 年值得关注的 JavaScript 框架与主题
 
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/12/1/1-U57FQqHw9eCVlS26M2fxmw.jpeg) 
 
