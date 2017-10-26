@@ -28,23 +28,25 @@
 
 
 
-## 技术栈
 
-- Vue.js 2.x
-- Webpack 3+
+## 版权
 
+![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg) ![](https://parg.co/bDm)
+
+笔者所有文章遵循 [知识共享 署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)，欢迎转载，尊重版权。如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮（支付宝扫码）~
+
+![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
 
 # 目录
 
-
-# 狗粮
-
-
-
-如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮（支付宝扫码）~
-
-
-
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
+- [Vuex](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/Vuex/Index.md) 
+    - [基本语法](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/Vuex/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95.md): Vuex 基本语法 
+- [初窥](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/Index.md) 
+    - [vue-cli](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/vue-cli.md): Vue.js 概述 
+    - [设计理念](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5.md):  
+- [状态管理](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/Index.md) 
+    - [基于 MobX 的 Vue.js 状态管理](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/%E5%9F%BA%E4%BA%8E%20MobX%20%E7%9A%84%20Vue.js%20%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.md):  
+- [组件](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E7%BB%84%E4%BB%B6/Index.md) 
+    - [类组件](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E7%BB%84%E4%BB%B6/%E7%B1%BB%E7%BB%84%E4%BB%B6.md): 基于 ES6/TypeScript 的 Vue.js 类组件 
 
 

@@ -1,6 +1,4 @@
-
-![](https://camo.githubusercontent.com/42266e71aa395fc757534be4b1b4d64bbf556e46/68747470733a2f2f636f64696e672e6e65742f752f686f7465616d2f702f43616368652f6769742f7261772f6d61737465722f323031362f31302f322f312d7261574f3364684d346a4d6a663956592d6b5a7a4e672e706e67)
- 
+![](https://parg.co/U0a)
 
 # [Web 开发基础与工程实践](https://parg.co/b4n)
 
@@ -8,12 +6,13 @@
 
 - [现代 Web 开发基础](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/Modern-Web-Development-Foundation)：现代 Web 开发基础是笔者对于 HTML、CSS、DOM 等 Web 开发中涉及的基础知识与理念的总结介绍。
 
-- [现代 Web 开发进阶实践]()：
+- [现代 Web 开发工程化实践](https://parg.co/Ubt)：
 
+- [现代 Web 应用架构与性能调优](https://parg.co/UGZ): 
 
 - [React 开发与前端工程化实战](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/React-And-FrontEnd-Engineering)：近年来前端领域百花齐放，各种技术方案争妍斗艳，各领风骚。本书立足于其中的佼佼者 React，深入浅出的介绍 React、Webpack、ES6、Redux、MobX 等常见前端开发工具与开发库的用法，帮助初学者能够迅速成为一名合格前端工程师。而本书也不仅局限于工具使用的层面，探寻各种技术方案背后蕴含的设计思想与架构模式，从前端工程化的角度讨论前端开发者在进阶过程中需要掌握的工程实践、模块化与组件化、质量保障、性能优化等知识要点。最终帮助开发者在前端开发中能够因地制宜的指定合理方案，以尽可能快的速度实现可信赖的产品。
 
-- [Vue 开发与前端工程化实战](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/Vue-And-Frontend-Engineering)：本部分目前尚未启动，笔者的初衷是希望能够保证本书章节与[ React 与前端工程化实践](https://parg.co/bau)尽可能一致，从而更方便地去介绍不同技术栈下相通的设计理念；目前本书的目录只是拷贝自[ React 与前端工程化实践](https://parg.co/bIn)，未来笔者会逐步完善。
+- [Vue 开发与前端工程化实战](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/tree/master/Vue-And-Frontend-Engineering)：本部分目前正逐步启动，笔者的初衷是希望能够保证本书章节与[ React 与前端工程化实践](https://parg.co/bau)尽可能一致，从而更方便地去介绍不同技术栈下相通的设计理念；目前本书的目录只是拷贝自[ React 与前端工程化实践](https://parg.co/bIn)，未来笔者会逐步完善。
 
 ***
 
