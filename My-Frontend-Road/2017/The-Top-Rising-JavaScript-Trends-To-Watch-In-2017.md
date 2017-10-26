@@ -1,3 +1,4 @@
+[![返回目录](https://parg.co/U0e)](https://parg.co/U0X) 
 ﻿
 > [2017值得一瞥的JavaScript相关技术趋势](https://zhuanlan.zhihu.com/p/24671288)从属于笔者的[Web 前端入门与工程实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Engineering-Practices)，推荐阅读[2016-我的前端之路:工具化与工程化](https://zhuanlan.zhihu.com/p/24575395)获得更多关于2016年前端总结。本文主要内容翻译自，笔者对于每个条目进行了些许完善。本文中提及的这些趋势可能离大部分开发者还很远，或者说离真正的大规模工程化应用还很远，不过不妨碍我们提前两三年了解下。本文仅代表原作者个人看法，不喜留言轻喷，译者也很好奇大家对这个列表的看法。
 

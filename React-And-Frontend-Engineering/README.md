@@ -3,10 +3,7 @@
 
 # [React 与前端工程化实践](https://parg.co/bWg)
 
-
-
 `Copyright © 2017 王下邀月熊`
-
 
 本系列文章从属于[ React 与前端工程化实践](https://parg.co/bWg)一书，本书的首要目标即是以 React 为核心的技术体系为主线，为读者构建完整的前端技术知识体系，探讨前端工程化的思想，并且能使不同技术水准的读者都有所得。
 
@@ -31,43 +28,26 @@
 
 （2）而对于有一定前端开发经验的开发者，本书能够帮你梳理现代纷繁复杂的前端开发状况，探寻以 React 为代表的百花齐放的工具库背后蕴藏的设计理念与编程范式，最终融会贯通，形成自己的前端工程化思想与体系。
 
+## 参考
 
-
-
-
-
-## 技术栈版本说明
 - React v16.0.0+
 
 - React Router v4+
 - Webpack v3+
 
+## 版权
 
+![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg) ![](https://parg.co/bDm)
 
+笔者所有文章遵循 [知识共享 署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)，欢迎转载，尊重版权。如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮（支付宝扫码）~
 
+![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
 
 # 目录
 
 
-# 参考
 
 
-
-# 狗粮
-
-如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮（支付宝扫码）~
-
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
-
-
-
-# 版权
-
-![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg) ![](https://parg.co/bDm)
-
-
-
-笔者所有文章遵循 [知识共享 署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)，欢迎转载，尊重版权。
 
 
 

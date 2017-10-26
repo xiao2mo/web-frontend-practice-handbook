@@ -1,3 +1,4 @@
+[![返回目录](https://parg.co/U0e)](https://parg.co/U0X) 
 ﻿
 > 本文翻译自[A-Study-Plan-To-Cure-JavaScript-Fatigue](https://medium.com/@sachagreif/a-study-plan-to-cure-javascript-fatigue-8ad3a54f2eb1#.gfap70pkh)。笔者看到里面的几张配图着实漂亮，顺手翻译了一波。 
 > 本文从属于笔者的[Web Frontend Introduction And Best Practices:前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Develop-Introduction-And-Best-Practices/tree/master/Frontend)。

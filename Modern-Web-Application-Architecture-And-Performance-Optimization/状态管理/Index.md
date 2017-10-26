@@ -1,3 +1,4 @@
+[![返回目录](https://parg.co/UGp)](https://parg.co/UGZ) 
 This is still fairly simple yet, if we need to move data from the App component down to CommentItem component, we have to send down to CommentList first before CommentItem. It's even more tedious when raising events from CommentItem to be handled by the App component.
 
 It gets worse when you try to another another child to CommentItem. Probably a CommentButton component. This means when the button is clicked, you have to tell CommentItem, which will tell CommentList, and finally App. Trying to illustrate this already gives me headache, then consider when you have to implement it in a real project.

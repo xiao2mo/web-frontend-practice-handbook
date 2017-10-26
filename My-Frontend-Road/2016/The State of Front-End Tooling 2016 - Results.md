@@ -1,3 +1,4 @@
+[![返回目录](https://parg.co/U0e)](https://parg.co/U0X) 
 ﻿
 > [2016 年前端工具使用度调研报告](https://segmentfault.com/a/1190000007666924)翻译自[The State of Front-End Tooling 2016 - Results](https://ashleynolan.co.uk/blog/frontend-tooling-survey-2016-results?utm_source=mybridge&utm_medium=web&utm_campaign=read_more#experience-general)。本文从属于笔者的[Web 前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)，如果你希望了解更多关于本文提及的各种框架库的信息，可以参考笔者的[Web前端从入门菜鸟到实践老司机所需要的资料与指南合集](https://segmentfault.com/a/1190000007611188)。
 

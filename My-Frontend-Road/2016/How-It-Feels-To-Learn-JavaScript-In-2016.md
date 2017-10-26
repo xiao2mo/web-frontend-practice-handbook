@@ -1,3 +1,4 @@
+[![返回目录](https://parg.co/U0e)](https://parg.co/U0X) 
 ﻿
 > [2016年里做前端是怎样一种体验](https://segmentfault.com/a/1190000007083024)翻译自[how-it-feels-to-learn-javascript-in-2016](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.5zzf9ydlm)，从属于笔者的[Web Frontend Introduction And Best Practices:前端入门与最佳实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices)系列文章。
 > 最近我女朋友也打算开始学习前端的一些知识，不过她目前的认知水平还停留在DOM+jQuery盛行的阶段，正好借翻译这篇文章之机，跟她讲讲2016年的前端是个什么状态。
