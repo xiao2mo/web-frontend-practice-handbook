@@ -1,4 +1,5 @@
-[![返回目录](https://parg.co/UGp)](https://parg.co/UGZ) 
+[![返回目录](https://parg.co/US3)](https://parg.co/UGZ) 
+ 
 
 记得我才开始使用React的时候，还没有Redux呢，那时候只有Flux 架构的理论概念和一堆各种各样的实现。而硝烟之后，现在主流的状态与数据管理框架便数Redux与MobX，其中MobX并非Flux的实现。Redux如此流行的一个重要乃其广泛的适用性，其不仅适用于React，还能应用于包括Angular 2在内的众多前端框架中。而MobX与Redux相比，我会更倾向于在简单的UI工程中使用它，换言之，我认为MobX并没有提供很多Redux拥有的特性。因此根据你的项目特质来选择合适的状态管理框架才是正道。另外，Relay与Falcor也是很流行的可以用于状态管理的工具，不过不同于Redux或者MobX，它们对于后端有特定的需求，只能基于GraphQL或者Falcor Server，并且Relay中的状态也与服务端持久化存储的某些数据相匹配。换言之，Relay与Falcor并没有提供了可以独立运行在客户端并且支持暂时态的状态管理功能，不过如果你需要同时维护Client-Only与Server-Persisted的状态，那么混用Redux与Relay也是个不错的选择。没有最好的工具，只有最合适的工具。
 Redux的作者Dan Abramov提供了不少的优质学习资源，譬如[Getting Started with Redux](https://egghead.io/courses/getting-started-with-redux)与[building-react-applications-with-idiomatic-redux](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)，这二者都可以引领你一步一步地熟悉并且掌握Redux基础，而本文则是从工程实践经验的角度来介绍一些高级的技巧让你能够更好地使用Redux。

@@ -1,4 +1,5 @@
-[![返回目录](https://parg.co/UGp)](https://parg.co/UGZ) 
+[![返回目录](https://parg.co/US3)](https://parg.co/UGZ) 
+ 
 # Redux 异步处理
 
 在上一节中，我们讨论了Action与Action Creator的基本概念，但是在上文讨论的都是Sync Action Creator，即每个Action Creator都是Pure Function。而我们在实际的应用程序中经常会有一个需求，即是网络请求。网络请求往往附带着延迟，即从触发请求开始到实际获得数据并分发肯定会存在时间间隔，因此，我们在这种情况下需要的不仅仅是同步的Action Creators，还有异步的Action Creator。实际上对于如何实践异步的Action Creator也是见仁见智，笔者在这里会介绍几种常见的用法，各人也可以按照个人的认知与喜好进行选择使用。
