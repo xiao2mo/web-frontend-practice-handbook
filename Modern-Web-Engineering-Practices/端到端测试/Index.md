@@ -1,9 +1,3 @@
 [![返回目录](https://parg.co/UYp)](https://parg.co/Ubt) 
 
-# CSS 调试
 
-## 布局
-
-## 元素样式
-
-## 动画
