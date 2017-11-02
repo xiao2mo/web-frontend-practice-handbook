@@ -1,4 +1,4 @@
-![封面](http://7xi5sw.com1.z0.glb.clouddn.com/1-gcVLvWktBPvc3rgp5fLvBA.jpeg)
+![封面](https://media.githubusercontent.com/media/wxyyxc1992/OSS/master/Cover/Web/%E7%8E%B0%E4%BB%A3%20Web%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5-%E5%B0%81%E9%9D%A2.jpg)
 
 # [现代 Web 开发工程化实践](https://parg.co/Ubt)
 
