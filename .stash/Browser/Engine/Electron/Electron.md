@@ -30,7 +30,7 @@ Electron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造�
 
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)
 
-- [electron-boilerplate](https://github.com/szwacz/electron-boilerplate?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [electron-boilerplate](https://github.com/szwacz/electron-boilerplate)
 
 
 

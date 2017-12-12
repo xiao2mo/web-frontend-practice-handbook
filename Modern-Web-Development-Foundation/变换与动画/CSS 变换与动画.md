@@ -1,5 +1,5 @@
 [![返回目录](https://parg.co/U0y)](https://parg.co/UHU) 
-[toc]
+ 
 
 # GPU Animation
 > - [GPU Animation: Doing It Right](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/)

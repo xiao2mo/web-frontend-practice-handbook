@@ -409,7 +409,7 @@ class Employee {
 
 # NPM
 
-> [NodeJS包管理工具——npm入门](http://aerotiger.info/archives/beginners-guide-node-package-manager.html?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+> [NodeJS包管理工具——npm入门](http://aerotiger.info/archives/beginners-guide-node-package-manager.html)
 
 随着JavaScript项目的成长，如果你不小心处理的话，他们往往会变得难以管理。我们发现自己常常陷入的一些问题： 当在创建新的页面时发现，很难重用或测试之前写的代码。当我们更深处地研究这些问题，我们发现根本原因是无效的依赖管理造成的。比如，脚本A依赖脚本B，并且脚本B又依赖脚本C，当C没有被正确引入时，整个依赖链就无法正常工作了。经过对AMD的进一步探索，我们已经基本确定，组织严密的JavaScript一般都呈现以下五个特点：
 

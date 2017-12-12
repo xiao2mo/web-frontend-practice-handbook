@@ -65,7 +65,7 @@ React Native的优势在于性能比Cordova好，原生的支持比NativeScript�
 
 
 
-- [ZhiHuDaily-React-Native](https://github.com/race604/ZhiHuDaily-React-Native?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [ZhiHuDaily-React-Native](https://github.com/race604/ZhiHuDaily-React-Native)
 
 
 
