@@ -1,6 +1,6 @@
 > 本文从属于笔者的[JavaScript 入门与最佳实践](https://github.com/wxyyxc1992/web-frontend-practice-handbook#javascript)系列文章，同时，本部分内容也归纳于笔者的[我的校招准备之路:从Web前端到服务端应用架构](https://github.com/wxyyxc1992/Coder-Knowledge-Graph/blob/master/interview/my-frontend-backend-interview.md)这篇综述。
 
-> [大部分人都会做错的经典JS闭包面试题](http://www.cnblogs.com/xxcanghai/p/4991870.html?utm_source=tuicool&utm_medium=referral)
+> [大部分人都会做错的经典JS闭包面试题](http://www.cnblogs.com/xxcanghai/p/4991870.html)
 > [how-do-javascript-closures-work](http://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
 
 # Lexical Scope:词法作用域

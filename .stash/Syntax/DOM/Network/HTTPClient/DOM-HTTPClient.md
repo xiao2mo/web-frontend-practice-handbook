@@ -112,7 +112,7 @@ request.send(null);
 # 同源策略与跨域
 > - [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057?utm_source=tuicool)
 > - [同源策略和跨域访问](http://blog.csdn.net/shimiso/article/details/21830313)
-> - [前端跨域的整理 ](http://qiutc.me/post/cross-domain-collections.html?utm_source=tuicool&utm_medium=referral)
+> - [前端跨域的整理 ](http://qiutc.me/post/cross-domain-collections.html)
 > - [MDN-HTTP访问控制(CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E9%99%84%E5%B8%A6%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E7%9A%84%E8%AF%B7%E6%B1%82)
 
 ## 同源策略

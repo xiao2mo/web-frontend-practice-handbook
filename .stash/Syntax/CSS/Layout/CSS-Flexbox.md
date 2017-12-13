@@ -2,10 +2,10 @@
 
 # Flex
 
-> - [Flex布局新旧混合写法详解（兼容微信）](http://www.ccwebsite.com/flex-layout-old-and-new-compatible/?utm_source=tuicool&utm_medium=referral)
+> - [Flex布局新旧混合写法详解（兼容微信）](http://www.ccwebsite.com/flex-layout-old-and-new-compatible/)
 > 
 > 
-> - [移动端开发小记 - Flexbox](http://taobaofed.org/blog/2015/11/11/flexbox-in-mobile-web/?utm_source=tuicool&utm_medium=referral)
+> - [移动端开发小记 - Flexbox](http://taobaofed.org/blog/2015/11/11/flexbox-in-mobile-web/)
 > - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 > - [CSS3: Flexbox](http://book.mixu.net/css/4-flexbox.html)
 
@@ -317,7 +317,7 @@ flex-grow与flex-shrink都是用于控制flex元素的缩放，这两个属性�
 # Flex-Polyfill
 ## 微信:基于autoprefix
 
-> [Flex布局新旧混合写法详解（兼容微信）](http://www.ccwebsite.com/flex-layout-old-and-new-compatible/?utm_source=tuicool&utm_medium=referral)
+> [Flex布局新旧混合写法详解（兼容微信）](http://www.ccwebsite.com/flex-layout-old-and-new-compatible/)
 
 经过上文对于Box与Flex的介绍，大家肯定已经发现了Flex的魅力所在，同时ReactNative中标准的布局也是采用的Flex的规则，它可以视作用来代替`float`与`position`的属性。不过，在移动端的实践中，很多的老版本浏览器，其中以微信内置的某自研浏览器为典型代表，还有一些即将退出历史舞台的IE浏览器。
 

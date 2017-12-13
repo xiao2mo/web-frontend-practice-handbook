@@ -112,7 +112,7 @@ React.render(<FilteredList/>, document.getElementById('mount-point'));
 
 - [reactspeedcoding:基于几十个项目的React学习](https://github.com/manavsehgal/reactspeedcoding)
 
-- [React设计思想](https://github.com/react-guide/react-basic?utm_source=tuicool&utm_medium=referral)
+- [React设计思想](https://github.com/react-guide/react-basic)
 
 ### Blogs & News
 - [Awesome-React](https://github.com/enaqx/awesome-react)
@@ -138,7 +138,7 @@ React.render(<FilteredList/>, document.getElementById('mount-point'));
 - [Pro React](http://7xkt0f.com1.z0.glb.clouddn.com/Apress.Pro.React.1484212614.pdf)
 ### Practices
 
-- [React.js 2016最佳实践](http://www.alloyteam.com/2016/01/reactjs-best-practices-for-2016/?utm_source=tuicool&utm_medium=referral)
+- [React.js 2016最佳实践](http://www.alloyteam.com/2016/01/reactjs-best-practices-for-2016/)
 
 - [awesome-react](https://github.com/enaqx/awesome-react)
 
