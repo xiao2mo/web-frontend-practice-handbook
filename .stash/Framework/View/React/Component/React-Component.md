@@ -36,7 +36,7 @@ React为其组件提供了一个基本的生命周期，这保证了我们对于
 
 ## LifeCycle
 
-> - [react-components-lifecycle](https://medium.com/react-ecosystem/react-components-lifecycle-ce09239010df#.tfkr6cgzu)
+- [react-components-lifecycle](https://medium.com/react-ecosystem/react-components-lifecycle-ce09239010df#.tfkr6cgzu)
 
 
 
@@ -345,7 +345,7 @@ this.props 对象的属性与组件的属性一一对应，但是有一个例外
 
 # State
 
-> - [how-to-handle-state-in-react](https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c#.i7hd01k4c)
+- [how-to-handle-state-in-react](https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c#.i7hd01k4c)
 
 
 
@@ -482,7 +482,7 @@ var newObj = update(obj, {$merge: {b: 6, c: 7}}); // => {a: 5, b: 6, c: 7}
 
 # FunctionalComponent
 
-> - [stateless-components-in-react](https://medium.com/@joshblack/stateless-components-in-react-0-14-f9798f8b992d#.fkbrv6x6s)
+- [stateless-components-in-react](https://medium.com/@joshblack/stateless-components-in-react-0-14-f9798f8b992d#.fkbrv6x6s)
 
 
 

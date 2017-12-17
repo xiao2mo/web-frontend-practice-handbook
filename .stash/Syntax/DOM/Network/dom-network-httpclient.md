@@ -207,11 +207,11 @@ request.send(null);
 
 # 同源策略与跨域
 
-> - [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057?utm_source=tuicool)
+- [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057?utm_source=tuicool)
 
-> - [同源策略和跨域访问](http://blog.csdn.net/shimiso/article/details/21830313)
+- [同源策略和跨域访问](http://blog.csdn.net/shimiso/article/details/21830313)
 
-> - [前端跨域的整理 ](http://qiutc.me/post/cross-domain-collections.html)
+- [前端跨域的整理 ](http://qiutc.me/post/cross-domain-collections.html)
 
 
 
@@ -419,9 +419,9 @@ window.onmessage = function(e) {
 
 # Fetch
 
-> - [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
+- [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
 
-> - [fetch API](https://davidwalsh.name/fetch)
+- [fetch API](https://davidwalsh.name/fetch)
 
 
 

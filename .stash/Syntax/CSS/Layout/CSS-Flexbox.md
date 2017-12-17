@@ -2,12 +2,12 @@
 
 # Flex
 
-> - [Flex布局新旧混合写法详解（兼容微信）](http://www.ccwebsite.com/flex-layout-old-and-new-compatible/)
+- [Flex布局新旧混合写法详解（兼容微信）](http://www.ccwebsite.com/flex-layout-old-and-new-compatible/)
 > 
 > 
-> - [移动端开发小记 - Flexbox](http://taobaofed.org/blog/2015/11/11/flexbox-in-mobile-web/)
-> - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-> - [CSS3: Flexbox](http://book.mixu.net/css/4-flexbox.html)
+- [移动端开发小记 - Flexbox](http://taobaofed.org/blog/2015/11/11/flexbox-in-mobile-web/)
+- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [CSS3: Flexbox](http://book.mixu.net/css/4-flexbox.html)
 
 CSS 2.1 定义了四种布局模式 ― 由一个盒与其兄弟、祖先盒的关系决定其尺寸与位置的算法：
 
@@ -534,7 +534,7 @@ flex-grow: 1;
 [flexibility](https://github.com/10up/flexibility)是一个Flex的兼容库，允许在IE8&9上使用Flex及一系列特性。
 上面
 # Flexbox Patterns:一系列基于Flexbox布局实战
-> - [Flexbox Patterns](http://www.flexboxpatterns.com/feature-list)
+- [Flexbox Patterns](http://www.flexboxpatterns.com/feature-list)
 
 如果要在 Internet Explorer 8 & 9 上使用Flex, 直接下载 [flexibility.js](https://github.com/10up/flexibility/blob/master/dist/flexibility.js) 脚本然后引入页面中。
 

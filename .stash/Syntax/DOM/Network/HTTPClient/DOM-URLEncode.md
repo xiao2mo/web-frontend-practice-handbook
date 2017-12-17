@@ -7,8 +7,8 @@
 URL只能使用英文字母、阿拉伯数字和某些标点符号，不能使用其他文字和符号。根据RFC1738中做的规定:"只有字母和数字[0-9a-zA-Z]、一些特殊符号"$-_.+!*'(),"[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL。"笔者之前一直使用的是JavaScript中encodeURI与encodeURIComponent进行的编解码工作，直到有一天笔者需要用Ajax抓取[这个页面](http://ggzy.njzwfw.gov.cn/njggzy/consultant/showresault.aspx?ShowLsh=0&Mlsh=123456&Name=%D7%F3%C5%CE)，其中最后一个参数是中文名，笔者才遇到需要在前端进行GBK编码的问题。可能是因为笔者没有搜索到合适的文章，目前发现的很多对汉字进行GBK编码的方案都是基于服务端进行的，而纯前端的编码方案不多。其中有一个是[gb2312-utf8-convert.js](https://gist.github.com/19317362/a1d8e40bfb6587463d4d)，不过我是测试失败了，因此本文是参考了[纯前端Js解决各种汉字urlencode,urldecode（GBK、UTF-8均可）](http://zcw.me/blogwp/front-end-urldecode-gbk/)中提出的基于iframe的浏览器自编码方案，实战效果还可以。同时，因为笔者是在Node环境下进行网络请求模块的单元测试，然后无缝移植到Browser中运行，因此笔者自己封装了一个[isomorphic-urlencode](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/dom/network/HTTPClient/isomorphic-urlencode)。
 
 ## Reference
-> - [纯前端Js解决各种汉字urlencode,urldecode（GBK、UTF-8均可）](http://zcw.me/blogwp/front-end-urldecode-gbk/)
-> - [阮一峰的网络日志:关于URL编码](http://www.ruanyifeng.com/blog/2010/02/url_encoding.html)
+- [纯前端Js解决各种汉字urlencode,urldecode（GBK、UTF-8均可）](http://zcw.me/blogwp/front-end-urldecode-gbk/)
+- [阮一峰的网络日志:关于URL编码](http://www.ruanyifeng.com/blog/2010/02/url_encoding.html)
 
 
 

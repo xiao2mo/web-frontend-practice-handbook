@@ -4,10 +4,10 @@
 
 ## Reference
 
-> - [这可能是史上最全的CSS自适应布局总结](http://mp.weixin.qq.com/s?__biz=MzA4ODIxMzg5MQ==&mid=2653995792&idx=1&sn=730974c4cff6d3738c52902a2f99ed7e&scene=23&srcid=0516rsLrl38nVY19S5QIKHGC#rd)
-> - [developing-mobile-web-apps-when-why-and-how](https://www.toptal.com/android/developing-mobile-web-apps-when-why-and-how)
-> - [10-tips-for-mobile-web-design-optimization](https://www.elegantthemes.com/blog/tips-tricks/10-tips-for-mobile-web-design-optimization)
-> - [The pro's guide to responsive web design](http://www.creativebloq.com/rwd/pros-guide-responsive-web-design-71515692):Advanced techniques from top web designers to build better sites for any device.
+- [这可能是史上最全的CSS自适应布局总结](http://mp.weixin.qq.com/s?__biz=MzA4ODIxMzg5MQ==&mid=2653995792&idx=1&sn=730974c4cff6d3738c52902a2f99ed7e&scene=23&srcid=0516rsLrl38nVY19S5QIKHGC#rd)
+- [developing-mobile-web-apps-when-why-and-how](https://www.toptal.com/android/developing-mobile-web-apps-when-why-and-how)
+- [10-tips-for-mobile-web-design-optimization](https://www.elegantthemes.com/blog/tips-tricks/10-tips-for-mobile-web-design-optimization)
+- [The pro's guide to responsive web design](http://www.creativebloq.com/rwd/pros-guide-responsive-web-design-71515692):Advanced techniques from top web designers to build better sites for any device.
 
 # HTML Boilerplate
 (1)百分比下高度问题
@@ -43,7 +43,7 @@ So if we go back and look at it in terms of table vs div, it's my opinion that w
 
 # Responsive Size:响应式尺寸
 ## Media Query:媒介查询
-> - [CSS Media Queries for iPads & iPhones](http://stephen.io/mediaqueries/)
+- [CSS Media Queries for iPads & iPhones](http://stephen.io/mediaqueries/)
 
 ### Media Query By SCSS
 ### Responsive Menu
@@ -137,8 +137,8 @@ ul.topnav li.icon {display: none;}
 整体而言该Polyfill的完善度与社区活跃度皆不如上者，建议有需要的还是参考下上面那个Polyfill。
 
 ### FontSize:字体
-> - [css-font-size-em-vs-px-vs-pt-vs](http://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/)
-> - [the-ems-have-it-proportional-media-queries-ftw](https://cloudfour.com/thinks/the-ems-have-it-proportional-media-queries-ftw/)
+- [css-font-size-em-vs-px-vs-pt-vs](http://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/)
+- [the-ems-have-it-proportional-media-queries-ftw](https://cloudfour.com/thinks/the-ems-have-it-proportional-media-queries-ftw/)
 
 ### Fixed Size
 To avoid mobile browsers (iOS Safari, *et al*.) from zooming in on HTML form elements when a `` drop-down is tapped, add `font-size` to the selector rule:
@@ -212,10 +212,10 @@ vw and vh. The vw is 1/100th of the window's width and the vh is 1/100th of the 
 
 # Auto Resize:自动缩放
 ## CSS Responsive Grid System
-> - [understanding-css-grid-systems](https://www.sitepoint.com/understanding-css-grid-systems/)
+- [understanding-css-grid-systems](https://www.sitepoint.com/understanding-css-grid-systems/)
 
 ### CSS Grid Layouts
-> - [The future of layout with CSS: Grid Layouts](https://medium.com/@patrickbrosset/css-grid-layout-6c9cba6e8a5a#.abrk05o7z)
+- [The future of layout with CSS: Grid Layouts](https://medium.com/@patrickbrosset/css-grid-layout-6c9cba6e8a5a#.abrk05o7z)
 
 ## Flexbox:动态分配空间
 ## Proportional Scale:按比例缩放
@@ -254,12 +254,12 @@ div.flex .item {
 
 
 # Appropriate Image:合适的图片
-> - [responsive-images-client-hints](https://davidwalsh.name/responsive-images-client-hints)
+- [responsive-images-client-hints](https://davidwalsh.name/responsive-images-client-hints)
 ## Image Compression:图片压缩
-> - [Image Compression for Web Developers](http://www.html5rocks.com/en/tutorials/speed/img-compression/)
+- [Image Compression for Web Developers](http://www.html5rocks.com/en/tutorials/speed/img-compression/)
 
 ## Responsive Image:响应式图片
-> - [quick-guide-responsive-images](http://slicejack.com/quick-guide-responsive-images/)
-> - [responsive-images-done-right-guide-picture-srcset](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/)
+- [quick-guide-responsive-images](http://slicejack.com/quick-guide-responsive-images/)
+- [responsive-images-done-right-guide-picture-srcset](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/)
 
 ### [Picturefill](https://github.com/scottjehl/picturefill)

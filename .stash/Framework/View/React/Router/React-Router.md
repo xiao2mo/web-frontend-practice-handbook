@@ -588,7 +588,7 @@ render((
 ```
 
 # History
-> - [Histories官方文档](https://github.com/reactjs/react-router/blob/master/docs/guides/Histories.md)
+- [Histories官方文档](https://github.com/reactjs/react-router/blob/master/docs/guides/Histories.md)
 
 React Router 是建立在 [history](https://github.com/rackt/history) 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 `location` 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
 

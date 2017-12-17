@@ -1,9 +1,9 @@
 
 > 本文从属于笔者的[Web前端入门与最佳实践](https://github.com/wxyyxc1992/web-frontend-practice-handbook)中[前端性能优化](https://github.com/wxyyxc1992/web-frontend-practice-handbook#optimization%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)中的[前端工程化之状态管理实践](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Best-Practices/tree/master/Frontend/Advanced/Engineering/StateManagement)系列文章。下面列举了几篇关于Redux与MobX的文章或者讨论，有兴趣的可以阅读下。本文并不是希望安利或者作MobX的布道者，也不是单纯地为了吐槽Functional Programming至上主义，只是笔者提出自己再前端实践中的一些困惑与思考以供批判讨论。
-> - [a-redux-enthusiast-tries-mobx](https://medium.com/@adamrackis/a-redux-enthusiast-tries-mobx-af675f468c11#.a7ot846e1)
-> - [Redux or MobX: An attempt to dissolve the Confusion](http://www.robinwieruch.de/redux-mobx-confusion/)
-> - [why-we-chose-mobx-over-redux-for-spectacle-editor](https://formidable.com/blog/2016/06/02/why-we-chose-mobx-over-redux-for-spectacle-editor/)
-> - [Understanding MobX and when to use it. ](https://github.com/mobxjs/mobx/issues/199)
+- [a-redux-enthusiast-tries-mobx](https://medium.com/@adamrackis/a-redux-enthusiast-tries-mobx-af675f468c11#.a7ot846e1)
+- [Redux or MobX: An attempt to dissolve the Confusion](http://www.robinwieruch.de/redux-mobx-confusion/)
+- [why-we-chose-mobx-over-redux-for-spectacle-editor](https://formidable.com/blog/2016/06/02/why-we-chose-mobx-over-redux-for-spectacle-editor/)
+- [Understanding MobX and when to use it. ](https://github.com/mobxjs/mobx/issues/199)
 
 
 Redux是完全的[函数式编程思想](https://github.com/wxyyxc1992/Coder-Essentials/blob/master/ProgrammingParadigm/FunctionalProgramming/So-You-Want-To-Be-A-Functional-Programmer.md)践行者（如果你对于Redux还不够理解，可以参考下笔者的[深入理解Redux:10个来自专家的Redux实践建议](https://segmentfault.com/a/1190000006769471)），其核心技术围绕遵循Pure Function的Reducer与遵循Immutable Object的Single State Tree，提供了Extreme Predictability与Extreme Testability，相对应的需要大量的Boilerplate。而[MobX](https://github.com/mobxjs/mobx)则是Less Opinioned，其脱胎于Reactive Programming，其核心思想为Anything that can be derived from the application state, should be derived. Automatically，即避免任何的重复状态。Redux使用了Uniform Single State Tree，而在后端开发中习惯了Object Oriented Programming的笔者不由自主的也想在前端引入Entity，或者说在设计思想上，譬如对于TodoList的增删改查，笔者希望能够包含在某个TodoList对象中，而不需要将所有的操作拆分为Creator、Reducer与Selector三个部分，我只是想简单的展示个列表而已。笔者上大学学的第一节课就是讲OOP，包括后面在C#、Java、Python、PHP等等很多后端领域的实践中，都深受OOP思想的熏陶与灌输。不可否认，可变的状态是软件工程中的万恶之源，但是，OOP对于业务逻辑的描述与代码组织的可读性、可理解性的保证相较于声明式的，略为抽象的FP还是要好一点的。我认可函数式编程的思想成为项目构建组织的不可分割的一部分，但是是否应该在任何项目的任何阶段都先谈编程思想，而后看业务需求？这无疑有点政治正确般的耍流氓了，笔者觉得文本唯一声明秉持的思想就是在不同级别/需求的项目发展的不同阶段我们应该使用不同的技术栈与技术搭配，而本文要讨论的核心即是如何寻求一种尽可能平稳与提供碎片化代码的能够贯彻项目整个生命周期的代码组织或者框架选用方案。

@@ -2,7 +2,7 @@
  
 
 # GPU Animation
-> - [GPU Animation: Doing It Right](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/)
+- [GPU Animation: Doing It Right](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/)
 - [一篇文章说清浏览器解析和CSS（GPU）动画优化](https://segmentfault.com/a/1190000008015671?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly)
 - [精选！CSS 动画之工具、框架和教程](https://zhuanlan.zhihu.com/p/24931899)
 

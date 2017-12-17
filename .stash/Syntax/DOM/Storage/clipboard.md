@@ -22,7 +22,7 @@
 
 ## Clipboard API
 
-> - [HTML5实战与剖析之剪贴板事件](http://www.it165.net/design/html/201402/2506.html)
+- [HTML5实战与剖析之剪贴板事件](http://www.it165.net/design/html/201402/2506.html)
 
 
 

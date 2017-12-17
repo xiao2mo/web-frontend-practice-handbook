@@ -17,7 +17,7 @@
 在正式开始之前，我们先要搞清楚我所要说的和你目前理解的是不是同一个东西。如果你在Google中搜索‘Learn JavaScript’或者‘JavaScript study plan’，你能得到一坨一坨的资料与教程指导你如何学习。不过实际上在我们的真实项目中，我们只会用到一些相对简单的语法。换言之，可能你在学习Web应用编写中所需要的80%的知识点都包含在了任何一本JavaScript书籍的前几章。另一个角度来说，真正麻烦的点在于如何掌握整个JavaScript生态圈，这里包含了数不尽的框架与库。不过我相信本文可以给你一点启示。
 
 ## Building Blocks Of JavaScript Apps
-> - [State Of JavaScript：前端框架现状调查](https://segmentfault.com/a/1190000006728971)
+- [State Of JavaScript：前端框架现状调查](https://segmentfault.com/a/1190000006728971)
 
 为了便于理解现代JavaScript为啥看起来如何复杂，我们首先要明白其工作原理。我们首先来看下2008年左右流行的所谓传统Web应用的架构:
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/10/3/1-k8ouvk608TxH5FaLM8XUxQ.png)
@@ -58,8 +58,8 @@ React是由Facebook开发并且开源的UI库，换言之，其专注于完成�
 总而言之，React并不一定适用于所有的场景，但是我觉得它是所谓最安全的，学了不吃亏。React还会引导你去了解一些像组件、应用状态与无状态函数等等现代Web应用框架的概念。最后，React的整个生态圈非常繁荣，你可以从Github上有关React的项目中找到很多可用的组件，或者在Stack Overflow上找到很多关于React的答疑解惑。我个人是比较推荐[Wes Bos的React for Beginners](https://reactforbeginners.com/friend/STATEOFJS)这一课程。这课程包含了React从入门到最佳实践的全部知识。
 
 # Week 2:Your First React Project
-> - [使用Facebook的create-react-app快速构建React开发环境](https://segmentfault.com/a/1190000006055973)
-> - [在重构脚手架中掌握React/Redux/Webpack2基本套路](https://segmentfault.com/a/1190000007166607)
+- [使用Facebook的create-react-app快速构建React开发环境](https://segmentfault.com/a/1190000006055973)
+- [在重构脚手架中掌握React/Redux/Webpack2基本套路](https://segmentfault.com/a/1190000007166607)
 
 到了这里我假设你已经完成了React的基础课程，如果你跟我差不多的话，那么我估计你现在的状态可能是:
 - 估摸着你已经忘了一大半学过的知识点
@@ -85,9 +85,9 @@ React是由Facebook开发并且开源的UI库，换言之，其专注于完成�
 如果你跟我一样也不是很熟悉，那么建议可以花个几天时间来认真学习下ES6的特性。如果你喜欢上面推荐的React基础课程，那么你也可以看下[ES6 for Everybody](https://es6.io/friend/stateofjs)系列教程。不过如果你想找点免费的资源，那么这里推荐[Nicolas Bevacqua’s book, Practical ES6.](https://ponyfoo.com/books/practical-es6/chapters)。最后，我还是想提到下对于ES6的好的学习方法就是回顾参照各种各样的代码库，学习人家的用法与实践。
 
 # Week 4:Taking On State Management
-> - [思考:我需要怎样的前端状态管理工具?](https://segmentfault.com/a/1190000007103433)
-> - [你不一定需要Redux](https://segmentfault.com/a/1190000006966262)
-> - [深入理解Redux:10个来自专家的Redux实践建议](https://segmentfault.com/a/1190000006769471)
+- [思考:我需要怎样的前端状态管理工具?](https://segmentfault.com/a/1190000007103433)
+- [你不一定需要Redux](https://segmentfault.com/a/1190000006966262)
+- [深入理解Redux:10个来自专家的Redux实践建议](https://segmentfault.com/a/1190000006769471)
 
 到这里我们已经能够构建基于静态内容的简单的React的前端项目，不过真实的Web应用项目不可能全是静态内容，他们需要从服务端获取数据然后交与React进行动态渲染。最直观的做法就是将数据一层一层地传递给组件，不过这很容易引发整个系统的混乱。譬如当两个组件需要去展示同样的数据时候，它们应该如何交互呢？
 这也就是所谓状态管理工具的用武之处，不同于将你的数据存放到组件内，你可以创建一个独立的全局单例Store来为组件树存放状态:
@@ -99,7 +99,7 @@ React是由Facebook开发并且开源的UI库，换言之，其专注于完成�
 同样的，我们这里也推荐一些[Redux 教程](https://learnredux.com/)，以及免费的[Redux作者的系列分享](https://egghead.io/courses/getting-started-with-redux)。
 
 # Week 5: Building APIs With GraphQL
-> - [GraphQL初探:从REST到GraphQL，更完善的数据查询定义](https://segmentfault.com/a/1190000005766732)
+- [GraphQL初探:从REST到GraphQL，更完善的数据查询定义](https://segmentfault.com/a/1190000005766732)
 
 现在我们已经讨论了很多客户端开发中所需要的知识栈，不过对于有追求的前端开发者而言这远远不够。不谈整个Node生态社区，我们还需要注意这个服务端的数据是如何传递到客户端的。这里要着重介绍下[GraphQL](http://graphql.org/)，一个由Facebook出品的可以替代传统的REST API的标准。
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/11/1/1-HiWFjGqvZEOEUaSGau89eQ.png)

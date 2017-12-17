@@ -328,7 +328,7 @@ nextState <————————————— |     G     |  |    |    |
 ```
 
 # Saga
-> - [Redux Saga实践](http://yanqiw.github.io/react/2017/03/05/redux-saga.html)
+- [Redux Saga实践](http://yanqiw.github.io/react/2017/03/05/redux-saga.html)
 
 > [advanced-redux-action-types](https://medium.com/@zackargyle/advanced-redux-action-types-d5a71ed44e16#.hngz4r406)
 
@@ -555,11 +555,11 @@ Given that “Redux can be written in a few lines of Rx using the scan operator�
 The answer to this is pretty simple: Redux has a well defined existing pattern and guidance for use within React. More importantly, Redux has a lot of nice community-driven tooling that we wanted to be able to take advantage of. At the end of the day, it doesn’t matter if the reducers are run via an Rx `scan` or Redux. What matters is the productivity and performance and Redux and Redux’s tooling provides those two things well
 
 
-> - [can-i-dispatch-multiple-actions-from-redux-action-creators](
+- [can-i-dispatch-multiple-actions-from-redux-action-creators](
 http://jamesknelson.com/can-i-dispatch-multiple-actions-from-redux-action-creators/)
 
 ## MiddleWare Listener Pattern
-> - [the-middleware-listener-pattern-better-asynchronous-actions-in-redux](https://medium.com/@alexandereardon/the-middleware-listener-pattern-better-asynchronous-actions-in-redux-16164fb6186f#.wy16tsyck)
+- [the-middleware-listener-pattern-better-asynchronous-actions-in-redux](https://medium.com/@alexandereardon/the-middleware-listener-pattern-better-asynchronous-actions-in-redux-16164fb6186f#.wy16tsyck)
 
 
 # Action Utils:Action的一些辅助工具

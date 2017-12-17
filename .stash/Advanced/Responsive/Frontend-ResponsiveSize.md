@@ -3,8 +3,8 @@
 # Media Query
 
 ## Element Query
-> - [2013-Media Queries Are Not The Answer: Element Query Polyfill](https://www.smashingmagazine.com/2013/06/media-queries-are-not-the-answer-element-query-polyfill/)
-> - [2016-Element Queries: the Future of Responsive Web Design](http://webdesign.tutsplus.com/tutorials/element-queries-the-future-of-responsive-web-design--cms-26945)
+- [2013-Media Queries Are Not The Answer: Element Query Polyfill](https://www.smashingmagazine.com/2013/06/media-queries-are-not-the-answer-element-query-polyfill/)
+- [2016-Element Queries: the Future of Responsive Web Design](http://webdesign.tutsplus.com/tutorials/element-queries-the-future-of-responsive-web-design--cms-26945)
 
 # 合理的单位搭配
 

@@ -33,10 +33,10 @@ React并不是一个完整的MVC或者MVVM框架，它与Angular也是负责不�
 React渲染出来的HTML标记都包含了`data-reactid`属性，这有助于React中追踪DOM节点。
 ```
 
-> - [React’s diff algorithm](http://calendar.perfplanet.com/2013/diff/)
-> - [The Secrets of React’s virtual DOM](http://fluentconf.com/fluent2014/public/schedule/detail/32395)
-> - [Why is React’s concept of virtual DOM said to be moreperformant than dirty model checking?](http://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode)
-> - [virtual-dom](https://github.com/Matt-Esch/virtual-dom)
+- [React’s diff algorithm](http://calendar.perfplanet.com/2013/diff/)
+- [The Secrets of React’s virtual DOM](http://fluentconf.com/fluent2014/public/schedule/detail/32395)
+- [Why is React’s concept of virtual DOM said to be moreperformant than dirty model checking?](http://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode)
+- [virtual-dom](https://github.com/Matt-Esch/virtual-dom)
 
 ## 单向数据流
 

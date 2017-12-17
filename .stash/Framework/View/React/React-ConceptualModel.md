@@ -314,5 +314,5 @@ function App(data) {
 
 > Further Reading
 
-> - [我的前端之路](https://segmentfault.com/a/1190000004292245)
+- [我的前端之路](https://segmentfault.com/a/1190000004292245)
 

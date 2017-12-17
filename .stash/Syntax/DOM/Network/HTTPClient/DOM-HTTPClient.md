@@ -110,10 +110,10 @@ request.send(null);
 ```
 
 # 同源策略与跨域
-> - [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057?utm_source=tuicool)
-> - [同源策略和跨域访问](http://blog.csdn.net/shimiso/article/details/21830313)
-> - [前端跨域的整理 ](http://qiutc.me/post/cross-domain-collections.html)
-> - [MDN-HTTP访问控制(CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E9%99%84%E5%B8%A6%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E7%9A%84%E8%AF%B7%E6%B1%82)
+- [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057?utm_source=tuicool)
+- [同源策略和跨域访问](http://blog.csdn.net/shimiso/article/details/21830313)
+- [前端跨域的整理 ](http://qiutc.me/post/cross-domain-collections.html)
+- [MDN-HTTP访问控制(CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E9%99%84%E5%B8%A6%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E7%9A%84%E8%AF%B7%E6%B1%82)
 
 ## 同源策略
 可谓同源？URL由协议、域名、端口和路径组成，如果两个URL的协议、域名和端口相同，则表示他们同源。浏览器的同源策略，限制了来自不同源的"document"或脚本，对当前"document"读取或设置某些属性，即从一个域上加载的脚本不允许访问另外一个域的文档属性。比如一个恶意网站的页面通过iframe嵌入了银行的登录页面（二者不同源），如果没有同源限制，恶意网页上的javascript脚本就可以在用户登录银行的时候获取用户名和密码。所谓道高一尺魔高一丈，虽然浏览器以同源策略限制了我们随意请求资源，但是从这个策略出现开始就有很多各种各样的Hacker技巧来。
@@ -251,8 +251,8 @@ window.onmessage = function(e) {
 不过笔者在自己的开发实践中发现目前服务端跨域还是很有意义的，特别当我们希望从不支持CORS或者JSONP的服务端获取数据的时候，往往只能通过跨域请求。
 
 # Fetch
-> - [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
-> - [fetch API](https://davidwalsh.name/fetch)
+- [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
+- [fetch API](https://davidwalsh.name/fetch)
 
 JavaScript 通过XMLHttpRequest(XHR)来执行异步请求，这个方式已经存在了很长一段时间。虽说它很有用，但它不是最佳API。它在设计上不符合职责分离原则，将输入、输出和用事件来跟踪的状态混杂在一个对象里。而且，基于事件的模型与最近JavaScript流行的Promise以及基于生成器的异步编程模型不太搭。新的 Fetch API打算修正上面提到的那些缺陷。 它向JS中引入和HTTP协议中同样的原语。具体而言，它引入一个实用的函数 fetch() 用来简洁捕捉从网络上检索一个资源的意图。Fetch 规范 的API明确了用户代理获取资源的语义。它结合ServiceWorkers，尝试达到以下优化：
 - 改善离线体验
