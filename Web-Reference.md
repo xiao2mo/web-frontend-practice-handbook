@@ -203,7 +203,7 @@
 * 浏览器工作原理 :[浏览器的工作原理：新式网络浏览器幕后揭秘](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)、[浏览器工作原理](https://segmentfault.com/a/1190000004934730)、[从输入 URL 到页面加载完成的过程中都发生了什么事情？](http://fex.baidu.com/blog/2014/05/what-happen/)
 
 * 网页渲染 :[CSDN- 开发者应该知道的有关于网页渲染的事](http://www.csdn.net/article/2015-06-12/2824946)、[JS 一定要放在 Body 的最底部么？聊聊浏览器的渲染机制](http://delai.me/code/js-and-performance/)
-* [高性能 JavaScript 重排与重绘](http://www.cnblogs.com/zichi/p/4720000.html?utm_source=tuicool)
+* [高性能 JavaScript 重排与重绘](http://www.cnblogs.com/zichi/p/4720000.html)
 * [how-browsers-work](http://taligarsiel.com/Projects/howbrowserswork1.htm)
 * [the-rendering-process-of-a-web-page](https://medium.com/@gneutzling/the-rendering-process-of-a-web-page-78e05a6749dc#.zdp2moezo)
 * [渲染性能](https://github.com/sundway/blog/issues/2)

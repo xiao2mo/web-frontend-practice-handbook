@@ -207,7 +207,7 @@ request.send(null);
 
 # 同源策略与跨域
 
-- [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057?utm_source=tuicool)
+- [JavaScript 四种跨域方法](http://segmentfault.com/a/1190000003642057)
 
 - [同源策略和跨域访问](http://blog.csdn.net/shimiso/article/details/21830313)
 
