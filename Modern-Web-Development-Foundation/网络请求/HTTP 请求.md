@@ -1,19 +1,14 @@
-[![返回目录](https://parg.co/U0y)](https://parg.co/UHU) 
-.wiz-code-container{position: relative; padding:8px 0; margin: 5px 25px 5px 5px;text-indent:0; text-align:left;}.CodeMirror {font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; color: black; font-size: 10pt; font-size: 0.83rem}.CodeMirror-lines {padding: 4px 0;}.CodeMirror pre {padding: 0 4px;}.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {background-color: white;}.CodeMirror-gutters {border-right: 1px solid #ddd; background-color: #f7f7f7; white-space: nowrap;}.CodeMirror-linenumbers {}.CodeMirror-linenumber {padding: 0 3px 0 5px; min-width: 20px; text-align: right; color: #999; white-space: nowrap;}.CodeMirror-guttermarker {color: black;}.CodeMirror-guttermarker-subtle {color: #999;}.CodeMirror-cursor {border-left: 1px solid black; border-right: none; width: 0;}.CodeMirror div.CodeMirror-secondarycursor {border-left: 1px solid silver;}.cm-fat-cursor .CodeMirror-cursor {width: auto; border: 0 !important; background: #7e7;}.cm-fat-cursor div.CodeMirror-cursors {z-index: 1;}.cm-animate-fat-cursor {width: auto; border: 0; -webkit-animation: blink 1.06s steps(1) infinite; -moz-animation: blink 1.06s steps(1) infinite; animation: blink 1.06s steps(1) infinite; background-color: #7e7;}@-moz-keyframes blink {  0% {}  50% { background-color: transparent; }  100% {}}@-webkit-keyframes blink {  0% {}  50% { background-color: transparent; }  100% {}}@keyframes blink {  0% {}  50% { background-color: transparent; }  100% {}}.CodeMirror-overwrite .CodeMirror-cursor {}.cm-tab { display: inline-block; text-decoration: inherit; }.CodeMirror-rulers {position: absolute; left: 0; right: 0; top: -50px; bottom: -20px; overflow: hidden;}.CodeMirror-ruler {border-left: 1px solid #ccc; top: 0; bottom: 0; position: absolute;}.cm-s-default .cm-header {color: blue;}.cm-s-default .cm-quote {color: #090;}.cm-negative {color: #d44;}.cm-positive {color: #292;}.cm-header, .cm-strong {font-weight: bold;}.cm-em {font-style: italic;}.cm-link {text-decoration: underline;}.cm-strikethrough {text-decoration: line-through;}.cm-s-default .cm-keyword {color: #708;}.cm-s-default .cm-atom {color: #219;}.cm-s-default .cm-number {color: #164;}.cm-s-default .cm-def {color: #00f;}.cm-s-default .cm-variable,.cm-s-default .cm-punctuation,.cm-s-default .cm-property,.cm-s-default .cm-operator {}.cm-s-default .cm-variable-2 {color: #05a;}.cm-s-default .cm-variable-3 {color: #085;}.cm-s-default .cm-comment {color: #a50;}.cm-s-default .cm-string {color: #a11;}.cm-s-default .cm-string-2 {color: #f50;}.cm-s-default .cm-meta {color: #555;}.cm-s-default .cm-qualifier {color: #555;}.cm-s-default .cm-builtin {color: #30a;}.cm-s-default .cm-bracket {color: #997;}.cm-s-default .cm-tag {color: #170;}.cm-s-default .cm-attribute {color: #00c;}.cm-s-default .cm-hr {color: #999;}.cm-s-default .cm-link {color: #00c;}.cm-s-default .cm-error {color: #f00;}.cm-invalidchar {color: #f00;}.CodeMirror-composing { border-bottom: 2px solid; }div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }.CodeMirror-activeline-background {background: #e8f2ff;}.CodeMirror {position: relative; background: #f5f5f5;}.CodeMirror-scroll {overflow: hidden !important; margin-bottom: 0; margin-right: 0; padding: 16px 0 16px; outline: none; position: relative;}.CodeMirror-sizer {position: relative; border-right: 30px solid transparent;}.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {position: absolute; z-index: 6; display: none;}.CodeMirror-vscrollbar {right: 0; top: 0; overflow-x: hidden; overflow-y: scroll;}.CodeMirror-hscrollbar {bottom: 0; left: 0 !important; overflow-y: hidden; overflow-x: scroll;}.CodeMirror-scrollbar-filler {right: 0; bottom: 0;}.CodeMirror-gutter-filler {left: 0; bottom: 0;}.CodeMirror-gutters {position: absolute; left: 0; top: -5px; min-height: 100%; z-index: 3;}.CodeMirror-gutter {white-space: normal; height: inherit; display: inline-block; vertical-align: top; margin-bottom: -30px;}.CodeMirror-gutter-wrapper {position: absolute; z-index: 4; background: none !important; border: none !important;}.CodeMirror-gutter-background {position: absolute; top: 0; bottom: 0; z-index: 4;}.CodeMirror-gutter-elt {position: absolute; cursor: default; z-index: 4; text-align: center;}.CodeMirror-gutter-wrapper ::selection { background-color: transparent }.CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }.CodeMirror-lines {cursor: text; min-height: 1px;}.CodeMirror pre {-moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; border-width: 0; background: transparent; font-family: inherit; font-size: inherit; margin: 0; white-space: pre; word-wrap: normal; line-height: inherit; color: inherit; z-index: 2; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; -webkit-font-variant-ligatures: contextual; font-variant-ligatures: contextual;}.CodeMirror-wrap pre {word-wrap: break-word; white-space: pre-wrap; word-break: normal;}.CodeMirror-linebackground {position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 0;}.CodeMirror-linewidget {position: relative; z-index: 2; overflow: auto;}.CodeMirror-widget {}.CodeMirror-rtl pre { direction: rtl; }.CodeMirror-code {outline: none;}.CodeMirror-scroll,.CodeMirror-sizer,.CodeMirror-gutter,.CodeMirror-gutters,.CodeMirror-linenumber {-moz-box-sizing: content-box; box-sizing: content-box;}.CodeMirror-measure {position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;}.CodeMirror-cursor {position: absolute; pointer-events: none;}.CodeMirror-measure pre { position: static; }div.CodeMirror-cursors {visibility: hidden; position: relative; z-index: 3;}div.CodeMirror-dragcursors {visibility: visible;}.CodeMirror-focused div.CodeMirror-cursors {visibility: visible;}.CodeMirror-selected { background: #d9d9d9; }.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }.CodeMirror-crosshair { cursor: crosshair; }.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }.cm-searching {background: #ffa; background: rgba(255, 255, 0, .4);}.cm-force-border { padding-right: .1px; }@media print {  .CodeMirror div.CodeMirror-cursors {visibility: hidden;}}.cm-tab-wrap-hack:after { content: ""; }span.CodeMirror-selectedtext { background: none; }.CodeMirror-activeline-background, .CodeMirror-selected {transition: visibility 0ms 100ms;}.CodeMirror-blur .CodeMirror-activeline-background, .CodeMirror-blur .CodeMirror-selected {visibility:hidden;}.CodeMirror-blur .CodeMirror-matchingbracket {color:inherit !important;outline:none !important;text-decoration:none !important;}
-
-
+[![返回目录](https://parg.co/U0y)](https://parg.co/UHU)
 
 # DOM HTTP Client
-本文是对于DOM中常见的网络请求方式与知识点进行总结，关于知识图谱请参考笔者的[客户端知识图谱之网络](https://github.com/wxyyxc1992/Coder-Knowledge-Graph/blob/master/client/network/client-network.zh.md)。
-
+本文是对于 DOM 中常见的网络请求方式与知识点进行总结，关于知识图谱请参考笔者的[客户端知识图谱之网络](https://github.com/wxyyxc1992/Coder-Knowledge-Graph/blob/master/client/network/client-network.zh.md)。
 
 ## Ajax
 
- 
-
-
 ## URI Parser
+
 ### Query Params
+
 ```
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -39,7 +34,7 @@ function getParameterByName(name, url) {
 
 
 
- 
+
 
 
 
@@ -70,12 +65,8 @@ function getParameterByName(name, url) {
 
 
 9}
-
-
-
-
-
 ```
+
 ```
 // query string: ?foo=lorem&bar=&baz
 var foo = getParameterByName('foo'); // "lorem"
@@ -95,7 +86,7 @@ var qux = getParameterByName('qux'); // null (absent)
 
 
 
- 
+
 
 
 
@@ -114,32 +105,25 @@ var qux = getParameterByName('qux'); // null (absent)
 
 
 5var qux = getParameterByName('qux'); // null (absent)
-
-
-
-
-
 ```
 
-
 # XMLHttpRequest
-| 属性                   | 类型                           | 描述                                       |
-| -------------------- | ---------------------------- | ---------------------------------------- |
-| `onreadystatechange` | `Function?`                  | 一个JavaScript函数对象，当readyState属性改变时会调用它。回调函数会在user interface线程中调用。**警告:** 不能在本地代码中使用. 也不应该在同步模式的请求中使用. |
-| `readyState`         | `unsigned short`             | 请求的五种状态值状态描述`0``UNSENT `(未打开)`open()`方法还未被调用.`1``OPENED`  (未发送)`send()`方法还未被调用.`2``HEADERS_RECEIVED (已获取响应头)``send()`方法已经被调用, 响应头和响应状态已经返回.`3``LOADING (正在下载响应体)`响应体下载中;`responseText`中已经获取了部分数据.`4``DONE (请求完成)`整个请求过程已经完毕. |
-| `response`           | varies                       | 响应实体的类型由 `responseType 来指定，` 可以是 `ArrayBuffer，` `Blob，` [`Document`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document)， JavaScript 对象 (即 "json")， 或者是字符串。如果请求未完成或失败，则该值为 `null。` |
-| `responseText`       | `DOMString`                  | 此次请求的响应为文本，或是当请求未成功或还未发送时为 `null。`**只读。** |
-| `responseType`       | `XMLHttpRequestResponseType` | 设置该值能够改变响应类型。就是告诉服务器你期望的响应格式。ValueData type of `response`property`""` (空字符串)字符串(默认值)`"arraybuffer"`[`ArrayBuffer`](https://developer.mozilla.org/zh-cn/JavaScript_typed_arrays/ArrayBuffer)`"blob"`[`Blob`](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)`"document"`[`Document`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document)`"json"`JavaScript 对象，解析自服务器传递回来的JSON 字符串。`"text"`字符串 |
-| `responseXML`        | `Document?`                  | 本次请求的响应是一个 `Document` 对象，如果是以下情况则值为 `null：`请求未成功，请求未发送，或响应无法被解析成 XML 或 HTML。当响应为text/xml 流时会被解析。当 `responseType` 设置为"document"，并且请求为异步的，则响应会被当做 `text/html` 流来解析。**只读****.****注意:** 如果服务器不支持 `text/xml` Content-Type 头，你可以使用 `overrideMimeType() 强制 ``XMLHttpRequest` 将响应解析为 XML。 |
-| `status`             | `unsigned short`             | 该请求的响应状态码 (例如, `状态码`200 表示一个成功的请求).**只读.** |
-| `statusText`         | `DOMString`                  | 该请求的响应状态信息,包含一个状态码和原因短语 (例如 "`200 OK`"). **只读****.** |
-| `upload`             | `XMLHttpRequestUpload`       | 可以在 `upload 上添加一个事件监听来跟踪上传过程。`           |
-| `withCredentials`    | `boolean`                    | 表明在进行跨站(cross-site)的访问控制(Access-Control)请求时，是否使用认证信息(例如cookie或授权的header)。 默认为 `false。`**注意:** 这不会影响同站(same-site)请求. |
 
+| 属性                   | 类型                           | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onreadystatechange`   | `Function?`                    | 一个 JavaScript 函数对象，当 readyState 属性改变时会调用它。回调函数会在 user interface 线程中调用。**警告:** 不能在本地代码中使用. 也不应该在同步模式的请求中使用.                                                                                                                                                                                                                                                                                                     |
+| `readyState`           | `unsigned short`               | 请求的五种状态值状态描述` 0``UNSENT `(未打开)`open()`方法还未被调用.` 1``OPENED `  (未发送)`send()`方法还未被调用.` 2``HEADERS_RECEIVED (已获取响应头)``send() `方法已经被调用, 响应头和响应状态已经返回.` 3``LOADING (正在下载响应体) `响应体下载中;`responseText`中已经获取了部分数据.` 4``DONE (请求完成) `整个请求过程已经完毕.                                                                                                                                     |
+| `response`             | varies                         | 响应实体的类型由 `responseType 来指定，` 可以是 `ArrayBuffer，` `Blob，` [`Document`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document)， JavaScript 对象 (即 "json")， 或者是字符串。如果请求未完成或失败，则该值为 `null。`                                                                                                                                                                                                                                  |
+| `responseText`         | `DOMString`                    | 此次请求的响应为文本，或是当请求未成功或还未发送时为 `null。`**只读。**                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `responseType`         | `XMLHttpRequestResponseType`   | 设置该值能够改变响应类型。就是告诉服务器你期望的响应格式。ValueData type of `response`property`""` (空字符串)字符串(默认值)`"arraybuffer"`[`ArrayBuffer`](https://developer.mozilla.org/zh-cn/JavaScript_typed_arrays/ArrayBuffer)`"blob"`[`Blob`](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)`"document"`[`Document`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document)`"json"`JavaScript 对象，解析自服务器传递回来的 JSON 字符串。`"text"`字符串 |
+| `responseXML`          | `Document?`                    | 本次请求的响应是一个 `Document` 对象，如果是以下情况则值为 `null：`请求未成功，请求未发送，或响应无法被解析成 XML 或 HTML。当响应为 text/xml 流时会被解析。当 `responseType` 设置为"document"，并且请求为异步的，则响应会被当做 `text/html` 流来解析。**只读\*\***.\***\*注意:** 如果服务器不支持 `text/xml` Content-Type 头，你可以使用 ` overrideMimeType() 强制 ``XMLHttpRequest ` 将响应解析为 XML。                                                                |
+| `status`               | `unsigned short`               | 该请求的响应状态码 (例如, `状态码`200 表示一个成功的请求).**只读.**                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `statusText`           | `DOMString`                    | 该请求的响应状态信息,包含一个状态码和原因短语 (例如 "`200 OK`"). **只读\*\***.\*\*                                                                                                                                                                                                                                                                                                                                                                                      |
+| `upload`               | `XMLHttpRequestUpload`         | 可以在 `upload 上添加一个事件监听来跟踪上传过程。`                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `withCredentials`      | `boolean`                      | 表明在进行跨站(cross-site)的访问控制(Access-Control)请求时，是否使用认证信息(例如 cookie 或授权的 header)。 默认为 `false。`**注意:** 这不会影响同站(same-site)请求.                                                                                                                                                                                                                                                                                                    |
 
+在部分浏览器中不支持 XMLHttpRequest，因此需要做如下的检测：
 
-
-在部分浏览器中不支持XMLHttpRequest，因此需要做如下的检测：
 ```
 // Just getting XHR is a mess!
 if (window.XMLHttpRequest) { // Mozilla, Safari, ...
@@ -147,11 +131,11 @@ if (window.XMLHttpRequest) { // Mozilla, Safari, ...
 } else if (window.ActiveXObject) { // IE
   try {
     request = new ActiveXObject('Msxml2.XMLHTTP');
-  } 
+  }
   catch (e) {
     try {
       request = new ActiveXObject('Microsoft.XMLHTTP');
-    } 
+    }
     catch (e) {}
   }
 }
@@ -161,85 +145,91 @@ if (window.XMLHttpRequest) { // Mozilla, Safari, ...
 request.open('GET', 'https://davidwalsh.name/ajax-endpoint', true);
 request.send(null);
 ```
+
 看一个复杂一点的例子：
+
 ```
-    var userName;  
-    var passWord;  
-    var xmlHttpRequest;  
-            
-    //XmlHttpRequest对象  
-    function createXmlHttpRequest(){  
-        if(window.ActiveXObject){ //如果是IE浏览器  
-            return new ActiveXObject("Microsoft.XMLHTTP");  
-        }else if(window.XMLHttpRequest){ //非IE浏览器  
-            return new XMLHttpRequest();  
-        }  
-    }  
-      
-    function onLogin(){  
-        userName = document.f1.username.value;  
-        passWord = document.f1.password.value;    
-          
-        var url = "LoginServlet?username="+userName+"&password="+passWord+"";     
-              
-        //1.创建XMLHttpRequest组建  
-        xmlHttpRequest = createXmlHttpRequest();  
-          
-        //2.设置回调函数  
-        xmlHttpRequest.onreadystatechange = zswFun;  
-          
-        //3.初始化XMLHttpRequest组建  
-        xmlHttpRequest.open("POST",url,true);  
-          
-        //4.发送请求  
-        xmlHttpRequest.send(null);    
-    }     
-            
-    //回调函数  
-    function zswFun(){  
-        if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){  
-            var b = xmlHttpRequest.responseText;  
-            if(b == "true"){  
-                alert("登录成功！");  
-            }else{  
-                alert("登录失败！");  
-            }         
-        }  
+    var userName;
+    var passWord;
+    var xmlHttpRequest;
+
+    //XmlHttpRequest对象
+    function createXmlHttpRequest(){
+        if(window.ActiveXObject){ //如果是IE浏览器
+            return new ActiveXObject("Microsoft.XMLHTTP");
+        }else if(window.XMLHttpRequest){ //非IE浏览器
+            return new XMLHttpRequest();
+        }
+    }
+
+    function onLogin(){
+        userName = document.f1.username.value;
+        passWord = document.f1.password.value;
+
+        var url = "LoginServlet?username="+userName+"&password="+passWord+"";
+
+        //1.创建XMLHttpRequest组建
+        xmlHttpRequest = createXmlHttpRequest();
+
+        //2.设置回调函数
+        xmlHttpRequest.onreadystatechange = zswFun;
+
+        //3.初始化XMLHttpRequest组建
+        xmlHttpRequest.open("POST",url,true);
+
+        //4.发送请求
+        xmlHttpRequest.send(null);
+    }
+
+    //回调函数
+    function zswFun(){
+        if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+            var b = xmlHttpRequest.responseText;
+            if(b == "true"){
+                alert("登录成功！");
+            }else{
+                alert("登录失败！");
+            }
+        }
     }
 ```
 
-
 # Fetch
-> 
-- [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
-> 
-- [fetch API](https://davidwalsh.name/fetch)
 
+>
 
-JavaScript 通过XMLHttpRequest(XHR)来执行异步请求，这个方式已经存在了很长一段时间。虽说它很有用，但它不是最佳API。它在设计上不符合职责分离原则，将输入、输出和用事件来跟踪的状态混杂在一个对象里。而且，基于事件的模型与最近JavaScript流行的Promise以及基于生成器的异步编程模型不太搭。新的 Fetch API打算修正上面提到的那些缺陷。 它向JS中引入和HTTP协议中同样的原语。具体而言，它引入一个实用的函数 fetch() 用来简洁捕捉从网络上检索一个资源的意图。Fetch 规范 的API明确了用户代理获取资源的语义。它结合ServiceWorkers，尝试达到以下优化：
-- 改善离线体验
+* [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
+  >
+* [fetch API](https://davidwalsh.name/fetch)
 
-- 保持可扩展性
+JavaScript 通过 XMLHttpRequest(XHR)来执行异步请求，这个方式已经存在了很长一段时间。虽说它很有用，但它不是最佳 API。它在设计上不符合职责分离原则，将输入、输出和用事件来跟踪的状态混杂在一个对象里。而且，基于事件的模型与最近 JavaScript 流行的 Promise 以及基于生成器的异步编程模型不太搭。新的 Fetch API 打算修正上面提到的那些缺陷。 它向 JS 中引入和 HTTP 协议中同样的原语。具体而言，它引入一个实用的函数 fetch() 用来简洁捕捉从网络上检索一个资源的意图。Fetch 规范 的 API 明确了用户代理获取资源的语义。它结合 ServiceWorkers，尝试达到以下优化：
 
+* 改善离线体验
 
-而与`jQuery`相比， `fetch` 方法与 `jQuery.ajax()` 的主要区别在于：
-- `fetch()`方法返回的Promise对象并不会在HTTP状态码为`404`或者`500`的时候自动抛出异常，而需要用户进行手动处理
-- 默认情况下，fetch并不会发送任何的本地的cookie到服务端，注意，如果服务端依靠Session进行用户控制的话要默认开启Cookie
+* 保持可扩展性
 
+而与`jQuery`相比， `fetch` 方法与  `jQuery.ajax()` 的主要区别在于：
 
-
+* `fetch()`方法返回的 Promise 对象并不会在 HTTP 状态码为`404`或者`500`的时候自动抛出异常，而需要用户进行手动处理
+* 默认情况下，fetch 并不会发送任何的本地的 cookie 到服务端，注意，如果服务端依靠 Session 进行用户控制的话要默认开启 Cookie
 
 ## Installation & Polyfill
-window.fetch是基于XMLHttpRequest的浏览器的统一的封装，针对老的浏览器可以使用Github的这个[polypill](https://github.com/github/fetch)。fetch基于ES6的Promise，在旧的浏览器中首先需要引入Promise的polypill，可以用这个:
-``` 
+
+window.fetch 是基于 XMLHttpRequest 的浏览器的统一的封装，针对老的浏览器可以使用 Github 的这个[polypill](https://github.com/github/fetch)。fetch 基于 ES6 的 Promise，在旧的浏览器中首先需要引入 Promise 的 polypill，可以用这个:
+
+```
 $ bower install es6-promise
 ```
-对于fetch的引入，可以用bower或者npm：
-``` 
+
+对于 fetch 的引入，可以用 bower 或者 npm：
+
+```
 $ bower install fetch
 $ npm install whatwg-fetch --save
 ```
-如果是基于Webpack的项目，可以直接在Webpack的config文件中引入这种polyfill：
+
+如果是基于 Webpack 的项目，可以直接在 Webpack 的 config 文件中引入这种 polyfill：
+
 ``` javascript
 plugins: [
   new webpack.ProvidePlugin({
@@ -247,17 +237,23 @@ plugins: [
   })
 ]
 ```
+
 这个插件的配置主要依靠[`imports-loader`](https://github.com/webpack/imports-loader)与[`exports-loader`](https://github.com/webpack/exports-loader)，因此也需要导入它们：
-``` 
+
+```
 $ npm i imports-loader exports-loader -S
 ```
-如果感觉这种方式比较麻烦，也可以使用 [**isomorphic-fetch**](https://github.com/matthew-andrews/isomorphic-fetch)：
-``` 
+
+如果感觉这种方式比较麻烦，也可以使用  [**isomorphic-fetch**](https://github.com/matthew-andrews/isomorphic-fetch)：
+
+```
 npm install --save isomorphic-fetch es6-promise
 bower install --save isomorphic-fetch es6-promise
 ```
+
 使用的时候也非常方便：
-``` 
+
+```
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 fetch('//offline-news-api.herokuapp.com/stories')
@@ -271,11 +267,13 @@ fetch('//offline-news-api.herokuapp.com/stories')
         console.log(stories);
     });
 ```
-从笔者自己的体验中，还是非常推荐使用isomorphic-fetch，其一大优势在于能够在node里直接进行单元测试与接口可用性测试。老实说笔者之前用Mocha进行带真实网络请求的测试时还是比较不方便的，往往需要在浏览器或者phatomjs中进行，并且需要额外的HTML代码。而在笔者的[model.test.js](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.test.js)文件中，只需要直接使用`babel-node model.test.js `即可以获取真实的网络请求，这样可以将网络测试部分与UI相剥离。
 
+从笔者自己的体验中，还是非常推荐使用 isomorphic-fetch，其一大优势在于能够在 node 里直接进行单元测试与接口可用性测试。老实说笔者之前用 Mocha 进行带真实网络请求的测试时还是比较不方便的，往往需要在浏览器或者 phatomjs 中进行，并且需要额外的 HTML 代码。而在笔者的[model.test.js](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.test.js)文件中，只需要直接使用`babel-node model.test.js`即可以获取真实的网络请求，这样可以将网络测试部分与 UI 相剥离。
 
 ### Basic Usage:基本使用
-假设`fetch`已经被挂载到了全局的window目录下。
+
+假设`fetch`已经被挂载到了全局的 window 目录下。
+
 ```
 // Simple response handling
 fetch('/some/url').then(function(response) {
@@ -293,26 +291,26 @@ fetch('/some/url').then(function(response) {
     // Error :(
 });
 ```
+
 ## Request:请求构造
-Request对象代表了一次`fetch`请求中的请求体部分，你可以自定义`Request`对象:
+
+Request 对象代表了一次`fetch`请求中的请求体部分，你可以自定义`Request`对象:
 A `Request` instance represents the request piece of a `fetch` call. By passing`fetch` a `Request` you can make advanced and customized requests:
 
-
-- `method` - 使用的HTTP动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
-- `url` - 请求地址，URL of the request
-- `headers` - 关联的Header对象
-- `referrer` - referrer 
-- `mode` - 请求的模式，主要用于跨域设置，`cors`, `no-cors`, `same-origin`
-- `credentials` - 是否发送Cookie `omit`, `same-origin`
-- `redirect` - 收到重定向请求之后的操作，`follow`, `error`, `manual`
-- `integrity` - 完整性校验
-- `cache` - 缓存模式(`default`, `reload`, `no-cache`)
-
+* `method` - 使用的 HTTP 动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
+* `url` - 请求地址，URL of the request
+* `headers` - 关联的 Header 对象
+* `referrer` - referrer
+* `mode` - 请求的模式，主要用于跨域设置，`cors`, `no-cors`, `same-origin`
+* `credentials` - 是否发送 Cookie `omit`, `same-origin`
+* `redirect` - 收到重定向请求之后的操作，`follow`, `error`, `manual`
+* `integrity` - 完整性校验
+* `cache` - 缓存模式(`default`, `reload`, `no-cache`)
 
 ```
 var request = new Request('/users.json', {
-    method: 'POST', 
-    mode: 'cors', 
+    method: 'POST',
+    mode: 'cors',
     redirect: 'follow',
     headers: new Headers({
         'Content-Type': 'text/plain'
@@ -323,11 +321,12 @@ var request = new Request('/users.json', {
 // Now use it!
 fetch(request).then(function() { /* handle response */ });
 ```
+
 ```
 fetch('/users.json', {
 
-    method: 'POST', 
-    mode: 'cors', 
+    method: 'POST',
+    mode: 'cors',
     redirect: 'follow',
     headers: new Headers({
         'Content-Type': 'text/plain'
@@ -335,17 +334,22 @@ fetch('/users.json', {
 }).then(function() { /* handle response */ });
 ```
 
-
 ### URI Encode
-注意，fetch方法是自动会将URI中的双引号进行编码的，如果在URI中存入了部分JSON，有时候会出现意想不到的问题，譬如我们以GET方法访问如下的URI：
+
+注意，fetch 方法是自动会将 URI 中的双引号进行编码的，如果在 URI 中存入了部分 JSON，有时候会出现意想不到的问题，譬如我们以 GET 方法访问如下的 URI：
+
 ```
 [GET] http://api.com?requestData={"p":"q"}
 ```
-那么fetch会自动将双引号编码，变成：
+
+那么 fetch 会自动将双引号编码，变成：
+
 ```
 [GET] http://api.com?requestData={%22p%22:%22q%22}
 ```
-那么这样一个请求传入到Spring MVC中时是会引发错误的，即URI对象构造失败这个很恶心的错误。笔者没有看过源代码，不过猜想会不会是Spring MVC看到`{`这个字符没有被编码，因此默认没有进行解码，结果没想到后面的双引号被编码了，为了避免这个无厘头的错误，笔者建议是对URI的Query Parameter部分进行统一的URI编码：
+
+那么这样一个请求传入到 Spring MVC 中时是会引发错误的，即 URI 对象构造失败这个很恶心的错误。笔者没有看过源代码，不过猜想会不会是 Spring MVC 看到`{`这个字符没有被编码，因此默认没有进行解码，结果没想到后面的双引号被编码了，为了避免这个无厘头的错误，笔者建议是对 URI 的 Query Parameter 部分进行统一的 URI 编码：
+
 ```
 //将requestData序列化为JSON
 var requestDataString = encodeURIComponent(JSON.stringify(requestData).replace(/%22/g, "\""));
@@ -353,8 +357,8 @@ var requestDataString = encodeURIComponent(JSON.stringify(requestData).replace(/
 const packagedRequestURL = `${Model.BASE_URL}${path}?requestData=${requestDataString}&action=${action}`;
 ```
 
-
 ### Headers:自定义请求头
+
 ```
 // Create an empty Headers instance
 var headers = new Headers();
@@ -381,7 +385,9 @@ var headers = new Headers({
 'X-My-Custom-Header': 'CustomValue'
 });
 ```
+
 常见的请求方法有： `append`, `has`, `get`, `set`以及 `delete`
+
 ```
 var request = new Request('/some-url', {
     headers: new Headers({
@@ -393,8 +399,8 @@ var request = new Request('/some-url', {
 fetch(request).then(function() { /* handle response */ });
 ```
 
+### POST & body:POST 请求
 
-### POST & body:POST请求
 ```
 fetch('/users', {
   method: 'post',
@@ -408,8 +414,10 @@ fetch('/users', {
   })
 })
 ```
+
 ### File Upload:文件上传
-``` 
+
+```
 var input = document.querySelector('input[type="file"]')
 
 var data = new FormData()
@@ -421,36 +429,38 @@ fetch('/avatars', {
   body: data
 })
 ```
+
 ### Cookies
-如果需要设置`fetch`自动地发送本地的Cookie，需要将credentials设置为`same-origin`:
-``` 
+
+如果需要设置`fetch`自动地发送本地的 Cookie，需要将 credentials 设置为`same-origin`:
+
+```
 fetch('/users', {
   credentials: 'same-origin'
 })
 ```
-该选项会以类似于XMLHttpRequest的方式来处理Cookie，否则，可能因为没有发送Cookie而导致基于Session的认证出错。可以将`credentials`的值设置为`include`来在CORS情况下发送请求。
-``` 
+
+该选项会以类似于 XMLHttpRequest 的方式来处理 Cookie，否则，可能因为没有发送 Cookie 而导致基于 Session 的认证出错。可以将`credentials`的值设置为`include`来在 CORS 情况下发送请求。
+
+```
 fetch('https://example.com:1234/users', {
   credentials: 'include'
 })
 ```
-另外需要注意的是，根据[附带凭证信息的请求](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E9%99%84%E5%B8%A6%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E7%9A%84%E8%AF%B7%E6%B1%82)这里描述的，当你为了配置在CORS请求中附带Cookie等信息时，来自于服务器的响应中的Access-Control-Allow-Origin不可以再被设置为 * ，必须设置为某个具体的域名,则响应会失败。
 
-
-
+另外需要注意的是，根据[附带凭证信息的请求](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E9%99%84%E5%B8%A6%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E7%9A%84%E8%AF%B7%E6%B1%82)这里描述的，当你为了配置在 CORS 请求中附带 Cookie 等信息时，来自于服务器的响应中的 Access-Control-Allow-Origin 不可以再被设置为 \* ，必须设置为某个具体的域名,则响应会失败。
 
 ## Response:响应处理
-在`fetch`的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在Mock的时候自定义Response对象，譬如在你需要使用Service Workers的情况下，在`Response`中，你可以作如下配置:
 
+在`fetch`的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在 Mock 的时候自定义 Response 对象，譬如在你需要使用 Service Workers 的情况下，在`Response`中，你可以作如下配置:
 
-- `type` - `basic`, `cors`
-- `url`
-- `useFinalURL` - 是否为最终地址
-- `status` - 状态码 (ex: `200`, `404`, etc.)
-- `ok` - 是否成功响应 (status in the range 200-299)
-- `statusText` - status code (ex: `OK`)
-- `headers` - 响应头
-
+* `type` - `basic`, `cors`
+* `url`
+* `useFinalURL` - 是否为最终地址
+* `status` - 状态码 (ex: `200`, `404`, etc.)
+* `ok` - 是否成功响应 (status in the range 200-299)
+* `statusText` - status code (ex: `OK`)
+* `headers` - 响应头
 
 ```
 // Create your own response for service worker testing
@@ -468,22 +478,21 @@ fetch('/')
 console.log('status: ', responseObj.status);
 });
 ```
+
 The `Response` also provides the following methods:
 
+* `clone()` - Creates a clone of a Response object.
+* `error()` - Returns a new Response object associated with a network error.
+* `redirect()` - Creates a new response with a different URL.
+* `arrayBuffer()` - Returns a promise that resolves with an ArrayBuffer.
+* `blob()` - Returns a promise that resolves with a Blob.
+* `formData()` - Returns a promise that resolves with a FormData object.
+* `json()` - Returns a promise that resolves with a JSON object.
+* `text()` - Returns a promise that resolves with a USVString (text).
 
-- `clone()` - Creates a clone of a Response object.
-- `error()` - Returns a new Response object associated with a network error.
-- `redirect()` - Creates a new response with a different URL.
-- `arrayBuffer()` - Returns a promise that resolves with an ArrayBuffer.
-- `blob()` - Returns a promise that resolves with a Blob.
-- `formData()` - Returns a promise that resolves with a FormData object.
-- `json()` - Returns a promise that resolves with a JSON object.
-- `text()` - Returns a promise that resolves with a USVString (text).
+### Handling HTTP error statuses:处理 HTTP 错误状态
 
-
-### Handling HTTP error statuses:处理HTTP错误状态
-
-``` 
+```
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response
@@ -507,29 +516,35 @@ fetch('/users')
     console.log('request failed', error)
   })
 ```
-### Handling JSON:处理JSON响应
-```
 
-fetch('https://davidwalsh.name/demo/arsenal.json').then(function(response) { 
+### Handling JSON:处理 JSON 响应
+
+```
+fetch('https://davidwalsh.name/demo/arsenal.json').then(function(response) {
 // Convert to JSON
 return response.json();
 }).then(function(j) {
 // Yay, `j` is a JavaScript object
-console.log(j); 
+console.log(j);
 });
 ```
+
 ### Handling Basic Text/HTML Response:处理文本响应
+
 ```
 fetch('/next/page')
   .then(function(response) {
     return response.text();
-  }).then(function(text) { 
+  }).then(function(text) {
   // <!DOCTYPE ....
-  console.log(text); 
+  console.log(text);
   });
 ```
+
 ### Blob Responses
-如果你希望通过fetch方法来载入一些类似于图片等资源：
+
+如果你希望通过 fetch 方法来载入一些类似于图片等资源：
+
 ```
 fetch('flowers.jpg')
     .then(function(response) {
@@ -539,11 +554,13 @@ fetch('flowers.jpg')
        document.querySelector('img').src = URL.createObjectURL(imageBlob);
 });
 ```
+
 `blob()`方法会接入一个响应流并且一直读入到结束。
 
+## Transparent HTTP Proxy:透明 HTTP 代理
 
-## Transparent HTTP Proxy:透明HTTP代理
-在上面的介绍中会发现，fetch并没有在客户端实现Cancelable Request的功能，或者超时自动放弃功能，因此这一步骤往往是需要在代理层完成。笔者在自己的工作中还遇到另一个请求，就是需要在客户端抓取其他没有设置CORS响应或者JSONP响应的站点，而必须要进行中间代理层抓取。笔者为了尽可能小地影响逻辑层代码，因此在自己的封装中封装了如下方法:
+在上面的介绍中会发现，fetch 并没有在客户端实现 Cancelable Request 的功能，或者超时自动放弃功能，因此这一步骤往往是需要在代理层完成。笔者在自己的工作中还遇到另一个请求，就是需要在客户端抓取其他没有设置 CORS 响应或者 JSONP 响应的站点，而必须要进行中间代理层抓取。笔者为了尽可能小地影响逻辑层代码，因此在自己的封装中封装了如下方法:
+
 ```/**
  * @function 通过透明路由,利用get方法与封装好的QueryParams形式发起请求
  * @param BASE_URL 请求根URL地址,注意,需要添加http://以及末尾的/,譬如`http://api.com/`
@@ -576,7 +593,9 @@ getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, co
 
 }
 ```
-另外自带缓存的透明代理层的配置为，代码存放于[Github仓库](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/server.js):
+
+另外自带缓存的透明代理层的配置为，代码存放于[Github 仓库](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/server.js):
+
 ```/**
  * Created by apple on 16/7/26.
  */
@@ -698,7 +717,7 @@ app.get('/get_proxy', cors(), (req, res)=> {
 
                 //设置返回超时
                 res.status(504);
-                
+
                 //终止本次返回
                 res.end();
 
@@ -729,7 +748,9 @@ var server = app.listen(399, '0.0.0.0', function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 ```
-笔者在这里是使用Redis作为缓存:
+
+笔者在这里是使用 Redis 作为缓存:
+
 ```/**
  * Created by apple on 16/8/4.
  */
@@ -819,7 +840,9 @@ export default class ServerCache {
 
 }
 ```
-注意，笔者在这里使用的是isomorphic-fetch，因此在服务端与客户端的底层请求上可以复用同一份代码，测试代码如下，直接使用`babel-node model.test.js`即可:
+
+注意，笔者在这里使用的是 isomorphic-fetch，因此在服务端与客户端的底层请求上可以复用同一份代码，测试代码如下，直接使用`babel-node model.test.js`即可:
+
 ```/**
  * Created by apple on 16/7/21.
  */
@@ -870,15 +893,11 @@ model
     });
 ```
 
-
-
-
-
-
 ## Best Practice
-笔者在自己的项目中封装了一个基于ES6 Class的基本的模型请求类，[代码地址](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
-```
 
+笔者在自己的项目中封装了一个基于 ES6 Class 的基本的模型请求类，[代码地址](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
+
+```
 /**
  * Created by apple on 16/5/3.
  */
@@ -1100,13 +1119,9 @@ export default class Model {
 Model.testData = {};
 
 Model.testData.error = {};
-
-
 ```
+
 # Fluent Fetcher
-
-
-
 
 ```var p = Promise.race([
   fetch('/resource-that-may-take-a-while'),
@@ -1117,8 +1132,3 @@ Model.testData.error = {};
 p.then(response => console.log(response))
 p.catch(error => console.log(error))
 ```
-
-
-
-
-
