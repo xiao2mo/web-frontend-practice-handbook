@@ -1,4 +1,4 @@
-> [Web 应用安全基础](https://zhuanlan.zhihu.com/p/24864406)翻译自[The Basics of Web Application Security](http://martinfowler.com/articles/web-security-basics.html)，从属于笔者的[网络信息安全攻防实战](https://github.com/wxyyxc1992/InfoSecurity-In-Action)。本文是笔者较早翻译的一篇文章，在 SF 上也发布过，这里重发下是为了知识体系的完备。需要强调的是，在笔者当时翻译之后，原文也增加了部分章节，如果希望了解全部内容请移步原文阅读。
+# Web 应用安全基础
 
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/1/2/175360_bbd6_5.jpg)
 
