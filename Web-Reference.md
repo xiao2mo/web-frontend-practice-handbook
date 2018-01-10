@@ -87,7 +87,7 @@
 ## Books & Serials: 书籍与系列文章
 
 * [2016 - JavaScript Stack From Scratch #Series#](https://github.com/verekia/js-stack-from-scratch): 从零开始的常用 JavaScript 前端框架开发栈教程
-* [2015 - SurviveJS  #Book#](http://survivejs.com/webpack_react/introduction/): 基于 React 与 Webpack 构建一个看板应用程序来讲解 Webpack/React 技术栈的知识要点
+* [2015 - SurviveJS #Book#](http://survivejs.com/webpack_react/introduction/): 基于 React 与 Webpack 构建一个看板应用程序来讲解 Webpack/React 技术栈的知识要点
 * [2016 - 阮一峰 全栈工程师培训材料 #Series#](https://github.com/ruanyf/jstraining): 全栈工程师培训材料，帮助学习者掌握全栈开发的基本知识，承担简单 Web 应用的前后端开发
 
 ## Courses: 教程
@@ -151,15 +151,15 @@
 * [我应该从哪一门编程语言上车 ? ](https://segmentfault.com/a/1190000007398287): 这里有你学习 JavaScript 的理由。
 * [廖雪峰 JavaScript 教程](http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000): 介绍了基础的语法与 API。
 * [JavaScript 标准参考教程（alpha ） - 阮一峰](http://javascript.ruanyifeng.com/): 阮一峰老师出品，相当完善与成体系，也是以基础语法与 API 为主。
-* [2015 - Speaking JavaScript  #Book#](http://speakingjs.com/es5/index.html#toc_ch01):Dr. Axel 出品的详细 JavaScript 基础语法的书籍。
-* [2015 - You-Dont-Know-JS  #Series#](https://github.com/getify/You-Dont-Know-JS): 告诉你关于许多你并不知道的 JS 知识
+* [2015 - Speaking JavaScript #Book#](http://speakingjs.com/es5/index.html#toc_ch01):Dr. Axel 出品的详细 JavaScript 基础语法的书籍。
+* [2015 - You-Dont-Know-JS #Series#](https://github.com/getify/You-Dont-Know-JS): 告诉你关于许多你并不知道的 JS 知识
 
 ### ES6/ES7 专区
 
 * 中文教程 :[阮一峰 ECMAScript 6 入门](https://github.com/ruanyf/es6tutorial)、[30 分钟掌握 ES6/ES2015 核心内容（上）](http://segmentfault.com/a/1190000004365693)
 * 语法规范手册 :[EcmaScript6 全规范（含 node） -ouvens](https://github.com/ouvens/es6-code-style-guide)、[ES2015 规范 英文](http://www.ecma-international.org/ecma-262/6.0/)
 * [2015 - Setting Up ES6 #Book#](https://leanpub.com/setting-up-es6/read):Dr. Axel 出品的介绍如何搭建 ES6 开发环境的书籍。
-* [2015 - Exploring ES6  #Book#](http://exploringjs.com/es6/index.html) & [2015 - ES2016&ES2017  #Book#](http://exploringjs.com/es2016-es2017/index.html):Dr. Axel 出品的详细的 ES6 的语法介绍书籍。
+* [2015 - Exploring ES6 #Book#](http://exploringjs.com/es6/index.html) & [2015 - ES2016&ES2017 #Book#](http://exploringjs.com/es2016-es2017/index.html):Dr. Axel 出品的详细的 ES6 的语法介绍书籍。
 
 ### Practices & Tips: 实战与提高
 
@@ -224,7 +224,7 @@
 * 入门学习 :[使用 Facebook 的 create-react-app 快速构建 React 开发环境](https://segmentfault.com/a/1190000006055973)，[React 开发中常用的工具集锦](https://segmentfault.com/a/1190000006086639)。
 * 脚手架与实战 :[在重构脚手架中掌握 React/Redux/Webpack2 基本套路](https://segmentfault.com/a/1190000007166607)。
 * React 设计思想与理念 :[React 概念模型 —— 脱离 React 谈谈它的设计思想](https://segmentfault.com/a/1190000005159165)。
-* React RoadMap:[React 的未来特性 ](https://segmentfault.com/a/1190000007376242)。
+* React Roadmap:[React 的未来特性 ](https://segmentfault.com/a/1190000007376242)。
 * React StyleGuide:[如何写出漂亮的 React 组件](https://segmentfault.com/a/1190000007553885)。
 
 ## StateManagement
