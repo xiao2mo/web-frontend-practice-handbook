@@ -1,5 +1,4 @@
-# XSS
-
+# XSS 跨站脚本详解
 
 ## Content Security Policy
 
