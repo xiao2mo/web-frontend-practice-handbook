@@ -19,15 +19,6 @@ CSRF （ Cross-site request forgery），中文名称：跨站请求伪造，也
 
 CSRF 攻击是源于 WEB 的隐式身份验证机制，WEB 的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。假设 Alice 访问了一个恶意站点 M，该站点提供的内容中的 JavaScript 代码或者图像标签会导致 Alice 的浏览器向站点 T 发送一个 HTTP 请 求。由于该请求是发给站点 T 的，所以 Alice 的浏览器自动地给该请求附上与站点 T 对应的该会话 cookie 的 sid。站点 T 看到该请求时，它就能通过该 cookie 的推断出：该请求来自 Alice，所以站点 T 就会对 Alice 的帐户执行所请求的操作。这样，CSRF 攻击就能得逞了。其他大多数 Web 认证机制也面临同样的问题。例如，HTTP BasicAuth 机制会要求 Alice 告诉浏览器她在站点 T 上的用户名和口令，于是浏览器将用户名和口令附加到之后发给站点 T 的请求中。当然，站点 T 也 可能使用客户端 SSL 证书，但这也面临同样的问题，因为浏览器也会将证书附加到发给站点 T 的请求中。类似的，如果站点 T 通过 IP 地址来验证 Alice 的身 份的话，照样面临 CSRF 攻击的威胁。总之，只要身份认证是隐式进行的，就会存在 CSRF 攻击的危险，因为浏览器发出请求这一动作未必是受用户的指使。原则上，这种威胁可以通过对每个发送至该 站点的请求都要求用户进行显式的、不可欺骗的动作（诸如重新输入用户名和口令）来消除，但实际上这会导致严重的易用性问题。大部分标准和广泛应用的认证机 制都无法防止 CSRF 攻击，所以我们只好另外探求一个实用的解决方案。
 
-## Reference
-
-* [从零开始学 CSRF](http://www.freebuf.com/articles/web/55965.html)
-* [Preventing CSRF](http://www.playhack.net/view.php?id=31)
-* [Security Corner: Cross-Site Request Forgeries](http://shiflett.org/articles/cross-site-request-forgeries)
-* [《深入解析跨站请求伪造漏洞：原理剖析》](http://netsecurity.51cto.com/art/200812/102951.htm)
-* [《 Web 安全测试之跨站请求伪造（CSRF ）》](http://netsecurity.51cto.com/art/200811/97281.htm)
-* [《深入解析跨站请求伪造漏洞：实例讲解》](http://netsecurity.51cto.com/art/200812/102925.htm)
-
 # Exploits
 
 本部分我们来看几个基于 CSRF 攻击的实例，包括[简单的基于表单 POST 请求的攻击](http://www.exploit-db.com/exploits/18791/) ，其可以诱导用户点击`.submit()` 按钮既可以发起攻击。其他的还有稍微复杂一点的[跨域文件上传 CSRF 攻击](http://www.exploit-db.com/exploits/18766/) ，其主要使用了 [CORS use of the xhr.withCredentals behavior](http://blog.kotowicz.net/2011/05/cross-domain-arbitrary-file-upload.html)。
