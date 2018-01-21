@@ -1,4 +1,0 @@
-- [demystifying-js-engines](https://github.com/a0viedo/demystifying-js-engines):一系列讲解JavaScript虚拟机构造的资源整合
-- [v8-perf](https://github.com/thlorenz/v8-perf):Notes and resources related to v8 and thus Node.js performance
-- [Rednaxelafx:Implementing a JavaScript Engine](http://www.slideshare.net/RednaxelaFX/implement-js-krystalmok20131110)
-- [Rednaxelafx:各JavaScript引擎的简介，及相关资料/博客收集帖](http://hllvm.group.iteye.com/group/topic/37596):各JavaScript引擎的简介，及相关资料/博客收集帖
