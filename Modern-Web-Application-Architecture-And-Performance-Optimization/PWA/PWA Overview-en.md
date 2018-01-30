@@ -2,6 +2,8 @@
 
 # Progressive Web Apps Overview
 
+Progressive Web Apps (PWA) are the latest trend in mobile application development using web technologies. At the time of writing (early 2018), they’re only applicable to Android devices.
+
 Accelerated Mobile Pages Project (AMP) spearheaded by Twitter and Google was launched in 2016 to solve those slow connection issues only. PWAs work flawlessly in all the possible scenarios. With a good connection, there is never a problem. The problem is when we have no connection and we are greeted with the error page.
 
 But this can become most annoying if we have a slow connection. The page seems to be loading and all we see is a blank screen. We just wait, wait and wait but the page never seems to load. This is where PWA comes to our rescue. The best part about PWAs — you get the best user experience possible in slow connectivity as well as no connectivity (yep , you read it right..).
