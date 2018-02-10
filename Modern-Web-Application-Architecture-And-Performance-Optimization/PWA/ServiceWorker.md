@@ -10,6 +10,8 @@ ServiceWorkers also have scriptable caches. Along with the ability to respond to
 
 Service Workers are meant to replace the (oft maligned) HTML5 Application Cache. Unlike AppCache, Service Workers are comprised of scriptable primitives that make it possible for application developers to build URL-friendly, always-available applications in a sane and layered way.
 
+A service worker is a programmable proxy between your web page and the network which provides the ability to intercept and cache network requests. This effectively lets you create an offline-first experience for your app.
+
 While Service Workers cannot directly interact with the DOM, your main JS code can do that based on the messages you receive back from a Service Worker. Service workers also stop when not being used and restart when needed, so there is no persistent “state”; you would need to rely on some form of local storage for such persistence. It is important to remember that a Service Worker’s life cycle is completely separate from your webpage.
 
 # 离线存储

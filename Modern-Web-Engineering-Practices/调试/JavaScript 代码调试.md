@@ -31,7 +31,7 @@ VS Code 是微软开源的现代化、跨平台、轻量级的代码编辑器，
 
 ```js
 function sayHello() {
-  console.log("Hello World");
+  console.log('Hello World');
 }
 
 sayHello();
@@ -40,11 +40,11 @@ sayHello();
 ![Node.js 应用单步调试.png]()
 
 ```js
-const Koa = require("koa");
+const Koa = require('koa');
 const app = new Koa();
 
 app.use(ctx => {
-  ctx.body = "Hello, World!";
+  ctx.body = 'Hello, World!';
 });
 
 app.listen(3000);
@@ -249,9 +249,9 @@ __proto__: Object;
 
 ```js
 var animals = [
-  { animal: "Horse", name: "Henry", age: 43 },
-  { animal: "Dog", name: "Fred", age: 13 },
-  { animal: "Cat", name: "Frodo", age: 18 }
+  { animal: 'Horse', name: 'Henry', age: 43 },
+  { animal: 'Dog', name: 'Fred', age: 13 },
+  { animal: 'Cat', name: 'Frodo', age: 18 }
 ];
 
 console.table(animals);
@@ -303,8 +303,8 @@ var func4 = function() {
 };
 
 var Car = function() {
-  this.brand = "volvo";
-  this.color = "red";
+  this.brand = 'volvo';
+  this.color = 'red';
 
   this.funcX = function() {
     this.funcY();
@@ -315,7 +315,7 @@ var Car = function() {
   };
 
   this.funcZ = function() {
-    console.trace("trace car");
+    console.trace('trace car');
   };
 };
 
