@@ -4,9 +4,9 @@ The CommonsChunkPlugin is built-in feature that creates a separate file (known a
 
 ```js
 new webpack.optimize.CommonsChunkPlugin({
-  name: "common",
-  filename: "common.js",
-  chunks: ["home", "dashboard"]
+  name: 'common',
+  filename: 'common.js',
+  chunks: ['home', 'dashboard']
 });
 ```
 
