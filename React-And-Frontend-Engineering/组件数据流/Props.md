@@ -1,34 +1,25 @@
-[![返回目录](https://parg.co/UY3)](https://parg.co/U0I) 
-
-
-
-
-
-
+[![返回目录](https://parg.co/UY3)](https://parg.co/U0I)
 
 # React Props
 
-
 # Component Properties
 
-
 Function as Prop
-```
+
+```js
 const Foo = ({ hello }) => {
-  return hello('foo');
+  return hello('foo');
 };
 
-
-
-const hello = (name) => {
-  return <div>`hello from ${name}`</div>;
+const hello = name => {
+  return <div>`hello from ${name}`</div>;
 };
 
-
-<Foo hello={hello} />
-
+<Foo hello={hello} />;
 ```
+
 Component Injection
+
 ```
 class WindowWidth extends React.Component {
   constructor(props) {
@@ -45,7 +36,7 @@ class WindowWidth extends React.Component {
 
       const { width } = this.state;
       const { Width } = this.props;
-      return <Width width={width} />; 
+      return <Width width={width} />;
    }
 }
 
@@ -66,17 +57,16 @@ const DisplayDevice = ({ width }) => {
   return <div>you are using a {device}</div>;
 };
 ```
+
 # Prop Validation
-
-
-
 
 # children
 
-
 ## 渲染回调
+
 渲染回调（Render Callback）即指那些子元素为某个函数的组件，也就是所谓的 Function-as-Child；我们可以利用这种模式复用有状态组件从而共享部分业务逻辑。如果需要定义渲染回调，则需要在 render 函数中返回对于传入的子元素的调用结果：
-```
+
+```js
 import { Component } from 'react'
 
 
@@ -94,7 +84,9 @@ class SharedThing extends Component {
 
 export default SharedThing
 ```
+
 然后在其他组件中我们可以调用该组件并且获得该组件的执行结果：
+
 ```
 import React from 'react'
 
@@ -110,7 +102,9 @@ const AnotherComponent = () => (
 
 export default AnotherComponent
 ```
+
 一个比较典型的案例就是共享开关逻辑，某个开关组件 Toggle 会在内部存放用来表示当前开关状态的 `toggled` 变量，我们可以通过渲染回调的模式在将控制开关的逻辑提取出来：
+
 ```
 import { Component } from 'react'
 
@@ -132,7 +126,7 @@ class Toggle extends Component {
 
   render() {
     return this.props.children(
-      this.state.isOpen, 
+      this.state.isOpen,
       this.handleToggleClick
     )
   }
@@ -141,7 +135,9 @@ class Toggle extends Component {
 
 export default Toggle
 ```
+
 现在所有使用 Toggle 的组件都能够访问到内部的 `isOpen` 状态并且能够使用 `handleToggleClick` 函数来触发 Toggle 内部状态的变化：
+
 ```
 import React from 'react'
 import Toggle from './Toggle'
@@ -163,6 +159,7 @@ const Accordion = ({teaser, details}) => (
 
 export default Accordion
 ```
+
 ```
 import React from 'react'
 import Toggle from './Toggle'
@@ -189,6 +186,5 @@ const Thumbnail = ({src, teaser}) => (
 
 export default Thumbnail
 ```
-
 
 ## cloneElement
