@@ -1,6 +1,6 @@
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/6/1/think-react.jpg)
 
-# [现代 Web 开发基础与工程实践--React 篇](https://parg.co/bWg)
+# [现代 Web 开发基础与工程实践--React 篇](https://parg.co/UaY)
 
 本篇的首要目标即是以 React 为核心的技术体系为主线，为读者构建完整的前端技术知识体系，探讨前端工程化的思想，并且能使不同技术水准的读者都有所得。
 
