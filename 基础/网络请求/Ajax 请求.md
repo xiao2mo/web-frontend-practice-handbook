@@ -34,12 +34,12 @@ open(
 var xhr = new XMLHttpRequest();
 xhr.timeout = 3000;
 xhr.ontimeout = function(event) {
-  alert("请求超时！");
+  alert('请求超时！');
 };
 var formData = new FormData();
-formData.append("tel", "18217767969");
-formData.append("psw", "111111");
-xhr.open("POST", "http://www.test.com:8000/login");
+formData.append('tel', '18217767969');
+formData.append('psw', '111111');
+xhr.open('POST', 'http://www.test.com:8000/login');
 xhr.send(formData);
 
 // 如果是同步请求，则不需要监听事件
@@ -62,16 +62,16 @@ if (window.XMLHttpRequest) {
 } else if (window.ActiveXObject) {
   // IE
   try {
-    request = new ActiveXObject("Msxml2.XMLHTTP");
+    request = new ActiveXObject('Msxml2.XMLHTTP');
   } catch (e) {
     try {
-      request = new ActiveXObject("Microsoft.XMLHTTP");
+      request = new ActiveXObject('Microsoft.XMLHTTP');
     } catch (e) {}
   }
 }
 
 // Open, send.
-request.open("GET", "https://davidwalsh.name/ajax-endpoint", true);
+request.open('GET', 'https://davidwalsh.name/ajax-endpoint', true);
 request.send(null);
 ```
 
@@ -95,20 +95,20 @@ request.send(null);
 ```js
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
     results = regex.exec(url);
   if (!results) return null;
-  if (!results[2]) return "";
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 // 使用方式如下
 // query string: ?foo=lorem&bar=&baz
-var foo = getParameterByName("foo"); // "lorem"
-var bar = getParameterByName("bar"); // "" (present with empty value)
-var baz = getParameterByName("baz"); // "" (present with no value)
-var qux = getParameterByName("qux"); // null (absent)
+var foo = getParameterByName('foo'); // "lorem"
+var bar = getParameterByName('bar'); // "" (present with empty value)
+var baz = getParameterByName('baz'); // "" (present with no value)
+var qux = getParameterByName('qux'); // null (absent)
 ```
 
 ## 请求与响应
@@ -150,7 +150,7 @@ $ npm install whatwg-fetch --save
 ```javascript
 plugins: [
   new webpack.ProvidePlugin({
-    fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
+    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
   })
 ];
 ```
@@ -1525,12 +1525,12 @@ fetch('/next/page')
 如果你希望通过 fetch 方法来载入一些类似于图片等资源：
 
 ```js
-fetch("flowers.jpg")
+fetch('flowers.jpg')
   .then(function(response) {
     return response.blob();
   })
   .then(function(imageBlob) {
-    document.querySelector("img").src = URL.createObjectURL(imageBlob);
+    document.querySelector('img').src = URL.createObjectURL(imageBlob);
   });
 ```
 
