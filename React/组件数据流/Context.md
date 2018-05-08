@@ -69,6 +69,37 @@ MessageList.childContextTypes = {
 
 # Context 基本使用
 
+[CodeSandbox/Context](https://codesandbox.io/embed/1yx4kl1jz7)
+
+```js
+const ThemeContext = React.createContext('dark');
+
+export const { Consumer, Provider } = ThemeContext;
+
+// This is a HOC function.
+// It takes a component...
+export default function withTheme(Component) {
+  // ...and returns another component...
+  return function ThemedComponent(props) {
+    // ... and renders the wrapped component with the context theme!
+    // Notice that we pass through any additional props as well
+    return (
+      <Consumer>{theme => <Component {...props} theme={theme} />}</Consumer>
+    );
+  };
+}
+```
+
+```js
+function Header({ children, theme }) {
+  return <h1 className={`header-${theme}`}>{children}</h1>;
+}
+
+// Use the withTheme HOC to inject the context theme,
+// Without having to bloat our component to reference it:
+export default withTheme(Header);
+```
+
 # Context 用于状态管理
 
 如前文所述，React 单组件中允许使用 setState 进行状态管理，而对于组件树，我们可以使用 Props 逐层传递状态值与回调函数。不过这种方式无形会导致多层组件间的强耦合，并且会导致大量的冗余代码。像 Redux, MobX 这样的状态管理框架，它们的作用之一就是将状态代码独立于组件，并未多层组件提供直接的数据流通通道；实际上我们也可以利用 Context API 进行跨层组件间的数据传递，来构建简单的状态管理工具。[Unstated](https://github.com/jamiebuilds/unstated) 就是对于 Context API 进行简要封装形成的状态管理库，它并不需要开发者学习额外的 API 或者库用法，而只需要使用普通的 React 组件中的 setState 方法操作 state，并利用 Context 将其传递到子组件中。Unstated 中主要包含了 Container，Subscribe 以及 Provider 三个组件，其中 Provider 负责存放所有的内部状态实例，类似于 Redux 或者 Apollo 中的 Provider：
