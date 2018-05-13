@@ -2,19 +2,19 @@
 
 # Reducer
 
-```
+```js
 const appReducer = combineReducers({
-   todos,
-   visibilityFilter
+  todos,
+  visibilityFilter
 });
 
-const rootReducer = ( state, action ) => {
-  if ( action.type === LOG_OUT ) {
+const rootReducer = (state, action) => {
+  if (action.type === LOG_OUT) {
     state = undefined;
   }
 
-  return appReducer(state, action)
-}
+  return appReducer(state, action);
+};
 
 const store = createStore(rootReducer);
 ```
