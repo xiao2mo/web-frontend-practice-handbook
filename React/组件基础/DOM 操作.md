@@ -1,14 +1,14 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I) 
 
 
-[![](https://parg.co/UbM)](https://parg.co/bWg)
+
 
 
 
 
 # React 组件中 DOM 操作
 
-`React.findDOMNode()`方法能够帮我们根据`refs`获取某个子组件的DOM对象，不过需要注意的是组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 React.findDOMNode 方法。
+`React.findDOMNode()`方法能够帮我们根据`refs`获取某个子组件的DOM对象，不过需要注意的是组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM (virtual DOM)。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 React.findDOMNode 方法。
 
 ``` 
 var MyComponent = React.createClass({

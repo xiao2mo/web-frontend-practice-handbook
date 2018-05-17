@@ -240,7 +240,7 @@ export default reqActionAndReducerCreator;
 
 # PromiseMiddle
 
-我们在服务端开发使用的 Express 或者 Koa 这些框架中经常会使用所谓的中间件（Middleware），此处的中间件指那些在接收到请求之后、进行响应之前所执行的代码。而 Redux 的中间件的概念则很类似于 Express 或者 Koa 中，其为第三方扩展提供了有效的切入点，使得开发者能够方便地在 Action 到达 Reducer 之前被进行适当的处理，并且在状态更新之后能够根据最新的状态再次进行相应的操作。譬如我们应用中常用的日志功能，需要记录所有的 Action 以及相应的状态变化，我们可以自定义如下的日志中间件：
+我们在服务端开发使用的 Express 或者 Koa 这些框架中经常会使用所谓的中间件(Middleware)，此处的中间件指那些在接收到请求之后、进行响应之前所执行的代码。而 Redux 的中间件的概念则很类似于 Express 或者 Koa 中，其为第三方扩展提供了有效的切入点，使得开发者能够方便地在 Action 到达 Reducer 之前被进行适当的处理，并且在状态更新之后能够根据最新的状态再次进行相应的操作。譬如我们应用中常用的日志功能，需要记录所有的 Action 以及相应的状态变化，我们可以自定义如下的日志中间件：
 
 ```
 const logger = store => next => action => {
@@ -366,7 +366,7 @@ nextState <————————————— |     G     |  |    |    |
 
 ## Action 定义
 
-首先，让我们来给 action 下个定义。**Action** 是把数据从应用（译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 ）传到 store 的有效载荷。它是 store 数据的**唯一**来源。一般来说你会通过 [`store.dispatch()`](http://camsong.github.io/redux-in-chinese/docs/api/Store.html#dispatch) 将 action 传到 store。添加新 todo 任务的 action 是这样的：
+首先，让我们来给 action 下个定义。**Action** 是把数据从应用(译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 )传到 store 的有效载荷。它是 store 数据的**唯一**来源。一般来说你会通过 [`store.dispatch()`](http://camsong.github.io/redux-in-chinese/docs/api/Store.html#dispatch) 将 action 传到 store。添加新 todo 任务的 action 是这样的：
 
 ```json
 const ADD_TODO = 'ADD_TODO';
@@ -751,7 +751,7 @@ export default reqActionAndReducerCreator;
 
 异步 action creator 对于做服务端渲染非常方便。你可以创建一个 store，dispatch 一个异步 action creator，这个 action creator 又 dispatch 另一个异步 action creator 来为应用的一整块请求数据，同时在 Promise 完成和结束时才 render 界面。然后在 render 前，store 里就已经存在了需要用的 state。
 
-[Thunk middleware](https://github.com/gaearon/redux-thunk) 并不是 Redux 处理异步 action 的唯一方式。你也可以使用 [redux-promise](https://github.com/acdlite/redux-promise) 或者 [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) 来 dispatch Promise 替代函数。你也可以使用 [redux-rx](https://github.com/acdlite/redux-rx) dispatch Observable。你甚至可以写一个自定义的 middleware 来描述 API 请求，就像这个[真实场景的案例](http://camsong.github.io/redux-in-chinese/docs/introduction/Examples.html#real-world)中的做法一样。你也可以先尝试一些不同做法，选择喜欢的，并使用下去，不论有没有使用到 middleware 都行。　当调用异步 API 时，有两个非常关键的时刻：发起请求的时刻，和接收到响应的时刻 （也可能是超时）。这两个时刻都可能会更改应用的 state；为此，你需要 dispatch 普通的同步 action。一般情况下，每个 API 请求都至少需要 dispatch 三个不同的 action：
+[Thunk middleware](https://github.com/gaearon/redux-thunk) 并不是 Redux 处理异步 action 的唯一方式。你也可以使用 [redux-promise](https://github.com/acdlite/redux-promise) 或者 [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) 来 dispatch Promise 替代函数。你也可以使用 [redux-rx](https://github.com/acdlite/redux-rx) dispatch Observable。你甚至可以写一个自定义的 middleware 来描述 API 请求，就像这个[真实场景的案例](http://camsong.github.io/redux-in-chinese/docs/introduction/Examples.html#real-world)中的做法一样。你也可以先尝试一些不同做法，选择喜欢的，并使用下去，不论有没有使用到 middleware 都行。　当调用异步 API 时，有两个非常关键的时刻：发起请求的时刻，和接收到响应的时刻 (也可能是超时)。这两个时刻都可能会更改应用的 state；为此，你需要 dispatch 普通的同步 action。一般情况下，每个 API 请求都至少需要 dispatch 三个不同的 action：
 
 * **一个通知 reducer 请求开始的 action。**
   　对于这种 action，reducer 可能会切换一下 state 中的 `isFetching` 标记。以此来告诉 UI 来显示进度条。
@@ -818,7 +818,7 @@ export function requestPosts(reddit) {
 }
 ```
 
-把 `SELECT_REDDIT` 和 `INVALIDATE_REDDIT` 分开很重要。虽然它们的发生有先后顺序，但随着应用变得复杂，有些用户操作（比如，预加载最流行的 reddit，或者一段时间后自动刷新过期数据）后需要马上请求数据。路由变化时也可能需要请求数据，所以一开始如果把请求数据和特定的 UI 事件耦合到一起是不明智的。最后，当收到请求响应时，我们会 dispatch `RECEIVE_POSTS`：
+把 `SELECT_REDDIT` 和 `INVALIDATE_REDDIT` 分开很重要。虽然它们的发生有先后顺序，但随着应用变得复杂，有些用户操作(比如，预加载最流行的 reddit，或者一段时间后自动刷新过期数据)后需要马上请求数据。路由变化时也可能需要请求数据，所以一开始如果把请求数据和特定的 UI 事件耦合到一起是不明智的。最后，当收到请求响应时，我们会 dispatch `RECEIVE_POSTS`：
 
 ```
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'

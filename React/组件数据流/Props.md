@@ -64,7 +64,7 @@ const DisplayDevice = ({ width }) => {
 
 ## 渲染回调
 
-渲染回调（Render Callback）即指那些子元素为某个函数的组件，也就是所谓的 Function-as-Child；我们可以利用这种模式复用有状态组件从而共享部分业务逻辑。如果需要定义渲染回调，则需要在 render 函数中返回对于传入的子元素的调用结果：
+渲染回调(Render Callback)即指那些子元素为某个函数的组件，也就是所谓的 Function-as-Child；我们可以利用这种模式复用有状态组件从而共享部分业务逻辑。如果需要定义渲染回调，则需要在 render 函数中返回对于传入的子元素的调用结果：
 
 ```js
 import { Component } from 'react'

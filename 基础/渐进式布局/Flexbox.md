@@ -11,47 +11,47 @@ CSS 2.1 定义了四种布局模式 ― 由一个盒与其兄弟、祖先盒的�
 - 表格布局 ― 为了用格子呈现 2D 数据而设计出来的布局模式；
 - 定位布局 ― 为了非常直接地定位元素而设计出来的布局模式，定位元素基本与其他元素毫无关。
 
-而 Flexbox（伸缩布局）是为了呈现复杂的应用与页面而设计出来的，一种更加方便有效，能够在未知或者动态尺寸的情况下自由分配容器空间的布局方式。
+而 Flexbox(伸缩布局)是为了呈现复杂的应用与页面而设计出来的，一种更加方便有效，能够在未知或者动态尺寸的情况下自由分配容器空间的布局方式。
 
 
 
 ![flexbox](http://img3.tbcdn.cn/L1/461/1/386a363208b3d74b243ca878fc571133a30eddef)
 
-- main axis（主轴）
+- main axis(主轴)
   
-  - main dimension（主轴方向）
+  - main dimension(主轴方向)
     
     > The main axis of a flex container is the primary axis along which flex items are laid out. It extends in the main dimension.
     
     主轴是伸缩项目在伸缩容器里分布所遵循的主要轴线，在主轴方向上延伸。
     
-  - main-start（主轴起点）main-end（主轴终点）
+  - main-start(主轴起点)main-end(主轴终点)
     
     > The flex items are placed within the container starting on the main-start side and going toward the main-end side.
     
     伸缩项目从容器的主轴起点开始放置，直到主轴终点。
     
-  - main size（主轴尺寸）main size property（主轴尺寸属性）
+  - main size(主轴尺寸)main size property(主轴尺寸属性)
     
     > A flex item’s width or height, whichever is in the main dimension, is the item’s main size. The flex item’s main size property is either the width or height property, whichever is in the main dimension.
     
     伸缩项目在主轴方向上的长或者宽是这个项目的主轴尺寸。一个伸缩项目的主轴属性是在主轴方向上的长或者宽属性。
   
-- cross axis（交叉轴）
+- cross axis(交叉轴)
   
-  - cross dimension（交叉轴方向）
+  - cross dimension(交叉轴方向)
     
     > The axis perpendicular to the main axis is called the cross axis. It extends in the cross dimension.
     
     和主轴垂直的轴叫做交叉轴，它在交叉轴方向上延伸。
     
-  - cross-start（交叉轴起点）cross-end（交叉轴终点）
+  - cross-start(交叉轴起点)cross-end(交叉轴终点)
     
     > Flex lines are filled with items and placed into the container starting on the cross-start side of the flex container and going toward the cross-end side.
     
     包含伸缩元素的伸缩行从容器的交叉轴起点开始放置，直到交叉轴终点。
     
-  - cross size（交叉轴尺寸）cross size property（交叉轴尺寸属性）
+  - cross size(交叉轴尺寸)cross size property(交叉轴尺寸属性)
     
     > The width or height of a flex item, whichever is in the cross dimension, is the item’s cross size. The cross size property is whichever of width or height that is in the cross dimension.
     

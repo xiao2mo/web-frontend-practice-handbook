@@ -1,6 +1,6 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I)
 
-[![](https://parg.co/UbM)](https://parg.co/bWg)
+
 
 # JSX
 
@@ -63,7 +63,7 @@ document.body.appendChild(
 );
 ```
 
-这里我们还想讨论另一个问题，为什么需要引入 JSX。在 ECAMScript 6 的 ECMA-262 标准中引入了所谓的模板字符串（Template Literals），即可以在 ECMAScript 中使用内嵌的 DSL 来引入 JavaScript 变量，不过虽然模板字符串对于较长的嵌入式 DSL 作用极佳，但是对于需要引入大量作用域中的 ECMAScript 表达式会造成大量的噪音副作用，譬如如果我们要声明某个评论框布局，使用 JSX 的方式如下:
+这里我们还想讨论另一个问题，为什么需要引入 JSX。在 ECAMScript 6 的 ECMA-262 标准中引入了所谓的模板字符串(Template Literals)，即可以在 ECMAScript 中使用内嵌的 DSL 来引入 JavaScript 变量，不过虽然模板字符串对于较长的嵌入式 DSL 作用极佳，但是对于需要引入大量作用域中的 ECMAScript 表达式会造成大量的噪音副作用，譬如如果我们要声明某个评论框布局，使用 JSX 的方式如下:
 
 ```
 // JSX
@@ -102,7 +102,7 @@ var box = jsx`
 
 # JSX 语法
 
-JSX 的官方定义是类 XML 语法的 ECMAscript 扩展，完美地利用了 JavaScript 自带的语法和特性，并使用大家熟悉的 HTML 语法来创建虚拟元素。JSX 基本语法基本被 XML 囊括了，但也有很多的不同之处。React 在定义标签时，标签一定要闭合，否则无法编译通过。这一点与标准的 HTML 差别很大，HTML 在浏览器渲染时会自动进行补全，而强大的 JSX 报错机制则直接在编译阶段就以报错的方式指明出来。HTML 中自闭合的标签（如 `<img>` ）在 JSX 中也遵循同样规则，自定义标签可以根据是否有子组件或文本来决定闭合方式。另外 DOCTYPE 头也是一个非常特殊的标志，一般会在使用 React 作为服务端渲染时用到。在 HTML 中，DOCTYPE 是没有闭合的，也就是说我们无法直接渲染它。常见的做法是构造一个保存 HTML 的变量，将 DOCTYPE 与整个 HTML 标签渲染后的结果串联起来。使用 JSX 声明组件时，最外层的组件根元素只允许使用单一根元素。这一点我们在上文中也陈述过，因为 JSX 语法会被转化为 `React.createElement(component,props,...children)` 调用，而该函数的第一个参数只允许传入单元素，而不允许传入多元素。
+JSX 的官方定义是类 XML 语法的 ECMAscript 扩展，完美地利用了 JavaScript 自带的语法和特性，并使用大家熟悉的 HTML 语法来创建虚拟元素。JSX 基本语法基本被 XML 囊括了，但也有很多的不同之处。React 在定义标签时，标签一定要闭合，否则无法编译通过。这一点与标准的 HTML 差别很大，HTML 在浏览器渲染时会自动进行补全，而强大的 JSX 报错机制则直接在编译阶段就以报错的方式指明出来。HTML 中自闭合的标签(如 `<img>` )在 JSX 中也遵循同样规则，自定义标签可以根据是否有子组件或文本来决定闭合方式。另外 DOCTYPE 头也是一个非常特殊的标志，一般会在使用 React 作为服务端渲染时用到。在 HTML 中，DOCTYPE 是没有闭合的，也就是说我们无法直接渲染它。常见的做法是构造一个保存 HTML 的变量，将 DOCTYPE 与整个 HTML 标签渲染后的结果串联起来。使用 JSX 声明组件时，最外层的组件根元素只允许使用单一根元素。这一点我们在上文中也陈述过，因为 JSX 语法会被转化为 `React.createElement(component,props,...children)` 调用，而该函数的第一个参数只允许传入单元素，而不允许传入多元素。
 
 ## 变量使用
 

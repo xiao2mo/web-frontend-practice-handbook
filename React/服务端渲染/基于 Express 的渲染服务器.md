@@ -1,6 +1,6 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I) 
 
-[![](https://parg.co/UbM)](https://parg.co/bWg)
+
 
 
 
@@ -10,7 +10,7 @@
 # renderToString
 
 
-React 提供了两个方法 `renderToString` 和 `renderToStaticMarkup` 用来将组件（Virtual DOM）输出成 HTML 字符串，这是 React 服务器端渲染的基础，它移除了服务器端对于浏览器环境的依赖，所以让服务器端渲染变成了一件有吸引力的事情。这两个方法被包含在了 react-dom 仓库中，可以通过如下方式引入与使用：
+React 提供了两个方法 `renderToString` 和 `renderToStaticMarkup` 用来将组件(Virtual DOM)输出成 HTML 字符串，这是 React 服务器端渲染的基础，它移除了服务器端对于浏览器环境的依赖，所以让服务器端渲染变成了一件有吸引力的事情。这两个方法被包含在了 react-dom 仓库中，可以通过如下方式引入与使用：
 ```
 import ReactDOMServer from 'react-dom/server';
 
@@ -118,7 +118,7 @@ export default (html, initialState = {}, scripts = [], styles = []) => {
 ```
 你就会很开心的看到你得到了某个弹窗。关于XSS的知识点笔者不在这里赘述，虽然我们的后台开发人员肯定也在他们的接口层与数据库层完成了敏感字段过滤，不过千里之堤毁于蚁穴，我们不能放过任何一处有可能产生问题的地方。
 对于XSS的防御也并不是新鲜的话题，著名的[Open Web Application Security Project](https://www.owasp.org/index.php/About_OWASP)项目就为我们提供了很多关于[防止XSS攻击](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet)的建议，概括而言，我们需要在应用中做到如下几点:
-- 所有的用户输入都需要经过HTML实体编码，这里React已经帮我们做了[很多](https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks)，它会在运行时动态创建DOM节点然后填入文本内容（你也可以强制设置HTML内容，不过这样比较危险）
+- 所有的用户输入都需要经过HTML实体编码，这里React已经帮我们做了[很多](https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks)，它会在运行时动态创建DOM节点然后填入文本内容(你也可以强制设置HTML内容，不过这样比较危险)
 - 当你打算序列化某些状态并且传给客户端的时候，你同样需要进行HTML实体编码
 
 

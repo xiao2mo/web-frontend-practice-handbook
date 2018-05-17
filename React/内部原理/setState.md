@@ -1,7 +1,7 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I) 
 
 
-[![](https://parg.co/UbM)](https://parg.co/bWg)
+
 
 
 
@@ -25,7 +25,7 @@
 # 事务
 
 
-事务（Transaction）源于数据库理论，是数据库管理系统执行过程中的一个逻辑单位，由一个有限的数据库操作序列构成。React中将多个操作封装到某个事务中，将操作与执行相剥离，下面的伪代码简述事务的基本流程：
+事务(Transaction)源于数据库理论，是数据库管理系统执行过程中的一个逻辑单位，由一个有限的数据库操作序列构成。React中将多个操作封装到某个事务中，将操作与执行相剥离，下面的伪代码简述事务的基本流程：
 ```
 // 代码只是为了理解 transaction 和 react 无关
 transactionManager = new TransactionManager

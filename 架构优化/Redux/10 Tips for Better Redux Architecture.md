@@ -147,7 +147,7 @@ const chatReducer = (state = defaultState, action = {}) => {
 
 # Use Constants for Action Types:使用常量描述 Action 类型
 
-我们希望 Action 历史记录中的 Action 易于追踪易于理解，如果所有的 Action 都是设置了较短的、通用性的譬如`CHANGE_MESSAGE`这样的名字，也就会难以理解 APP 中到底发生了啥。而如果 Action 类型能有更具说明性的命名，譬如:`CHAT::CHANGE_MESSAGE`，可以让我们在调试的时候更方便地去理解到底发生了啥。因此，我们建议将所有在 Reducer 中用到的 Action 声明归结到一个文件中（文中建议是放置到 Reducer 文件的首部），并且在文件头部显式声明该类型，这会有助于你：
+我们希望 Action 历史记录中的 Action 易于追踪易于理解，如果所有的 Action 都是设置了较短的、通用性的譬如`CHANGE_MESSAGE`这样的名字，也就会难以理解 APP 中到底发生了啥。而如果 Action 类型能有更具说明性的命名，譬如:`CHAT::CHANGE_MESSAGE`，可以让我们在调试的时候更方便地去理解到底发生了啥。因此，我们建议将所有在 Reducer 中用到的 Action 声明归结到一个文件中(文中建议是放置到 Reducer 文件的首部)，并且在文件头部显式声明该类型，这会有助于你：
 
 * 保证命名的一致性
 * 快速理解 Reducer API 功能

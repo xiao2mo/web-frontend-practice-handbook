@@ -5,7 +5,7 @@
 # Mocha
 
 
-Mocha（发音"摩卡"）诞生于2011年，是现在最流行的JavaScript测试框架之一，在浏览器和Node环境都可以使用。所谓"测试框架"，就是运行测试的工具。通过它，可以为JavaScript应用添加测试，从而保证代码的质量。Mocha侧重于提供TDD/BDD上下文与报告，而Karma侧重于在浏览器中运行测试脚本。
+Mocha(发音"摩卡")诞生于2011年，是现在最流行的JavaScript测试框架之一，在浏览器和Node环境都可以使用。所谓"测试框架"，就是运行测试的工具。通过它，可以为JavaScript应用添加测试，从而保证代码的质量。Mocha侧重于提供TDD/BDD上下文与报告，而Karma侧重于在浏览器中运行测试脚本。
 
 # 搭建测试环境
 
@@ -53,7 +53,7 @@ $ ../node_modules/mocha/bin/mocha --compilers js:babel-core/register
 ```
 npm run mocha src/app/database.test.js
 ```
-注意，因为这里mocha默认会从根目录进行扫描，所以即使你命令行已经cd到了测试文件所在目录下，也要在测试文件上加上全部的目录名。注意，Babel默认不会对Iterator、Generator、Promise、Map、Set等全局对象，以及一些全局对象的方法（比如Object.assign）转码。如果你想要对这些对象转码，就要安装babel-polyfill。
+注意，因为这里mocha默认会从根目录进行扫描，所以即使你命令行已经cd到了测试文件所在目录下，也要在测试文件上加上全部的目录名。注意，Babel默认不会对Iterator、Generator、Promise、Map、Set等全局对象，以及一些全局对象的方法(比如Object.assign)转码。如果你想要对这些对象转码，就要安装babel-polyfill。
 
 ```
 $ npm install babel-polyfill --save
@@ -194,7 +194,7 @@ describe("fetch", function() {
 });
 
 ```
-在真实的测试环境中，我们往往需要对相同的测试流程输入不同的测试参数来验证其鲁棒性，也就是所谓的参数化测试（Parameterized Test）。参数化测试能够保证我们的函数可以处理不同类型的输入，特别是那些边界异常值的情况。传统的多参数测试用例可能如下，我们需要为每个参数编写单独而重复的测试流程：
+在真实的测试环境中，我们往往需要对相同的测试流程输入不同的测试参数来验证其鲁棒性，也就是所谓的参数化测试(Parameterized Test)。参数化测试能够保证我们的函数可以处理不同类型的输入，特别是那些边界异常值的情况。传统的多参数测试用例可能如下，我们需要为每个参数编写单独而重复的测试流程：
 ```
 
 

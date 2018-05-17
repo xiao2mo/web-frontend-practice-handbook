@@ -3,7 +3,7 @@
 
 # GPU Animation
 - [GPU Animation: Doing It Right](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/)
-- [一篇文章说清浏览器解析和CSS（GPU）动画优化](https://segmentfault.com/a/1190000008015671?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly)
+- [一篇文章说清浏览器解析和CSS(GPU)动画优化](https://segmentfault.com/a/1190000008015671?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly)
 - [精选！CSS 动画之工具、框架和教程](https://zhuanlan.zhihu.com/p/24931899)
 
 # CSS-Animation&Transition
@@ -26,11 +26,11 @@ transition ： transition-property transition-duration transition-timing-functio
 
 - transition-duration
 
-动画执行的持续时间，单位为 s（秒） 或者 ms（毫秒） 。
+动画执行的持续时间，单位为 s(秒) 或者 ms(毫秒) 。
 
 - transition-timing-function
 
-变换速率效果，可选值为 ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier（自定义时间曲线） 。
+变换速率效果，可选值为 ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier(自定义时间曲线) 。
 
 - transition-delay
 
@@ -111,11 +111,11 @@ transform: rotate | scale | skew | translate |matrix;
   
   偏移同样包括水平偏移和垂直偏移。      `translate(x,y)`
   
-  水平方向和垂直方向同时移动（也就是X轴和Y轴同时移动）；      `translateX(x)`
+  水平方向和垂直方向同时移动(也就是X轴和Y轴同时移动)；      `translateX(x)`
   
-  仅水平方向移动（X轴移动）；      `translateY(Y)`
+  仅水平方向移动(X轴移动)；      `translateY(Y)`
   
-  仅垂直方向移动（Y轴移动）。      
+  仅垂直方向移动(Y轴移动)。      
   
   DEMO：      [http://codepen.io/CodingMonkeyzh/pen/waoXbB](http://codepen.io/CodingMonkeyzh/pen/waoXbB)
 
@@ -163,7 +163,7 @@ animation 属性是一个简写属性，用于设置动画属性：
 
 Keyframename：规定需要绑定到选择器的    keyframe     的名称。  
 
-None： 规定无动画效果（可用于覆盖来自级联的动画）。
+None： 规定无动画效果(可用于覆盖来自级联的动画)。
 
 例如：
 
@@ -321,9 +321,9 @@ animation-play-state:running;
 
 none    ：不改变默认行为。  
 
-forwards ：当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。
+forwards ：当动画完成后，保持最后一个属性值(在最后一个关键帧中定义)。
 
-backwards    ：在     animation-delay     所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。  
+backwards    ：在     animation-delay     所指定的一段时间内，在动画显示之前，应用开始属性值(在第一个关键帧中定义)。  
 
 both ：向前和向后填充模式都被应用。
 

@@ -61,7 +61,7 @@ MessageList.childContextTypes = {
 
 通过为 MessageList 组件添加 childContextTypes 与 getChildContext 属性，React 会自动将 getChildContext 返回的值传递到子组件树中。不过，React 官方并不建议我们大量使用 Context，原因概括为以下几点：
 
-* 老版本的 Context API 允许以 Props 方式透传，其问题在于破坏了组件本身的可移植性，或者说是分形架构，增强了组件间的耦合度。所谓的分形架构，即组件树中的任一部分能够被独立抽取使用，并且方便移植到其他组件树中。（参考[诚身](https://www.zhihu.com/question/267168180/answer/319754359)的回答）
+* 老版本的 Context API 允许以 Props 方式透传，其问题在于破坏了组件本身的可移植性，或者说是分形架构，增强了组件间的耦合度。所谓的分形架构，即组件树中的任一部分能够被独立抽取使用，并且方便移植到其他组件树中。(参考[诚身](https://www.zhihu.com/question/267168180/answer/319754359)的回答)
 
 * 尽管其可以减少逐层传递带来的冗余代码，尽量的解耦和组件，但是当构造复杂时，我们也会陷入抽象漏洞，无法去判断 `Context` 到底是哪个父组件提供的。此时 `Context` 就像所谓的全局变量一样，大量的全局变量的使用会导致组件的不可以预测性，导致整个系统的鲁棒性降低。
 

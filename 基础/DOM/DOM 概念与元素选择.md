@@ -81,7 +81,7 @@ if (!document.querySelector) {
 
 ###  父节点
 
-语法：nodeObject.parentNode。其中，nodeObject  为节点对象（元素节点）。例如，获取  id="demo"的节点的父节点：
+语法：nodeObject.parentNode。其中，nodeObject  为节点对象(元素节点)。例如，获取  id="demo"的节点的父节点：
 
 ``` javascript
 document.getElementById("demo").parentNode;
@@ -91,7 +91,7 @@ document.getElementById("demo").parentNode;
 
 以下属性与元素节点的同级元素相关。
 
-**（1）nextElementSibling**
+**(1)nextElementSibling**
 
 nextElementSibling 属性返回指定元素的后一个同级元素，如果没有则返回 null。
 
@@ -104,15 +104,15 @@ el.nextElementSibling
 // <div id="div-02">Here is div-02</div>
 ```
 
-**（2）previousElementSibling**
+**(2)previousElementSibling**
 
 previousElementSibling 属性返回指定元素的前一个同级元素，如果没有则返回 null。
 
 ###  子节点
 
-**1）children**
+**1)children**
 
-children 属性返回一个类似数组的动态对象（实时反映变化），包括当前元素节点的所有子元素。如果当前元素没有子元素，则返回的对象包含零个成员。
+children 属性返回一个类似数组的动态对象(实时反映变化)，包括当前元素节点的所有子元素。如果当前元素没有子元素，则返回的对象包含零个成员。
 
 ``` javascript
 // para是一个p元素节点
@@ -124,14 +124,14 @@ if (para.children.length) {
 }
 ```
 
-**（2）childElementCount**
+**(2)childElementCount**
 
 childElementCount 属性返回当前元素节点包含的子元素节点的个数。
 
-**（3）firstElementChild**
+**(3)firstElementChild**
 
 firstElementChild 属性返回第一个子元素，如果没有，则返回 null。
 
-**（4）lastElementChild**
+**(4)lastElementChild**
 
 lastElementChild 属性返回最后一个子元素，如果没有，则返回 null。

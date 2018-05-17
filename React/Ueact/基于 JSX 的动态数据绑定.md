@@ -38,7 +38,7 @@ export function createElement(
 ) {}
 ```
 
-该函数包含三个参数，分别指定标签名、属性对象与子元素列表；实际上经过 Babel 的转化之后，JSX 文本会成为如下的函数调用（这里还包含了 ES2015 其他的语法转化）：
+该函数包含三个参数，分别指定标签名、属性对象与子元素列表；实际上经过 Babel 的转化之后，JSX 文本会成为如下的函数调用(这里还包含了 ES2015 其他的语法转化)：
 
 ```
 ...
@@ -302,7 +302,7 @@ function renderFromStr(innerContext) {
 }
 ```
 
-`innerContext` 即包含了我们定义的 State 与 Methods 等对象，这里利用 JavaScript 词法作用域（Lexical Scope）的特性进行变量传递；本部分完整的代码参考[这里](https://parg.co/bFG)。
+`innerContext` 即包含了我们定义的 State 与 Methods 等对象，这里利用 JavaScript 词法作用域(Lexical Scope)的特性进行变量传递；本部分完整的代码参考[这里](https://parg.co/bFG)。
 
 # 变化监听与重渲染
 
@@ -354,7 +354,7 @@ setTimeout(() => {
 }, 500);
 ```
 
-核心即是当某个对象的属性发生变化（增删赋值）时，触发注册的回调事件；即：
+核心即是当某个对象的属性发生变化(增删赋值)时，触发注册的回调事件；即：
 
 ```
   ...

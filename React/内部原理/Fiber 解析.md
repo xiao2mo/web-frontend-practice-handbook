@@ -1,6 +1,6 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I)
 
-[![](https://parg.co/UbM)](https://parg.co/bWg)
+
 
 将整个更新划分为多个原子性的任务，这就保证了原本完整的组件的更新流程可以被中断与恢复。在浏览器的空闲期执行这些任务并且区别高优先级与低优先级的任务
 
@@ -33,6 +33,6 @@ Work-in-Progress Tree
 - Low Priority: 网络请求
 - OffScreen: 任何的隐藏对象
 
-在 Fiber 的设计中，另一个需要考虑的情形就是所谓的饥饿（Starvation），如果我们持续性地存在大量的高优先级的更新请求，那么是否低优先级的更新请求就一直无法执行？
+在 Fiber 的设计中，另一个需要考虑的情形就是所谓的饥饿(Starvation)，如果我们持续性地存在大量的高优先级的更新请求，那么是否低优先级的更新请求就一直无法执行？
 
-React 另一个存在的问题就是初次渲染缓慢，目前 React 在渲染之前需要抓取到完整的代码文件（不考虑异步加载的情形），而利用 Streaming Rendering 技术，React 允许
+React 另一个存在的问题就是初次渲染缓慢，目前 React 在渲染之前需要抓取到完整的代码文件(不考虑异步加载的情形)，而利用 Streaming Rendering 技术，React 允许
