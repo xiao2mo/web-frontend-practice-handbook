@@ -439,7 +439,7 @@ console.log("第一组第一条:我的博客(http://www.ido321.com)");
 console.log("第一组第二条:CSDN(http://blog.csdn.net/u011043843)");
 console.groupEnd();
 console.group("第二组信息");
-console.log("第二组第一条:程序爱好者QQ群： 259280570");
+console.log("第二组第一条:程序爱好者QQ群: 259280570");
 console.log("第二组第二条:欢迎你加入");
 console.groupEnd();
 ```

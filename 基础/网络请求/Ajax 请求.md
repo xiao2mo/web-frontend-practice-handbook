@@ -296,7 +296,7 @@ var headers = new Headers({
 });
 ```
 
-常见的请求方法有： `append`, `has`, `get`, `set`以及 `delete`
+常见的请求方法有: `append`, `has`, `get`, `set`以及 `delete`
 
 ```
 var request = new Request('/some-url', {

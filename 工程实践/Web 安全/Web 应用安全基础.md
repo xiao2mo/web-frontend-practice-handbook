@@ -47,7 +47,7 @@ if ("email".equals(communicationType)) {
 <scr<script>ipt>
 ```
 
-在现代的 Web 应用程序开发中，已经有很多现成的框架提供了基础的过滤功能。内建的对于邮件地址、信用卡号码等等过滤还是灰常好用的，使用这些网络框架提供的验证机制可以有效避免一些严重的错误，譬如： | Framework | Approaches | | ---------------------------------------- | ---------------------------------------- | | Java | Hibernate (Bean Validation) | | ESAPI | | | Spring | Built-in type safe params in Controller | | Built-in Validator interface (Bean Validation) | | | Ruby on Rails | Built-in Active Record Validators | | ASP.NET | Built-in Validation (see BaseValidator) | | Play | Built-in Validator | | Generic JavaScript | xss-filters | | NodeJS | validator-js | | General | Regex-based validation on application inputs |
+在现代的 Web 应用程序开发中，已经有很多现成的框架提供了基础的过滤功能。内建的对于邮件地址、信用卡号码等等过滤还是灰常好用的，使用这些网络框架提供的验证机制可以有效避免一些严重的错误，譬如: | Framework | Approaches | | ---------------------------------------- | ---------------------------------------- | | Java | Hibernate (Bean Validation) | | ESAPI | | | Spring | Built-in type safe params in Controller | | Built-in Validator interface (Bean Validation) | | | Ruby on Rails | Built-in Active Record Validators | | ASP.NET | Built-in Validation (see BaseValidator) | | Play | Built-in Validator | | Generic JavaScript | xss-filters | | NodeJS | validator-js | | General | Regex-based validation on application inputs |
 
 ## In Summary
 
@@ -114,7 +114,7 @@ Sandra Day O';window.location='http://evil.martinfowler.com/';
 
 ## Little Bobby Tables
 
-很多关于数据库中参数绑定的讨论都会包含著名的 2007 年的 Little Bobby Tables 事件，这个事件可以用一个漫画描述如下： ![](http://www.martinfowler.com/articles/web-security-basics/exploits_of_a_mom.png) 为了便于分析这个漫画所要表达的含义，我们假设这个成绩追踪系统有一个用于增加新的学生信息的函数：
+很多关于数据库中参数绑定的讨论都会包含著名的 2007 年的 Little Bobby Tables 事件，这个事件可以用一个漫画描述如下: ![](http://www.martinfowler.com/articles/web-security-basics/exploits_of_a_mom.png) 为了便于分析这个漫画所要表达的含义，我们假设这个成绩追踪系统有一个用于增加新的学生信息的函数：
 
 ```
 void addStudent(String lastName, String firstName) {

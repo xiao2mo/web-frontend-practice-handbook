@@ -90,7 +90,7 @@ $ emcc counter.c -s WASM=1 -s SIDE_MODULE=1 -o counter.wasm
 emcc counter.c -O1 -s WASM=1 -s SIDE_MODULE=1 -o counter.wasm
 ```
 
-这样我们就得到了 WebAssembly 代码： ![Some WebAssembly code](https://s3-eu-central-1.amazonaws.com/openbloc-blog/2017/06/Capture-du-2017-06-03-15-47-35.png)
+这样我们就得到了 WebAssembly 代码: ![Some WebAssembly code](https://s3-eu-central-1.amazonaws.com/openbloc-blog/2017/06/Capture-du-2017-06-03-15-47-35.png)
 
 # 与 JavaScript 集成使用
 
@@ -182,7 +182,7 @@ export default class Counter extends PureComponent {
 
     return (
       <div className="Counter__container">
-                <span>          简单计数器示例：         </span>
+                <span>          简单计数器示例:         </span>
                 <span>{this.state.count}</span>
                {" "}
         <Button
