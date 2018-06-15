@@ -2,7 +2,7 @@
 
 本系列文章从属于 [Vue.js 与前端工程化实践](https://parg.co/bWg)一书，本书的首要目标即是以  Vue.js 为核心的技术体系为主线，为读者构建完整的前端技术知识体系，探讨前端工程化的思想，并且能使不同技术水准的读者都有所得。
 
-建议前置阅读[现代 Web 开发基础](https://parg.co/UHU)、[现代 Web 工程化实践](https://parg.co/Ubt)、 [现代 JavaScript 开发：语法基础与工程实践](https://parg.co/bxN)等。另外可以比照阅读  [React 与前端工程化实践](https://parg.co/bIn)  等。
+建议前置阅读[现代 Web 开发基础](https://parg.co/UHU)、[现代 Web 工程化实践](https://github.com/wxyyxc1992/Web-Series/)、 [现代 JavaScript 开发：语法基础与工程实践](https://parg.co/bxN)等。另外可以比照阅读  [React 与前端工程化实践](https://parg.co/bIn)  等。
 
 # 前言
 

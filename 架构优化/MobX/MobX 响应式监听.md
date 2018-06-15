@@ -1,11 +1,11 @@
-[![返回目录](https://parg.co/US3)](https://parg.co/UGZ) 
- 
+[![返回目录](https://parg.co/US3)](https://parg.co/UGZ)
+
 # MobX
 
 ## 术语介绍
 
 ```js
-var numbers = observable([1,2,3]);
+var numbers = observable([1, 2, 3]);
 var sum = computed(() => numbers.reduce((a, b) => a + b, 0));
 
 var disposer = autorun(() => console.log(sum.get()));

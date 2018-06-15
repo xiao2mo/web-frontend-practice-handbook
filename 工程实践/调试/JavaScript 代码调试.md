@@ -1,4 +1,4 @@
-[![返回目录](https://parg.co/UYp)](https://parg.co/Ubt)
+[![返回目录](https://parg.co/UYp)](https://github.com/wxyyxc1992/Web-Series/)
 
 # JavaScript 代码调试实战
 
