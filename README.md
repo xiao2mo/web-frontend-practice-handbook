@@ -28,6 +28,8 @@ Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会�
 
 * [现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)
 
+* [Awesome-Coder](https://github.com/wxyyxc1992/Awesome-Coder): Interactive MindMap, RoadMap(Learning Path/Interview Questions), xCompass, Weekly for Developer, to Learn Everything in ITCS
+
 # 前言
 
 > 节选自[现代 Web 开发导论/Web 开发简史与运行机制](https://parg.co/UIz)。
