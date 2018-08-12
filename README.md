@@ -1,4 +1,4 @@
-![](https://parg.co/U0a)
+![image](https://user-images.githubusercontent.com/5803001/43637212-f62daf14-9746-11e8-84e0-78247690b3c6.png)
 
 [中文版本](./README.md) | [English Version](./README-en.md)
 
@@ -10,25 +10,25 @@ Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会�
 
 本项目包含以下系列篇章：
 
-* [导论篇](./导论): Web 开发简史与运行机制，数据流驱动的界面，模块化与组件化，工具化与工程化，前后端分离与 GraphQL，大前端与 WebAssembly。
+- [导论篇](./导论): Web 开发简史与运行机制，数据流驱动的界面，模块化与组件化，工具化与工程化，前后端分离与 GraphQL，大前端与 WebAssembly。
 
-* [基础篇](./基础): 对于 HTML、CSS、DOM 等 Web 开发中涉及的基础知识与理念的总结介绍。
+- [基础篇](./基础): 对于 HTML、CSS、DOM 等 Web 开发中涉及的基础知识与理念的总结介绍。
 
-* [工程实践篇](./工程实践): 构建工具，测试，安全，WebAssembly。
+- [工程实践篇](./工程实践): 构建工具，测试，安全，WebAssembly。
 
-* [架构优化篇](./架构优化篇): 组件化，状态管理，性能优化，PWA。
+- [架构优化篇](./架构优化篇): 组件化，状态管理，性能优化，PWA。
 
-* [React 篇](./React)：近年来前端领域百花齐放，各种技术方案争妍斗艳，各领风骚。本书立足于其中的佼佼者 React，深入浅出的介绍 React、Webpack 、 ES6、Redux 、 MobX 等常见前端开发工具与开发库的用法，帮助初学者能够迅速成为一名合格前端工程师。而本书也不仅局限于工具使用的层面，探寻各种技术方案背后蕴含的设计思想与架构模式，从前端工程化的角度讨论前端开发者在进阶过程中需要掌握的工程实践、模块化与组件化、质量保障、性能优化等知识要点。最终帮助开发者在前端开发中能够因地制宜的指定合理方案，以尽可能快的速度实现可信赖的产品。
+- [React 篇](./React)：近年来前端领域百花齐放，各种技术方案争妍斗艳，各领风骚。本书立足于其中的佼佼者 React，深入浅出的介绍 React、Webpack 、 ES6、Redux 、 MobX 等常见前端开发工具与开发库的用法，帮助初学者能够迅速成为一名合格前端工程师。而本书也不仅局限于工具使用的层面，探寻各种技术方案背后蕴含的设计思想与架构模式，从前端工程化的角度讨论前端开发者在进阶过程中需要掌握的工程实践、模块化与组件化、质量保障、性能优化等知识要点。最终帮助开发者在前端开发中能够因地制宜的指定合理方案，以尽可能快的速度实现可信赖的产品。
 
-* [Vue 篇](./Vue)：本部分目前正逐步启动，笔者的初衷是希望能够保证本书章节与 [React 与前端工程化实践](./React)尽可能一致，从而更方便地去介绍不同技术栈下相通的设计理念；目前本书的目录只是拷贝自 [React 与前端工程化实践](./React)，未来笔者会逐步完善。
+- [Vue 篇](./Vue)：本部分目前正逐步启动，笔者的初衷是希望能够保证本书章节与 [React 与前端工程化实践](./React)尽可能一致，从而更方便地去介绍不同技术栈下相通的设计理念；目前本书的目录只是拷贝自 [React 与前端工程化实践](./React)，未来笔者会逐步完善。
 
 ---
 
 延伸阅读：
 
-* [现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)
+- [现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)
 
-* [Awesome-Coder](https://github.com/wxyyxc1992/Awesome-Coder): Interactive MindMap, RoadMap(Learning Path/Interview Questions), xCompass, Weekly for Developer, to Learn Everything in ITCS
+- [Awesome-Coder](https://github.com/wxyyxc1992/Awesome-Coder): Interactive MindMap, RoadMap(Learning Path/Interview Questions), xCompass, Weekly for Developer, to Learn Everything in ITCS
 
 # 前言
 
