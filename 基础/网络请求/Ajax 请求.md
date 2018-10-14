@@ -10,7 +10,7 @@ You can perform no-cors requests, getting a response from a server that doesn't 
 
 Streaming responses (with XHR the entire response is buffered in memory, with fetch you will be able to access the low-level stream). This isn't available yet in all browsers, but will be soon.
 
-* 缺乏超时放弃、进度监控等功能，不过可以通过 [x-fetch](https://parg.co/UL5) 等第三方库，利用 Promise 的特性实现类似功能。
+- 缺乏超时放弃、进度监控等功能，不过可以通过 [x-fetch](https://parg.co/UL5) 等第三方库，利用 Promise 的特性实现类似功能。
 
 # XMLHttpRequest
 
@@ -117,18 +117,18 @@ var qux = getParameterByName('qux'); // null (absent)
 
 # Fetch
 
-> * [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
-> * [fetch API](https://davidwalsh.name/fetch)
+> - [JavaScript Fetch API](http://www.tuicool.com/articles/QZBJ7zJ)
+> - [fetch API](https://davidwalsh.name/fetch)
 
 JavaScript 通过 XMLHttpRequest(XHR)来执行异步请求，这个方式已经存在了很长一段时间。虽说它很有用，但它不是最佳 API。它在设计上不符合职责分离原则，将输入、输出和用事件来跟踪的状态混杂在一个对象里。而且，基于事件的模型与最近 JavaScript 流行的 Promise 以及基于生成器的异步编程模型不太搭。新的 Fetch API 打算修正上面提到的那些缺陷。 它向 JS 中引入和 HTTP 协议中同样的原语。具体而言，它引入一个实用的函数 fetch() 用来简洁捕捉从网络上检索一个资源的意图。Fetch 规范 的 API 明确了用户代理获取资源的语义。它结合 ServiceWorkers，尝试达到以下优化：
 
-* 改善离线体验
-* 保持可扩展性
+- 改善离线体验
+- 保持可扩展性
 
 而与`jQuery`相比， `fetch` 方法与 `jQuery.ajax()` 的主要区别在于：
 
-* `fetch()`方法返回的 Promise 对象并不会在 HTTP 状态码为`404`或者`500`的时候自动抛出异常，而需要用户进行手动处理
-* 默认情况下，fetch 并不会发送任何的本地的 cookie 到服务端，注意，如果服务端依靠 Session 进行用户控制的话要默认开启 Cookie
+- `fetch()`方法返回的 Promise 对象并不会在 HTTP 状态码为`404`或者`500`的时候自动抛出异常，而需要用户进行手动处理
+- 默认情况下，fetch 并不会发送任何的本地的 cookie 到服务端，注意，如果服务端依靠 Session 进行用户控制的话要默认开启 Cookie
 
 ## Installation & Polyfill
 
@@ -213,15 +213,15 @@ fetch('/some/url').then(function(response) {
 Request 对象代表了一次`fetch`请求中的请求体部分，你可以自定义`Request`对象:
 A `Request` instance represents the request piece of a `fetch` call. By passing`fetch` a `Request` you can make advanced and customized requests:
 
-* `method` - 使用的 HTTP 动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
-* `url` - 请求地址，URL of the request
-* `headers` - 关联的 Header 对象
-* `referrer` - referrer
-* `mode` - 请求的模式，主要用于跨域设置，`cors`, `no-cors`, `same-origin`
-* `credentials` - 是否发送 Cookie `omit`, `same-origin`
-* `redirect` - 收到重定向请求之后的操作，`follow`, `error`, `manual`
-* `integrity` - 完整性校验
-* `cache` - 缓存模式(`default`, `reload`, `no-cache`)
+- `method` - 使用的 HTTP 动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
+- `url` - 请求地址，URL of the request
+- `headers` - 关联的 Header 对象
+- `referrer` - referrer
+- `mode` - 请求的模式，主要用于跨域设置，`cors`, `no-cors`, `same-origin`
+- `credentials` - 是否发送 Cookie `omit`, `same-origin`
+- `redirect` - 收到重定向请求之后的操作，`follow`, `error`, `manual`
+- `integrity` - 完整性校验
+- `cache` - 缓存模式(`default`, `reload`, `no-cache`)
 
 ```
 var request = new Request('/users.json', {
@@ -363,13 +363,13 @@ fetch('https://example.com:1234/users', {
 
 在`fetch`的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在 Mock 的时候自定义 Response 对象，譬如在你需要使用 Service Workers 的情况下，在`Response`中，你可以作如下配置:
 
-* `type` - `basic`, `cors`
-* `url`
-* `useFinalURL` - 是否为最终地址
-* `status` - 状态码 (ex: `200`, `404`, etc.)
-* `ok` - 是否成功响应 (status in the range 200-299)
-* `statusText` - status code (ex: `OK`)
-* `headers` - 响应头
+- `type` - `basic`, `cors`
+- `url`
+- `useFinalURL` - 是否为最终地址
+- `status` - 状态码 (ex: `200`, `404`, etc.)
+- `ok` - 是否成功响应 (status in the range 200-299)
+- `statusText` - status code (ex: `OK`)
+- `headers` - 响应头
 
 ```
 // Create your own response for service worker testing
@@ -389,14 +389,14 @@ console.log('status: ', responseObj.status);
 
 The `Response` also provides the following methods:
 
-* `clone()` - Creates a clone of a Response object.
-* `error()` - Returns a new Response object associated with a network error.
-* `redirect()` - Creates a new response with a different URL.
-* `arrayBuffer()` - Returns a promise that resolves with an ArrayBuffer.
-* `blob()` - Returns a promise that resolves with a Blob.
-* `formData()` - Returns a promise that resolves with a FormData object.
-* `json()` - Returns a promise that resolves with a JSON object.
-* `text()` - Returns a promise that resolves with a USVString (text).
+- `clone()` - Creates a clone of a Response object.
+- `error()` - Returns a new Response object associated with a network error.
+- `redirect()` - Creates a new response with a different URL.
+- `arrayBuffer()` - Returns a promise that resolves with an ArrayBuffer.
+- `blob()` - Returns a promise that resolves with a Blob.
+- `formData()` - Returns a promise that resolves with a FormData object.
+- `json()` - Returns a promise that resolves with a JSON object.
+- `text()` - Returns a promise that resolves with a USVString (text).
 
 ### Handling HTTP error statuses:处理 HTTP 错误状态
 
@@ -1276,15 +1276,15 @@ fetch('/some/url').then(function(response) {
 Request 对象代表了一次`fetch`请求中的请求体部分，你可以自定义`Request`对象:
 A `Request` instance represents the request piece of a `fetch` call. By passing`fetch` a `Request` you can make advanced and customized requests:
 
-* `method` - 使用的 HTTP 动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
-* `url` - 请求地址，URL of the request
-* `headers` - 关联的 Header 对象
-* `referrer` - referrer
-* `mode` - 请求的模式，主要用于跨域设置，`cors`, `no-cors`, `same-origin`
-* `credentials` - 是否发送 Cookie `omit`, `same-origin`
-* `redirect` - 收到重定向请求之后的操作，`follow`, `error`, `manual`
-* `integrity` - 完整性校验
-* `cache` - 缓存模式(`default`, `reload`, `no-cache`)
+- `method` - 使用的 HTTP 动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
+- `url` - 请求地址，URL of the request
+- `headers` - 关联的 Header 对象
+- `referrer` - referrer
+- `mode` - 请求的模式，主要用于跨域设置，`cors`, `no-cors`, `same-origin`
+- `credentials` - 是否发送 Cookie `omit`, `same-origin`
+- `redirect` - 收到重定向请求之后的操作，`follow`, `error`, `manual`
+- `integrity` - 完整性校验
+- `cache` - 缓存模式(`default`, `reload`, `no-cache`)
 
 ```
 var request = new Request('/users.json', {
@@ -1433,13 +1433,13 @@ fetch('https://example.com:1234/users', {
 
 在`fetch`的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在 Mock 的时候自定义 Response 对象，譬如在你需要使用 Service Workers 的情况下，在`Response`中，你可以作如下配置:
 
-* `type` - `basic`, `cors`
-* `url`
-* `useFinalURL` - 是否为最终地址
-* `status` - 状态码 (ex: `200`, `404`, etc.)
-* `ok` - 是否成功响应 (status in the range 200-299)
-* `statusText` - status code (ex: `OK`)
-* `headers` - 响应头
+- `type` - `basic`, `cors`
+- `url`
+- `useFinalURL` - 是否为最终地址
+- `status` - 状态码 (ex: `200`, `404`, etc.)
+- `ok` - 是否成功响应 (status in the range 200-299)
+- `statusText` - status code (ex: `OK`)
+- `headers` - 响应头
 
 ```
 // Create your own response for service worker testing
@@ -1460,14 +1460,14 @@ console.log('status: ', responseObj.status);
 
 The `Response` also provides the following methods:
 
-* `clone()` - Creates a clone of a Response object.
-* `error()` - Returns a new Response object associated with a network error.
-* `redirect()` - Creates a new response with a different URL.
-* `arrayBuffer()` - Returns a promise that resolves with an ArrayBuffer.
-* `blob()` - Returns a promise that resolves with a Blob.
-* `formData()` - Returns a promise that resolves with a FormData object.
-* `json()` - Returns a promise that resolves with a JSON object.
-* `text()` - Returns a promise that resolves with a USVString (text).
+- `clone()` - Creates a clone of a Response object.
+- `error()` - Returns a new Response object associated with a network error.
+- `redirect()` - Creates a new response with a different URL.
+- `arrayBuffer()` - Returns a promise that resolves with an ArrayBuffer.
+- `blob()` - Returns a promise that resolves with a Blob.
+- `formData()` - Returns a promise that resolves with a FormData object.
+- `json()` - Returns a promise that resolves with a JSON object.
+- `text()` - Returns a promise that resolves with a USVString (text).
 
 ### Handling HTTP error statuses:处理 HTTP 错误状态
 
