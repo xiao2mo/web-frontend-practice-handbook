@@ -8,7 +8,7 @@ React 官方文档中提及，Jest 是 Facebook 官方使用的组件测试库�
 
 依照惯例，我们先使用 create-react-app 命令创建项目；在 package.json 项目文件创建完毕之后即使用 npm 命令安装所需要的依赖：
 
-```
+```sh
 npm install --save-dev jest
 ```
 
@@ -87,33 +87,28 @@ Ran all test suites matching "test/util/sum.test.js".
 
 其对应的 Mock 文件如下：
 
-```
+```js
 // __mocks__/styleMock.js
-
-
 module.exports = {};
+
 // __mocks__/fileMock.js
-
-
 module.exports = 'test-file-stub';
 ```
 
 除了对于静态资源文件的配置之外，我们还可以使用类似于 Webpack 中的 `modulesDirectories`、`extensions` 等配置项来自定义 Jest 的文件搜索规则：
 
-```
+```json
 // package.json
 {
-  "jest": {
-    "modulePaths": [
-      "/shared/vendor/modules"
-    ],
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules", "bower_components", "shared"],
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
-    }
-  }
+  "jest": {
+    "modulePaths": ["/shared/vendor/modules"],
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules", "bower_components", "shared"],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
+  }
 }
 ```
 
@@ -121,53 +116,46 @@ module.exports = 'test-file-stub';
 
 最后，我们还需要考虑如何在 Webpack 2 项目中进行 Jest 配置，其主要关注点在于 Webpack 2 提供了对于 ES2015 Modules 的原生支持；而 Jest 运行于 Node 环境下，仍然需要将 ES2015 Modules 转化为 CommonJS 模块规范。因此我们需要为 Webpack 2 项目下的 .babelrc 文件添加 test 环境的配置：
 
-```
+```json
 // .babelrc
 {
-  "presets": [
-    ["es2015", {"modules": false}]
-  ],
+  "presets": [["es2015", { "modules": false }]],
 
-
-  "env": {
-    "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
-    }
-  }
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }
 ```
 
 而如果在组件开发中我们使用了动态模块导入，即 `import('some-file.js').then(module => …)` 这样的语法，我们还需要添加 dynamic-import-node 插件：
 
-```
+```json
 // .babelrc
 {
-  "presets": [
-    ["es2015", {"modules": false}]
-  ],
+  "presets": [["es2015", { "modules": false }]],
 
+  "plugins": ["syntax-dynamic-import"],
 
-  "plugins": ["syntax-dynamic-import"],
-
-
-  "env": {
-    "test": {
-      "plugins": ["dynamic-import-node"]
-    }
-  }
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"]
+    }
+  }
 }
 ```
 
 ## TypeScript
 
 ```ts
-const tsc = require("typescript");
+const tsc = require('typescript');
 
-const tsConfig = require("./tsconfig.json");
+const tsConfig = require('./tsconfig.json');
 
 module.exports = {
   process(src, path) {
-    if (path.endsWith(".ts") || path.endsWith(".tsx")) {
+    if (path.endsWith('.ts') || path.endsWith('.tsx')) {
       return tsc.transpile(src, tsConfig.compilerOptions, path, []);
     }
 
@@ -179,22 +167,16 @@ module.exports = {
 ```json
 // package.json
 {
-  ...
+  ...
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js"],
 
-  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
 
-    "moduleFileExtensions": ["ts", "tsx", "js"],
-
-    "transform": {
-
-      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
-
-    },
-
-    "testMatch": ["**/__tests__/*.(ts|tsx|js)"]
-
-  }
-
+    "testMatch": ["**/__tests__/*.(ts|tsx|js)"]
+  }
 }
 ```
 
@@ -211,10 +193,10 @@ module.exports = {
 对于 `React` 的 `scroll` 事件而言，必须要绑定在某个元素里才能进行模拟，不巧，对于安卓手机来说，大部份 `scroll` 事件都是绑定在 `window` 对象下的。这就非常尴尬了，需要借助到 `jsdom` 的功能。通过 `jest-environment-jsdom`，它能够将 `jsdom` 注入到 `node` 运行环境中，因此你可以在测试文件中直接使用 `window`对象进行模拟。例如下面代码，模拟滚动到最底部：
 
 ```js
-test("scroll to bottom", done => {
+test('scroll to bottom', done => {
   const wrapper = mount(<Wrapper />);
 
-  window.addEventListener("scroll", function(e) {
+  window.addEventListener('scroll', function(e) {
     setTimeout(() => {
       try {
         // expect 逻辑
@@ -229,7 +211,7 @@ test("scroll to bottom", done => {
   let scrollTop = 768;
   window.document.body.scrollTop = scrollTop; // 指明当前 scrollTop到了哪个位置
   window.dispatchEvent(
-    new window.Event("scroll", {
+    new window.Event('scroll', {
       scrollTop: scrollTop
     })
   );

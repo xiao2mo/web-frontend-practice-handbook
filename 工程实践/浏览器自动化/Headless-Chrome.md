@@ -72,11 +72,9 @@ chrome --headless --disable-gpu --screenshot --window-size=412,732 https://www.c
 通过  headless 参数来指定是否启用 Headless 模式，默认情况下是启用的。此外，在我们使用 npm 安装 Puppeteer 的时候其会自动下载指定版本的  Chromium 从而保证接口的开箱即用性，也可以通过  executablePath 参数指定启动版本：
 
 ```js
-const browser = await puppeteer.launch({headless: false}); // default is true
+const browser = await puppeteer.launch({ headless: false }); // default is true
 
-
-
-const browser = await puppeteer.launch({executablePath: '/path/to/Chrome'});
+const browser = await puppeteer.launch({ executablePath: '/path/to/Chrome' });
 ```
 
 在大规模部署的情况下，我们需要控制 Puppeteer 连接到远端的服务化方式部署的 Headless Chrome 集群，此时就可以使用 `connect` 函数连接到 Headless Chrome 实例：
@@ -84,7 +82,7 @@ const browser = await puppeteer.launch({executablePath: '/path/to/Chrome'});
 ```js
 puppeteer.connect({
   browserWSEndpoint:
-    "ws://{remoteip}:9222/devtools/browser/fa60c034-422d-4f2c-bbeb-17a2cfd690f2"
+    'ws://{remoteip}:9222/devtools/browser/fa60c034-422d-4f2c-bbeb-17a2cfd690f2'
 });
 ```
 
@@ -93,14 +91,14 @@ puppeteer.connect({
 ## 脚本执行
 
 ```js
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer');
 
 (async () => {
   const browser = await puppeteer.launch();
 
   const page = await browser.newPage();
 
-  await page.goto("https://example.com"); // Get the "viewport" of the page, as reported by the page.
+  await page.goto('https://example.com'); // Get the "viewport" of the page, as reported by the page.
 
   const dimensions = await page.evaluate(() => {
     return {
@@ -112,7 +110,7 @@ const puppeteer = require("puppeteer");
     };
   });
 
-  console.log("Dimensions:", dimensions);
+  console.log('Dimensions:', dimensions);
 
   await browser.close();
 })();
@@ -122,25 +120,19 @@ const puppeteer = require("puppeteer");
 
 ## 页面保存
 
-```
+```js
 const puppeteer = require('puppeteer');
 
-
-
 (async () => {
+  const browser = await puppeteer.launch();
 
-  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-  const page = await browser.newPage();
+  await page.goto('https://news.ycombinator.com', { waitUntil: 'networkidle' });
 
-  await page.goto('https://news.ycombinator.com', {waitUntil: 'networkidle'});
+  await page.pdf({ path: 'hn.pdf', format: 'A4' });
 
-  await page.pdf({path: 'hn.pdf', format: 'A4'});
-
-
-
-  await browser.close();
-
+  await browser.close();
 })();
 ```
 
