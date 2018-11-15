@@ -6,7 +6,7 @@
 
 `Copyright © 2018 王下邀月熊`
 
-Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会贯通等阶段。本仓库存放 [ITCS 技术体系与知识图谱-Web 前端](https://parg.co/UIF)相关领域的 Web 开发基础与工程实践的相关博客、示例代码与开源项目、整理成的系列书籍等内容；目前为了更好地体系化阅读，笔者将所有的内容规整到了不同的系列文章 / 书籍中。
+Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会贯通等阶段。本仓库存放 [ITCS 技术体系与知识图谱-Web 前端](https://parg.co/UIF)相关领域的 Web 开发基础与工程实践的相关博客、示例代码与开源项目、整理成的系列书籍等内容；目前为了更好地体系化阅读，笔者将所有的内容规整到了不同的系列文章 / 书籍中；代码等实践模板请参考 [fe-boilerplate](https://github.com/wxyyxc1992/fe-boilerplate)。
 
 ![default](https://user-images.githubusercontent.com/5803001/47262684-025c2e00-d522-11e8-8c82-4a5afcf428d1.png)
 
