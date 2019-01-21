@@ -1,19 +1,20 @@
-[![返回目录](https://parg.co/UY3)](https://parg.co/U0I) 
+[![返回目录](https://parg.co/UY3)](https://parg.co/U0I)
 
 # Introduction
-React Redux是官方提供的Redux与React的绑定库，用于将Redux中的State与Action Creators映射到React组件的Props。本组件的设计思想可以查看[Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.6bnhmpqtg)，即将展示组件与容器组件分离，将展示组件尽可能地作为Stateless对待。在应用中，只有最顶层组件是对 Redux 可知(例如路由处理)这是很好的。所有它们的子组件都应该是“笨拙”的，并且是通过 props 获取数据。
-|          | 容器组件               | 展示组件           |
+
+React Redux 是官方提供的 Redux 与 React 的绑定库，用于将 Redux 中的 State 与 Action Creators 映射到 React 组件的 Props。本组件的设计思想可以查看[Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.6bnhmpqtg)，即将展示组件与容器组件分离，将展示组件尽可能地作为 Stateless 对待。在应用中，只有最顶层组件是对 Redux 可知(例如路由处理)这是很好的。所有它们的子组件都应该是“笨拙”的，并且是通过 props 获取数据。
+| | 容器组件 | 展示组件 |
 | -------- | ------------------ | -------------- |
-| 位置       | 最顶层，路由处理           | 中间和子组件         |
-| 使用 Redux | 是                  | 否              |
-| 读取数据     | 从 Redux 获取 state   | 从 props 获取数据   |
-| 修改数据     | 向 Redux 发起 actions | 从 props 调用回调函数 |
+| 位置 | 最顶层，路由处理 | 中间和子组件 |
+| 使用 Redux | 是 | 否 |
+| 读取数据 | 从 Redux 获取 state | 从 props 获取数据 |
+| 修改数据 | 向 Redux 发起 actions | 从 props 调用回调函数 |
 
 ![](http://p9.qhimg.com/d/inn/a8ab3ea4/react-redux.png)
 
+- 展示组件中不接入 Redux
+  让我们看下，我们拥有一个 <Counter /> 的展示组件，它有一个通过 props 传过来的值，和一个函数 onIncrement，当你点击 “Increment” 按钮时就会调用这个函数：
 
-- 展示组件中不接入Redux
-让我们看下，我们拥有一个 <Counter /> 的展示组件，它有一个通过 props 传过来的值，和一个函数 onIncrement，当你点击 “Increment” 按钮时就会调用这个函数：
 ```
 import { Component } from 'react';
 
@@ -27,11 +28,15 @@ export default class Counter extends Component {
   }
 }
 ```
+
 安装的话只需要：
+
 ```
 npm install --save react-redux
 ```
-我们用 react-redux 提供的 connect() 方法将“笨拙”的 Counter 转化成容器组件。connect() 允许你从 Redux store 中指定准确的 state 到你想要获取的组件中。这让你能获取到任何级别颗粒度的数据。首先来看下一个简单的Counter的示例：
+
+我们用 react-redux 提供的 connect() 方法将“笨拙”的 Counter 转化成容器组件。connect() 允许你从 Redux store 中指定准确的 state 到你想要获取的组件中。这让你能获取到任何级别颗粒度的数据。首先来看下一个简单的 Counter 的示例：
+
 ```
 import { Component } from 'react';
 
@@ -45,6 +50,7 @@ export default class Counter extends Component {
   }
 }
 ```
+
 ```
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -99,16 +105,23 @@ ReactDOM.render(
 ```
 
 ## Reference
-- [中文的React+Redux系列教程](https://github.com/lewis617/react-redux-tutorial)
+
+- [中文的 React+Redux 系列教程](https://github.com/lewis617/react-redux-tutorial)
 
 # Provider & Store
-`<Provider store>` 使组件层级中的 connect() 方法都能够获得 Redux store。正常情况下，你的根组件应该嵌套在 `<Provider>` 中才能使用 connect() 方法。如果你真的不想把根组件嵌套在 `<Provider> `中，你可以把 store 作为 props 传递到每一个被 connet() 包装的组件，但是我们只推荐您在单元测试中对 store 进行伪造 (stub) 或者在非完全基于 React 的代码中才这样做。正常情况下，你应该使用 `<Provider>`。
+
+`<Provider store>` 使组件层级中的 connect() 方法都能够获得 Redux store。正常情况下，你的根组件应该嵌套在 `<Provider>` 中才能使用 connect() 方法。如果你真的不想把根组件嵌套在 `<Provider>`中，你可以把 store 作为 props 传递到每一个被 connet() 包装的组件，但是我们只推荐您在单元测试中对 store 进行伪造 (stub) 或者在非完全基于 React 的代码中才这样做。正常情况下，你应该使用 `<Provider>`。
 属性
-- store (Redux Store): 应用程序中唯一的 Redux store 对象 
+
+- store (Redux Store): 应用程序中唯一的 Redux store 对象
 - children (ReactElement) 组件层级的根组件。
+
 ## React-Router
-一般在项目中，我们经常需要集成React-Router。
+
+一般在项目中，我们经常需要集成 React-Router。
+
 - React Router 0.13
+
 ```
 Router.run(routes, Router.HistoryLocation, (Handler, routerState) => { // 注意这里的 "routerState"
   ReactDOM.render(
@@ -120,7 +133,9 @@ Router.run(routes, Router.HistoryLocation, (Handler, routerState) => { // 注意
   );
 });
 ```
+
 - React Router 1.0
+
 ```
 ReactDOM.render(
   <Provider store={store}>
@@ -131,22 +146,36 @@ ReactDOM.render(
 ```
 
 # connect:连接 React 组件与 Redux store。
+
 ```
 connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])
 ```
+
 连接操作不会改变原来的组件类，反而返回一个新的已与 Redux store 连接的组件类。
+
 ## 参数解析
+
 ### mapStateToProps
-[mapStateToProps(state, [ownProps]): stateProps] (Function): 如果定义该参数，组件将会监听 Redux store 的变化。任何时候，只要 Redux store 发生改变，mapStateToProps 函数就会被调用。该回调函数必须返回一个纯对象，这个对象会与组件的 props 合并。如果你省略了这个参数，你的组件将不会监听 Redux store。如果指定了该回调函数中的第二个参数 ownProps，则该参数的值为传递到组件的 props，而且只要组件接收到新的 props，mapStateToProps 也会被调用。
+
+[mapStateToProps(state, [ownProps]): stateProps](Function): 如果定义该参数，组件将会监听 Redux store 的变化。任何时候，只要 Redux store 发生改变，mapStateToProps 函数就会被调用。该回调函数必须返回一个纯对象，这个对象会与组件的 props 合并。如果你省略了这个参数，你的组件将不会监听 Redux store。如果指定了该回调函数中的第二个参数 ownProps，则该参数的值为传递到组件的 props，而且只要组件接收到新的 props，mapStateToProps 也会被调用。
+
 ### mapDispatchToProps
+
 [mapDispatchToProps(dispatch, [ownProps]): dispatchProps] (Object or Function): 如果传递的是一个对象，那么每个定义在该对象的函数都将被当作 Redux action creator，而且这个对象会与 Redux store 绑定在一起，其中所定义的方法名将作为属性名，合并到组件的 props 中。如果传递的是一个函数，该函数将接收一个 dispatch 函数，然后由你来决定如何返回一个对象，这个对象通过 dispatch 函数与 action creator 以某种方式绑定在一起(提示：你也许会用到 Redux 的辅助函数 bindActionCreators())。如果你省略这个 mapDispatchToProps 参数，默认情况下，dispatch 会注入到你的组件 props 中。如果指定了该回调函数中第二个参数 ownProps，该参数的值为传递到组件的 props，而且只要组件接收到新 props，mapDispatchToProps 也会被调用。
+
 ### mergeProps
-[mergeProps(stateProps, dispatchProps, ownProps): props] (Function): 如果指定了这个参数，mapStateToProps() 与 mapDispatchToProps() 的执行结果和组件自身的 props 将传入到这个回调函数中。该回调函数返回的对象将作为 props 传递到被包装的组件中。你也许可以用这个回调函数，根据组件的 props 来筛选部分的 state 数据，或者把 props 中的某个特定变量与 action creator 绑定在一起。如果你省略这个参数，默认情况下返回 Object.assign({}, ownProps, stateProps, dispatchProps) 的结果。
+
+[mergeProps(stateProps, dispatchProps, ownProps): props](Function): 如果指定了这个参数，mapStateToProps() 与 mapDispatchToProps() 的执行结果和组件自身的 props 将传入到这个回调函数中。该回调函数返回的对象将作为 props 传递到被包装的组件中。你也许可以用这个回调函数，根据组件的 props 来筛选部分的 state 数据，或者把 props 中的某个特定变量与 action creator 绑定在一起。如果你省略这个参数，默认情况下返回 Object.assign({}, ownProps, stateProps, dispatchProps) 的结果。
+
 ### options
-[options] (Object) 如果指定这个参数，可以定制 connector 的行为。
-- [pure = true] (Boolean): 如果为 true，connector 将执行 shouldComponentUpdate 并且浅对比 mergeProps 的结果，避免不必要的更新，前提是当前组件是一个“纯”组件，它不依赖于任何的输入或 state 而只依赖于 props 和 Redux store 的 state。默认值为 true。
-- [withRef = false] (Boolean): 如果为 true，connector 会保存一个对被包装组件实例的引用，该引用通过 getWrappedInstance() 方法获得。默认值为 false
+
+[options](Object) 如果指定这个参数，可以定制 connector 的行为。
+
+- [pure = true](Boolean): 如果为 true，connector 将执行 shouldComponentUpdate 并且浅对比 mergeProps 的结果，避免不必要的更新，前提是当前组件是一个“纯”组件，它不依赖于任何的输入或 state 而只依赖于 props 和 Redux store 的 state。默认值为 true。
+- [withRef = false](Boolean): 如果为 true，connector 会保存一个对被包装组件实例的引用，该引用通过 getWrappedInstance() 方法获得。默认值为 false
+
 ## Examples
+
 - 只注入 `dispatch`，不监听 store
 
 ```
@@ -176,7 +205,7 @@ export default connect(mapStateToProps)(TodoApp);
 
 ```
 
-- 注入 `todos` 和所有 action creator  (`addTodo`, `completeTodo`, ...)
+- 注入 `todos` 和所有 action creator (`addTodo`, `completeTodo`, ...)
 
 ```
 import * as actionCreators from './actionCreators';
@@ -319,13 +348,19 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
 export default connect(mapStateToProps, actionCreators, mergeProps)(TodoApp);
 
 ```
-# [React Router](https://github.com/reactjs/react-router-redux):保证Redux与React-Router同步
+
+# [React Router](https://github.com/reactjs/react-router-redux):保证 Redux 与 React-Router 同步
+
 ## Basic Usage
+
 - 安装方式：
+
 ```
 npm install --save react-router-redux
 ```
+
 - 简单示例
+
 ```
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -360,9 +395,13 @@ ReactDOM.render(
   document.getElementById('mount')
 )
 ```
+
 ## Router State
-### Params:Router的参数
-在React Router中可以通过本身组件的Props来传递路由参数，而在React-Redux中因为是采用了`connect()`方法将State映射到了Props中，因此需要采用`mapStateToProps`中的第二个参数进行路由映射：
+
+### Params:Router 的参数
+
+在 React Router 中可以通过本身组件的 Props 来传递路由参数，而在 React-Redux 中因为是采用了`connect()`方法将 State 映射到了 Props 中，因此需要采用`mapStateToProps`中的第二个参数进行路由映射：
+
 ```
 function mapStateToProps(state, ownProps) {
   return {
@@ -371,15 +410,21 @@ function mapStateToProps(state, ownProps) {
   };
 }
 ```
+
 ### History
+
 如果有时候需要对于你的路由的历史进行监控的话，可以采用如下的方案：
+
 ```
 const history = syncHistoryWithStore(browserHistory, store)
 
 history.listen(location => analyticsService.track(location.pathname))
 ```
+
 ## Navigation Control
+
 ### issue navigation events via Redux actions
+
 ```
 import { routerMiddleware, push } from 'react-router-redux'
 
@@ -395,8 +440,11 @@ store.dispatch(push('/foo'))
 ```
 
 # form:[redux-form](http://redux-form.com/5.2.3/#/getting-started?_k=3clhs7)
+
 ## Simple Form
-如果在Redux Form中需要手动地设置值，应该在Field的`onChange`方法中进行修改，譬如：
+
+如果在 Redux Form 中需要手动地设置值，应该在 Field 的`onChange`方法中进行修改，譬如：
+
 ```
 <Select
     className="result_columns"
@@ -411,8 +459,11 @@ store.dispatch(push('/foo'))
     <Option value="3">列3</Option>
 </Select>
 ```
+
 这一特性常常用于在自定义组件中进行值设置，
-## Initial Form Values 
+
+## Initial Form Values
+
 ```
 import { React, Component } from 'react'
 import { bindActionCreators } from 'redux'

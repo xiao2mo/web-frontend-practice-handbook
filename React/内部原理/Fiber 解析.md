@@ -1,7 +1,5 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I)
 
-
-
 将整个更新划分为多个原子性的任务，这就保证了原本完整的组件的更新流程可以被中断与恢复。在浏览器的空闲期执行这些任务并且区别高优先级与低优先级的任务
 
 In React 15, if A is replaced by B, we unmount A, and then create and mount B:
@@ -25,13 +23,13 @@ Work-in-Progress Tree
 
 将当前界面树上的指针指向 Work-in-Progress 树中的对应节点，从而通过简单的键值复制来实现对象复用；这种技术也就是所谓的 Double Buffering，其能够在内存分配与垃圾回收等多个方面进行性能优化。
 
-* Synchronous
-* Task
-* Animation
+- Synchronous
+- Task
+- Animation
 
-- High Priority: 动画与用户交互
-- Low Priority: 网络请求
-- OffScreen: 任何的隐藏对象
+* High Priority: 动画与用户交互
+* Low Priority: 网络请求
+* OffScreen: 任何的隐藏对象
 
 在 Fiber 的设计中，另一个需要考虑的情形就是所谓的饥饿(Starvation)，如果我们持续性地存在大量的高优先级的更新请求，那么是否低优先级的更新请求就一直无法执行？
 

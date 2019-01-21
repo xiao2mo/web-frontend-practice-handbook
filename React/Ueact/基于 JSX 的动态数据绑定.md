@@ -267,9 +267,9 @@ document.querySelector('#root').appendChild(App);
 
 值得一提的是，因为 HTML 语法与 JSX 语法存在一定的差异，我们获取渲染之后的 DOM 对象之后，还需要对部分元素语法进行修正；主要包括了以下三个场景：
 
-* 自闭合标签处理，即 `<input > => <input />`
-* 去除输入的 HTML 中的事件监听的引号，即  `onclick="{methods.handleClick}"` => `onclick={methods.handleClick}`
-* 移除 value 值额外的引号，即  `value="{state.a}"` => `value={state.a}`
+- 自闭合标签处理，即 `<input > => <input />`
+- 去除输入的 HTML 中的事件监听的引号，即  `onclick="{methods.handleClick}"` => `onclick={methods.handleClick}`
+- 移除 value 值额外的引号，即  `value="{state.a}"` => `value={state.a}`
 
 到这里我们得到了经过 Babel 转化的函数调用代码，下面我们就需要去执行这部分代码并且完成数据填充。最简单的方式就是使用 `eval` 函数，不过因为该函数直接暴露在了全局作用域下，因此并不被建议使用；我们使用动态构造 Function 的方式来进行调用：
 
