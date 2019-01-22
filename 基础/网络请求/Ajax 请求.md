@@ -809,7 +809,7 @@ model
 
 笔者在自己的项目中封装了一个基于 ES6 Class 的基本的模型请求类，[代码地址](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
 
-```
+```js
 /**
  * Created by apple on 16/5/3.
  */
@@ -818,215 +818,196 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 // import "whatwg-fetch";
 
-
 /**
  * @function 基础的模型类,包含了基本的URL定义
  */
 export default class Model {
+  //默认的基本URL路径
+  static BASE_URL = '/';
 
+  //默认的请求头
+  static headers = {
+    Origin: '*' //默认允许加载所有域的信息,
+  };
 
-    //默认的基本URL路径
-    static BASE_URL = "/";
+  /**
+   * @function 默认构造函数
+   */
+  constructor() {
+    this._checkStatus = this._checkStatus.bind(this);
 
-    //默认的请求头
-    static headers = {
-        "Origin": "*", //默认允许加载所有域的信息,
-    };
+    this._parseJSON = this._parseJSON.bind(this);
 
-    /**
-     * @function 默认构造函数
-     */
-    constructor() {
+    this._parseText = this._parseText.bind(this);
 
-        this._checkStatus = this._checkStatus.bind(this);
+    this._fetchWithCORS = this._fetchWithCORS.bind(this);
+  }
 
-        this._parseJSON = this._parseJSON.bind(this);
+  /**
+   * @function 检测返回值的状态
+   * @param response
+   * @returns {*}
+   */
+  _checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    } else {
+      var error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    }
+  }
 
-        this._parseText = this._parseText.bind(this);
+  /**
+   * @function 解析返回值中的Response为JSON形式
+   * @param response
+   * @returns {*}
+   */
+  _parseJSON(response) {
+    if (!!response) {
+      return response.json();
+    } else {
+      return undefined;
+    }
+  }
 
-        this._fetchWithCORS = this._fetchWithCORS.bind(this);
+  /**
+   * @function 解析TEXT性质的返回
+   * @param response
+   * @returns {*}
+   */
+  _parseText(response) {
+    if (!!response) {
+      return response.text();
+    } else {
+      return undefined;
+    }
+  }
 
+  /**
+   * @function 封装好的跨域请求的方法
+   * @param packagedRequestURL
+   * @returns {*|Promise.<TResult>}
+   * @private
+   */
+  _fetchWithCORS(packagedRequestURL, contentType) {
+    //HTTP请求头
+    let httpHeaders = new Headers();
 
+    //遍历所有的当前请求头
+    for (let key in Model.headers) {
+      httpHeaders.append(key, Model.headers[key]);
     }
 
-    /**
-     * @function 检测返回值的状态
-     * @param response
-     * @returns {*}
-     */
-    _checkStatus(response) {
-
-        if (response.status >= 200 && response.status < 300) {
-            return response
-        } else {
-            var error = new Error(response.statusText);
-            error.response = response;
-            throw error
+    return fetch(packagedRequestURL, {
+      mode: 'cors',
+      headers: httpHeaders
+    })
+      .then(this.checkStatus, error => {
+        throw error;
+      })
+      .then(
+        contentType === 'json' ? this._parseJSON : this._parseText,
+        error => {
+          throw error;
         }
+      );
+  }
+
+  /**
+   * @function 利用get方法发起请求
+   * @param path 请求的路径(包括路径参数)
+   * @param requestData 请求的参数
+   * @param contentType 返回的类型
+   * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
+   */
+  get({ BASE_URL = Model.BASE_URL, path = '/', contentType = 'json' }) {
+    //封装最终待请求的字符串
+    const packagedRequestURL = `${BASE_URL}${path}?action=GET`;
+
+    //以CORS方式发起请求
+    return this._fetchWithCORS(packagedRequestURL, contentType);
+  }
+
+  /**
+   * @function 利用get方法与封装好的QueryParams形式发起请求
+   * @param path 请求的路径(包括路径参数)
+   * @param requestData 请求的参数
+   * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
+   */
+  getWithQueryParams({
+    BASE_URL = Model.BASE_URL,
+    path = '/',
+    queryParams = {},
+    contentType = 'json'
+  }) {
+    //初始化查询字符串
+    let queryString = '';
+
+    //根据queryParams构造查询字符串
+    for (let key in queryParams) {
+      //拼接查询字符串
+      queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
     }
 
-    /**
-     * @function 解析返回值中的Response为JSON形式
-     * @param response
-     * @returns {*}
-     */
-    _parseJSON(response) {
+    //将查询字符串进行编码
+    let encodedQueryString = queryString;
 
-        if (!!response) {
+    //封装最终待请求的字符串
+    const packagedRequestURL = `${BASE_URL}${path}?${encodedQueryString}action=GET`;
 
-            return response.json();
-        }
-        else {
-            return undefined;
-        }
+    console.log(packagedRequestURL);
 
+    //以CORS方式发起请求
+    return this._fetchWithCORS(packagedRequestURL, contentType);
+  }
+
+  /**
+   * @function 通过透明路由,利用get方法与封装好的QueryParams形式发起请求
+   * @param BASE_URL 请求根URL地址,注意,需要添加http://以及末尾的/,譬如`http://api.com/`
+   * @param path 请求路径,譬如"path1/path2"
+   * @param queryParams 请求的查询参数
+   * @param contentType 请求返回的数据格式
+   * @param proxyUrl 请求的路由地址
+   */
+  getWithQueryParamsByProxy({
+    BASE_URL = Model.BASE_URL,
+    path = '/',
+    queryParams = {},
+    contentType = 'json',
+    proxyUrl = 'http://api.proxy.com'
+  }) {
+    //初始化查询字符串,将BASE_URL以及path进行编码
+    let queryString = `BASE_URL=${encodeURIComponent(
+      BASE_URL
+    )}&path=${encodeURIComponent(path)}&`;
+
+    //根据queryParams构造查询字符串
+    for (let key in queryParams) {
+      //拼接查询字符串
+      queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
     }
 
-    /**
-     * @function 解析TEXT性质的返回
-     * @param response
-     * @returns {*}
-     */
-    _parseText(response) {
+    //将查询字符串进行编码
+    let encodedQueryString = queryString;
 
+    //封装最终待请求的字符串
+    const packagedRequestURL = `${proxyUrl}?${encodedQueryString}action=GET`;
 
-        if (!!response) {
+    //以CORS方式发起请求
+    return this._fetchWithCORS(packagedRequestURL, contentType);
+  }
 
-            return response.text();
-        }
-        else {
-            return undefined;
-        }
+  /**
+   * @function 以url-form-encoded方式发起请求
+   * @param path
+   * @param queryParams
+   * @param contentType
+   */
+  post({ path = '/', queryParams = {}, contentType = 'json' }) {}
 
-    }
-
-    /**
-     * @function 封装好的跨域请求的方法
-     * @param packagedRequestURL
-     * @returns {*|Promise.<TResult>}
-     * @private
-     */
-    _fetchWithCORS(packagedRequestURL, contentType) {
-
-        //HTTP请求头
-        let httpHeaders = new Headers();
-
-        //遍历所有的当前请求头
-        for (let key in Model.headers) {
-            httpHeaders.append(key, Model.headers[key]);
-        }
-
-        return fetch(packagedRequestURL, {
-            mode: "cors", headers: httpHeaders
-        })
-            .then(this.checkStatus, (error)=> {
-                throw error;
-            })
-            .then(contentType === "json" ? this._parseJSON : this._parseText, (error)=> {
-                throw error;
-            });
-
-
-    }
-
-    /**
-     * @function 利用get方法发起请求
-     * @param path 请求的路径(包括路径参数)
-     * @param requestData 请求的参数
-     * @param contentType 返回的类型
-     * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-     */
-    get({BASE_URL=Model.BASE_URL, path="/", contentType="json"}) {
-
-        //封装最终待请求的字符串
-        const packagedRequestURL = `${BASE_URL}${(path)}?action=GET`;
-
-        //以CORS方式发起请求
-        return this._fetchWithCORS(packagedRequestURL, contentType);
-
-    }
-
-    /**
-     * @function 利用get方法与封装好的QueryParams形式发起请求
-     * @param path 请求的路径(包括路径参数)
-     * @param requestData 请求的参数
-     * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
-     */
-    getWithQueryParams({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json"}) {
-
-
-        //初始化查询字符串
-        let queryString = "";
-
-        //根据queryParams构造查询字符串
-        for (let key in queryParams) {
-
-            //拼接查询字符串
-            queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
-
-        }
-
-        //将查询字符串进行编码
-        let encodedQueryString = (queryString);
-
-        //封装最终待请求的字符串
-        const packagedRequestURL = `${BASE_URL}${path}?${encodedQueryString}action=GET`;
-
-        console.log(packagedRequestURL);
-
-        //以CORS方式发起请求
-        return this._fetchWithCORS(packagedRequestURL, contentType);
-
-    }
-
-    /**
-     * @function 通过透明路由,利用get方法与封装好的QueryParams形式发起请求
-     * @param BASE_URL 请求根URL地址,注意,需要添加http://以及末尾的/,譬如`http://api.com/`
-     * @param path 请求路径,譬如"path1/path2"
-     * @param queryParams 请求的查询参数
-     * @param contentType 请求返回的数据格式
-     * @param proxyUrl 请求的路由地址
-     */
-    getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, contentType="json", proxyUrl="http://api.proxy.com"}) {
-
-        //初始化查询字符串,将BASE_URL以及path进行编码
-        let queryString = `BASE_URL=${encodeURIComponent(BASE_URL)}&path=${encodeURIComponent(path)}&`;
-
-        //根据queryParams构造查询字符串
-        for (let key in queryParams) {
-
-            //拼接查询字符串
-            queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
-
-        }
-
-        //将查询字符串进行编码
-        let encodedQueryString = (queryString);
-
-        //封装最终待请求的字符串
-        const packagedRequestURL = `${proxyUrl}?${encodedQueryString}action=GET`;
-
-        //以CORS方式发起请求
-        return this._fetchWithCORS(packagedRequestURL, contentType);
-
-    }
-
-    /**
-     * @function 以url-form-encoded方式发起请求
-     * @param path
-     * @param queryParams
-     * @param contentType
-     */
-    post({path="/", queryParams={}, contentType="json"}) {
-
-    }
-
-    postWithJSONBody({path="/", queryParams={}, contentType="json"}) {
-
-    }
-
+  postWithJSONBody({ path = '/', queryParams = {}, contentType = 'json' }) {}
 }
-
 
 Model.testData = {};
 
@@ -1052,9 +1033,9 @@ p.catch(error => console.log(error))
 
 2    if (!url) url = window.location.href;
 
-3    name = name.replace(/[\[\]]/g, "\\$&");
+3    name = name.replace(/[\[\]]/g, "\\\$&");
 
-4    var regex = new RegExp("[?&]" + name + "(=([^&#]\*)|&|#|$)"),
+4    var regex = new RegExp("[?&]" + name + "(=([^&#]\*)|&|#|\$)"),
 
 5        results = regex.exec(url);
 
@@ -1197,7 +1178,7 @@ JavaScript 通过 XMLHttpRequest(XHR)来执行异步请求，这个方式已经�
 window.fetch 是基于 XMLHttpRequest 的浏览器的统一的封装，针对老的浏览器可以使用 Github 的这个[polypill](https://github.com/github/fetch)。fetch 基于 ES6 的 Promise，在旧的浏览器中首先需要引入 Promise 的 polypill，可以用这个:
 ```
 
-$ bower install es6-promise
+\$ bower install es6-promise
 
 ```
 对于 fetch 的引入，可以用 bower 或者 npm：
