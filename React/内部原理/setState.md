@@ -2,14 +2,6 @@
 
 # React setState
 
-## Reference
-
-- [React 源码剖析系列 － 解密 setState](https://zhuanlan.zhihu.com/p/20328570?refer=purerender)
-
-* [为什么 setState 没有立即执行](http://www.jianshu.com/p/2d50a413e74a)
-
-* [拆解 setState[一][一源看世界][之 React]](http://www.jianshu.com/p/47f24add2b5e)
-
 # setState 调用流程
 
 # 事务

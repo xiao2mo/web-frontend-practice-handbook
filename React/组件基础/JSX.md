@@ -1,7 +1,5 @@
 [![返回目录](https://parg.co/UY3)](https://parg.co/U0I)
 
-
-
 # JSX
 
 我们在上文中已经很多次的提及了 JSX，大家也对于基本的基于 JSX 编写 React 组件所有了解。实际上在 JSX 推出之初饱受非议，很多人觉得其很怪异。的确虽然与正统的 HTML 相比其都是类 XML 语法的声明式标签语言，但是其对于类名强制使用 className、强制要求标签闭合等特点会让不少的传统前端开发者不太适应。JSX 的引入对笔者之前的工作流的冲击在于不能够直接使用 UI 部门提供的页面模板，并且因为组件化的分割与预编译，UI 比较麻烦地直接在浏览器开发工具中调整 CSS 样式然后保存到源代码中。JSX 本质上还是属于 JavaScript，这就避免了我们重复地学习不同框架或库中的指令约定，而可以直接使用 JavaScript 来描述模板渲染逻辑；而在前端框架的工作流中，往往将 JSX 的转化工作交托于 Babel 等转化工具，我们可以通过如下方式指定 JSX 使用的构建函数：
@@ -106,7 +104,7 @@ JSX 的官方定义是类 XML 语法的 ECMAscript 扩展，完美地利用了 J
 
 ## 变量使用
 
-* 注释
+- 注释
 
 在 HTML 中，我们会使用 `<!-- -->` 进行注释，不过 JSX 中并不支持：
 
@@ -135,7 +133,7 @@ render() {
 */}
 ```
 
-* 数组
+- 数组
 
 JSX 允许使用任意的变量，因此如果我们需要使用数组进行循环元素渲染时，直接使用 map、reduce、filter 等方法即可：
 
@@ -153,7 +151,7 @@ function NumberList(props) {
 }
 ```
 
-* 条件渲染
+- 条件渲染
 
 在 JSX 中我们不能再使用传统的 if/else 条件判断语法，但是可以使用更为简洁明了的 Conditional Operator 运算符，譬如我们要进行 if 操作：
 
@@ -191,7 +189,7 @@ function NumberList(props) {
 
 ## 元素属性
 
-* style 属性
+- style 属性
 
 JSX 中的 style 并没有跟 HTML 一样接收某个 CSS 字符串，而是接收某个使用 camelCase 风格属性的 JavaScript 对象，这一点倒是和 DOM 对象的 style 属性一致。譬如:
 
@@ -219,19 +217,19 @@ function ComponentWithTransition() {
 }
 ```
 
-* className
+- className
 
 React 中是使用 `className` 来声明 CSS 类名，这一点对于所有的 DOM 与 SVG 元素都起作用。不过如果你是将 React 与 Web Components 结合使用，也是可以使用 `class` 属性的。
 
-* htmlFor
+- htmlFor
 
 因为 `for` 是 JavaScript 中的保留关键字，因此 React 元素是使用 `htmlFor` 作为替代。
 
-* Boolean 系列属性
+- Boolean 系列属性
 
 HTML 表单元素中我们经常会使用 disabled、required、checked 与 readOnly 等 Boolean 值性质的书，缺省的属性值会导致 JSX 认为 bool 值设为 true。当我们需要传入 false 时，必须要使用属性表达式。譬如 `<input type='checkbox' checked={true}>` 可以简写为`<input type='checkbox' checked>`，而 `<input type='checkbox' checked={falsed}>` 即不可以省略 checked 属性。
 
-* 自定义属性
+- 自定义属性
 
 如果在 JSX 中向 DOM 元素中传入自定义属性，React 是会自动忽略的:
 
@@ -249,7 +247,7 @@ HTML 表单元素中我们经常会使用 disabled、required、checked 与 read
 
 JSX 表达式中允许在一对开放标签或者闭合标签之间包含内容，这即是所谓的子元素，本部分介绍 JSX 支持的不同类别的子元素使用方式。
 
-* 字符串
+- 字符串
 
 我们可以将字符串放置在一对开放与闭合的标签之间，此时所谓的 `props.children` 即就是字符串类型；譬如：
 
@@ -281,7 +279,7 @@ JSX 表达式中允许在一对开放标签或者闭合标签之间包含内容�
 </div>
 ```
 
-* JSX 嵌套我们可以嵌套地使用 JSX，即将某些 JSX 元素作为子元素，从而允许我们方便地展示嵌套组件：
+- JSX 嵌套我们可以嵌套地使用 JSX，即将某些 JSX 元素作为子元素，从而允许我们方便地展示嵌套组件：
 
 ```
 <MyContainer>
@@ -304,7 +302,7 @@ JSX 表达式中允许在一对开放标签或者闭合标签之间包含内容�
 
 某个 React 组件不可以返回多个 React 元素，不过单个 JSX 表达式是允许包含多个子元素的；因此如果我们希望某个组件返回多个并列的子元素，就需要将它们包裹在某个 `div` 中。
 
-* JavaScript 表达式我们可以传入包裹在 `{}` 内的任意 JavaScript 表达式作为子元素，譬如下述声明方式渲染的结果是相同的：
+- JavaScript 表达式我们可以传入包裹在 `{}` 内的任意 JavaScript 表达式作为子元素，譬如下述声明方式渲染的结果是相同的：
 
 ```
 <MyComponent>foo</MyComponent>
@@ -331,7 +329,7 @@ function TodoList() {
 }
 ```
 
-* JavaScript 函数正常情况下 JSX 中包含的 JavaScript 表达式会被解析为字符串、React 元素或者列表；不过 `props.children` 是允许我们传入任意值的，譬如我们可以传入某个函数并且在自定义组件中调用：
+- JavaScript 函数正常情况下 JSX 中包含的 JavaScript 表达式会被解析为字符串、React 元素或者列表；不过 `props.children` 是允许我们传入任意值的，譬如我们可以传入某个函数并且在自定义组件中调用：
 
 ```
 // Calls the children callback numTimes to produce a repeated component
@@ -353,7 +351,7 @@ function ListOfTenThings() {
 }
 ```
 
-* 布尔值与空值
+- 布尔值与空值
   `false`，`null`，`undefined` 与 `true` 是有效的子元素，不过它们并不会被渲染，而是直接被忽略，如下的 JSX 表达式会被渲染为相同结果：
 
 ```

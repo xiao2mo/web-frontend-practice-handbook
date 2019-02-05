@@ -169,28 +169,29 @@ beforeEach(() => {
 
 Nightmare  是来自 [Segment](https://segment.com/)  的提供了高阶接口的自动化浏览器库，其构建于 Electron 之上提供了类似于 PhantomJS 无界面浏览器的功能；但是其速度相较于 PhantomJS 会快上许多。严格来说 Nightmare 不算是 Web 测试库，不过我们往往将其与 Mocha / Jest 等测试驱动协同使用来进行端到端测试。我们也可以利用 [Daydream](https://github.com/segmentio/daydream)  这个 Chrome 扩展程序自动将用户的交互行为记录为 Nightmare 脚本，能够方便于测试人员快速地录制脚本。
 
-```
+```js
 var Nightmare = require('nightmare');
 var expect = require('chai').expect; // jshint ignore:line
 
-
 describe('test duckduckgo search results', function() {
-  it('should find the nightmare github link first', function(done) {
-    var nightmare = Nightmare()
-    nightmare
-      .goto('https://duckduckgo.com')
-      .type('#search_form_input_homepage', 'github nightmare')
-      .click('#search_button_homepage')
-      .wait('#zero_click_wrapper .c-info__title a')
-      .evaluate(function () {
-        return document.querySelector('#zero_click_wrapper .c-info__title a').href
-      })
-      .end()
-      .then(function(link) {
-        expect(link).to.equal('https://github.com/segmentio/nightmare');
-        done();
-      })
-  });
+  it('should find the nightmare github link first', function(done) {
+    var nightmare = Nightmare();
+    nightmare
+      .goto('https://duckduckgo.com')
+      .type('#search_form_input_homepage', 'github nightmare')
+      .click('#search_button_homepage')
+      .wait('#zero_click_wrapper .c-info__title a')
+      .evaluate(function() {
+        return document.querySelector(
+          '#zero_click_wrapper .c-info__title a'
+        ).href;
+      })
+      .end()
+      .then(function(link) {
+        expect(link).to.equal('https://github.com/segmentio/nightmare');
+        done();
+      });
+  });
 });
 ```
 

@@ -77,8 +77,8 @@ $ curl localhost:3000
 
 值得一提的是，VSCode 允许添加条件断点，即执行到该行代码满足特定条件后程序才会中断。在断点小红点上右键选择『编辑断点』，可以选择两种条件，也可以组合表达式和命中次数条件一起使用：
 
-* 表达式：当表达式计算结果为 true 时中断；
-* 命中次数：同样当表达式计算结果为 true 时中断，支持运算符 <, <=, ==, >, >=, %。如 >10：即执行 10 次以后断点才会生效
+- 表达式：当表达式计算结果为 true 时中断；
+- 命中次数：同样当表达式计算结果为 true 时中断，支持运算符 <, <=, ==, >, >=, %。如 >10：即执行 10 次以后断点才会生效
 
 ![断点编辑]()
 
@@ -107,29 +107,29 @@ launch.json 其实就是存储了一些调试相关的配置。VS Code 启动调
 }
 ```
 
-* 必需字段：
+- 必需字段：
 
-  * type：调试器类型。这里是 node(内置的调试器)，如果装了 Go 和 PHP 的扩展后对应的 type 分别为 go 和 php
-  * request：请求的类型，目前只支持 launch 和 attach。launch 就是以 debug 模式启动调试，attach 就是附加到已经启动的进程开启 debug 模式并调试，跟上一篇提到的用 node -e "process.\_debugProcess(PID)" 作用一样
-  * name：下拉菜单显示的名字
+  - type：调试器类型。这里是 node(内置的调试器)，如果装了 Go 和 PHP 的扩展后对应的 type 分别为 go 和 php
+  - request：请求的类型，目前只支持 launch 和 attach。launch 就是以 debug 模式启动调试，attach 就是附加到已经启动的进程开启 debug 模式并调试，跟上一篇提到的用 node -e "process.\_debugProcess(PID)" 作用一样
+  - name：下拉菜单显示的名字
 
-* 可选字段(括号里表示适用的类型)：
-  * program：可执行文件或者调试器要运行的文件 (launch)
-  * args：要传递给调试程序的参数 (launch)
-  * env：环境变量 (launch)
-  * cwd：当前执行目录 (launch)
-  * address：ip 地址 (launch & attach)
-  * port：端口号 (launch & attach)
-  * skipFiles：想要忽略的文件，数组类型 (launch & attach)
-  * processId：进程 PID (attach)
+- 可选字段(括号里表示适用的类型)：
+  - program：可执行文件或者调试器要运行的文件 (launch)
+  - args：要传递给调试程序的参数 (launch)
+  - env：环境变量 (launch)
+  - cwd：当前执行目录 (launch)
+  - address：ip 地址 (launch & attach)
+  - port：端口号 (launch & attach)
+  - skipFiles：想要忽略的文件，数组类型 (launch & attach)
+  - processId：进程 PID (attach)
 
-- 变量替换：
-  * ${workspaceRoot}：当前打开工程的路径
-  * ${file}：当前打开文件的路径
-  * ${fileBasename}：当前打开文件的名字，包含后缀名
-  * ${fileDirname}：当前打开文件所在的文件夹的路径
-  * ${fileExtname}：当前打开文件的后缀名
-  * ${cwd}：当前执行目录
+* 变量替换：
+  - \${workspaceRoot}：当前打开工程的路径
+  - \${file}：当前打开文件的路径
+  - \${fileBasename}：当前打开文件的名字，包含后缀名
+  - \${fileDirname}：当前打开文件所在的文件夹的路径
+  - \${fileExtname}：当前打开文件的后缀名
+  - \${cwd}：当前执行目录
 
 我们也可以使用如下方式指明应用程序的启动位置
 
@@ -329,8 +329,8 @@ func1();
 
 当我们想在函数里加个断点的时候，一般会选择这么做：
 
-* 在 Inspector 中找到指定行，然后添加一个断点
-* 在脚本中添加一个 debugger 调用
+- 在 Inspector 中找到指定行，然后添加一个断点
+- 在脚本中添加一个 debugger 调用
 
 不过这两种方法都存在一个小问题就是都要到对应的脚本文件中然后再找到对应的行，这样会比较麻烦。这边介绍一个相对快捷点的方法，就是在 console 中使用`debug(funcName)`然后脚本会在指定到对应函数的地方自动停止。这种方法有个缺陷就是无法在私有函数或者匿名函数处停止，所以还是要因时而异：
 
@@ -396,9 +396,9 @@ var func1 = function(x, y, z) {
 
 这种方式能够让你实时监控到底啥参数被传入到了指定函数中。
 
-# Console 中使用$进行元素查询
+# Console 中使用\$进行元素查询
 
-在 Console 中也可以使用$来进行类似于 querySelector 那样基于 CSS 选择器的查询，$('css-selector') 会返回满足匹配的第一个元素，而$$('css-selector') 会返回全部匹配元素。注意，如果你会多次使用到元素，那么别忘了将它们存入变量中。
+在 Console 中也可以使用$来进行类似于 querySelector 那样基于 CSS 选择器的查询，$('css-selector') 会返回满足匹配的第一个元素，而\$\$('css-selector') 会返回全部匹配元素。注意，如果你会多次使用到元素，那么别忘了将它们存入变量中。
 ![](https://raygun.com/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-02-at-4.37.34-pm.png)
 
 # Postman

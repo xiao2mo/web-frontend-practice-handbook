@@ -10,9 +10,9 @@
 
 # MobX 基础设计理念阐述
 
-数周之前[Bertalan Miklos](https://twitter.com/solkimicreb1)撰写了一篇非常精彩的对比 MobX 与 基于 Proxy 的 NX 系列框架的[博文](http://www.nx-framework.com/blog/public/mobx-vs-nx/)。该文不仅详细解释了基于 Proxy 的响应式框架的原理，还介绍了 MobX 以及背后的 Transparent Reactivity (Automatic Reactivity) 的理念，这其中有很多我本人之前都尚未详细阐述的。本文即是我分享关于 MobX 的独特特性的文章。
+数周之前 [Bertalan Miklos](https://twitter.com/solkimicreb1) 撰写了一篇非常精彩的对比 MobX 与 基于 Proxy 的 NX 系列框架的[博文](http://www.nx-framework.com/blog/public/mobx-vs-nx/)。该文不仅详细解释了基于 Proxy 的响应式框架的原理，还介绍了 MobX 以及背后的 Transparent Reactivity (Automatic Reactivity) 的理念，这其中有很多我本人之前都尚未详细阐述的。本文即是我分享关于 MobX 的独特特性的文章。
 
-# MobX 为何进行同步推导(Derivations Synchronously)
+# Derivations Synchronously | MobX 为何进行同步推导
 
 MobX 的重要特性之一即是所有的 Derivations 都是同步计算的，这一点很不同于现有的主流框架。对于 RxJS 这样的 Event Stream 流派的响应式框架，虽然它们也能保证同步推导，但是缺乏了所谓的透明追踪(Transparent Tracking)的特性。而对于 Meteor、Knockout、Angular、Ember 以及 Vue 这些主流的双向数据绑定的 MVVM 框架的响应式表现很类似于 MobX，但是它们在可预测性(Predictability)上的表现差强人意。形象的解释就是如果某个框架重复运行你的代码(譬如重复渲染)或者延迟执行时，开发者很难进行调试，即使是像`Promise`这样的简单的抽象都因为其异步性而难以调试。Flux 或者 Redux 这样的 Action-Dispatcher 框架的核心优势即是在项目动态扩展的同时保证了其可预测性。MobX 则另辟蹊径，没有像 Redux 这样基于纯函数的运行与数据流追踪，而是尝试从根本上去解决这个问题。Transparent Reactivity 本身具有声明式、高阶以及简洁明了的特性，而 MobX 在此之上添加了两个约束：
 

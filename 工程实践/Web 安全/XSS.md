@@ -1,3 +1,5 @@
+[![返回目录](https://parg.co/U0y)](https://parg.co/UHU)
+
 # XSS 跨站脚本详解
 
 ## Content Security Policy
@@ -8,11 +10,14 @@ Github 使用 Electron 构建编辑器 Atom，其使用了 CSP 来限制潜在�
 // index.html
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta http-equiv="Content-Security-Policy" content="default-src * atom://*; img-src blob: data: * atom://*; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src blob: data: mediastream: * atom://*;">
-      <script src="index.js"></script>
-   </head>
-   <body tabindex="-1"></body>
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * atom://*; img-src blob: data: * atom://*; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src blob: data: mediastream: * atom://*;"
+    />
+    <script src="index.js"></script>
+  </head>
+  <body tabindex="-1"></body>
 </html>
 ```
 

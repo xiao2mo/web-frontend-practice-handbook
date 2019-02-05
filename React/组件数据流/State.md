@@ -328,14 +328,14 @@ const newData = update(myData, {
 
 该语法借鉴了 MongoDB 中查询语言的模式，以 `$` 为前缀的键被称为命令，而待修改的对象称为目标，这里我们讨论几种常见的用法：
 
-* 简单的添加数据
+- 简单的添加数据
 
 ```
 const initialArray = [1, 2, 3];
 const newArray = update(initialArray, {$push: [4]}); // => [1, 2, 3, 4]
 ```
 
-* 嵌套数组的切割
+- 嵌套数组的切割
 
 ```
 const collection = [1, 2, {a: [12, 17, 15]}];
@@ -343,7 +343,7 @@ const newCollection = update(collection, {2: {a: {$splice: [[1, 1, 13, 14]]}}});
 // => [1, 2, {a: [12, 13, 14, 15]}]
 ```
 
-* 根据现有值进行更新
+- 根据现有值进行更新
 
 ```
 const obj = {a: 5, b: 3};
@@ -353,7 +353,7 @@ const newObj = update(obj, {b: {$apply: function(x) {return x * 2;}}});
 const newObj2 = update(obj, {b: {$set: obj.b * 2}});
 ```
 
-* 对象合并
+- 对象合并
 
 ```
 const obj = {a: 5, b: 3};

@@ -3,28 +3,23 @@
 # Introduction
 
 React Redux 是官方提供的 Redux 与 React 的绑定库，用于将 Redux 中的 State 与 Action Creators 映射到 React 组件的 Props。本组件的设计思想可以查看[Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.6bnhmpqtg)，即将展示组件与容器组件分离，将展示组件尽可能地作为 Stateless 对待。在应用中，只有最顶层组件是对 Redux 可知(例如路由处理)这是很好的。所有它们的子组件都应该是“笨拙”的，并且是通过 props 获取数据。
-| | 容器组件 | 展示组件 |
-| -------- | ------------------ | -------------- |
-| 位置 | 最顶层，路由处理 | 中间和子组件 |
-| 使用 Redux | 是 | 否 |
-| 读取数据 | 从 Redux 获取 state | 从 props 获取数据 |
-| 修改数据 | 向 Redux 发起 actions | 从 props 调用回调函数 |
+
+|            | 容器组件              | 展示组件              |
+| ---------- | --------------------- | --------------------- |
+| 位置       | 最顶层，路由处理      | 中间和子组件          |
+| 使用 Redux | 是                    | 否                    |
+| 读取数据   | 从 Redux 获取 state   | 从 props 获取数据     |
+| 修改数据   | 向 Redux 发起 actions | 从 props 调用回调函数 |
 
 ![](http://p9.qhimg.com/d/inn/a8ab3ea4/react-redux.png)
 
 - 展示组件中不接入 Redux
   让我们看下，我们拥有一个 <Counter /> 的展示组件，它有一个通过 props 传过来的值，和一个函数 onIncrement，当你点击 “Increment” 按钮时就会调用这个函数：
 
-```
-import { Component } from 'react';
-
+```js
 export default class Counter extends Component {
   render() {
-    return (
-      <button onClick={this.props.onIncrement}>
-        {this.props.value}
-      </button>
-    );
+    return <button onClick={this.props.onIncrement}>{this.props.value}</button>;
   }
 }
 ```
@@ -37,27 +32,15 @@ npm install --save react-redux
 
 我们用 react-redux 提供的 connect() 方法将“笨拙”的 Counter 转化成容器组件。connect() 允许你从 Redux store 中指定准确的 state 到你想要获取的组件中。这让你能获取到任何级别颗粒度的数据。首先来看下一个简单的 Counter 的示例：
 
-```
-import { Component } from 'react';
-
+```js
 export default class Counter extends Component {
   render() {
-    return (
-      <button onClick={this.props.onIncrement}>
-        {this.props.value}
-      </button>
-    );
+    return <button onClick={this.props.onIncrement}>{this.props.value}</button>;
   }
 }
 ```
 
-```
-import { Component } from 'react';
-import { connect } from 'react-redux';
-
-import Counter from '../components/Counter';
-import { increment } from '../actionsCreators';
-
+```js
 // 哪些 Redux 全局的 state 是我们组件想要通过 props 获取的？
 function mapStateToProps(state) {
   return {
@@ -72,7 +55,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
 /**或者也可以使用bindActionCreators
 //将Dispatch映射为Props
 ...
@@ -83,17 +65,18 @@ function mapDispatchToProps(dispatch) {
 }
 **/
 
-
-
 // 你可以传递一个对象，而不是定义一个 `mapDispatchToProps`：
 // export default connect(mapStateToProps, CounterActionCreators)(Counter);
 
 // 或者如果你想省略 `mapDispatchToProps`，你可以通过传递一个 `dispatch` 作为一个 props：
 // export default connect(mapStateToProps)(Counter);
 
-let App = connect(mapStateToProps, mapDispatchToProps)(Counter);
+let App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
 const targetEl = document.getElementById('root');
-const store = configureStore({counter: 0}) //初始化Store
+const store = configureStore({ counter: 0 }); //初始化Store
 
 ReactDOM.render(
   <Provider store={store}>
@@ -101,12 +84,7 @@ ReactDOM.render(
   </Provider>,
   targetEl
 );
-
 ```
-
-## Reference
-
-- [中文的 React+Redux 系列教程](https://github.com/lewis617/react-redux-tutorial)
 
 # Provider & Store
 
