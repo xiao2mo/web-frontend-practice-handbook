@@ -183,7 +183,7 @@ export default class Counter extends PureComponent {
       <div className="Counter__container">
                 <span>          简单计数器示例:         </span>
                 <span>{this.state.count}</span>
-               {' '}
+               
         <Button
           type="primary"
           onClick={() => {
@@ -192,9 +192,9 @@ export default class Counter extends PureComponent {
             });
           }}
         >
-                    点击自增        {' '}
+                    点击自增        
         </Button>
-             {' '}
+             
       </div>
     );
   }
