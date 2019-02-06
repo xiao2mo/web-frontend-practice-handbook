@@ -1,3 +1,9 @@
+# 文件处理
+
+## 文件下载
+
+## 文件上传
+
 ```js
 fetch('/big-data.csv')
   .then(function(response) {
@@ -153,4 +159,37 @@ function search(reader) {
     progress.value = contentLength ? soFar : null;
   }
 })();
+```
+
+```
+<a href="http://somehost/somefile.zip" download="filename.zip">Download file</a>
+```
+
+```js
+fetch('http://somehost/somefile.zip').then(res =>
+  res.blob().then(blob => {
+    var a = document.createElement('a');
+    var url = window.URL.createObjectURL(blob);
+    var filename = 'myfile.zip';
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  })
+);
+```
+
+```js
+fetch('http://somehost/check-permission', options).then(res => {
+  if (res.code === 0) {
+    var a = document.createElement('a');
+    var url = res.data.url;
+    var filename = 'myfile.zip';
+    a.href = url;
+    a.download = filename;
+    a.click();
+  } else {
+    alert('You have no permission to download the file!');
+  }
+});
 ```
