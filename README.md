@@ -12,7 +12,7 @@ Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会�
 
 # Nav | 导航
 
-如果您想快速检索，那么建议前往 [xCompass](https://wxyyxc1992.github.io/home/#/search)/[alfred-sg](https://github.com/wxyyxc1992/xCompass/tree/master/soogle/alfred-sg) 进行交互式地检索、查找需要的文章/链接/书籍/课程。
+如果您想快速检索，那么建议前往 [xCompass](https://wxyyxc1992.github.io/home/#/search)/[alfred-sg](https://github.com/wxyyxc1992/Soogle/tree/master/alfred-sg) 进行交互式地检索、查找需要的文章/链接/书籍/课程。
 
 如果您对于 JavaScript 基础语法尚不完全了解，那么建议您首先浏览[现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)或者 [JavaScript-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheets/blob/master/ProgrammingLanguage/JavaScript/JavaScript-CheatSheet.md) 以了解基础的 JavaScript 语法及实践应用。
 
