@@ -10,6 +10,39 @@
 
 useEffect 是一个神奇的函数，通过不同的组合搭配我们能够极大地精简原本类组件中的业务逻辑代码。
 
+## useRef
+
+```js
+export function useRef<T>(initialValue: T): { current: T } {
+  currentlyRenderingFiber = resolveCurrentlyRenderingFiber();
+  workInProgressHook = createWorkInProgressHook();
+  let ref;
+
+  if (workInProgressHook.memoizedState === null) {
+    ref = { current: initialValue };
+    // ...
+    workInProgressHook.memoizedState = ref;
+  } else {
+    ref = workInProgressHook.memoizedState;
+  }
+  return ref;
+}
+```
+
+对于函数式组件，如果我们需要获取该组件子元素的 Ref，可以使用 forwardRef 来进行 Ref 转发：
+
+```js
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
+
 ## 受控组件的状态变化
 
 在编写 Input 这样的受控组件时，我们常常需要在 Props 中的 value 值变化之后，联动更新存储实际数据的内部 value 值：
