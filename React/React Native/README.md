@@ -7,4 +7,5 @@
 随着 React 在 Web 领域取得的巨大成功，Facebook 继续推出 React Native 以创建接近原生性能的跨平台移动应用，其倡导的 Learn Once，Write Anywhere 的概念同时兼顾了性能与快速迭代的需求。React 的核心设计理念其提供了抽象的、平台无关的组件定义范式，然后通过 react-dom 等库将其渲染到不同的承载体上；这些承载可以是服务端渲染中的字符串，或者客户端渲染中的 DOM 节点。在 React Native 中，我们只需要了解 React 组件定义规范与语法，然后利用 React Native 这个新的渲染库将界面渲染到原生界面组件中。在未来的客户端开发中，负责与用户交互以及存储这一部分建议采用原生的代码，而对于逻辑控制这边，建议是采用 JavaScript 方式实现。
 
 React Native 本质上是用 JSX 的语法风格编写原生的应用，它本质上还是跨平台编译性质的，并没有提供完整的类似于 WebView 那样的上下文，并且大量的 HTML 元素也是不可以直接应用的。React Native 只是借用了 HTML 的语法风格，并且提供了 JavaScript 与原生的桥接。React Native 使用了所谓的 Native Widget APIs 来调用底层的操作系统相关代码，并且处于性能的考虑它会异步批量地调用原生平台接口，其整体架构如下所示：
+
 ![](https://www.safaribooksonline.com/library/view/react-and-react/9781786465658/graphics/image_12_001.jpg)
