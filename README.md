@@ -16,7 +16,7 @@ Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会�
 
 如果您对于 JavaScript 基础语法尚不完全了解，那么建议您首先浏览[现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)或者 [JavaScript-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheets/blob/master/ProgrammingLanguage/JavaScript/JavaScript-CheatSheet.md) 以了解基础的 JavaScript 语法及实践应用。
 
-如果您想快速地了解 Web 开发实践，或者是想查阅某些清单，那么建议您前往 [Awesome-CheatSheets/Web]()；或者从 [导论篇](./导论) 开始阅读，它会包含 [Web 开发简史与变迁](./导论/开发简史与变迁.md)，[数据流驱动的界面](./导论/数据流驱动的界面.md)，[模块化与组件化](./导论/模块化与组件化.md)，[工具化与工程化](./导论/工具化与工程化.md)，[前后端分离与全栈架构](./导论/前后端分离与全栈架构.md)，[微前端与大前端](./导论/微前端与大前端.md)，[运行机制与性能优化](./导论/运行机制与性能优化.md)，等内容。
+如果您想快速地了解 Web 开发实践，或者是想查阅某些清单，那么建议您前往 [Awesome-CheatSheets/Web]()；或者从 [Specials](./Specials) 开始阅读，它会包含 [Web 开发简史与变迁](./Specials/开发简史与变迁.md)，[数据流驱动的界面](./Specials/数据流驱动的界面.md)，[模块化与组件化](./Specials/模块化与组件化.md)，[工具化与工程化](./Specials/工具化与工程化.md)，[前后端分离与全栈架构](./Specials/前后端分离与全栈架构.md)，[微前端与大前端](./Specials/微前端与大前端.md)，[运行机制与性能优化](./Specials/运行机制与性能优化.md)，等内容。
 
 接下来，您可以选择以下章节中感兴趣的模块进行深度阅读：
 
