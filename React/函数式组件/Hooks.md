@@ -4,11 +4,11 @@
 
 不过 Hooks 也并非全无代价，函数式组件本身会导致大量的临时函数被创建。
 
-# useState
-
-# useEffect
+# 组件内状态
 
 useEffect 是一个神奇的函数，通过不同的组合搭配我们能够极大地精简原本类组件中的业务逻辑代码。
+
+# 异步请求处理
 
 ## useRef
 
@@ -42,6 +42,8 @@ const FancyButton = React.forwardRef((props, ref) => (
 const ref = React.createRef();
 <FancyButton ref={ref}>Click me!</FancyButton>;
 ```
+
+# 组件的生命周期管理
 
 ## 受控组件的状态变化
 
@@ -78,15 +80,17 @@ export function VCForm({ formData = defaultProps.formData }) {
 
 这里需要注意的是，如果我们直接将默认值写在参数列表里，即 `formData = {}`；在外部参数未传入 formData，那么会发现每次组件更新都会触发 formData 被分配到新的默认值，也就导致了该组件的无限重复更新。因此我们需要仿造类组件中 defaultProps 的做法，将 defaultProps 以静态外部变量的方式存储并赋值。
 
-# useReducer
-
-## dispatch
-
 # useCallback & useMemo
 
 useCallback 与 useMemo
 
 不过在实际场景下，很多的 Callback 还是会被重新生成，我们还是需要在子组件中进行精细地 shouldComponentUpdate 控制。
+
+# 业务逻辑处理
+
+# useReducer
+
+## dispatch
 
 # 坑杂记
 

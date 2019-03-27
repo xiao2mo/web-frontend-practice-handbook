@@ -15,7 +15,7 @@ updateState({target}) {
 
 如果我们希望去在某个状态实际更新完毕之后，执行某些操作，那么可以以如下方式使用自定义的新状态：
 
-```
+```js
 updateState({target}) {
    this.setState(prevState => {
      const updatedUser = {...prevState.user, [target.name]: target.value}; // use previous value in state to build new state...
