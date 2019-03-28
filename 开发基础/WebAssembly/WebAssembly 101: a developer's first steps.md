@@ -1,6 +1,6 @@
 [![返回目录](https://parg.co/USw)](https://parg.co/bxN)
 
-WebAssembly 的概念、意义以及未来带来的性能提升相信已是耳熟能详，笔者在[前端每周清单系列](https://parg.co/bh1)中也是经常会推荐 WebAssembly 相关文章。不过笔者也只是了解其概念而未真正付诸实践，本文即是笔者在将我司某个简单项目中的计算模块重构为 WebAssembly 过程中的总结。在简单的实践中笔者个人感觉，WebAssembly 的抽象程度会比 JavaScript 高不少，未来对于大型项目的迁移，对于纯前端工程师而言可能存在的坑也是不少，仿佛又回到了被指针统治的年代。本文笔者使用的案例已经集成到了 React 脚手架 [create-react-boilerplate](https://github.com/wxyyxc1992/create-react-boilerplate) 中 ，可以方便大家快速本地实践。
+WebAssembly 的概念、意义以及未来带来的性能提升相信已是耳熟能详，笔者在[前端每周清单系列](https://parg.co/bh1)中也是经常会推荐 WebAssembly 相关文章。不过笔者也只是了解其概念而未真正付诸实践，本文即是笔者在将我司某个简单项目中的计算模块重构为 WebAssembly 过程中的总结。在简单的实践中笔者个人感觉，WebAssembly 的抽象程度会比 JavaScript 高不少，未来对于大型项目的迁移，对于纯前端工程师而言可能存在的坑也是不少，仿佛又回到了被指针统治的年代。本文笔者使用的案例已经集成到了 React 脚手架 [create-react-boilerplate](https://github.com/wx-chevalier/create-react-boilerplate) 中 ，可以方便大家快速本地实践。
 
 # 编译环境搭建
 
@@ -137,7 +137,7 @@ function loadWebAssembly(filename, imports) {
     );
 ```
 
-而在笔者的[脚手架](https://github.com/wxyyxc1992/create-react-boilerplate)中，使用了 wasm-loader 进行加载，这样可以将 wasm 直接打包在 Bundle 中，然后通过 `import` 导入：
+而在笔者的[脚手架](https://github.com/wx-chevalier/create-react-boilerplate)中，使用了 wasm-loader 进行加载，这样可以将 wasm 直接打包在 Bundle 中，然后通过 `import` 导入：
 
 ```js
 import React, { PureComponent } from 'react';
@@ -208,7 +208,7 @@ export default class Counter extends PureComponent {
 
 # 简单游戏引擎重构
 
-上文我们讨论了利用 WebAssembly 重构简单的计数器模块，这里我们以简单的游戏为例，交互式的感受 WebAssembly 带来的性能提升，可以直接查看[游戏的在线演示](http://wxyyxc1992.github.io/crb/#/wasm)。这里的游戏引擎即是执行部分计算与重新赋值操作，譬如这里的计算下一个位置状态的函数在 C 中实现为：
+上文我们讨论了利用 WebAssembly 重构简单的计数器模块，这里我们以简单的游戏为例，交互式的感受 WebAssembly 带来的性能提升，可以直接查看[游戏的在线演示](http://wx-chevalier.github.io/crb/#/wasm)。这里的游戏引擎即是执行部分计算与重新赋值操作，譬如这里的计算下一个位置状态的函数在 C 中实现为：
 
 ```c
 EMSCRIPTEN_KEEPALIVE

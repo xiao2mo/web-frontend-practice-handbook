@@ -6,15 +6,15 @@
 
 `Copyright © 2018 王下邀月熊`
 
-Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会贯通等阶段。本仓库存放 [ITCS 技术体系与知识图谱-Web 前端](https://parg.co/UIF)相关领域的 Web 开发基础与工程实践的相关博客、示例代码与开源项目、整理成的系列书籍等内容；目前为了更好地体系化阅读，笔者将所有的内容规整到了不同的系列文章 / 书籍中；代码等实践模板请参考 [fe-boilerplate](https://github.com/wxyyxc1992/fe-boilerplate)。
+Web 开发，入门易，深度难，分为初窥门径、登堂入室、融会贯通等阶段。本仓库存放 [ITCS 技术体系与知识图谱-Web 前端](https://parg.co/UIF)相关领域的 Web 开发基础与工程实践的相关博客、示例代码与开源项目、整理成的系列书籍等内容；目前为了更好地体系化阅读，笔者将所有的内容规整到了不同的系列文章 / 书籍中；代码等实践模板请参考 [fe-boilerplate](https://github.com/wx-chevalier/fe-boilerplate)。
 
 ![default](https://i.postimg.cc/y1QXgJ6f/image.png)
 
 # Nav | 导航
 
-如果您想快速检索，那么建议前往 [xCompass](https://wxyyxc1992.github.io/home/#/search)/[alfred-sg](https://github.com/wxyyxc1992/Soogle/tree/master/alfred-sg) 进行交互式地检索、查找需要的文章/链接/书籍/课程。
+如果您想快速检索，那么建议前往 [xCompass](https://wx-chevalier.github.io/home/#/search)/[alfred-sg](https://github.com/wx-chevalier/Soogle/tree/master/alfred-sg) 进行交互式地检索、查找需要的文章/链接/书籍/课程。
 
-如果您对于 JavaScript 基础语法尚不完全了解，那么建议您首先浏览[现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)或者 [JavaScript-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheets/blob/master/ProgrammingLanguage/JavaScript/JavaScript-CheatSheet.md) 以了解基础的 JavaScript 语法及实践应用。
+如果您对于 JavaScript 基础语法尚不完全了解，那么建议您首先浏览[现代 JavaScript 语法基础与工程实践](https://parg.co/UIj)或者 [JavaScript-CheatSheet](https://github.com/wx-chevalier/Awesome-CheatSheets/blob/master/ProgrammingLanguage/JavaScript/JavaScript-CheatSheet.md) 以了解基础的 JavaScript 语法及实践应用。
 
 如果您想快速地了解 Web 开发实践，或者是想查阅某些清单，那么建议您前往 [Awesome-CheatSheets/Web]()；或者从 [Specials](./Specials) 开始阅读，它会包含 [Web 开发简史与变迁](./Specials/开发简史与变迁.md)，[数据流驱动的界面](./Specials/数据流驱动的界面.md)，[模块化与组件化](./Specials/模块化与组件化.md)，[工具化与工程化](./Specials/工具化与工程化.md)，[前后端分离与全栈架构](./Specials/前后端分离与全栈架构.md)，[微前端与大前端](./Specials/微前端与大前端.md)，[运行机制与性能优化](./Specials/运行机制与性能优化.md)，等内容。
 
@@ -46,4 +46,4 @@ Web 前端开发可以追溯于 1991 年蒂姆·伯纳斯-李公开提及 HTML �
 
 笔者所有文章遵循 [知识共享 署名 - 非商业性使用 - 禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)，欢迎转载，尊重版权。如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮(支付宝扫码)~
 
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
+![](https://github.com/wx-chevalier/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)

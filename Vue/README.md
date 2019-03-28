@@ -2,7 +2,7 @@
 
 本系列文章从属于 [Vue.js 与前端工程化实践](https://parg.co/bWg)一书，本书的首要目标即是以  Vue.js 为核心的技术体系为主线，为读者构建完整的前端技术知识体系，探讨前端工程化的思想，并且能使不同技术水准的读者都有所得。
 
-建议前置阅读[现代 Web 开发基础](https://parg.co/UHU)、[现代 Web 工程化实践](https://github.com/wxyyxc1992/Web-Series/)、 [现代 JavaScript 开发：语法基础与工程实践](https://parg.co/bxN)等。另外可以比照阅读  [React 与前端工程化实践](https://parg.co/bIn)  等。
+建议前置阅读[现代 Web 开发基础](https://parg.co/UHU)、[现代 Web 工程化实践](https://github.com/wx-chevalier/Web-Series/)、 [现代 JavaScript 开发：语法基础与工程实践](https://parg.co/bxN)等。另外可以比照阅读  [React 与前端工程化实践](https://parg.co/bIn)  等。
 
 # 前言
 
@@ -20,16 +20,16 @@
 
 笔者所有文章遵循 [知识共享 署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)，欢迎转载，尊重版权。如果觉得本系列对你有所帮助，欢迎给我家布丁买点狗粮(支付宝扫码)~
 
-![](https://github.com/wxyyxc1992/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
+![](https://github.com/wx-chevalier/OSS/blob/master/2017/8/1/Buding.jpg?raw=true)
 
 # 目录
 
-* [Vuex](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/Vuex/Index.md)
-  * [基本语法](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/Vuex/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95.md): Vuex 基本语法
-* [初窥](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/Index.md)
-  * [vue-cli](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/vue-cli.md): Vue.js 概述
-  * [设计理念](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5.md):
-* [状态管理](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/Index.md)
-  * [基于 MobX 的 Vue.js 状态管理](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/%E5%9F%BA%E4%BA%8E%20MobX%20%E7%9A%84%20Vue.js%20%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.md):
-* [组件](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E7%BB%84%E4%BB%B6/Index.md)
-  * [类组件](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E7%BB%84%E4%BB%B6/%E7%B1%BB%E7%BB%84%E4%BB%B6.md): 基于 ES6/TypeScript 的 Vue.js 类组件
+* [Vuex](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/Vuex/Index.md)
+  * [基本语法](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/Vuex/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95.md): Vuex 基本语法
+* [初窥](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/Index.md)
+  * [vue-cli](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/vue-cli.md): Vue.js 概述
+  * [设计理念](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E5%88%9D%E7%AA%A5/%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5.md):
+* [状态管理](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/Index.md)
+  * [基于 MobX 的 Vue.js 状态管理](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/%E5%9F%BA%E4%BA%8E%20MobX%20%E7%9A%84%20Vue.js%20%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.md):
+* [组件](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/Vue-And-Frontend-Engineering/%E7%BB%84%E4%BB%B6/Index.md)
+  * [类组件](https://github.com/wx-chevalier/Web-Development-And-Engineering-Practices/blob/master/Vue-And-Frontend-Engineering/%E7%BB%84%E4%BB%B6/%E7%B1%BB%E7%BB%84%E4%BB%B6.md): 基于 ES6/TypeScript 的 Vue.js 类组件

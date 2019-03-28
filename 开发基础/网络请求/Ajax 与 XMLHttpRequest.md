@@ -185,7 +185,7 @@ fetch('//offline-news-api.herokuapp.com/stories')
     });
 ```
 
-从笔者自己的体验中，还是非常推荐使用 isomorphic-fetch，其一大优势在于能够在 node 里直接进行单元测试与接口可用性测试。老实说笔者之前用 Mocha 进行带真实网络请求的测试时还是比较不方便的，往往需要在浏览器或者 phatomjs 中进行，并且需要额外的 HTML 代码。而在笔者的[model.test.js](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.test.js)文件中，只需要直接使用`babel-node model.test.js`即可以获取真实的网络请求，这样可以将网络测试部分与 UI 相剥离。
+从笔者自己的体验中，还是非常推荐使用 isomorphic-fetch，其一大优势在于能够在 node 里直接进行单元测试与接口可用性测试。老实说笔者之前用 Mocha 进行带真实网络请求的测试时还是比较不方便的，往往需要在浏览器或者 phatomjs 中进行，并且需要额外的 HTML 代码。而在笔者的[model.test.js](https://github.com/wx-chevalier/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.test.js)文件中，只需要直接使用`babel-node model.test.js`即可以获取真实的网络请求，这样可以将网络测试部分与 UI 相剥离。
 
 ### Basic Usage:基本使用
 
@@ -503,7 +503,7 @@ getWithQueryParamsByProxy({BASE_URL=Model.BASE_URL, path="/", queryParams={}, co
 }
 ```
 
-另外自带缓存的透明代理层的配置为，代码存放于[Github 仓库](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/server.js):
+另外自带缓存的透明代理层的配置为，代码存放于[Github 仓库](https://github.com/wx-chevalier/Webpack-React-Redux-Boilerplate/blob/master/src/model/server.js):
 
 ```
 /**
@@ -807,7 +807,7 @@ model
 
 ## Best Practice
 
-笔者在自己的项目中封装了一个基于 ES6 Class 的基本的模型请求类，[代码地址](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
+笔者在自己的项目中封装了一个基于 ES6 Class 的基本的模型请求类，[代码地址](https://github.com/wx-chevalier/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.js)。
 
 ```js
 /**
@@ -1228,7 +1228,7 @@ fetch('//offline-news-api.herokuapp.com/stories')
     });
 ```
 
-从笔者自己的体验中，还是非常推荐使用 isomorphic-fetch，其一大优势在于能够在 node 里直接进行单元测试与接口可用性测试。老实说笔者之前用 Mocha 进行带真实网络请求的测试时还是比较不方便的，往往需要在浏览器或者 phatomjs 中进行，并且需要额外的 HTML 代码。而在笔者的[model.test.js](https://github.com/wxyyxc1992/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.test.js)文件中，只需要直接使用`babel-node model.test.js`即可以获取真实的网络请求，这样可以将网络测试部分与 UI 相剥离。
+从笔者自己的体验中，还是非常推荐使用 isomorphic-fetch，其一大优势在于能够在 node 里直接进行单元测试与接口可用性测试。老实说笔者之前用 Mocha 进行带真实网络请求的测试时还是比较不方便的，往往需要在浏览器或者 phatomjs 中进行，并且需要额外的 HTML 代码。而在笔者的[model.test.js](https://github.com/wx-chevalier/Webpack-React-Redux-Boilerplate/blob/master/src/model/model.test.js)文件中，只需要直接使用`babel-node model.test.js`即可以获取真实的网络请求，这样可以将网络测试部分与 UI 相剥离。
 
 ### Basic Usage:基本使用
 

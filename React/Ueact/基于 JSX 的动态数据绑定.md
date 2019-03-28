@@ -2,7 +2,7 @@
 
 # 基于 JSX 的动态数据绑定
 
-笔者在 [2016-我的前端之路: 工具化与工程化](https://zhuanlan.zhihu.com/p/24575395)一文中提及，前端社区用了  15 年的时间来分割 HTML、JavaScript 与 CSS，但是随着 JSX 的出现仿佛事物一夕回到解放前。在 Angular、Vue.js 等 MVVM 前端框架中都是采用了指令的方式来描述业务逻辑，而 JSX 本质上还是 JavaScript，即用 JavaScript 来描述业务逻辑。虽然 JSX 被有些开发者评论为丑陋的语法，但是笔者还是秉持 JavaScript First 原则，尽可能地用 JavaScript 去编写业务代码。在前文 [React 初窥：JSX 详解](https://parg.co/bWj)中我们探讨了  JSX 的前世今生与基本用法，而本部分我们着手编写简单的面向 DOM 的 JSX 解析与动态数据绑定库；本部分所涉及的代码归纳于 [Ueact](https://github.com/wxyyxc1992/Ueact) 库。
+笔者在 [2016-我的前端之路: 工具化与工程化](https://zhuanlan.zhihu.com/p/24575395)一文中提及，前端社区用了  15 年的时间来分割 HTML、JavaScript 与 CSS，但是随着 JSX 的出现仿佛事物一夕回到解放前。在 Angular、Vue.js 等 MVVM 前端框架中都是采用了指令的方式来描述业务逻辑，而 JSX 本质上还是 JavaScript，即用 JavaScript 来描述业务逻辑。虽然 JSX 被有些开发者评论为丑陋的语法，但是笔者还是秉持 JavaScript First 原则，尽可能地用 JavaScript 去编写业务代码。在前文 [React 初窥：JSX 详解](https://parg.co/bWj)中我们探讨了  JSX 的前世今生与基本用法，而本部分我们着手编写简单的面向 DOM 的 JSX 解析与动态数据绑定库；本部分所涉及的代码归纳于 [Ueact](https://github.com/wx-chevalier/Ueact) 库。
 
 # JSX 解析与 DOM 元素构建
 
@@ -22,7 +22,7 @@
   ],
 ```
 
-这里的 [createElement 函数](https://github.com/wxyyxc1992/Ueact/tree/master/src/platform/dom)声明如下：
+这里的 [createElement 函数](https://github.com/wx-chevalier/Ueact/tree/master/src/platform/dom)声明如下：
 
 ```
 /**
@@ -64,7 +64,7 @@ export function createElement(
 // ...
 ```
 
-在获取到元素标签之后，我们首先要做的就是创建元素；创建元素 [createElementByTag](https://github.com/wxyyxc1992/Ueact/blob/master/src/platform/dom/element/element-utils.js) 过程中我们需要注意区分普通元素与 SVG 元素：
+在获取到元素标签之后，我们首先要做的就是创建元素；创建元素 [createElementByTag](https://github.com/wx-chevalier/Ueact/blob/master/src/platform/dom/element/element-utils.js) 过程中我们需要注意区分普通元素与 SVG 元素：
 
 ```
 export const createElementByTag = (tagName: string) => {
@@ -136,11 +136,11 @@ if (setHTML && setHTML.__html) {
 }
 ```
 
-到这里我们就完成了针对 JSX 格式的朴素的 DOM 标签转化的 createElement 函数，完整的源代码参考[这里](https://github.com/wxyyxc1992/Ueact/blob/master/src/platform/dom/)。
+到这里我们就完成了针对 JSX 格式的朴素的 DOM 标签转化的 createElement 函数，完整的源代码参考[这里](https://github.com/wx-chevalier/Ueact/blob/master/src/platform/dom/)。
 
 ## 简单使用
 
-这里我们依旧使用 [create-webpack-app](https://github.com/wxyyxc1992/create-webpack-app)  脚手架来搭建示例项目，这里我们以简单的计数器为例描述其用法。需要注意的是，本部分尚未引入双向数据绑定，或者说是自动状态变化更新，还是使用的朴素的 DOM 选择器查询更新方式：
+这里我们依旧使用 [create-webpack-app](https://github.com/wx-chevalier/create-webpack-app)  脚手架来搭建示例项目，这里我们以简单的计数器为例描述其用法。需要注意的是，本部分尚未引入双向数据绑定，或者说是自动状态变化更新，还是使用的朴素的 DOM 选择器查询更新方式：
 
 ```js
 // App.js
@@ -349,4 +349,4 @@ setTimeout(() => {
   ...
 ```
 
-完整的在线 Demo 可以查看  [基于 JSX 与 Observer-X 的简单计数器](http://wxyyxc1992.github.io/ueact/browser/count.html)
+完整的在线 Demo 可以查看  [基于 JSX 与 Observer-X 的简单计数器](http://wx-chevalier.github.io/ueact/browser/count.html)

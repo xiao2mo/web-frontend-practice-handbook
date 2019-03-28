@@ -63,7 +63,7 @@ $ npm run build
 
 # 项目结构
 
-该部分的代码参考[vue-boilerplate](https://github.com/wxyyxc1992/Web-Frontend-Introduction-And-Engineering-Practices/tree/master/OpenSource/vue-boilerplate)。首先我们来看下 Vue-cli 构建的项目目录结构：
+该部分的代码参考[vue-boilerplate](https://github.com/wx-chevalier/Web-Frontend-Introduction-And-Engineering-Practices/tree/master/OpenSource/vue-boilerplate)。首先我们来看下 Vue-cli 构建的项目目录结构：
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/1/2/1-hvpOnNNjqls-qRbFj7LSMg.png)
 
 进入项目根目录之后我们使用`npm intsall`命令安装所有依赖，所有的依赖被声明在`package.json`文件中。文件`index.html`中包含了如下 HTML 代码：
