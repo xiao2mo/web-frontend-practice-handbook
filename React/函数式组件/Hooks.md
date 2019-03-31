@@ -2,7 +2,7 @@
 
 # React Hooks
 
-不过 Hooks 也并非全无代价，函数式组件本身会导致大量的临时函数被创建。
+不过 Hooks 也并非全无代价，函数式组件本身会导致大量的临时函数被创建；
 
 # 组件内状态
 
@@ -80,9 +80,23 @@ export function VCForm({ formData = defaultProps.formData }) {
 
 这里需要注意的是，如果我们直接将默认值写在参数列表里，即 `formData = {}`；在外部参数未传入 formData，那么会发现每次组件更新都会触发 formData 被分配到新的默认值，也就导致了该组件的无限重复更新。因此我们需要仿造类组件中 defaultProps 的做法，将 defaultProps 以静态外部变量的方式存储并赋值。
 
-# useCallback & useMemo
+# componentDidUpdate & useMemo
 
 useCallback 与 useMemo
+
+```js
+function Button({ onClick, color, children }) {
+  const textColor = slowlyCalculateTextColor(this.props.color);
+  return (
+    <button
+      onClick={onClick}
+      className={'Button-' + color + ' Button-text-' + textColor}>
+      {children}
+    </button>
+  );
+}
+export default React.memo(Button); // ✅ Uses shallow comparison
+```
 
 不过在实际场景下，很多的 Callback 还是会被重新生成，我们还是需要在子组件中进行精细地 shouldComponentUpdate 控制。
 
