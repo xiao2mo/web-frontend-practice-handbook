@@ -2,13 +2,15 @@
 
 # React Hooks
 
+[![image.png](https://i.postimg.cc/G2cQwFB2/image.png)](https://postimg.cc/zLcWTRFZ)
+
 不过 Hooks 也并非全无代价，函数式组件本身会导致大量的临时函数被创建。
 
 # 组件内状态
 
 useEffect 是一个神奇的函数，通过不同的组合搭配我们能够极大地精简原本类组件中的业务逻辑代码。
 
-# 异步请求处理
+# 异步状态处理
 
 ## useRef
 
