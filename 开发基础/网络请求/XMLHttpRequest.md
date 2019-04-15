@@ -1,20 +1,10 @@
 [![返回目录](https://parg.co/U0y)](https://parg.co/UHU)
 
-# Web Ajax 请求与 XMLHttpRequest, fetch 详解
-
-Ajax 的[官方定义](http://www.tutorialspoint.com/ajax/what_is_ajax.htm)为 Asynchronous JavaScript and XML，即是依赖于现有的 XML/CSS/HTML/JavaScript 来提供可交互性更好的网页应用的技术方案。Ajax 并不是新的技术规范，其中最核心的依赖可以认为就是 XMLHTTPRequest 对象，这个对象使得浏览器可以发出 HTTP 请求与接收 HTTP 响应。XMLHTTPRequest 由微软提出，经过 W3C 标准化定义，于 2008 年提出了 [XMLHttpRequest Level 2](http://dev.w3.org/2006/webapi/XMLHttpRequest-2/) 草案。该版本开始支持跨域请求，支持发送和接收二进制对象、formData 对象、进度判断、请求超时与放弃等特性。
-
-You can use the Cache API with the request and response objects;can't override the content-type header of the response
-
-You can perform no-cors requests, getting a response from a server that doesn't implement CORS. You can't access the response body directly from JavaScript, but you can use it with other APIs (e.g. the Cache API);
-
-Streaming responses (with XHR the entire response is buffered in memory, with fetch you will be able to access the low-level stream). This isn't available yet in all browsers, but will be soon.
-
-- 缺乏超时放弃、进度监控等功能，不过可以通过 [x-fetch](https://parg.co/UL5) 等第三方库，利用 Promise 的特性实现类似功能。
-
 # XMLHttpRequest
 
-## 基础使用
+XMLHTTPRequest 由微软提出，经过 W3C 标准化定义，于 2008 年提出了 [XMLHttpRequest Level 2](http://dev.w3.org/2006/webapi/XMLHttpRequest-2/) 草案。该版本开始支持跨域请求，支持发送和接收二进制对象、formData 对象、进度判断、请求超时与放弃等特性。
+
+# 基础使用
 
 XMLHttpRequest 对象的 HTTP 和 HTTPS 请求必须通过 open 方法初始化。这个方法必须在实际发送请求之前调用，以用来验证请求方法，URL 以及用户信息。这个方法不能确保 URL 存在或者用户信息必须正确。初始化请求可以接受 5 个参数：
 
