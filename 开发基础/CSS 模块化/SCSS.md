@@ -160,11 +160,11 @@ p {
 属性也可以嵌套，比如 border-color 属性，可以写成：
 
 ```scss
-　　p {
-　　　　border: {
-　　　　　　color: red;
-　　　　}
-　　}
+p {
+  border: {
+    color: red;
+  }
+}
 ```
 
 注意，border 后面必须加上冒号。
@@ -231,18 +231,18 @@ Mixin 有点像 C 语言的宏(macro)，是可以重用的代码块。
 使用@mixin 命令，定义一个代码块。
 
 ```scss
-　　@mixin left {
-　　　　float: left;
-　　　　margin-left: 10px;
-　　}
+@mixin left {
+  float: left;
+  margin-left: 10px;
+}
 ```
 
 使用@include 命令，调用这个 mixin。
 
 ```scss
-　　div {
-　　　　@include left;
-　　}
+div {
+  @include left;
+}
 ```
 
 ### 参数与缺省值
@@ -271,20 +271,20 @@ Mixin 有点像 C 语言的宏(macro)，是可以重用的代码块。
 下面是一个 mixin 的实例，用来生成浏览器前缀。
 
 ```scss
-　　@mixin rounded($vert, $horz, $radius: 10px) {
-　　　　border-#{$vert}-#{$horz}-radius: $radius;
-　　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
-　　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
-　　}
+@mixin rounded($vert, $horz, $radius: 10px) {
+  border-#{$vert}-#{$horz}-radius: $radius;
+  -moz-border-radius-#{$vert}#{$horz}: $radius;
+  -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+}
 ```
 
 使用的时候，可以像下面这样调用：
 
 ```scss
-　　#navbar li {
+#navbar li {
   @include rounded(top, left);
 }
-　　#footer {
+#footer {
   @include rounded(top, left, 5px);
 }
 ```
@@ -304,20 +304,24 @@ Mixin 有点像 C 语言的宏(macro)，是可以重用的代码块。
 @if 可以用来判断：
 
 ```scss
-　　p {
-　　　　@if 1 + 1 == 2 { border: 1px solid; }
-　　　　@if 5 < 3 { border: 2px dotted; }
-　　}
+p {
+  @if 1 + 1 == 2 {
+    border: 1px solid;
+  }
+  @if 5 < 3 {
+    border: 2px dotted;
+  }
+}
 ```
 
 配套的还有@else 命令：
 
 ```scss
-　　@if lightness($color) > 30% {
-　　　　background-color: #000;
-　　} @else {
-　　　　background-color: #fff;
-　　}
+@if lightness($color) > 30% {
+  background-color: #000;
+} @else {
+  background-color: #fff;
+}
 ```
 
 ### 循环语句
@@ -325,31 +329,33 @@ Mixin 有点像 C 语言的宏(macro)，是可以重用的代码块。
 SASS 支持 for 循环：
 
 ```
-　　@for $i from 1 to 10 {
-　　　　.border-#{$i} {
-　　　　　　border: #{$i}px solid blue;
-　　　　}
-　　}
+ @for $i from 1 to 10 {
+  .border-#{$i} {
+   border: #{$i}px solid blue;
+  }
+ }
 ```
 
 也支持 while 循环：
 
-```
-　　$i: 6;
-　　@while $i > 0 {
-　　　　.item-#{$i} { width: 2em * $i; }
-　　　　$i: $i - 2;
-　　}
+```scss
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} {
+    width: 2em * $i;
+  }
+  $i: $i - 2;
+}
 ```
 
 each 命令，作用与 for 类似：
 
-```
-　　@each $member in a, b, c, d {
-　　　　.#{$member} {
-　　　　　　background-image: url("/image/#{$member}.jpg");
-　　　　}
-　　}
+```scss
+@each $member in a, b, c, d {
+  .#{$member} {
+    background-image: url('/image/#{$member}.jpg');
+  }
+}
 ```
 
 ## 函数
@@ -357,13 +363,13 @@ each 命令，作用与 for 类似：
 Sass 允许用户自定义函数，原型如下所示：
 
 ```scss
-　　@function double($n) {
-　　　　@return $n * 2;
-　　}
+@function double($n) {
+  @return $n * 2;
+}
 
-　　#sidebar {
-　　　　width: double(5px);
-　　}
+#sidebar {
+  width: double(5px);
+}
 ```
 
 ### 颜色函数
@@ -371,8 +377,102 @@ Sass 允许用户自定义函数，原型如下所示：
 SASS 提供了一些内置的颜色函数，以便生成系列颜色。
 
 ```scss
-　　lighten(#cc3, 10%)  // #d6d65c
-　　darken(#cc3, 10%)  //  #a3a329
-　　grayscale(#cc3) // #808080
-　　complement(#cc3) // #33c
+ lighten(#cc3, 10%)  // #d6d65c
+ darken(#cc3, 10%)  //  #a3a329
+ grayscale(#cc3) // #808080
+ complement(#cc3) // #33c
 ```
+
+# 模块化
+
+目前我们组织样式的方式为:
+
+```scss
+.test-comtainer {
+  width: 10px;
+
+  .sub1 {
+    width: 10px;
+
+    .ssub2 {
+      width: 10px;
+    }
+  }
+}
+```
+
+编译成的代码为：
+
+```css
+.test-comtainer {
+  width: 10px;
+}
+
+.test-comtainer .sub1 {
+  width: 10px;
+}
+
+.test-comtainer .sub1 .ssub2 {
+  width: 10px;
+}
+```
+
+可以看出，使用这种方式组织样式采用了后代选择器，如果组件比较复杂，嵌套层次过深。编译出的 CSS 中会出现多级后代选择器，不仅会影响性能，而且如果在子组件中使用到了重复的类名，还会 出现样式冲突。
+
+因此，在参考了多个组件库的实现后，考虑使用一种更为扁平化的方式组织样式：
+
+```scss
+$prefix: .test;
+
+$prefix {
+  width: 10px;
+
+  &-sub1 {
+    width: 10px;
+  }
+
+  &-sub2 {
+    width: 10px;
+
+    &-ssub {
+      width: 10px;
+    }
+  }
+}
+```
+
+编译后的 CSS：
+
+```css
+.test {
+  width: 10px;
+}
+
+.test-sub1 {
+  width: 10px;
+}
+
+.test-sub2 {
+  width: 10px;
+}
+
+.test-sub2-ssub {
+  width: 10px;
+}
+```
+
+可以看出，使用这种方式组织的 CSS 代码不存在多级选择器，性能更加优秀。同时因为使用了精确的类名，组件之间也不会互相干扰。唯一的问题就是在 JSX 写类名更加繁琐，会频繁引用到父元素类名。
+
+```
+// 之前的写法，比较方便
+<div className="test-container">
+  <div className="sub1"/>
+</div>
+
+// 现在的写法，需要拼接长类名
+<div className="test">
+  <div className="test-sub1"/>
+</div>
+```
+
+为了解决 JSX 类名繁琐的问题, 可以使用 `ts-classname-plugin`，此插件是 ts compiler 的自定义 transformer，可以对 AST 进行操作，从而达到简单模拟 scss 中 `&` 的作用。在 scss 中，`&` 是嵌套结构中外层选择器的缩写，而在 JSX 中，我们只需对 `className` 属性进行处理。

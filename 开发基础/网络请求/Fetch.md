@@ -5,14 +5,14 @@ JavaScript 通过 XMLHttpRequest(XHR)来执行异步请求，这个方式已经�
 - 改善离线体验
 - 保持可扩展性
 
-而与 `jQuery` 相比，`fetch` 方法与 `jQuery.ajax()` 的主要区别在于：
+而与 jQuery 相比，fetch 方法与 `jQuery.ajax()` 的主要区别在于：
 
-- `fetch()`方法返回的 Promise 对象并不会在 HTTP 状态码为`404`或者`500`的时候自动抛出异常，而需要用户进行手动处理
+- `fetch()`方法返回的 Promise 对象并不会在 HTTP 状态码为 404 或者 500 的时候自动抛出异常，而需要用户进行手动处理
 - 默认情况下，fetch 并不会发送任何的本地的 cookie 到服务端，注意，如果服务端依靠 Session 进行用户控制的话要默认开启 Cookie
 
 # 请求构建
 
-假设 `fetch` 已经被挂载到了全局的 window 目录下。
+假设 fetch 已经被挂载到了全局的 window 目录下。
 
 ```js
 // Simple response handling
@@ -36,8 +36,8 @@ fetch('/some/url')
 
 ## Request:请求构造
 
-Request 对象代表了一次`fetch`请求中的请求体部分，你可以自定义`Request`对象:
-A `Request` instance represents the request piece of a `fetch` call. By passing`fetch` a `Request` you can make advanced and customized requests:
+Request 对象代表了一次 fetch 请求中的请求体部分，你可以自定义`Request`对象:
+A `Request` instance represents the request piece of a fetch call. By passingfetch a `Request` you can make advanced and customized requests:
 
 - `method` - 使用的 HTTP 动词，`GET`, `POST`, `PUT`, `DELETE`, `HEAD`
 - `url` - 请求地址，URL of the request
@@ -152,7 +152,7 @@ fetch('/users', {
 
 ## Cookies
 
-如果需要设置`fetch`自动地发送本地的 Cookie，需要将 credentials 设置为`same-origin`:
+如果需要设置 fetch 自动地发送本地的 Cookie，需要将 credentials 设置为`same-origin`:
 
 ```
 fetch('/users', {
@@ -172,7 +172,7 @@ fetch('https://example.com:1234/users', {
 
 # Response | 响应处理
 
-在`fetch`的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在 Mock 的时候自定义 Response 对象，譬如在你需要使用 Service Workers 的情况下，在`Response`中，你可以作如下配置:
+在 fetch 的`then`函数中提供了一个`Response`对象，即代表着对于服务端返回值的封装，你也可以在 Mock 的时候自定义 Response 对象，譬如在你需要使用 Service Workers 的情况下，在`Response`中，你可以作如下配置:
 
 - `type` - `basic`, `cors`
 - `url`
